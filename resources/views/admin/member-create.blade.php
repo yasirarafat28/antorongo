@@ -163,7 +163,7 @@
 
                                         </span>
 
-                                    <!--<input type="text" class="form-control datetimepicker" name="dob" value="" placeholder=" জন্মতারিখ" data-dtp="dtp_EPzkD" value="{{old('dob')}}">-->
+                                    <!--<input type="text" class="form-control datepicker" name="dob" value="" placeholder=" জন্মতারিখ" data-dtp="dtp_EPzkD" value="{{old('dob')}}">-->
                                     <input type="date" class="form-control" name="dob" placeholder=" জন্মতারিখ"  value="{{old('dob')}}">
 
                                 </div>

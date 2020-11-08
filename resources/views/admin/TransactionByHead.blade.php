@@ -64,7 +64,7 @@
                                             <span class="input-group-addon">
                                                 <i class="zmdi zmdi-calendar"></i>
                                             </span>
-                                        <input type="text" class="form-control datetimepicker" value="{{$_GET['from'] ?? ''}}" name="from" placeholder="থেকে তারিখ বাছাই করুন...">
+                                        <input type="text" class="form-control datepicker" value="{{$_GET['from'] ?? ''}}" name="from" placeholder="থেকে তারিখ বাছাই করুন...">
                                     </div>
                                 </div>
 
@@ -76,7 +76,7 @@
                                             <span class="input-group-addon">
                                                 <i class="zmdi zmdi-calendar"></i>
                                             </span>
-                                        <input type="text" class="form-control datetimepicker" value="{{$_GET['to'] ?? ''}}" name="to" placeholder=" পর্যন্ত তারিখ বাছাই করুন...">
+                                        <input type="text" class="form-control datepicker" value="{{$_GET['to'] ?? ''}}" name="to" placeholder=" পর্যন্ত তারিখ বাছাই করুন...">
                                     </div>
                                 </div>
 

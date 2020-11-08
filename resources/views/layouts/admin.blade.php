@@ -15,7 +15,8 @@
     <link href="/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
+    <link href="{{asset('admin/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')}}" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="/admin/css/sb-admin-2.min.css" rel="stylesheet">
 
@@ -233,6 +234,13 @@
         padding:20px;
         font-weight:400
         }
+
+
+        .dtp-buttons .btn{
+            padding: 5px 15px !important;
+            margin-left: 3px;
+        }
+
     </style>
 
     @yield('style')
@@ -797,6 +805,27 @@
     <!-- Page level custom scripts -->
     <script src="/admin/js/demo/chart-area-demo.js"></script>
     <script src="/admin/js/demo/chart-pie-demo.js"></script>
+
+    <script src='/admin/js/moment.min.js'></script>
+    <script src="{{asset('admin/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js')}}"></script>
+
+
+
+    <script>
+
+        $('.timepicker').bootstrapMaterialDatePicker({
+            format: 'HH:mm',
+            clearButton: true,
+            date: false
+        });
+        $('.datepicker').bootstrapMaterialDatePicker({
+            format: 'YYYY-MM-DD',
+            clearButton: true,
+            weekStart: 1,
+            time: false
+        });
+    </script>
+
 
     @yield('script')
 

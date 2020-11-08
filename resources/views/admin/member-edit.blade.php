@@ -178,7 +178,7 @@
 
                                         </span>
 
-                                    <input type="text" class="form-control datetimepicker" name="dob" value="" placeholder=" জন্মতারিখ" data-dtp="dtp_EPzkD" value="{{$member->dob}}">
+                                    <input type="text" class="form-control datepicker" name="dob" value="" placeholder=" জন্মতারিখ" data-dtp="dtp_EPzkD" value="{{$member->dob}}">
 
                                 </div>
 
