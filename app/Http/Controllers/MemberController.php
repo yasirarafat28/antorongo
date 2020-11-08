@@ -72,7 +72,7 @@ class MemberController extends Controller
                 ->get();*/
             }
 
-            
+
 
 
 
@@ -105,7 +105,7 @@ class MemberController extends Controller
 
             $query = $request->id;
             $member = User::where('id',$request->id)->first();
-            
+
             $loan_records = Loan::with('user','transactions')->where('user_id',$member->id)->get();
 
             $saving_records = Saving::with('user')->where('user_id',$member->id)->get();
@@ -144,7 +144,7 @@ class MemberController extends Controller
 
             }
 
-        })->orderBy('created_at','DESC')->get();
+        })->orderBy('created_at','DESC')->paginate(50);
 
 
         $districts=  District::orderBy('name','ASC')->get();
