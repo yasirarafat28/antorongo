@@ -17,6 +17,14 @@
     <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="{{asset('admin/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')}}" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="/admin/plugins/selectpicker/bootstrap-select.min.css">
+
+
     <!-- Custom styles for this template-->
     <link href="/admin/css/sb-admin-2.min.css" rel="stylesheet">
 
@@ -811,6 +819,14 @@
 
 
 
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="/admin/plugins/selectpicker/bootstrap-select.min.js"></script>
+
+
+
+<script>
+    $('select').selectpicker();
+</script>
     <script>
 
         $('.timepicker').bootstrapMaterialDatePicker({
