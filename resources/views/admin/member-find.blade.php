@@ -35,7 +35,7 @@
 
             <div class="col-sm-12 col-md-12 col-lg-12">
 
-                <div class="card">
+                <div class="card shadow">
 
                     <div class="header">
 
@@ -137,7 +137,7 @@
 
                 <div class="row clearfix">
                     <div class="col-md-4">
-                        <div class="card">
+                        <div class="card shadow">
 
                             <div class="header">
 
@@ -237,7 +237,7 @@
 
 
 
-                        <div class="card">
+                        <div class="card shadow">
 
                             <div class="header">
 
@@ -318,7 +318,7 @@
 
 
 
-                        <div class="card">
+                        <div class="card shadow">
 
                             <div class="header">
 
@@ -390,7 +390,7 @@
                 <!-- Exportable Table -->
                 <div class="row clearfix">
                     <div class="col-lg-12">
-                        <div class="card">
+                        <div class="card shadow">
                             <div class="header">
                                 <h2><strong>ঋণের   </strong> তালিকা </h2>
                             </div>
@@ -445,7 +445,7 @@
             <!-- Exportable Table -->
                 <div class="row clearfix">
                     <div class="col-lg-12">
-                        <div class="card">
+                        <div class="card shadow">
                             <div class="header">
                                 <h2><strong> সঞ্চয় </strong> তালিকা </h2>
                             </div>
@@ -504,7 +504,7 @@
             <!-- Exportable Table -->
                 <div class="row clearfix">
                     <div class="col-lg-12">
-                        <div class="card">
+                        <div class="card shadow">
                             <div class="header">
                                 <h2><strong>এফ ডি আর  </strong> তালিকা </h2>
                             </div>

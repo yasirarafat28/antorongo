@@ -29,7 +29,7 @@
         <div class="row clearfix">
             <div class="col-sm-12 col-md-12 col-lg-12">
 
-                <div class="card">
+                <div class="card shadow">
 
                     <div class="header">
                         <h2><strong>সঞ্চয় খুঁজুন</strong><small></small> </h2>
@@ -195,7 +195,7 @@
         @if($loan)
         <div class="row clearfix">
             <div class="col-lg-12">
-                <div class="card">
+                <div class="card shadow">
                     <div class="header">
                         <h2><strong>জামানতের   </strong> বর্ণনা </h2>
                     </div>
@@ -314,7 +314,7 @@
 
             <div class="col-sm-12 col-md-12 col-lg-12">
 
-                <div class="card">
+                <div class="card shadow">
 
                     <div class="header">
 

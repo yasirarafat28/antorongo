@@ -450,7 +450,7 @@
     <div class="tab-content">
         <div class="tab-pane slideRight active" id="setting">
             <div class="slim_scroll">
-                <div class="card">
+                <div class="card shadow">
                     <h6>General Settings</h6>
                     <ul class="setting-list list-unstyled">
                         <li>
@@ -479,7 +479,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="card">
+                <div class="card shadow">
                     <h6>Skins</h6>
                     <ul class="choose-skin list-unstyled">
                         <li data-theme="purple" class="active">
@@ -502,7 +502,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="card">
+                <div class="card shadow">
                     <h6>Account Settings</h6>
                     <ul class="setting-list list-unstyled">
                         <li>
@@ -525,7 +525,7 @@
                     <button class="t-dark btn btn-default btn-round btn-block">Dark</button>
                     <button class="m_img_btn btn btn-primary btn-round btn-block">Sidebar Image</button>
                 </div>
-                <div class="card">
+                <div class="card shadow">
                     <h6>Information Summary</h6>
                     <div class="row m-b-20">
                         <div class="col-7">
@@ -568,7 +568,7 @@
         </div>
         <div class="tab-pane right_chat stretchLeft" id="chat">
             <div class="slim_scroll">
-                <div class="card">
+                <div class="card shadow">
                     <div class="search">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Search...">
@@ -578,7 +578,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card shadow">
                     <h6>Recent</h6>
                     <ul class="list-unstyled">
                         <li class="online">
@@ -643,7 +643,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="card">
+                <div class="card shadow">
                     <h6>Contacts</h6>
                     <ul class="list-unstyled">
                         <li class="offline inlineblock">
@@ -788,7 +788,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card shadow">
                     <h6>Recent Attachments</h6>
                     <ul class="list-unstyled activity">
                         <li>
@@ -855,7 +855,7 @@
 <!-- Chat-launcher -->
 <div class="chat-launcher"></div>
 <div class="chat-wrapper">
-    <div class="card">
+    <div class="card shadow">
         <div class="header">
             <ul class="list-unstyled team-info margin-0">
                 <li class="m-r-15"><h2>Design Team</h2></li>
@@ -945,7 +945,7 @@
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-sm-12">
-                <div class="card">
+                <div class="card shadow">
                     <div class="body">
                         <div class="row clearfix">
                             <div class="col-lg-4 col-md-4 col-sm-12 text-center">
@@ -976,7 +976,7 @@
         </div>
         <div class="row clearfix">
             <div class="col-lg-12">
-                <div class="card">
+                <div class="card shadow">
                     <div class="header">
                         <h2><strong>Sales</strong> Report</h2>
                         <ul class="header-dropdown">
@@ -1020,7 +1020,7 @@
             <div class="col-lg-8 col-md-12">
                 <div class="row clearfix">
                     <div class="col-lg-12">
-                        <div class="card">
+                        <div class="card shadow">
                             <ul class="row profile_state list-unstyled">
                                 <li class="col-lg-3 col-md-3 col-6">
                                     <div class="body">
@@ -1294,7 +1294,7 @@
                 </div>
             </div>
             <div class="col-lg-4 col-md-12">
-                <div class="card">
+                <div class="card shadow">
                     <div class="header">
                         <h2><strong>Browser</strong> Usage</h2>
                         <ul class="header-dropdown">
@@ -1352,7 +1352,7 @@
         </div>
         <div class="row clearfix">
             <div class="col-sm-12 col-md-12 col-lg-12">
-                <div class="card">
+                <div class="card shadow">
                     <div class="header">
                         <h2><strong>Members</strong> Profiles <small>Members Preformance / Monthly Status</small> </h2>
                         <ul class="header-dropdown">

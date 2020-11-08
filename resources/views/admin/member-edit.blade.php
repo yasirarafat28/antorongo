@@ -45,7 +45,7 @@
             {{csrf_field()}}
             {{method_field('PATCH')}}
             <div class="col-md-12">
-                <div class="card">
+                <div class="card shadow">
 
                     <div class="header">
 
@@ -336,7 +336,7 @@
                 </div>
 
 
-                <div class="card">
+                <div class="card shadow">
 
                     <div class="header">
 

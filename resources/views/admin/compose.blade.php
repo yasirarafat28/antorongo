@@ -20,7 +20,7 @@
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-lg-12">
-                <div class="card">
+                <div class="card shadow">
 
                     @if(session()->has('success'))
                         <div class="alert alert-success">

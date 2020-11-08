@@ -47,7 +47,7 @@
         <div class="row clearfix">
             <div class="col-sm-12 col-md-12 col-lg-12">
 
-                <div class="card">
+                <div class="card shadow">
 
                     <div class="header">
 

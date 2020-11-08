@@ -42,7 +42,7 @@
                 </div>
             @endif
         <div class="row clearfix">
-            <div class="card">
+            <div class="card shadow">
 
                 <div class="header">
 

@@ -27,7 +27,7 @@
 
         <div class="row clearfix">
             <div class="col-lg-12">
-                <div class="card action_bar">
+                <div class="card action_bar shadow">
                     <div class="body">
 
                         <form action="">
@@ -83,7 +83,7 @@
         <!-- Exportable Table -->
         <div class="row clearfix">
             <div class="col-lg-12">
-                <div class="card">
+                <div class="card shadow">
                     <div class="header">
                         <h2><strong>উত্তলনের  </strong> রিপোর্ট </h2>
                     </div>

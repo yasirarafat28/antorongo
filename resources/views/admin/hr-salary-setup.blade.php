@@ -39,7 +39,7 @@
 
         <div class="row clearfix">
             <div class="col-lg-12">
-                <div class="card action_bar">
+                <div class="card action_bar shadow">
                     <div class="body">
                         <div class="row clearfix">
                             <div class="col-lg-5 col-md-5 col-6">
@@ -66,7 +66,7 @@
         <!-- Exportable Table -->
         <div class="row clearfix">
             <div class="col-lg-12">
-                <div class="card">
+                <div class="card shadow">
                     <div class="header">
                         <h2><strong>কর্মচারীর বেতন  </strong> </h2>
 
@@ -159,7 +159,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <div class="card">
+                <div class="card shadow">
                     <div class="header">
                         <h2><strong> বেতন </strong> যোগ করুন</h2>
                     </div>
@@ -273,7 +273,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <div class="card">
+                <div class="card shadow">
                     <div class="header">
                         <h2><strong> বেতন </strong> যোগ করুন</h2>
                     </div>

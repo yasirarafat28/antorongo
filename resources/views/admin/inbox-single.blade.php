@@ -28,7 +28,7 @@
 
         <div class="row clearfix">
             <div class="col-lg-12">
-                <div class="card">
+                <div class="card shadow">
                     <div class="body">
                         <div class="row">
                             <div class="col-md-12">
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card shadow">
                     <div class="body">
                         <strong>Click here to</strong> <a href="{{url('compose?to='.$item->email)}}">Reply</a>
                     </div>

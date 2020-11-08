@@ -40,7 +40,7 @@
                 </div>
             @endif
             <div class="col-sm-12 col-md-12 col-lg-12">
-                <div class="card">
+                <div class="card shadow">
                     <div class="header">
                         <h2><strong>Find User</strong><small></small> </h2>
                         <ul class="header-dropdown">

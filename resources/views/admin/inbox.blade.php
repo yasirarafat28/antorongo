@@ -23,7 +23,7 @@
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-lg-12">
-                <div class="card action_bar">
+                <div class="card action_bar shadow">
                     <div class="body">
                         <div class="row clearfix">
                             <div class="col-lg-5 col-md-5 col-6">

@@ -45,7 +45,7 @@
             {{csrf_field()}}
 
             <div class="row clearfix">
-                <div class="card">
+                <div class="card shadow">
 
                     <div class="header">
 
@@ -364,7 +364,7 @@
 
 
             <div class="row clearfix">
-                <div class="card">
+                <div class="card shadow">
 
                     <div class="header">
 
@@ -454,7 +454,7 @@
 
             <div class="row clearfix">
                 <div class="col-lg-12">
-                    <div class="card">
+                    <div class="card shadow">
                         <div class="header">
                             <h2><strong>জামানতের   </strong> বর্ণনা </h2>
                         </div>
@@ -620,7 +620,7 @@
 
         <!--<div class="row clearfix">
             <div class="col-lg-12">
-                <div class="card">
+                <div class="card shadow">
                     <div class="header">
                         <h2><strong>পূর্বের ঋণ সংক্রান্ত তথ্য </strong>  </h2>
                     </div>

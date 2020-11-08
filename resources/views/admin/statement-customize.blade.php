@@ -26,7 +26,7 @@
     <div class="container-fluid" id="printable">
         <div class="row clearfix">
             <div class="col-lg-12">
-                <div class="card action_bar">
+                <div class="card action_bar shadow">
                     <div class="body">
 
                         <form action="">
@@ -90,7 +90,7 @@
 
             <div class="col-sm-12 col-md-12 col-lg-12">
 
-                <div class="card">
+                <div class="card shadow">
 
                     <div class="header">
 

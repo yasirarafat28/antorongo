@@ -67,7 +67,7 @@
                 </div>
             @endif
             <div class="col-sm-12 col-md-12 col-lg-12">
-                <div class="card">
+                <div class="card shadow">
                     <div class="header">
                         <h2><strong>Find User</strong><small></small> </h2>
                         <ul class="header-dropdown">
@@ -127,7 +127,7 @@
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-5 col-md-12">
-                        <div class="card">
+                        <div class="card shadow">
                             <ul class="row profile_state list-unstyled">
                                 <li class="col-lg-4 col-md-4 col-6">
                                     <div class="body">
@@ -158,7 +158,7 @@
 
 
                     <div class="col-md-4">
-                        <div class="card">
+                        <div class="card shadow">
                             <div class="header">
                                 <h2><strong>Account</strong> Information</h2>
                             </div>
@@ -189,7 +189,7 @@
                     </div>
                     <div class="col-md-4">
 
-                        <div class="card">
+                        <div class="card shadow">
                             <div class="header">
                                 <h2><strong>Other </strong> Information</h2>
                             </div>
@@ -221,7 +221,7 @@
                     </div>
                     <div class="col-md-4">
 
-                        <div class="card">
+                        <div class="card shadow">
                             <div class="header">
                                 <h2><strong>Nominee</strong> Information</h2>
                             </div>
@@ -246,7 +246,7 @@
 
 
                     <div class="col-md-4">
-                        <div class="card">
+                        <div class="card shadow">
                             <div class="header">
                                 <h2><strong>Recent</strong> Activity</h2>
                                 <ul class="header-dropdown">
@@ -272,7 +272,7 @@
                     </div>
                     <div class="col-md-8">
 
-                        <div class="card">
+                        <div class="card shadow">
                             <div class="header">
                                 <h2><strong>Members</strong></h2>
                             </div>

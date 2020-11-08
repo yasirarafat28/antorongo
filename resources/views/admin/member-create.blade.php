@@ -5,23 +5,17 @@
 @section('content')
 <!-- Main Content -->
 
-<!-- Dropzone Css -->
-<link rel="stylesheet" href="{{asset('assets/plugins/dropzone/dropzone.css')}}">
 
-<link rel="stylesheet" href="{{asset('assets/css/timeline.css')}}">
 <section class="content profile-page">
-    <div class="block-header">
-        <div class="row">
-            <div class="col-lg-7 col-md-6 col-sm-12"></div>
-            <div class="col-lg-5 col-md-6 col-sm-12">
-                <ul class="breadcrumb float-md-right">
-                    <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                    <li class="breadcrumb-item active">সদস্য যোগ করুন</li>
-                </ul>
-            </div>
-        </div>
-    </div>
     <div class="container-fluid">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+            <ul class="breadcrumb float-md-right">
+                <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
+                <li class="breadcrumb-item active">সদস্য যোগ করুন</li>
+            </ul>
+        </div>
+
         <div class="col-md-12">
 
             @if(session()->has('success'))
@@ -37,7 +31,7 @@
         <form action="{{url('admin/members')}}" method="POST"  enctype="multipart/form-data">
             {{csrf_field()}}
             <div class="col-md-12">
-                <div class="card">
+                <div class="card shadow">
 
                     <div class="header">
 
@@ -328,7 +322,7 @@
                 </div>
 
 
-                <div class="card">
+                <div class="card shadow">
 
                     <div class="header">
 
