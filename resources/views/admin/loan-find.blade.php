@@ -65,7 +65,7 @@
 
                         <div class="col-lg-2 col-md-2 col-sm-12">
 
-                            <div class="mt-5 profile-image float-md-right"> <img src="{{url($loan->user->photo??'')}}" onerror="this.onerror=null;this.src='{{asset('images/no_img_avaliable.jpg')}}';"> </div>
+                            <div class="mt-5 profile-image float-md-right"> <img src="{{url($loan->user->photo??'')}}" onerror="this.onerror=null;this.src='{{asset('/front/images/no_img_avaliable.jpg')}}';"> </div>
 
                         </div>
 
@@ -219,8 +219,8 @@
                                     <td>{{$item->unique_id}}</td>
                                     <td>{{$item->description}}</td>
                                     <td>{{\App\NumberConverter::en2bn($item->policy_amount)}} </td>
-                                    <td><img src="{{url($item->signature??'')}}" style="height: 40px;width: auto;"  onerror="this.onerror=null;this.src='{{asset('images/no_img_avaliable.jpg')}}';"></td>
-                                    <td><img src="{{url($item->identifier_signature??'')}}"  style="height: 40px;width: auto;"  onerror="this.onerror=null;this.src='{{asset('images/no_img_avaliable.jpg')}}';"></td>
+                                    <td><img src="{{url($item->signature??'')}}" style="height: 40px;width: auto;"  onerror="this.onerror=null;this.src='{{asset('/front/images/no_img_avaliable.jpg')}}';"></td>
+                                    <td><img src="{{url($item->identifier_signature??'')}}"  style="height: 40px;width: auto;"  onerror="this.onerror=null;this.src='{{asset('/front/images/no_img_avaliable.jpg')}}';"></td>
 
 
                                 </tr>
@@ -255,7 +255,7 @@
                                     <td>{{$item->qty}}</td>
                                     <td>{{$item->unit_price}}</td>
                                     <td>{{$item->total_amount}}</td>
-                                    <td><img src="{{url($item->signature??'')}}" style="height: 40px;width: auto;"  onerror="this.onerror=null;this.src='{{asset('images/no_img_avaliable.jpg')}}';"></td>
+                                    <td><img src="{{url($item->signature??'')}}" style="height: 40px;width: auto;"  onerror="this.onerror=null;this.src='{{asset('/front/images/no_img_avaliable.jpg')}}';"></td>
                                 </tr>
                             @endforeach
 
@@ -295,7 +295,7 @@
                                     <td>{{$item->description}}</td>
                                     <td>{{$item->qty}}</td>
                                     <td>{{$item->total_amount}}</td>
-                                    <td><img src="{{url($item->signature??'')}}" style="height: 40px;width: auto;"  onerror="this.onerror=null;this.src='{{asset('images/no_img_avaliable.jpg')}}';"></td>
+                                    <td><img src="{{url($item->signature??'')}}" style="height: 40px;width: auto;"  onerror="this.onerror=null;this.src='{{asset('/front/images/no_img_avaliable.jpg')}}';"></td>
 
 
                                 </tr>

@@ -112,7 +112,7 @@
 
                                     <div class="col-lg-4 col-md-4 col-12">
 
-                                        <div class="profile-image float-md-right"> <img src="{{url($member->photo??'')}}" style="height:  150px;" onerror="this.onerror=null;this.src='http://coins.coderxyz.com/images/no_img_avaliable.jpg';"> </div>
+                                        <div class="profile-image float-md-right"> <img src="{{url($member->photo??'')}}" style="height:  150px;" onerror="this.onerror=null;this.src='/front/images/no_img_avaliable.jpg';"> </div>
 
                                     </div>
 

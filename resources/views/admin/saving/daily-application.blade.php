@@ -349,7 +349,7 @@
 
                                     <input type="file" class="form-control" placeholder="ছবি" name="photo" id="photo" onchange="photoURL(this)">
                                     <div class="col-md-12" style="display: block;">
-                                        <img src="" id="photo-img" onerror="this.onerror=null; this.src='{{asset('images/no_img_avaliable.jpg')}}';" style="width: 50%;height: 80px;display: none">
+                                        <img src="" id="photo-img" onerror="this.onerror=null; this.src='{{asset('/front/images/no_img_avaliable.jpg')}}';" style="width: 50%;height: 80px;display: none">
                                     </div>
 
                                 </div>
@@ -366,7 +366,7 @@
 
                                     <input type="file" class="form-control" placeholder="স্বাক্ষর" name="signature" id="signature" onchange="signatureURL(this);">
                                     <div class="col-md-12" style="display: block;">
-                                        <img src="" id="signature-img" onerror="this.onerror=null; this.src='{{asset('images/no_img_avaliable.jpg')}}';" style="width: 50%;height: 80px;display: none">
+                                        <img src="" id="signature-img" onerror="this.onerror=null; this.src='{{asset('/front/images/no_img_avaliable.jpg')}}';" style="width: 50%;height: 80px;display: none">
                                     </div>
 
                                 </div>
