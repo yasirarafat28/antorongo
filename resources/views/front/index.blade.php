@@ -9,6 +9,7 @@
                     <div class="col-md-10 mt-lg-5 text-center">
                         <div class="single-text owl-carousel">
                             <div class="slide">
+
                                 <h1 class="text-uppercase" data-aos="fade-up">Banking Solutions</h1>
                                 <p class="mb-5 desc" data-aos="fade-up" data-aos-delay="100">Lorem ipsum dolor sit amet,
                                     consectetur adipisicing elit. Provident cupiditate suscipit, magnam libero velit
