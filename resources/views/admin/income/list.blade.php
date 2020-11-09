@@ -117,7 +117,7 @@
                                     <td>{{\App\NumberConverter::en2bn($loop->iteration)}}</td>
 
                                     <td>{{$item->txn_id}}</td>
-                                    <td>{{$item->head->name}}</td>
+                                    <td>{{$item->head->name??''}}</td>
                                     <td>{{\App\NumberConverter::en2bn($item->amount)}}</td>
                                     <td>{{$item->date}}</td>
                                     <td>{{ucfirst($item->status)}}</td>
@@ -171,7 +171,7 @@
                             </tr>
                             <tr>
                                 <td>খাত </td>
-                                <td>{{$item->head->name}}</td>
+                                <td>{{$item->head->name??""}}</td>
                             </tr>
                             <tr>
                                 <td>টাকার পরিমান </td>

@@ -63,7 +63,7 @@ class LoanController extends Controller
         );
 
 
-        $member = User::find($request->user_id);    
+        $member = User::find($request->user_id);
 
         //Update Loan
 
@@ -149,7 +149,7 @@ class LoanController extends Controller
 
             }
 
-        })->get();
+        })->paginate(25);
         return view('admin/loan-list',compact('records'));
     }
 

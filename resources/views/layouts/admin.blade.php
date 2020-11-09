@@ -442,7 +442,7 @@
                 <div id="incomeNav" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{url('admin/transaction-head/income')}}">আয়ের খাত  </a>
-                        <a class="collapse-item" href={{url('admin/income/create')}}">আয় যোগ করুন  </a>
+                        <a class="collapse-item" href="{{url('admin/income/create')}}">আয় যোগ করুন  </a>
                         <a class="collapse-item" href="{{url('admin/income/')}}" > <span> আয়ের রিপোর্ট  </a>
                     </div>
                 </div>
@@ -457,7 +457,7 @@
                 <div id="expenseNav" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{url('admin/transaction-head/expense')}}">ব্যয় এর খাত  </a>
-                        <a class="collapse-item" href={{url('admin/expense/create')}}">ব্যয় যোগ করুন  </a>
+                        <a class="collapse-item" href="{{url('admin/expense/create')}}">ব্যয় যোগ করুন  </a>
                         <a class="collapse-item" href="{{url('admin/expense/')}}" > <span> ব্যয় এর রিপোর্ট  </a>
                     </div>
                 </div>

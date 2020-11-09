@@ -74,13 +74,6 @@
                         <div class="col-md-12 row mb-3">
 
 
-
-                            <div class="col-lg-2 col-md-2 col-sm-12">
-
-                                <div class="mt-5 profile-image float-md-right"> <img src="{{url($loan->user->photo??'')}}" onerror="this.onerror=null;this.src='{{asset('/front/images/no_img_avaliable.jpg')}}';"> </div>
-
-                            </div>
-
                             <div class="col-lg-4 col-md-4 col-sm-12">
 
                                 <div class="header">
