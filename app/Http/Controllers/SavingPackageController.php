@@ -16,7 +16,7 @@ class SavingPackageController extends Controller
     public function index(Request $request, $type)
     {
         //
-        $records = SavingPackage::where('type',$type)->orderBy('target_amount','ASC')->get();
+        $records = SavingPackage::where('type',$type)->orderBy('target_amount','ASC')->paginate(25);
 
         return view('admin/saving-package/index',compact('records','type'));
     }

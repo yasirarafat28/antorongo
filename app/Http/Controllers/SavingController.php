@@ -175,7 +175,7 @@ class SavingController extends Controller
 
             }
 
-        })->where('type','withdraw')->get();
+        })->where('type','withdraw')->paginate(25);
         return view('admin/saving/withdraw-list',compact('transactions'));
     }
 
@@ -491,7 +491,7 @@ class SavingController extends Controller
 
             }
 
-        })->get();
+        })->paginate(25);
         return view('admin/saving/list',compact('records','type'));
     }
 

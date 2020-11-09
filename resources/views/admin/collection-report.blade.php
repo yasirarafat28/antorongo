@@ -152,10 +152,6 @@
                                     <td>নিশ্চিত </td>
                                     <td>{{\App\NumberConverter::en2bn($item->date)}}</td>
                                     <td>
-
-
-
-
                                             <a href="{{url('admin/loan-transaction/'.$item->id.'/edit')}}" class="btn btn-icon btn-neutral btn-icon-mini"><i class="zmdi zmdi-edit"> </i></a>
                                             <a class="btn btn-danger btn-icon btn-icon-mini" title="মুছে ফেলুন ">
                                                 {!! Form::open([
@@ -171,7 +167,7 @@
                                                      )) !!}
                                                 {!! Form::close() !!}
                                             </a>
-                                        </td>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>

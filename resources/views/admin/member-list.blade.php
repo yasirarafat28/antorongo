@@ -28,7 +28,7 @@
         <div class="row clearfix">
             <div class="col-lg-12">
                 <div class="card action_bar shadow">
-                    <div class="body">
+                    <div class="body table-responsive">
 
                         <form action="">
 

@@ -11,18 +11,19 @@
 <link rel="stylesheet" href="{{asset('assets/css/timeline.css')}}">
 
 <section class="content profile-page">
-    <div class="block-header">
-        <div class="row">
-            <div class="col-lg-7 col-md-6 col-sm-12"></div>
-            <div class="col-lg-5 col-md-6 col-sm-12">
-                <ul class="breadcrumb float-md-right">
-                    <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                    <li class="breadcrumb-item active">সঞ্চয় অধিভুক্তির ফর্ম </li>
-                </ul>
-            </div>
-        </div>
-    </div>
+
     <div class="container-fluid">
+
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">সঞ্চয় অধিভুক্তির ফর্ম</h1>
+
+            <ul class="breadcrumb float-md-right">
+                <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">সঞ্চয় অধিভুক্তির ফর্ম</a></li>
+            </ul>
+        </div>
+
+
         <div class="col-md-12">
 
             @if(session()->has('success'))
