@@ -180,18 +180,7 @@
         eval(mod_pagespeed_t_skve8vY$);
 
     </script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', 'UA-23581568-13');
-
-    </script>
 </body>
 
 <!-- Mirrored from preview.colorlib.com/theme/banker/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 09 Nov 2020 16:17:57 GMT -->
