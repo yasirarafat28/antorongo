@@ -35,7 +35,7 @@ class FdrController extends Controller
         );
 
         if ($request->user_id=='no'){
-            
+
             $this->validate($request,
                 [
                     'name' => 'required',
@@ -88,7 +88,7 @@ class FdrController extends Controller
             if ($request->has('password')){ $member->password = $request->password;}else{$member->password = $random_password;}
 
             //All Image file
-            
+
             if ($request->hasFile('document')) {
 
                 $image      = $request->file('document');
@@ -205,7 +205,7 @@ class FdrController extends Controller
 
             }
 
-        })->get();
+        })->paginate(25);
         return view('admin/fdr/list',compact('records'));
     }
 
@@ -311,7 +311,7 @@ class FdrController extends Controller
 
             }
 
-        })->get();
+        })->paginate(25);
         return view('admin/fdr/withdraw-list',compact('transactions'));
     }
 
@@ -358,7 +358,7 @@ class FdrController extends Controller
 
             }
 
-        })->get();
+        })->paginate(25);
         return view('admin/fdr/profit-list',compact('transactions'));
     }
 
@@ -406,7 +406,7 @@ class FdrController extends Controller
         $fdr = Fdr::with('user')->where('id',$id)->first();
         $members = User::where('role','member')->orderBy('name','ASC')->get();
 
-        return view('admin/fdr/edit',compact('fdr','members')); 
+        return view('admin/fdr/edit',compact('fdr','members'));
     }
 
     public function FdrUpdate(Request $request,$id)

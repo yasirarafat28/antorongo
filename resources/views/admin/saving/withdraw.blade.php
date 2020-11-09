@@ -314,7 +314,7 @@
                                                 'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
                                                  )) !!}
                                             {!! Form::close() !!}
-
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
