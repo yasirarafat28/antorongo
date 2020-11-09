@@ -12,19 +12,18 @@
 
 <!-- Main Content -->
 <section class="content">
-    <div class="block-header">
-        <div class="row">
-            <div class="col-lg-7 col-md-6 col-sm-12">
-            </div>
-            <div class="col-lg-5 col-md-6 col-sm-12">
-                <ul class="breadcrumb float-md-right">
-                    <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0);">সদস্য তালিকা</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
     <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">সদস্য তালিকা</h1>
+
+            <ul class="breadcrumb float-md-right">
+                <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">সদস্য তালিকা</a></li>
+            </ul>
+        </div>
+
 
         <div class="row clearfix">
             <div class="col-lg-12">
@@ -138,23 +137,33 @@
                                     <td>{{$item->present_address}}</td>
                                     <td>{{date('Y/m/d',strtotime($item->created_at))}}</td>
                                     <td>
-                                        <a href="{{url('admin/members/'.$item->id.'/edit')}}" class="btn btn-icon btn-neutral btn-icon-mini"><i class="zmdi zmdi-edit"> </i></a>
-                                        <a href="{{url('admin/members/find?id='.$item->id)}}" class="btn btn-icon btn-neutral btn-icon-mini"><i class="zmdi zmdi-eye"> </i></a>
-                                        <a class="btn btn-danger btn-icon btn-icon-mini" title="মুছে ফেলুন ">
+
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+
+                                            <a href="{{url('admin/members/'.$item->id.'/edit')}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট</a>
+                                            <a href="{{url('admin/members/find?id='.$item->id)}}" class="dropdown-item"><i class="fa fa-eye"> </i> বিস্তারিত</a>
                                             {!! Form::open([
-                                               'method'=>'DELETE',
-                                               'url' => ['/admin/members', $item->id],
-                                               'style' => 'display:inline'
+                                                'method'=>'DELETE',
+                                                'url' => ['/admin/members', $item->id],
+                                                'style' => 'display:inline'
                                             ]) !!}
-                                            {!! Form::button('<i class="fa fa-times"></i> ', array(
-                                                 'type' => 'submit',
-                                                 'class' => 'btn btn-danger btn-xs btnper',
+                                            {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন', array(
+                                                    'type' => 'submit',
+                                                    'class' => 'dropdown-item',
                                                 'title' => 'Delete user',
                                                 'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
-                                                 )) !!}
+                                                    )) !!}
                                             {!! Form::close() !!}
-                                        </a>
-                                        <a href="{{url('admin/barcode-test/'.$item->id)}}" target="_blank" class="btn btn-primary"><i class="zmdi zmdi-eye"> </i> বারকোড</a>
+                                            <a href="{{url('admin/barcode-test/'.$item->id)}}" target="_blank" class="dropdown-item"><i class="fa fa-barcode"> </i> বারকোড</a>
+                                        </div>
+
+
+
                                     </td>
                                 </tr>
                             @endforeach
