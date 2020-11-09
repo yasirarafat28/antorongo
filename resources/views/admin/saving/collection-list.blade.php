@@ -117,7 +117,7 @@
                     <div class="header">
                         <h2><strong>কালেকশন/আদায়ের  </strong> রিপোর্ট </h2>
                     </div>
-                    <div class="body">
+                    <div class="body table-responsive">
 
                         <form action="">
 
