@@ -154,7 +154,7 @@ class SavingController extends Controller
 
             }
 
-        })->where('type','deposit')->orderBy('date','DESC')->get();
+        })->where('type','deposit')->orderBy('date','DESC')->paginate(25);
         return view('admin/saving/collection-list',compact('transactions'));
     }
 
@@ -191,7 +191,7 @@ class SavingController extends Controller
         );
 
         if ($request->user_id=='no'){
-            
+
             $this->validate($request,
                 [
                     'name' => 'required',
@@ -540,7 +540,7 @@ class SavingController extends Controller
 
         $members = User::where('role','member')->orderBy('name','ASC')->get();
 
-        return view('admin/saving/edit',compact('saving','members','packages')); 
+        return view('admin/saving/edit',compact('saving','members','packages'));
     }
 
     public function SavingUpdate(Request $request,$id)
@@ -567,7 +567,7 @@ class SavingController extends Controller
         $saving->note = $request->note??'';
         $saving->status = $request->stat;
         $saving->started_at = $request->date;
-        $saving->save(); 
+        $saving->save();
 
 
 
