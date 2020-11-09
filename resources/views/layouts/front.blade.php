@@ -39,7 +39,7 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-6 col-xl-5">
-                        <h1 class="mb-0 site-logo"><a href="index-2.html" class="h2 mb-0">{{\App\Setting::setting()->app_name}}<span
+                        <h1 class="mb-0 site-logo"><a href="{{url('/')}}" class="h2 mb-0">{{\App\Setting::setting()->app_name}}<span
                                     class="text-primary">.</span> </a></h1>
                     </div>
                     <div class="col-12 col-md-7 d-none d-xl-block">
