@@ -52,7 +52,7 @@ class ProfileController extends Controller
 
     public function MyProfile()
     {
-        $id = Auth::user()->id;
+        $id = Auth::id();
         $user = User::find($id);
         //Division,District/Thana
         $divisions = Division::orderBy('name','ASC')->get();
@@ -70,13 +70,13 @@ class ProfileController extends Controller
 
         //End of Division,District/Thana
 
-        $added_member = User::where('upline_1',Auth::user()->id)->count();
-        $members = User::where('upline_1',$id)->orderBy('id','DESC')->get();
+        //$added_member = User::where('upline_1',Auth::user()->id)->count();
+        //$members = User::where('upline_1',$id)->orderBy('id','DESC')->get();
 
 
-        $activities = Activity::with('user')->where('user_id',Auth::user()->id)->orderBy('id','DESC')->paginate(25);
+        //$activities = Activity::with('user')->where('user_id',Auth::user()->id)->orderBy('id','DESC')->paginate(25);
 
-        return view('member/profile',compact('user','members','added_member','divisions','districts','thanas','activities'));
+        return view('admin.profile',compact('user','divisions','districts','thanas'));
 
     }
 

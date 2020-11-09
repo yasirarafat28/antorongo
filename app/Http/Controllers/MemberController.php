@@ -113,6 +113,9 @@ class MemberController extends Controller
         }
         else{
             $member ='';
+            $saving_records ='';
+            $loan_records ='';
+            $FDR_records ='';
             $query = '';
         }
         return view('admin/member-find',compact('query','member','loan_records','saving_records','FDR_records'));
