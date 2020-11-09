@@ -7,9 +7,9 @@
     <title>{{\App\Setting::setting()->app_name}}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet"  type="text/css">
     <link rel="stylesheet"
-        href="/front/fonts%2c_icomoon%2c_style.css%2bcss%2c_bootstrap.min.css%2bcss%2c_jquery-ui.css%2bcss%2c_owl.carousel.min.css%2bcss%2c_owl.theme.default.min.css%2bcss%2c_owl.theme.default.min.css%2bcss%2c_jquery" />
+        href="/front/fonts%2c_icomoon%2c_style.css%2bcss%2c_bootstrap.min.css%2bcss%2c_jquery-ui.css%2bcss%2c_owl.carousel.min.css%2bcss%2c_owl.theme.default.min.css%2bcss%2c_owl.theme.default.min.css%2bcss%2c_jquery"  type="text/css" />
 
         <style>
             .site-blocks-cover.overlay::before {
@@ -87,7 +87,6 @@
                                     <li><a href="#about-section" class="smoothscroll">Policy</a></li>
                                     <li><a href="#about-section" class="smoothscroll">About Us</a></li>
                                     <li><a href="#services-section" class="smoothscroll">Services</a></li>
-                                    <li><a href="#testimonials-section" class="smoothscroll">Testimonials</a></li>
                                     <li><a href="#contact-section" class="smoothscroll">Contact Us</a></li>
                                 </ul>
                             </div>
