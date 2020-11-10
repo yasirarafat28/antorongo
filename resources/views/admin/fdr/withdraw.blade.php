@@ -11,18 +11,7 @@
 
 <!-- Main Content -->
 <section class="content">
-    <div class="block-header">
-        <div class="row">
-            <div class="col-lg-7 col-md-6 col-sm-12">
-            </div>
-            <div class="col-lg-5 col-md-6 col-sm-12">
-                <ul class="breadcrumb float-md-right">
-                    <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0);">এফ ডি আর খুঁজুন</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+
     <div class="container-fluid">
 
         @if(session()->has('success'))
@@ -36,6 +25,15 @@
                 {{ $errors->first() }}
             </div>
         @endif
+
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">এফ ডি আর খুঁজুন</h1>
+
+            <ul class="breadcrumb float-md-right">
+                <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">এফ ডি আর খুঁজুন</a></li>
+            </ul>
+        </div>
         <div class="row clearfix">
             <div class="col-sm-12 col-md-12 col-lg-12">
 
@@ -296,23 +294,27 @@
 
                                     <td>
 
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
 
-
-                                        <a href="{{url('admin/fdr-transaction/'.$item->id.'/edit')}}" class="btn btn-icon btn-neutral btn-icon-mini"><i class="zmdi zmdi-edit"> </i></a>
-                                        <a class="btn btn-danger btn-icon btn-icon-mini" title="মুছে ফেলুন ">
+                                        <a href="{{url('admin/fdr-transaction/'.$item->id.'/edit')}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট</a>
                                             {!! Form::open([
                                                'method'=>'DELETE',
                                                'url' => ['/admin/fdr-transaction', $item->id],
                                                'style' => 'display:inline'
                                             ]) !!}
-                                            {!! Form::button('<i class="fa fa-times"></i> ', array(
+                                            {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন ', array(
                                                  'type' => 'submit',
-                                                 'class' => 'btn btn-danger btn-xs btnper',
+                                                 'class' => 'dropdown-item',
                                                 'title' => 'Delete user',
                                                 'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
                                                  )) !!}
                                             {!! Form::close() !!}
-                                        </a>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
