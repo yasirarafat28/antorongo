@@ -119,7 +119,7 @@
                     <div class="header">
                         <h2><strong>কালেকশন/আদায়ের  </strong> রিপোর্ট </h2>
                     </div>
-                    <div class="body">
+                    <div class="body table-responsive">
 
                         <form action="">
 
@@ -233,26 +233,35 @@
                                     <td>নিশ্চিত </td>
                                     <td>{{\App\NumberConverter::en2bn($item->date)}}</td>
                                     <td>
-                                            <a href="{{url('admin/loan-transaction/'.$item->id.'/edit')}}" class="btn btn-icon btn-neutral btn-icon-mini"><i class="zmdi zmdi-edit"> </i></a>
-                                            <a class="btn btn-danger btn-icon btn-icon-mini" title="মুছে ফেলুন ">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                aria-labelledby="dropdownMenuLink">
+
+                                            <a href="{{url('admin/loan-transaction/'.$item->id.'/edit')}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট</a>
                                                 {!! Form::open([
                                                    'method'=>'DELETE',
                                                    'url' => ['/admin/loan-transaction', $item->id],
                                                    'style' => 'display:inline'
                                                 ]) !!}
-                                                {!! Form::button('<i class="fa fa-times"></i> ', array(
+                                                {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন', array(
                                                      'type' => 'submit',
-                                                     'class' => 'btn btn-danger btn-xs btnper',
+                                                     'class' => 'dropdown-item',
                                                     'title' => 'Delete user',
                                                     'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
                                                      )) !!}
                                                 {!! Form::close() !!}
-                                            </a>
+                                            </div>
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
+                        <div class="pull-right">
+                            {!! $transactions->appends(\Illuminate\Support\Facades\Request::except('page'))->links() !!}
+                        </div>
                     </div>
                 </div>
             </div>

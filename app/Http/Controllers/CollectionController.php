@@ -81,7 +81,7 @@ class CollectionController extends Controller
 
             }
 
-        })->get();
+        })->paginate(25);
         return view('admin/collection-report',compact('transactions'));
     }
 }
