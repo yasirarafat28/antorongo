@@ -16,7 +16,7 @@ class DocumentController extends Controller
     {
         //
 
-        $records = Document::orderBy('id','DESC')->get();
+        $records = Document::orderBy('id','DESC')->paginate(25);
         return view('admin/document',compact('records'));
     }
 

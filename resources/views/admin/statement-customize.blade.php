@@ -11,69 +11,99 @@
 
 <!-- Main Content -->
 <section class="content">
-    <div class="block-header">
-        <div class="row">
-            <div class="col-lg-7 col-md-6 col-sm-12">
-            </div>
-            <div class="col-lg-5 col-md-6 col-sm-12">
-                <ul class="breadcrumb float-md-right">
-                    <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0);">ঋণের তথ্য খুঁজুন</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+
     <div class="container-fluid" id="printable">
-        <div class="row clearfix">
-            <div class="col-lg-12">
-                <div class="card action_bar shadow">
-                    <div class="body">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">ঋণের তথ্য খুঁজুন</h1>
 
-                        <form action="">
+            <ul class="breadcrumb float-md-right">
+                <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">ঋণের তথ্য খুঁজুন</a></li>
+            </ul>
+        </div>
 
-                            <div class="row clearfix">
-                                <div class="col-lg-4 col-md-4">
+        <div class="row">
 
-                                    <label for=""><small>থেকে</small></label>
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Earnings (Monthly)</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                                    <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="zmdi zmdi-calendar"></i>
-                                            </span>
-                                        <input type="text" class="form-control datepicker" value="{{$_GET['from'] ?? ''}}" name="from" placeholder="থেকে তারিখ বাছাই করুন...">
-                                    </div>
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                    Earnings (Annual)</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-info shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
                                 </div>
-
-                                <div class="col-lg-4 col-md-4">
-
-                                    <label for=""><small> পর্যন্ত</small></label>
-
-                                    <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="zmdi zmdi-calendar"></i>
-                                            </span>
-                                        <input type="text" class="form-control datepicker" value="{{$_GET['to'] ?? ''}}" name="to" placeholder=" পর্যন্ত তারিখ বাছাই করুন...">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
                                     </div>
-                                </div>
-
-                                <div class="col-lg-2 col-md-2">
-
-                                    <br>
-
-                                    <div class="input-group">
-                                        <button class="btn btn-primary btn-round">খুঁজুন</button>
+                                    <div class="col">
+                                        <div class="progress progress-sm mr-2">
+                                            <div class="progress-bar bg-info" role="progressbar"
+                                                style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                aria-valuemax="100"></div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-2 col-md-2 text-right">
-                                    <button type="button" class="btn btn-neutral hidden-sm-down" onclick="$('.buttons-csv')[0].click();">
-                                        <i class="zmdi zmdi-archive"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-neutral hidden-sm-down" onclick="$('.buttons-print')[0].click();">
-                                        <i class="zmdi zmdi-print"></i>
-                                    </button>
                                 </div>
                             </div>
-                        </form>
+                            <div class="col-auto">
+                                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pending Requests Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-warning shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                    Pending Requests</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-comments fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -107,8 +137,55 @@
                         </ul>
 
                     </div>
+                    <div class="body">
+                    <form action="">
 
-                    <div class="body row">
+                        <div class="row clearfix">
+                            <div class="col-lg-4 col-md-4">
+
+                                <label for=""><small>থেকে</small></label>
+
+                                <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="zmdi zmdi-calendar"></i>
+                                        </span>
+                                    <input type="text" class="form-control datepicker" value="{{$_GET['from'] ?? ''}}" name="from" placeholder="থেকে তারিখ বাছাই করুন...">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-4">
+
+                                <label for=""><small> পর্যন্ত</small></label>
+
+                                <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="zmdi zmdi-calendar"></i>
+                                        </span>
+                                    <input type="text" class="form-control datepicker" value="{{$_GET['to'] ?? ''}}" name="to" placeholder=" পর্যন্ত তারিখ বাছাই করুন...">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2 col-md-2">
+
+                                <br>
+
+                                <div class="input-group">
+                                    <button class="btn btn-primary btn-round">খুঁজুন</button>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 text-right">
+                                <button type="button" class="btn btn-neutral hidden-sm-down" onclick="$('.buttons-csv')[0].click();">
+                                    <i class="zmdi zmdi-archive"></i>
+                                </button>
+                                <button type="button" class="btn btn-neutral hidden-sm-down" onclick="$('.buttons-print')[0].click();">
+                                    <i class="zmdi zmdi-print"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <br>
+
+                    <div class="row">
 
                         <div class="col-md-5">
 
@@ -179,7 +256,7 @@
 
 
                     </div>
-
+                    </div>
                 </div>
 
             </div>

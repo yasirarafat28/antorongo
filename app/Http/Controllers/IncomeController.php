@@ -58,7 +58,7 @@ class IncomeController extends Controller
         $income->amount = NumberConverter::bn2en($request->amount);
         $income->save();
 
-        
+
         if ($request->invoice)
         {
             $user = Auth::user();
@@ -100,7 +100,7 @@ class IncomeController extends Controller
 
             }
 
-        })->get();
+        })->paginate(25);
         return view('admin/income/list',compact('transactions','parents'));
 
     }

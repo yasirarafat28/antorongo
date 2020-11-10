@@ -15,7 +15,7 @@ class MeetingController extends Controller
     public function index()
     {
         //
-        $records = Meeting::orderBy('id','DESC')->get();
+        $records = Meeting::orderBy('id','DESC')->paginate(25);
 
         return view('admin/meeting',compact('records'));
     }

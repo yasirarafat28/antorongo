@@ -73,7 +73,7 @@ class ExpenseController extends Controller
 
             }
 
-        })->get();
+        })->paginate(25);
         return view('admin/expense/list',compact('transactions'));
 
     }
