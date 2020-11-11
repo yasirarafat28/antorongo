@@ -284,25 +284,12 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>বার্তা</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{url('compose')}}">বার্তা লিখুন</a>
-                        {{-- <a class="collapse-item" href="{{url('inbox')}}">ইনবক্স</a> --}}
-                    </div>
-                </div>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="/admin/message">
+                    <i class="fas fa-fw fa-comment"></i>
+                    <span>বার্তা</span></a>
             </li>
-
-
-            <div class="sidebar-heading">
-                সঞ্চয়
-            </div>
-
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#memberNav"
@@ -546,10 +533,10 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="/search">
                         <div class="input-group">
-                            <input type="text" value="{{$_GET['q']??''}}" class="form-control bg-light border-0 small" placeholder="Search for..."
+                            <input type="text" value="{{$_GET['q']??''}}" class="form-control bg-light border-0 small" placeholder="বারকোড স্ক্যান করুন ..."
                                 aria-label="Search" aria-describedby="basic-addon2" name="q">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
+                                <button class="btn btn-primary" type="submit">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
@@ -568,10 +555,10 @@
                             <!-- Dropdown - Messages -->
                             <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
                                 aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
+                                <form class="form-inline mr-auto w-100 navbar-search" action="/search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
+                                        <input type="text" value="{{$_GET['q']??''}}" class="form-control bg-light border-0 small"
+                                            placeholder="বারকোড স্ক্যান করুন ..." aria-label="Search"
                                             aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
@@ -740,7 +727,7 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+                <div class="container-full">
 
                     @yield('content')
 

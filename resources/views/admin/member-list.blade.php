@@ -83,30 +83,24 @@
                     <div class="header">
                         <h2><strong>সদস্যদের  </strong> তালিকা </h2>
                     </div>
-                    <div class="body">
+                    <div class="body table-responsive">
                         <table class="table table-bordered table-striped table-hover dataTable js-full-datatable">
                             <thead>
                             <tr>
-                                <th>সিরিয়াল </th>
+                                <th>#</th>
                                 <th>সদস্য নাম্বার </th>
                                 <th>নাম </th>
                                 <th>পিতার নাম </th>
                                 <th>ফোন </th>
-                                <th>বর্তমান ঠিকানা</th>
-                                <th>তারিখ</th>
-                                <th>ক্রিয়াকলাপ</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th>সিরিয়াল </th>
+                                <th>#</th>
                                 <th>সদস্য নাম্বার </th>
                                 <th>নাম </th>
                                 <th>পিতার নাম </th>
                                 <th>ফোন </th>
-                                <th>বর্তমান ঠিকানা</th>
-                                <th>তারিখ</th>
-                                <th>ক্রিয়াকলাপ</th>
                             </tr>
                             </tfoot>
                             <tbody>
@@ -129,13 +123,6 @@
 
                                 ?>
                                 <tr>
-                                    <td>{{$loop->iteration}}</td>
-                                    <td>{{$item->unique_id}}</td>
-                                    <td>{{$item->name_bn}}</td>
-                                    <td>{{$item->father_name}}</td>
-                                    <td>{{$item->phone}}</td>
-                                    <td>{{$item->present_address}}</td>
-                                    <td>{{date('Y/m/d',strtotime($item->created_at))}}</td>
                                     <td>
 
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -165,6 +152,10 @@
 
 
                                     </td>
+                                    <td>{{$item->unique_id}}</td>
+                                    <td>{{$item->name_bn}}</td>
+                                    <td>{{$item->father_name}}</td>
+                                    <td>{{$item->phone}}</td>
                                 </tr>
                             @endforeach
                             </tbody>

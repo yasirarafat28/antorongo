@@ -42,6 +42,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/inbox/{id}', 'InqueryController@single');
     Route::post('compose-submit', 'InqueryController@SubmitCompose');
 
+    Route::get('admin/message','MessageController@index');
+
 
     Route::get('/search', 'SearchController@search');
 
@@ -79,6 +81,13 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::resource('meeting', 'MeetingController');
 
     //Saving
+
+
+    Route::get('message','MessageController@index');
+    Route::get('chat-get-messeged-user','MessageController@getMessegedUser');
+    Route::get('fetch-chat-message','MessageController@FetchChatMessage')->name('FetchChatMessage');
+    Route::get('submit-chat-message','MessageController@SubmitChatMessage')->name('SubmitChatMessage');
+
 
     Route::post('saving/getPackaesByType', 'SavingPackageController@getPackaesByType')->name('getPackaesByType');
     Route::post('saving/getSavingsByUser', 'SavingController@getSavingsByUser')->name('getSavingsByUser');

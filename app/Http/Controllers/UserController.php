@@ -22,13 +22,21 @@ class UserController extends Controller
     {
 
         $keyword = $request->get('search');
-        if (!empty($keyword)) {
-            $users = User::with('roles')->where('user_name', 'LIKE', "%$keyword%")
-                ->orWhere('email', 'LIKE', "%$keyword%")
-                ->orWhere('phone_number', 'LIKE', "%$keyword%")->paginate(25);
-        } else {
-            $users = User::with('roles')->paginate(25);
-        }
+
+        $users = User::with('roles')
+        ->whereHas('roles',function($q){
+            $q->whereNotIn('name',['member']);
+        })->where(function($q) use($keyword){
+            if($keyword){
+                $q->where('user_name', 'LIKE', "%$keyword%");
+
+                $q->where('email', 'LIKE', "%$keyword%");
+                $q->orWhere('phone_number', 'LIKE', "%$keyword%");
+
+            }
+
+        })
+        ->paginate(25);
 
         $roles = Role::all();
         $divisions = Division::orderBy('name','ASC')->get();
@@ -58,11 +66,9 @@ class UserController extends Controller
             'email' => 'required|unique:users',
             'phone' => 'required|unique:users',
             'username' => 'required|unique:users',
+            'role' => 'required',
             'password' => 'required',
         ]);
-
-
-        //$random_password = Hash::make($this->generateRandomString(4));
         $random_password = Hash::make($request->password);
 
         $user = new User();
@@ -71,18 +77,11 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->username = $request->username;
         $user->phone = $request->phone;
-        $user->division = $request->division;
-        $user->district = $request->district;
-        $user->thana = $request->thana;
-        $user->address = $request->address;
-        $user->status = $request->status;
         $user->password = $random_password;
         $user->role =$request->role;
-        $user->upline_1 = Auth::user()->id;
-        $user->joined_by = Auth::user()->id;
         $user->save();
 
-        $user->assignRole($request->role);
+        $user->syncRoles($request->role);
 
         //All Image file
 
@@ -166,7 +165,7 @@ class UserController extends Controller
         }
         $user->save();
 
-        $user->assignRole($request->role);
+        $user->syncRoles($request->role);
 
         //All Image file
 

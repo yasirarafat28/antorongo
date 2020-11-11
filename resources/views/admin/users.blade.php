@@ -89,8 +89,13 @@
                                             <input type="text" class="form-control" placeholder="ইমেইল, ফোন ,আইডি" name="q" >
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-md-12">
+                                    <div class="col-lg-3 col-md-12">
                                         <button class="btn btn-primary btn-round">খুজুন</button>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a  data-toggle="modal" data-target="#largeModal" class="btn btn-success btn-round">
+                                            Add User
+                                        </a>
                                     </div>
                                 </div>
                             </form>
@@ -179,7 +184,7 @@
                         <h2><strong>Add</strong> User</h2>
                     </div>
                     <div class="body">
-                        <form action="{{url('chairman/users')}}" method="POST">
+                        <form action="{{url('admin/users')}}" method="POST">
                             {{csrf_field()}}
                             <div class="row clearfix">
                                 <div class="col-lg-6 col-md-12">
@@ -207,7 +212,7 @@
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
                                         <label for=""><small>Password</small></label>
-                                        <input type="password" class="form-control" placeholder="Password" name="Password">
+                                        <input type="password" class="form-control" placeholder="Password" name="password">
                                     </div>
                                 </div>
 
