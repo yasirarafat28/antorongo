@@ -479,6 +479,7 @@
                 <div id="hrNav" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{url('admin/users')}}" >কর্মচারী </a>
+                        <a class="collapse-item" href="{{url('admin/roles')}}" >পদবি </a>
                         <a class="collapse-item" href={{url('admin/hr/salary-setup')}}" > বেতন সেট করুন  </a>
                         <a class="collapse-item" href="{{url('admin/hr/salary-payment')}}" > <span>বেতন পরিশোধ করুন  </a>
                     </div>

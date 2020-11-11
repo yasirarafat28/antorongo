@@ -78,6 +78,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::get('statement/daily', 'StatementController@daily');
     Route::get('statement/customize', 'StatementController@customize');
     Route::resource('users', 'UserController');
+    Route::resource('roles', 'RoleController');
     Route::resource('meeting', 'MeetingController');
 
     //Saving
