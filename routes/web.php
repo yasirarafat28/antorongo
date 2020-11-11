@@ -43,6 +43,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('compose-submit', 'InqueryController@SubmitCompose');
 
 
+    Route::get('/search', 'SearchController@search');
+
+
     Route::get('/profile', 'ProfileController@MyProfile');
     Route::post('/getUser', 'UserController@getUser')->name('getUser');
 });
