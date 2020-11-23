@@ -64,7 +64,14 @@
             <div class="col-lg-12">
                 <div class="card shadow">
                     <div class="header">
-                        <h2><strong>Users </strong> </h2>
+                        <div class="clearfix">
+                            <div class="float-left">
+                                <h2>Users </h2>
+                            </div>
+                            <div class="float-right">
+                                <a data-toggle="modal" data-target="#largeModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> সদস্য যোগ করুন </a>
+                            </div>
+                        </div>
 
                     </div>
                     <div class="body">
@@ -91,11 +98,6 @@
                                     </div>
                                     <div class="col-lg-3 col-md-12">
                                         <button class="btn btn-primary btn-round">খুজুন</button>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a  data-toggle="modal" data-target="#largeModal" class="btn btn-success btn-round">
-                                            Add User
-                                        </a>
                                     </div>
                                 </div>
                             </form>
@@ -178,123 +180,122 @@
 <div class="modal fade" id="largeModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><strong>Add</strong> User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
             <div class="modal-body">
-                <div class="card shadow">
-                    <div class="header">
-                        <h2><strong>Add</strong> User</h2>
-                    </div>
-                    <div class="body">
-                        <form action="{{url('admin/users')}}" method="POST">
-                            {{csrf_field()}}
-                            <div class="row clearfix">
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="form-group">
-                                        <label for=""><small>Name</small></label>
-                                        <input type="text" class="form-control" placeholder="User Name" name="name">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="form-group">
-                                        <label for=""><small>Email</small></label>
-                                        <input type="email" class="form-control" placeholder="Email" name="email">
-                                    </div>
-                                </div>
-
-
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="form-group">
-                                        <label for=""><small>Username</small></label>
-                                        <input type="text" class="form-control" placeholder="Username" name="username">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="form-group">
-                                        <label for=""><small>Password</small></label>
-                                        <input type="password" class="form-control" placeholder="Password" name="password">
-                                    </div>
-                                </div>
-
-
-
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="form-group">
-                                        <label for=""><small>Phone</small></label>
-                                        <input type="text" class="form-control" placeholder="Phone" name="phone">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="form-group">
-                                        <label for=""><small>Address</small></label>
-                                        <input type="text" class="form-control" placeholder="Address" name="address">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="form-group">
-                                        <label for=""><small>Division</small></label>
-                                        <select class="form-control ms" name="division" id="division-form" onchange="get_district_list(this.value)">
-                                            <option value="">-- Please select --</option>
-                                            @foreach($divisions as $item)
-                                                <option value="{{$item->id}}">{{$item->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="form-group">
-                                        <label for=""><small>District</small></label>
-                                        <select class="form-control ms district-form" name="district" id="district-form"  onchange="get_thana_list(this.value)">
-                                            <option value="">-- Please select a District --</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="form-group">
-                                        <label for=""><small>Upozila/Thana</small></label>
-                                        <select class="form-control ms thana-form" name="thana" id="thana-form">
-                                            <option value="">-- Please select a Upozilla --</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="form-group">
-                                        <label for=""><small>Role</small></label>
-                                        <select name="role" class="form-control ms">
-                                            <option value="">-- Select a Role --</option>
-                                            <?php foreach ($roles as $key => $item): ?>
-                                            <option value="{{$item->name}}">{{$item->name}}</option>
-                                            <?php endforeach ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="form-group">
-
-                                        <label for=""><small>Status</small></label>
-                                        <select name="status" class="form-control ms">
-                                            <option value="active">Active</option>
-                                            <option value="pending">Pending</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="form-group">
-                                        <label for=""><small>Photo</small></label>
-                                        <input type="file" class="form-control" placeholder="Photo" name="photo">
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-info btn-round">SAVE CHANGES</button>
+                <form action="{{url('admin/users')}}" class="container" method="POST">
+                    {{csrf_field()}}
+                    <div class="row clearfix">
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label for=""><small>Name</small></label>
+                                <input type="text" class="form-control" placeholder="User Name" name="name">
                             </div>
-                        </form>
+                        </div>
+
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label for=""><small>Email</small></label>
+                                <input type="email" class="form-control" placeholder="Email" name="email">
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label for=""><small>Username</small></label>
+                                <input type="text" class="form-control" placeholder="Username" name="username">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label for=""><small>Password</small></label>
+                                <input type="password" class="form-control" placeholder="Password" name="password">
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label for=""><small>Phone</small></label>
+                                <input type="text" class="form-control" placeholder="Phone" name="phone">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label for=""><small>Address</small></label>
+                                <input type="text" class="form-control" placeholder="Address" name="address">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label for=""><small>Division</small></label>
+                                <select class="form-control ms" name="division" id="division-form" onchange="get_district_list(this.value)">
+                                    <option value="">-- Please select --</option>
+                                    @foreach($divisions as $item)
+                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label for=""><small>District</small></label>
+                                <select class="form-control ms district-form" name="district" id="district-form"  onchange="get_thana_list(this.value)">
+                                    <option value="">-- Please select a District --</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label for=""><small>Upozila/Thana</small></label>
+                                <select class="form-control ms thana-form" name="thana" id="thana-form">
+                                    <option value="">-- Please select a Upozilla --</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label for=""><small>Role</small></label>
+                                <select name="role" class="form-control ms">
+                                    <option value="">-- Select a Role --</option>
+                                    <?php foreach ($roles as $key => $item): ?>
+                                    <option value="{{$item->name}}">{{$item->name}}</option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+
+                                <label for=""><small>Status</small></label>
+                                <select name="status" class="form-control ms">
+                                    <option value="active">Active</option>
+                                    <option value="pending">Pending</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label for=""><small>Photo</small></label>
+                                <input type="file" class="form-control" placeholder="Photo" name="photo">
+                            </div>
+                        </div>
+                        <div class="col-md-12 text-center">
+
+                            <button type="submit" class="btn btn-info btn-round">SAVE CHANGES</button>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
+                </form>
             </div>
         </div>
     </div>
