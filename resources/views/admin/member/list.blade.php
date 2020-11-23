@@ -3,12 +3,6 @@
 
 @endsection
 @section('content')
-<style>
-    .dataTables_wrapper .dt-buttons , .dataTables_wrapper .dataTables_filter{
-        display: none;
-    }
-
-</style>
 
 <!-- Main Content -->
 <section class="content">
@@ -168,64 +162,6 @@
     </div>
 </section>
 
-
-
-<script type="text/javascript">
-
-    function get_district_list(division_id)
-    {
-        var list = $("#district-form");
-        list.children('option:not(:first)').remove();
-        $.ajax({
-            type: "POST",
-            url: "{{ route('getDistrict') }}",
-            dataType: "json",
-            data: {
-                "_token": "{{ csrf_token() }}",
-                "division_id": division_id,
-            },
-            success:function(data) {
-                console.log(data);
-                jQuery.each(data, function(index, item) {
-                    list.append(new Option(item.name, item.id));
-                });
-            },
-
-            error: function (error) {
-                console.log(error);
-                $('#package-lists').html(error);
-            },
-
-        });
-    }
-
-    function get_thana_list(district_id)
-    {
-        var list = $("#thana-form-count");
-        list.children('option:not(:first)').remove();
-        $.ajax({
-            type: "POST",
-            url: "{{ route('getThana') }}",
-            dataType: "json",
-            data: {
-                "_token": "{{ csrf_token() }}",
-                "district_id": district_id,
-            },
-            success:function(data) {
-                console.log(data);
-                jQuery.each(data, function(index, item) {
-                    list.append(new Option(item.name+" ("+item.members_count+") ", item.id));
-                });
-            },
-
-            error: function (error) {
-                console.log(error);
-                $('#package-lists').html(error);
-            },
-
-        });
-    }
-</script>
 @endsection
 
 
@@ -233,6 +169,13 @@
 <script>
     $(function() {
         $('#data-table').DataTable({
+            dom: 'lBfrtip',
+            bFilter:true,
+
+            "lengthMenu": [[10, 25, 50,100, -1], [10, 25, 50,100, "All"]],
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ],
             processing: true,
             serverSide: true,
             ajax: '{!! route('members.datatables.data') !!}',
@@ -242,7 +185,9 @@
                 { data: 'name_bn', name: 'name_bn' },
                 { data: 'father_name', name: 'father_name' },
                 { data: 'phone', name: 'phone' }
-            ]
+            ],
+            order:[],
+            paging: true,
         });
     });
     </script>

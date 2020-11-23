@@ -72,7 +72,7 @@ class LoanTransactionController extends Controller
 
 
         $users_loans = Loan::with('user')->where('user_id',$loan->user_id)->get();
-        return view('admin/loan-transaction-edit',compact('members','loan_transaction','loan','users_loans'));
+        return view('admin/loan/transaction-edit',compact('members','loan_transaction','loan','users_loans'));
     }
 
     /**

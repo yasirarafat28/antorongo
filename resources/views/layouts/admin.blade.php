@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{{\App\Setting::setting()->app_name}} - Dashboard</title>
+    <title>{{\App\Setting::setting()->app_name}} - Dashboards</title>
 
     <!-- Custom fonts for this template-->
     <link href="/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -17,6 +17,9 @@
     <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="{{asset('admin/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')}}" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="{{asset('admin/plugins/datatable/dataTables.bootstrap4.min.css')}}">
 
 
 
@@ -807,9 +810,24 @@
 
 
 
-<script>
-    $('select').selectpicker();
-</script>
+
+    <script src="/admin/plugins/datatable/datatablescripts.bundle.js"></script>
+
+    <script src="/admin/plugins/datatable/buttons/dataTables.buttons.min.js"></script>
+    <script src="/admin/plugins/datatable/buttons/buttons.bootstrap4.min.js"></script>
+    <script src="/admin/plugins/datatable/buttons/buttons.colVis.min.js"></script>
+    <script src="/admin/plugins/datatable/buttons/buttons.html5.min.js"></script>
+    <script src="/admin/plugins/datatable/buttons/buttons.print.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+
+
+
+
+    <script>
+        $('select').selectpicker();
+    </script>
     <script>
 
         $('.timepicker').bootstrapMaterialDatePicker({

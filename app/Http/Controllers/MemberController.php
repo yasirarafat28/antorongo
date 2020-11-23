@@ -11,6 +11,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Auth;
+use Yajra\DataTables\Facades\DataTables;
 
 class MemberController extends Controller
 {
@@ -118,12 +119,24 @@ class MemberController extends Controller
             $FDR_records ='';
             $query = '';
         }
-        return view('admin/member-find',compact('query','member','loan_records','saving_records','FDR_records'));
+        return view('admin/member/find',compact('query','member','loan_records','saving_records','FDR_records'));
+    }
+
+    public function getData(){
+
+        return DataTables::of(User::query())
+        ->addColumn('action', function ($item) {
+            return view( 'admin.member.action', compact('item'));
+        })
+        ->make(true);
     }
 
 
     public function index(Request $request)
     {
+
+
+        return view('admin/member/list');
 
         $members = User::withCount('totalLoan','totalFdr','totalSaving')->where('role','member')->where(function ($q) use ($request){
 
@@ -158,12 +171,12 @@ class MemberController extends Controller
             $thanas=  Thana::orderBy('name','ASC')->get();
         }
 
-        return view('admin/member-list',compact('members','districts','thanas','request'));
+        return view('admin/member/list',compact('members','districts','thanas','request'));
     }
 
     public function create()
     {
-        return view('admin/member-create');
+        return view('admin/member/create');
     }
 
     public function store(Request $request)
@@ -279,7 +292,7 @@ class MemberController extends Controller
     {
         $member = User::find($id);
 
-        return view('admin/member-edit',compact('member'));
+        return view('admin/member/edit',compact('member'));
 
     }
 

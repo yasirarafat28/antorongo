@@ -40,7 +40,7 @@ class LoanController extends Controller
             $transactions = '';
 
         }
-        return view('admin/loan-find',compact('query','loan','transactions'));
+        return view('admin/loan/find',compact('query','loan','transactions'));
     }
 
 
@@ -50,10 +50,10 @@ class LoanController extends Controller
 
         $members = User::where('role','member')->orderBy('name','ASC')->get();
 
-        return view('admin/loan-edit',compact('query','loan','transactions','members'));
+        return view('admin/loan/edit',compact('query','loan','transactions','members'));
     }
 
-    public function  LoanUpdate($id)
+    public function  LoanUpdate(Request $request,$id)
     {
         //return $request;
         $this->validate($request,
@@ -150,7 +150,7 @@ class LoanController extends Controller
             }
 
         })->paginate(25);
-        return view('admin/loan-list',compact('records'));
+        return view('admin/loan/list',compact('records'));
     }
 
     public function  LoanApplication(Request $request)
@@ -158,7 +158,7 @@ class LoanController extends Controller
 
         $members = User::where('role','member')->orderBy('name','ASC')->get();
         $records = Loan::with('user')->get();
-        return view('admin/loan-application',compact('members'));
+        return view('admin/loan/application',compact('members'));
     }
 
     public function  LoanApplicationSubmit(Request $request)

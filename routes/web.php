@@ -74,6 +74,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 
     Route::get('members/find', 'MemberController@MemberFind');
     Route::resource('members', 'MemberController');
+    Route::get('get-member-data', 'MemberController@getData')->name('members.datatables.data');
     Route::get('member/edit', 'MemberController@MemberEdit');
     Route::get('statement/daily', 'StatementController@daily');
     Route::get('statement/customize', 'StatementController@customize');
