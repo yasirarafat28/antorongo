@@ -15,7 +15,7 @@ class RoleController extends Controller
     public function index()
     {
         $records = DB::table('roles')->whereNotIn('name',['admin','member'])->orderBy('name','ASC')->paginate(25);
-        return view('admin.roles',compact('records'));
+        return view('admin.users.roles',compact('records'));
     }
 
     /**

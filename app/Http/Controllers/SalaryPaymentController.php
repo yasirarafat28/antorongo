@@ -20,7 +20,7 @@ class SalaryPaymentController extends Controller
         $members = User::where('role','admin')->orderBy('name','ASC')->get();
         $records = SalaryPayment::with('user')->orderBy('id','DESC')->paginate(25);
 
-        return view('admin/hr-salary-payment',compact('records','members'));
+        return view('admin/hr/salary-payment',compact('records','members'));
     }
 
     /**

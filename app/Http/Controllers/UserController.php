@@ -40,7 +40,7 @@ class UserController extends Controller
 
         $roles = Role::all();
         $divisions = Division::orderBy('name','ASC')->get();
-        return view('admin/users',compact('roles','users','divisions'));
+        return view('admin/users/users',compact('roles','users','divisions'));
     }
 
     /**

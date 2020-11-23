@@ -30,7 +30,7 @@
                                 <h2><strong>সদস্যদের  </strong> তালিকা </h2>
                             </div>
                             <div class="float-right">
-                                <a href="{{url('admin/members/create')}}" class="btn btn-primary">সদস্য যোগ করুন </a>
+                                <a href="{{url('admin/members/create')}}" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> সদস্য যোগ করুন </a>
                             </div>
                         </div>
                     </div>
