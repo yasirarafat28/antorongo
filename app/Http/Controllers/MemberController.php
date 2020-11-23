@@ -138,7 +138,7 @@ class MemberController extends Controller
 
         return view('admin/member/list');
 
-        $members = User::withCount('totalLoan','totalFdr','totalSaving')->where('role','member')->where(function ($q) use ($request){
+        /*$members = User::withCount('totalLoan','totalFdr','totalSaving')->where('role','member')->where(function ($q) use ($request){
 
             if ($request->has('from') && $request->from) {
                 $from = date("Y-m-d", strtotime($request->from));
@@ -171,7 +171,7 @@ class MemberController extends Controller
             $thanas=  Thana::orderBy('name','ASC')->get();
         }
 
-        return view('admin/member/list',compact('members','districts','thanas','request'));
+        return view('admin/member/list',compact('members','districts','thanas','request'));*/
     }
 
     public function create()

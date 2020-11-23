@@ -252,6 +252,7 @@
             margin-left: 3px;
         }
 
+
     </style>
 
     @yield('style')
