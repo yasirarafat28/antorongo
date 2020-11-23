@@ -32,7 +32,7 @@ class CollectionController extends Controller
             $transactions = '';
 
         }
-        return view('admin/collection-collect',compact('query','loan','transactions'));
+        return view('admin/loan/collection-collect',compact('query','loan','transactions'));
     }
 
     public function CollectSubmit(Request $request)
@@ -82,6 +82,6 @@ class CollectionController extends Controller
             }
 
         })->paginate(25);
-        return view('admin/collection-report',compact('transactions'));
+        return view('admin/loan/collection-report',compact('transactions'));
     }
 }
