@@ -3,12 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\FdrTransaction;
-use App\Fdr;
-use App\User;
-use Auth;
 
-class FdrTransactionController extends Controller
+class CurrentAccountController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -61,15 +57,6 @@ class FdrTransactionController extends Controller
     public function edit($id)
     {
         //
-
-        $fdr_transaction = FdrTransaction::find($id);
-        $fdr = Fdr::find($fdr_transaction->fdr_id);
-        $members = User::where('role','member')->orderBy('name','ASC')->get();
-
-
-
-        $users_fdrs = Fdr::with('user')->where('user_id',$fdr_transaction->user_id)->get();
-        return view('admin/fdr/transaction-edit',compact('members','fdr_transaction','fdr','users_fdrs'));
     }
 
     /**
@@ -82,19 +69,6 @@ class FdrTransactionController extends Controller
     public function update(Request $request, $id)
     {
         //
-
-
-
-        $transaction = FdrTransaction::find($id);
-        $transaction->fdr_id = $request->fdr_id;
-        $transaction->user_id = $request->user_id;
-        $transaction->amount = $request->amount;
-        $transaction->added_by = Auth::user()->id;
-        $transaction->started_at = $request->date;
-        $transaction->manager_status = 'approved';
-        $transaction->admin_status = 'approved';
-        $transaction->save();
-        return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
     }
 
     /**
@@ -106,7 +80,5 @@ class FdrTransactionController extends Controller
     public function destroy($id)
     {
         //
-        Fdr::destroy($id);
-        return back()->withSuccess('সফলভাবে মুছে ফেলা হয়েছে');
     }
 }

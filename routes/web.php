@@ -120,7 +120,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::resource('documents', 'DocumentController');
     Route::get('transaction-head/{type}', 'TransactionHeadController@index');
     Route::resource('transaction-head', 'TransactionHeadController');
-    Route::get('transaction-by-head', 'TransactionController@TransactionByHead');
+    Route::resource('transactions', 'TransactionController');
 
     //Income
     Route::resource('income', 'IncomeController');
