@@ -4,9 +4,6 @@
 @endsection
 @section('content')
 <style>
-    .dataTables_wrapper .dt-buttons{
-        display: none;
-    }
 </style>
 
 <!-- Main Content -->
@@ -34,7 +31,20 @@
 
                             <div class="row clearfix">
 
-                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for=""><small> ব্যালেন্স </small></label>
+                                        <select name="wallet" class="form-control ms">
+                                            <option value="">বাছাই করুন </option>
+
+                                            <option {{isset($_GET['wallet']) && $_GET['wallet']=='office'?'selected':''}} value="office">Office</option>
+                                            <option {{isset($_GET['wallet']) && $_GET['wallet']=='cashier'?'selected':''}} value="cashier">Cashier</option>
+                                            <option {{isset($_GET['wallet']) && $_GET['wallet']=='bank'?'selected':''}} value="bank">Bank</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label for=""><small> আয়ের খাত বাছাই করুন </small></label>
                                         <select name="head_id" class="form-control ms">
@@ -56,7 +66,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-md-3">
+                                <div class="col-md-2">
 
                                     <label for=""><small>থেকে</small></label>
 
@@ -68,7 +78,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-3 col-md-3">
+                                <div class="col-md-2">
 
                                     <label for=""><small> পর্যন্ত</small></label>
 
@@ -85,16 +95,8 @@
                                     <br>
 
                                     <div class="input-group">
-                                        <button class="btn btn-primary btn-round">খুঁজুন</button>
+                                        <button class="btn btn-primary btn-round"><i class="fa fa-search"></i></button>
                                     </div>
-                                </div>
-                                <div class="col-lg-2 col-md-2 text-right">
-                                    <button type="button" class="btn btn-neutral hidden-sm-down" onclick="$('.buttons-csv')[0].click();">
-                                        <i class="zmdi zmdi-archive"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-neutral hidden-sm-down" onclick="$('.buttons-print')[0].click();">
-                                        <i class="zmdi zmdi-print"></i>
-                                    </button>
                                 </div>
                             </div>
                         </form>

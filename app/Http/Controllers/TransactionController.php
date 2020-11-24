@@ -23,6 +23,10 @@ class TransactionController extends Controller
                 $q->where('head_id',  $request->head_id);
 
             }
+            if ($request->has('wallet') && $request->wallet) {
+                $q->where('wallet',  $request->wallet);
+
+            }
             if ($request->has('to') && $request->to) {
 
                 $to = date("Y-m-d", strtotime($request->to));
