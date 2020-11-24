@@ -11,7 +11,7 @@ class TransactionController extends Controller
     //
 
 
-    public function TransactionByHead(Request $request)
+    public function index(Request $request)
     {
         $transactions = Transaction::where(function ($q) use ($request){
             if ($request->has('from') && $request->from) {
@@ -35,6 +35,6 @@ class TransactionController extends Controller
 
         $parents = TransactionHead::with('childs')->where('parent',0)->get();
 
-        return view('admin/TransactionByHead',compact('transactions','parents'));
+        return view('admin/transactions',compact('transactions','parents'));
     }
 }

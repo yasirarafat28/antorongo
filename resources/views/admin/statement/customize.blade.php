@@ -110,8 +110,8 @@
         </div>
 
         <?php
-            $from = $_GET['from']?? date("Y-m-d H:i:s");
-            $to = $_GET['to']?? date("Y-m-d H:i:s");
+            $from = $_GET['from']?? date("Y-m-d");
+            $to = $_GET['to']?? date("Y-m-d");
         ?>
 
 
@@ -149,7 +149,7 @@
                                         <span class="input-group-addon">
                                             <i class="zmdi zmdi-calendar"></i>
                                         </span>
-                                    <input type="text" class="form-control datepicker" value="{{$_GET['from'] ?? ''}}" name="from" placeholder="থেকে তারিখ বাছাই করুন...">
+                                    <input type="text" class="form-control datepicker" value="{{$from}}" name="from" placeholder="থেকে তারিখ বাছাই করুন...">
                                 </div>
                             </div>
 
@@ -161,7 +161,7 @@
                                         <span class="input-group-addon">
                                             <i class="zmdi zmdi-calendar"></i>
                                         </span>
-                                    <input type="text" class="form-control datepicker" value="{{$_GET['to'] ?? ''}}" name="to" placeholder=" পর্যন্ত তারিখ বাছাই করুন...">
+                                    <input type="text" class="form-control datepicker" value="{{$to}}" name="to" placeholder=" পর্যন্ত তারিখ বাছাই করুন...">
                                 </div>
                             </div>
 
@@ -172,14 +172,6 @@
                                 <div class="input-group">
                                     <button class="btn btn-primary btn-round">খুঁজুন</button>
                                 </div>
-                            </div>
-                            <div class="col-lg-2 col-md-2 text-right">
-                                <button type="button" class="btn btn-neutral hidden-sm-down" onclick="$('.buttons-csv')[0].click();">
-                                    <i class="zmdi zmdi-archive"></i>
-                                </button>
-                                <button type="button" class="btn btn-neutral hidden-sm-down" onclick="$('.buttons-print')[0].click();">
-                                    <i class="zmdi zmdi-print"></i>
-                                </button>
                             </div>
                         </div>
                     </form>
@@ -204,13 +196,13 @@
                                         @if(sizeof($income_head->childs))
                                             <legend>{{$income_head->name}}: {{\App\NumberConverter::en2bn(\App\Transaction::TransactionByHeadDate($income_head->id,$from,$to))}} টাকা</legend>
                                         @else
-                                            <legend><a href="{{url('admin/transaction-by-head?head_id='.$income_head->id.'&from='.$from.'&to='.$to)}}">{{$income_head->name}}: {{\App\NumberConverter::en2bn(\App\Transaction::TransactionByHeadDate($income_head->id,$from,$to))}} টাকা</a></legend>
+                                            <legend><a href="{{url('admin/transactions?head_id='.$income_head->id.'&from='.$from.'&to='.$to)}}">{{$income_head->name}}: {{\App\NumberConverter::en2bn(\App\Transaction::TransactionByHeadDate($income_head->id,$from,$to))}} টাকা</a></legend>
                                         @endif
                                         <table class="table table-striped table-hover">
                                             <tbody>
                                                 @foreach($income_head->childs as $child)
                                                     <tr>
-                                                        <td><a href="{{url('admin/transaction-by-head?head_id='.$child->id.'&from='.$from.'&to='.$to)}}">{{$child->name}}</a></td>
+                                                        <td><a href="{{url('admin/transactions?head_id='.$child->id.'&from='.$from.'&to='.$to)}}">{{$child->name}}</a></td>
                                                         <td style="width: 30%;">{{\App\NumberConverter::en2bn(\App\Transaction::TransactionByHeadDate($child->id,$from,$to)->sum('amount'))}} টাকা</td>
                                                     </tr>
                                                 @endforeach
@@ -236,13 +228,13 @@
                                         @if(sizeof($expense_head->childs))
                                             <legend>{{$expense_head->name}}: {{\App\NumberConverter::en2bn(\App\Transaction::TransactionByHeadDate($expense_head->id,$from,$to))}} টাকা</legend>
                                         @else
-                                            <legend><a href="{{url('admin/transaction-by-head?head_id='.$expense_head->id.'&from='.$from.'&to='.$to)}}">{{$expense_head->name}}: {{\App\NumberConverter::en2bn(\App\Transaction::TransactionByHeadDate($expense_head->id,$from,$to))}} টাকা</a></legend>
+                                            <legend><a href="{{url('admin/transactions?head_id='.$expense_head->id.'&from='.$from.'&to='.$to)}}">{{$expense_head->name}}: {{\App\NumberConverter::en2bn(\App\Transaction::TransactionByHeadDate($expense_head->id,$from,$to))}} টাকা</a></legend>
                                         @endif
                                         <table class="table table-striped table-hover">
                                             <tbody>
                                             @foreach($expense_head->childs as $child)
                                                 <tr>
-                                                    <td><a href="{{url('admin/transaction-by-head?head_id='.$child->id.'&from='.$from.'&to='.$to)}}">{{$child->name}}</a></td>
+                                                    <td><a href="{{url('admin/transactions?head_id='.$child->id.'&from='.$from.'&to='.$to)}}">{{$child->name}}</a></td>
                                                     <td style="width: 30%;">{{\App\NumberConverter::en2bn(\App\Transaction::TransactionByHeadDate($child->id,$from,$to)->sum('amount'))}} টাকা</td>
                                                 </tr>
                                             @endforeach
