@@ -63,7 +63,14 @@
             <div class="col-lg-12">
                 <div class="card shadow">
                     <div class="header">
-                        <h2><strong>ডকুমেন্ট এর তালিকা </strong> </h2>
+                        <div class="clearfix">
+                            <div class="float-left">
+                                <h2>ডকুমেন্ট এর তালিকা  </h2>
+                            </div>
+                            <div class="float-right">
+                                <a data-toggle="modal" data-target="#largeModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> ডকুমেন্ট যোগ করুন </a>
+                            </div>
+                        </div>
 
                     </div>
                     <div class="body">
@@ -87,7 +94,6 @@
                                 <tr>
                                     <td>{{\App\NumberConverter::en2bn($loop->iteration)}}</td>
                                     <td> {{$item->title}}</td>
-                                    <td>
                                         <td>
                                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -95,7 +101,7 @@
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                                 aria-labelledby="dropdownMenuLink">
-                                                <a class="dropdown-item"  title="বিস্তারিত" href="{{url($item->file??'')}}"><i class="fa fa-eye"> </i> বিস্তারিত </i></a>
+                                                {{-- <a class="dropdown-item"  title="বিস্তারিত" href="{{url($item->file??'')}}"><i class="fa fa-eye"> </i> বিস্তারিত </i></a> --}}
                                                 <a data-toggle="modal" data-target="#largeEditModal{{$item->id}}" class="dropdown-item" title="সম্পাদনা করুন"><i class="fa fa-edit"> </i> এডিট</a>
                                                 {!! Form::open([
                                                 'method'=>'DELETE',
@@ -131,12 +137,14 @@
 <div class="modal fade" id="largeModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-body">
-                <div class="card shadow">
-                    <div class="header">
-                        <h2><strong> ডকুমেন্ট</strong> এডিট  করুন</h2>
+
+                    <div class="modal-header">
+                        <h2><strong> ডকুমেন্ট</strong> যোগ করুন</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="body">
+                    <div class="modal-body">
                         <form action="{{url('admin/documents')}}" method="POST" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <div class="row clearfix">
@@ -154,17 +162,16 @@
                                         <input type="file" class="form-control" placeholder="ডকুমেন্ট" name="file">
                                     </div>
                                 </div>
+                                <div class="col-md-12 text-center">
                                 <button type="submit" class="btn btn-info btn-round">সেভ করুন</button>
+                                </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">বন্ধ করুন</button>
-            </div>
-        </div>
-    </div>
+
+
 </div>
 <!--Add Modal End-->
 
@@ -174,12 +181,14 @@
 <div class="modal fade" id="largeEditModal{{$item->id}}" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-body">
-                <div class="card shadow">
-                    <div class="header">
-                        <h2><strong> ডকুমেন্ট</strong> বিস্তারিত</h2>
+
+                    <div class="modal-header">
+                        <h2><strong> ডকুমেন্ট</strong> এডিট</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="body">
+                    <div class="modal-body">
                         <form action="{{url('admin/documents/'.$item->id)}}" method="POST" enctype="multipart/form-data">
                             {{csrf_field()}}
 
@@ -200,16 +209,14 @@
                                         <input type="file" class="form-control" placeholder="ডকুমেন্ট" name="file">
                                     </div>
                                 </div>
+                                <div class="col-md-12 text-center">
                                 <button type="submit" class="btn btn-info btn-round">সেভ করুন</button>
+                                </div>
                             </div>
                         </form>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">বন্ধ করুন</button>
-            </div>
-        </div>
+
     </div>
 </div>
 

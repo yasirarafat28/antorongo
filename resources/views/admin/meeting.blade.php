@@ -61,42 +61,41 @@
             <div class="col-lg-12">
                 <div class="card shadow">
                     <div class="header">
-                        <h2><strong>মিটিং এর তালিকা </strong> </h2>
+                        <div class="clearfix">
+                            <div class="float-left">
+                                <h2>মিটিং এর তালিকা  </h2>
+                            </div>
+                            <div class="float-right">
+                                <a data-toggle="modal" data-target="#largeModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> মিটিং যোগ করুন </a>
+                            </div>
+                        </div>
 
                     </div>
                     <div class="body">
                         <table class="table table-bordered table-striped table-hover dataTable js-plaintable">
                             <thead>
                             <tr>
-                                <th>সিরিয়াল </th>
+                                <th>ক্রিয়াকলাপ</th>
                                 <th> অতিথি </th>
                                 <th> আলোচনার বিষয় </th>
                                 <th>বিস্তারিত </th>
                                 <th>সিদ্ধান্ত  </th>
                                 <th>সময়</th>
-                                <th>ক্রিয়াকলাপ</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th>সিরিয়াল </th>
+                                <th>ক্রিয়াকলাপ</th>
                                 <th> অতিথি </th>
                                 <th> আলোচনার বিষয় </th>
                                 <th>বিস্তারিত </th>
                                 <th>সিদ্ধান্ত  </th>
                                 <th>সময়</th>
-                                <th>ক্রিয়াকলাপ</th>
                             </tr>
                             </tfoot>
                             <tbody>
                             @foreach($records as $item)
                                 <tr>
-                                    <td>{{\App\NumberConverter::en2bn($loop->iteration)}}</td>
-                                    <td> {{$item->guest}}</td>
-                                    <td>{{$item->subject}}</td>
-                                    <td>{{strip_tags($item->details)}}</td>
-                                    <td>{{$item->decision}}</td>
-                                    <td>{{\App\NumberConverter::en2bn($item->created_at)}}</td>
                                     <td>
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -121,6 +120,12 @@
                                             {!! Form::close() !!}
                                     </div>
                                     </td>
+                                     <td> {{$item->guest}}</td>
+                                    <td>{{$item->subject}}</td>
+                                    <td>{{strip_tags($item->details)}}</td>
+                                    <td>{{$item->decision}}</td>
+                                    <td>{{\App\NumberConverter::en2bn($item->created_at)}}</td>
+
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -140,12 +145,14 @@
 <div class="modal fade" id="largeModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-body">
-                <div class="card shadow">
-                    <div class="header">
-                        <h2><strong> মিটিং</strong> এডিট  করুন</h2>
+
+                    <div class="modal-header">
+                        <h2><strong>মিটিং</strong> যোগ করুন</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="body">
+                    <div class="modal-body">
                         <form action="{{url('admin/meeting')}}" method="POST">
                             {{csrf_field()}}
                             <div class="row clearfix">
@@ -174,15 +181,14 @@
                                         <textarea name="details" id="ckeditor" placeholder="বিস্তারিত" class="form-control"></textarea>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-info btn-round">সেভ করুন</button>
+                                <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn btn-info btn-round">সেভ করুন</button>
+                                 </div>
                             </div>
                         </form>
                     </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">বন্ধ করুন</button>
-            </div>
+
+
         </div>
     </div>
 </div>
@@ -194,12 +200,14 @@
 <div class="modal fade" id="largeEditModal{{$item->id}}" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-body">
-                <div class="card shadow">
-                    <div class="header">
-                        <h2><strong> মিটিং</strong> বিস্তারিত</h2>
+
+                    <div class="modal-header">
+                        <h2><strong> মিটিং</strong> এডিট</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="body">
+                    <div class="modal-body">
                         <form action="{{url('admin/meeting/'.$item->id)}}" method="POST">
                             {{csrf_field()}}
 
@@ -230,15 +238,13 @@
                                         <textarea name="details" id="" placeholder="বিস্তারিত" class="form-control ckeditor">{{$item->details}}</textarea>
                                     </div>
                                 </div>
+                                <div class="col-md-12 text-center">
                                 <button type="submit" class="btn btn-info btn-round">সেভ করুন</button>
+                            </div>
                             </div>
                         </form>
                     </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">বন্ধ করুন</button>
-            </div>
+
         </div>
     </div>
 </div>
@@ -249,12 +255,14 @@
 <div class="modal fade" id="largeShowModal{{$item->id}}" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-body">
-                <div class="card shadow">
-                    <div class="header">
-                        <h2><strong> মিটিং</strong> যোগ করুন</h2>
+
+                    <div class="modal-header">
+                        <h2><strong> মিটিং</strong>বিস্তারিত</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="body">
+                    <div class="modal-body">
 
                         <table class="table">
                             <tbody>
@@ -277,11 +285,7 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">বন্ধ করুন</button>
-            </div>
+
         </div>
     </div>
 </div>

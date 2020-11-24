@@ -566,8 +566,8 @@
                             </table>
                         </div>
                         <hr>
-                        <div class="body col-md-6 offset-3">
-
+                        {{-- <div class="body col-md-6 offset-3"> --}}
+                        <div class="col-md-12 text-center">
                             <button type="submit" class="btn btn-info btn-round"> সেভ করুন</button>
                         </div>
                     </div>

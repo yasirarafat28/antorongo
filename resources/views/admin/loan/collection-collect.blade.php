@@ -43,14 +43,23 @@
 
                 <div class="card shadow">
 
-                    <div class="header">
+                    {{-- <div class="header">
                         <h2><strong>সঞ্চয় খুঁজুন</strong><small></small> </h2>
                         <ul class="header-dropdown">
                             <li class="remove">
                                 <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
                             </li>
                         </ul>
-                    </div>
+                    </div> --}}
+                    <div class="header">
+                        <div class="clearfix">
+                            <div class="float-left">
+                                <h2>সঞ্চয় খুঁজুন</h2>
+                            </div>
+                            <div class="float-right">
+                                <a data-toggle="modal" data-target="#collection_coll_Modal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> কিস্তি আদায় করুন </a>
+                            </div>
+                        </div>
 
                     <div class="body members_profiles">
                         <form method="GET">
@@ -133,7 +142,7 @@
 
                             </div>
 
-                            <div class="col-lg-5 col-md-5 col-sm-12 offset-1">
+                            {{-- <div class="col-lg-5 col-md-5 col-sm-12 offset-1">
 
                                 <div class="header">
 
@@ -189,13 +198,79 @@
                                     </div>
                                 </form>
 
+                            </div> --}}
+
+                            <!--  Modal Start -->
+                    <div class="modal fade" id="collection_coll_Modal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2><strong> কিস্তি আদায় </strong>  করুন</h2>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{{route('LoanDepositSubmit')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
+                                        {{csrf_field()}}
+                                        <input type="hidden" name="loan_id" value="{{$loan->id}}">
+                                        <input type="hidden" name="user_id" value="{{$loan->user_id}}">
+
+
+                                        <div class="col-lg-12 col-md-12">
+
+                                            <div class="form-group">
+
+                                                <label for=""><small> কিস্তির পরিমান</small></label>
+
+                                                <input type="number" step="any" class="form-control" name="amount" placeholder="{{$loan->installment_amount}}" value="{{old('amount')}}">
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-lg-12 col-md-12">
+
+                                            <div class="form-group">
+
+                                                <label for=""><small> তারিখ </small></label>
+
+                                                <input type="date" class="form-control" name="date" placeholder=" তারিখ" value="{{old('date')}}">
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-lg-12 col-md-12">
+
+                                            <div class="form-group">
+
+                                                <label for=""><small> মতামত </small></label>
+
+                                                <textarea name="note" class="form-control" placeholder="মতামত">{{old('note')}}</textarea>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-12 text-center">
+
+                                            <button class="btn btn-primary btn-round"> কিস্তি আদায় করুন</button>
+
+                                        </div>
+                                    </form>
+
+                                </div>
                             </div>
+                        </div>
+                    </div>
+                    <!--Add Modal End-->
                         </div>
                     @endif
                 </div>
 
             </div>
-
+            </div>
         </div>
 
         @if($transactions)
@@ -229,7 +304,7 @@
 
                             <tr>
 
-                                <th>সিরিয়াল</th>
+                                <th> #</th>
                                 <th>আদায়কারীর নাম</th>
 
                                 <th> লেনদেন কোড </th>
@@ -239,7 +314,6 @@
                                 <th> অবস্থা</th>
 
                                 <th> পরিশোধের সময়</th>
-                                <th> #</th>
 
                             </tr>
 
@@ -251,8 +325,24 @@
 
                                 <tr>
 
-                                    <td>{{\App\NumberConverter::en2bn($loop->iteration)}}</td>
-                                    <td>{{$item->receiver->name??''}}</td>
+                                    <td>
+
+                                        <a href="{{url('admin/loan-transaction/'.$item->id.'/edit')}}" class="btn btn-icon btn-neutral btn-icon-mini"><i class="zmdi zmdi-edit"> </i></a>
+                                        <a class="btn btn-danger btn-icon btn-icon-mini" title="মুছে ফেলুন ">
+                                            {!! Form::open([
+                                               'method'=>'DELETE',
+                                               'url' => ['/admin/loan-transaction', $item->id],
+                                               'style' => 'display:inline'
+                                            ]) !!}
+                                            {!! Form::button('<i class="fa fa-times"></i> ', array(
+                                                 'type' => 'submit',
+                                                 'class' => 'btn btn-danger btn-xs btnper',
+                                                'title' => 'Delete user',
+                                                'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
+                                                 )) !!}
+                                            {!! Form::close() !!}
+                                        </a>
+                                    </td>                                    <td>{{$item->receiver->name??''}}</td>
 
                                     <td>{{$item->txn_id??''}}</td>
                                     <td>
@@ -275,27 +365,7 @@
                                     <td>নিশ্চিত </td>
                                     <td>{{\App\NumberConverter::en2bn($item->date)}}</td>
 
-                                    <td>
 
-
-
-
-                                            <a href="{{url('admin/loan-transaction/'.$item->id.'/edit')}}" class="btn btn-icon btn-neutral btn-icon-mini"><i class="zmdi zmdi-edit"> </i></a>
-                                            <a class="btn btn-danger btn-icon btn-icon-mini" title="মুছে ফেলুন ">
-                                                {!! Form::open([
-                                                   'method'=>'DELETE',
-                                                   'url' => ['/admin/loan-transaction', $item->id],
-                                                   'style' => 'display:inline'
-                                                ]) !!}
-                                                {!! Form::button('<i class="fa fa-times"></i> ', array(
-                                                     'type' => 'submit',
-                                                     'class' => 'btn btn-danger btn-xs btnper',
-                                                    'title' => 'Delete user',
-                                                    'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
-                                                     )) !!}
-                                                {!! Form::close() !!}
-                                            </a>
-                                        </td>
                                 </tr>
                             @endforeach
                             </tbody>

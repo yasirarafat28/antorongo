@@ -106,7 +106,7 @@
                         <table class="table table-bordered table-striped table-hover dataTable  js-full-datatable">
                             <thead>
                             <tr>
-                                <th>সিরিয়াল </th>
+                                <th>#</th>
                                 <th>সভ্য আইডি </th>
                                 <th>এফ ডি আর আইডি </th>
                                 <th>লেনদেন কোড </th>
@@ -116,12 +116,11 @@
                                 <th>পরিমান</th>
                                 <th> অবস্থা</th>
                                 <th> পরিশোধের সময়</th>
-                                <th>#</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th>সিরিয়াল </th>
+                                <th>#</th>
                                 <th>সভ্য আইডি </th>
                                 <th>এফ ডি আর আইডি </th>
                                 <th>লেনদেন কোড </th>
@@ -131,7 +130,6 @@
                                 <th>পরিমান</th>
                                 <th> অবস্থা</th>
                                 <th> পরিশোধের সময়</th>
-                                <th>#</th>
                             </tr>
                             </tfoot>
                             <tbody>
@@ -141,22 +139,6 @@
 
                                     <tr>
 
-                                        <td>{{$loop->iteration}}</td>
-                                        <td>{{$item->user->unique_id??''}}</td>
-                                        <td>{{$item->fdr->txn_id??''}}</td>
-                                        <td>{{$item->txn_id??''}}</td>
-                                        <td>{{$item->user->name??''}}</td>
-                                        <td>{{$item->receiver->name??''}}</td>
-                                        <td>
-                                                উত্তোলন
-                                        </td>
-
-                                        <td style="color: green;font-weight: 700;">
-                                            - {{\App\NumberConverter::en2bn($item->amount)}} টাকা
-
-                                        </td>
-                                        <td>নিশ্চিত </td>
-                                        <td>{{\App\NumberConverter::en2bn($item->started_at)}}</td>
                                         <td>
 
                                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -181,7 +163,22 @@
                                                      )) !!}
                                                 {!! Form::close() !!}
                                             </div>
+                                        </td>                                        <td>{{$item->user->unique_id??''}}</td>
+                                        <td>{{$item->fdr->txn_id??''}}</td>
+                                        <td>{{$item->txn_id??''}}</td>
+                                        <td>{{$item->user->name??''}}</td>
+                                        <td>{{$item->receiver->name??''}}</td>
+                                        <td>
+                                                উত্তোলন
                                         </td>
+
+                                        <td style="color: green;font-weight: 700;">
+                                            - {{\App\NumberConverter::en2bn($item->amount)}} টাকা
+
+                                        </td>
+                                        <td>নিশ্চিত </td>
+                                        <td>{{\App\NumberConverter::en2bn($item->started_at)}}</td>
+
                                     </tr>
                                 @endforeach
                             </tbody>

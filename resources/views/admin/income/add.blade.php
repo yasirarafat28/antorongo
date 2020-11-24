@@ -126,7 +126,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6 offset-3">
+                                <div class="col-md-12 text-center">
 
                                     <button class="btn btn-primary btn-round"> সেভ করুন</button>
 

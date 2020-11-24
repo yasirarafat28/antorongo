@@ -136,10 +136,10 @@
 
                         <br>
                         <br>
-                        <table class="table table-bordered table-striped table-hover dataTable js-full-datatable">
+                        <table class="table table-bordered table-striped table-hover dataTable js-full-datatable table-responsive">
                             <thead>
                             <tr>
-                                <th>সিরিয়াল </th>
+                                <th>ক্রিয়াকলাপ</th>
                                 <th>ঋণ আইডি </th>
                                 <th>পুরাতন ঋণ আইডি </th>
                                 <th> সদস্য আইডি  </th>
@@ -149,12 +149,11 @@
                                 <th> মোট বকেয়া</th>
                                 <th> তারিখ </th>
                                 <th>  অবস্থা</th>
-                                <th>ক্রিয়াকলাপ</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th>সিরিয়াল </th>
+                                <th>ক্রিয়াকলাপ</th>
                                 <th>ঋণ আইডি </th>
                                 <th>পুরাতন ঋণ আইডি </th>
                                 <th> সদস্য আইডি  </th>
@@ -164,34 +163,12 @@
                                 <th> মোট বকেয়া</th>
                                 <th> তারিখ </th>
                                 <th>  অবস্থা</th>
-                                <th>ক্রিয়াকলাপ</th>
                             </tr>
                             </tfoot>
                             <tbody>
                             @foreach($records ?? array() as $item)
                                 <tr>
-                                    <td>{{\App\NumberConverter::en2bn($loop->iteration)}}</td>
-                                    <td>{{$item->unique_id}}</td>
-                                    <td>{{$item->old_txn}}</td>
-                                    <td>{{$item->user->unique_id??''}}</td>
-                                    <td>{{$item->user->name_bn??''}}</td>
                                     <td>
-                                        @if($item->status=='active')
-                                            {{\App\NumberConverter::en2bn($item->approved_amount)}}
-                                        @else
-                                            {{\App\NumberConverter::en2bn($item->request_amount)}}
-                                        @endif
-                                    </td>
-                                    <td>{{\App\NumberConverter::en2bn($item->transactions->sum('incoming'))}}</td>
-                                    <td>{{\App\NumberConverter::en2bn($item->request_amount + ($item->request_amount* $item->interest_rate/100) - $item->transactions->sum('incoming'))}}</td>
-                                    <td>{{date('Y/m/d',strtotime($item->start_at))}}</td>
-                                    <td>{{$item->status}}</td>
-                                    <td>
-
-
-
-
-
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
@@ -212,7 +189,22 @@
                                                 @endif
 
                                         </div>
+                                    </td>                                    <td>{{$item->unique_id}}</td>
+                                    <td>{{$item->old_txn}}</td>
+                                    <td>{{$item->user->unique_id??''}}</td>
+                                    <td>{{$item->user->name_bn??''}}</td>
+                                    <td>
+                                        @if($item->status=='active')
+                                            {{\App\NumberConverter::en2bn($item->approved_amount)}}
+                                        @else
+                                            {{\App\NumberConverter::en2bn($item->request_amount)}}
+                                        @endif
                                     </td>
+                                    <td>{{\App\NumberConverter::en2bn($item->transactions->sum('incoming'))}}</td>
+                                    <td>{{\App\NumberConverter::en2bn($item->request_amount + ($item->request_amount* $item->interest_rate/100) - $item->transactions->sum('incoming'))}}</td>
+                                    <td>{{date('Y/m/d',strtotime($item->start_at))}}</td>
+                                    <td>{{$item->status}}</td>
+
                                 </tr>
                             @endforeach
                             </tbody>
@@ -234,12 +226,14 @@
     <div class="modal fade" id="ActiveModal{{$item->id}}" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-body">
-                    <div class="card shadow">
-                        <div class="header">
+
+                        <div class="modal-header">
                             <h2><strong>ঋণ অনুমোদন করুন </strong></h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
                         </div>
-                        <div class="body">
+                        <div class="modal-body">
                             <form action="{{url('admin/loan/active/'.$item->id)}}" method="POST">
                                 {{csrf_field()}}
                                 <div class="row clearfix">
@@ -261,15 +255,16 @@
                                             <input type="text" class="form-control" placeholder="লাভের হার" name="interest_rate" value="{{$item->interest_rate}}">
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-info btn-round">SAVE CHANGES</button>
+                                    <div class="col-md-12 text-center">
+                                        <button type="submit" class="btn btn-info btn-round">সেভ করুন</button>
+                                     </div>
                                 </div>
                             </form>
                         </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
+
+                {{-- <div class="modal-footer">
                     <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

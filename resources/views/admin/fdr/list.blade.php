@@ -152,7 +152,7 @@
                         <table class="table table-bordered table-striped table-hover dataTable  js-full-datatable">
                             <thead>
                             <tr>
-                                <th>সিরিয়াল </th>
+                                <th>ক্রিয়াকলাপ</th>
                                 <th>সভ্য আইডি </th>
                                 <th>এফ ডি আর আইডি </th>
                                 <th>পুরাতন  এফ ডি আর আইডি </th>
@@ -163,12 +163,11 @@
                                 <th> প্রাপ্ত লাভ  </th>
                                 <th>  অবস্থা</th>
                                 <th>  তারিখ</th>
-                                <th>ক্রিয়াকলাপ</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th>সিরিয়াল </th>
+                                <th>ক্রিয়াকলাপ</th>
                                 <th>সভ্য আইডি </th>
                                 <th>এফ ডি আর আইডি </th>
                                 <th>পুরাতন  এফ ডি আর আইডি </th>
@@ -180,23 +179,11 @@
                                 <th> প্রাপ্ত লাভ  </th>
                                 <th>  অবস্থা</th>
                                 <th>  তারিখ</th>
-                                <th>ক্রিয়াকলাপ</th>
                             </tr>
                             </tfoot>
                             <tbody>
                             @foreach($records ?? array() as $item)
                                 <tr>
-                                    <td>{{$loop->iteration}}</td>
-                                    <td>{{$item->user->unique_id??''}}</td>
-                                    <td>{{$item->txn_id}}</td>
-                                    <td>{{$item->old_txn}}</td>
-                                    <td>{{$item->user->name_bn??''}}</td>
-                                    <td>{{\App\NumberConverter::en2bn($item->transactions->where('type','deposit')->sum('amount'))}} টাকা  </td>
-                                    <td>{{\App\NumberConverter::en2bn($item->duration)}} মাস </td>
-                                    <td>{{\App\NumberConverter::en2bn($item->interest_rate)}} % </td>
-                                    <td>{{\App\NumberConverter::en2bn($item->transactions->where('type','profit')->sum('amount'))}} টাকা  </td>
-                                    <td>{{ucfirst($item->status)}}</td>
-                                    <td>{{$item->started_at}}</td>
                                     <td style="width: 12%">
 
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -216,7 +203,17 @@
 
                                         @endif
                                         </div>
-                                    </td>
+                                    </td>                                    <td>{{$item->user->unique_id??''}}</td>
+                                    <td>{{$item->txn_id}}</td>
+                                    <td>{{$item->old_txn}}</td>
+                                    <td>{{$item->user->name_bn??''}}</td>
+                                    <td>{{\App\NumberConverter::en2bn($item->transactions->where('type','deposit')->sum('amount'))}} টাকা  </td>
+                                    <td>{{\App\NumberConverter::en2bn($item->duration)}} মাস </td>
+                                    <td>{{\App\NumberConverter::en2bn($item->interest_rate)}} % </td>
+                                    <td>{{\App\NumberConverter::en2bn($item->transactions->where('type','profit')->sum('amount'))}} টাকা  </td>
+                                    <td>{{ucfirst($item->status)}}</td>
+                                    <td>{{$item->started_at}}</td>
+
                                 </tr>
                             @endforeach
                             </tbody>
