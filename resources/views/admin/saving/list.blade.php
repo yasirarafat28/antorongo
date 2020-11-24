@@ -108,7 +108,7 @@
                         <table class="table table-bordered table-striped table-hover dataTable js-full-datatable">
                             <thead>
                             <tr>
-                                <th>সিরিয়াল </th>
+                                <th>ক্রিয়াকলাপ</th>
                                 <th>সভ্য আইডি </th>
                                 <th>সঞ্চয় আইডি </th>
                                 <th> সদস্য নাম  </th>
@@ -122,12 +122,11 @@
                                 @endif
                                 <th>  অবস্থা</th>
                                 <th>  তারিখ</th>
-                                <th>ক্রিয়াকলাপ</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th>সিরিয়াল </th>
+                                <th>ক্রিয়াকলাপ</th>
                                 <th>সভ্য আইডি </th>
                                 <th>সঞ্চয় আইডি </th>
                                 <th> সদস্য নাম  </th>
@@ -141,26 +140,11 @@
                                 @endif
                                 <th>  অবস্থা</th>
                                 <th>  তারিখ</th>
-                                <th>ক্রিয়াকলাপ</th>
                             </tr>
                             </tfoot>
                             <tbody>
                             @foreach($records ?? array() as $item)
                                 <tr>
-                                    <td>{{$loop->iteration}}</td>
-                                    <td>{{$item->user->unique_id??''}}</td>
-                                    <td>{{$item->txn_id}}</td>
-                                    <td>{{$item->user->name_bn??''}}</td>
-                                    @if($type='daily')
-                                        <td>{{\App\NumberConverter::en2bn($item->installment_amount)}} টাকা </td>
-                                        <td>{{\App\NumberConverter::en2bn($item->duration)}} মাস </td>
-                                    @else
-                                        <td>{{\App\NumberConverter::en2bn($item->target_amount)}}</td>
-                                        <td>{{\App\NumberConverter::en2bn($item->return_amount-$item->target_amount)}}</td>
-                                        <td>{{\App\NumberConverter::en2bn($item->return_amount)}}</td>
-                                    @endif
-                                    <td>{{ucfirst($item->status)}}</td>
-                                    <td>{{$item->started_at}}</td>
                                     <td style="width: 12%">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -178,7 +162,20 @@
 
                                         @endif
                                         </div>
-                                    </td>
+                                    </td>                                    <td>{{$item->user->unique_id??''}}</td>
+                                    <td>{{$item->txn_id}}</td>
+                                    <td>{{$item->user->name_bn??''}}</td>
+                                    @if($type='daily')
+                                        <td>{{\App\NumberConverter::en2bn($item->installment_amount)}} টাকা </td>
+                                        <td>{{\App\NumberConverter::en2bn($item->duration)}} মাস </td>
+                                    @else
+                                        <td>{{\App\NumberConverter::en2bn($item->target_amount)}}</td>
+                                        <td>{{\App\NumberConverter::en2bn($item->return_amount-$item->target_amount)}}</td>
+                                        <td>{{\App\NumberConverter::en2bn($item->return_amount)}}</td>
+                                    @endif
+                                    <td>{{ucfirst($item->status)}}</td>
+                                    <td>{{$item->started_at}}</td>
+
                                 </tr>
                             @endforeach
                             </tbody>
