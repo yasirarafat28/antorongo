@@ -55,6 +55,12 @@ Route::group(['middleware' => ['auth']], function () {
 //Chairman Panel
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::get('dashboard', 'DashboardController@admin');
+
+    //wallet
+    Route::get('balance', 'WalletController@balance');
+    Route::get('balance/transfer/{from}', 'WalletController@transfer');
+    Route::post('balance/transfer-submit', 'WalletController@transfer_submit')->name('transfer_submit');
+
     //Loan
     Route::post('loan/active/{id}', 'LoanController@ApproveLoan');
     Route::get('loan/reject/{id}', 'LoanController@RejectLoan');

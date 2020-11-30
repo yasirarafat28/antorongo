@@ -12,7 +12,7 @@ class Wallet extends Model
     const CASHIER    = 'cashier';
     const BANK    = 'bank';
 
-    public function balance($wallet='office'){
+    public static function balance($wallet='office'){
 
         $totalCreadit  = Transaction::where('type','income')->where('wallet',$wallet)
             ->where('status','approved')->sum('amount');

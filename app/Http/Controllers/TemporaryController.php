@@ -7,12 +7,21 @@ use Auth;
 use Illuminate\Support\Facades\Crypt;
 use App\Fdr;
 use App\Loan;
+use App\LoanTransaction;
 use App\Saving;
 use App\User;
 
 class TemporaryController extends Controller
 {
     //
+
+    public function loan_transaction_to_transaction_table(){
+
+        $l_transactions = LoanTransaction::get();
+        foreach($l_transactions??array() as $l_transaction){
+
+        }
+    }
 
     public function DecryptTest()
     {
