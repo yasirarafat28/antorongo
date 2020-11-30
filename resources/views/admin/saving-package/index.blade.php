@@ -156,41 +156,40 @@
                 <div class="card shadow">
                     <div class="header">
                         <h2><strong>Users </strong> </h2>
-
+                        <div class="clearfix">
+                            <div class="float-left">
+                                <h2>Users </h2>
+                            </div>
+                            <div class="float-right">
+                                <a data-toggle="modal" data-target="#largeModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> পাকেজ যোগ করুন </a>
+                            </div>
+                        </div>
                     </div>
                     <div class="body">
                         <table class="table table-bordered table-striped table-hover dataTable js-plaintable">
                             <thead>
                             <tr>
-                                <th>সিরিয়াল </th>
+                                <th>ক্রিয়াকলাপ</th>
                                 <th>নাম </th>
                                 <th>জমার পরিমান </th>
                                 <th>মোট জমা </th>
                                 <th>লাভ</th>
                                 <th>সর্বমোট </th>
-                                <th>ক্রিয়াকলাপ</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th>সিরিয়াল </th>
+                                <th>ক্রিয়াকলাপ</th>
                                 <th>নাম </th>
                                 <th>জমার পরিমান </th>
                                 <th>মোট জমা </th>
                                 <th>লাভ</th>
                                 <th>সর্বমোট </th>
-                                <th>ক্রিয়াকলাপ</th>
                             </tr>
                             </tfoot>
                             <tbody>
                             @foreach($records as $item)
                                 <tr>
-                                    <td>{{$loop->iteration}}</td>
-                                    <td>{{$item->name}}</td>
-                                    <td>{{$item->installment_amount}}</td>
-                                    <td>{{$item->target_amount}}</td>
-                                    <td>{{$item->return_amount - $item->target_amount}}</td>
-                                    <td>{{$item->return_amount}}</td>
                                     <td>
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -215,7 +214,12 @@
                                                     {!! Form::close() !!}
 
                                             </div>
-                                    </td>
+                                    </td>                                    <td>{{$item->name}}</td>
+                                    <td>{{$item->installment_amount}}</td>
+                                    <td>{{$item->target_amount}}</td>
+                                    <td>{{$item->return_amount - $item->target_amount}}</td>
+                                    <td>{{$item->return_amount}}</td>
+
                                 </tr>
 
                             @endforeach
@@ -236,19 +240,22 @@
 <div class="modal fade" id="largeModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-body">
-                <div class="card shadow">
-                    <div class="header">
-                        <h2><strong>পাকেজ</strong> যোগ করুন</h2>
-                    </div>
-                    <div class="body">
+
+            <div class="modal-header">
+                <h5 class="modal-title"><strong>পাকেজ</strong> যোগ করুন</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+                    <div class="modal-body">
                         <form action="{{url('/admin/saving/'.$type.'/packages/')}}" method="POST">
                             {{csrf_field()}}
                             <input type="hidden" name="type" value="{{$type}}">
                             <div class="row clearfix">
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
-                                        <label for=""><small>Name</small></label>
+                                        <label for=""><small>নাম</small></label>
                                         <input type="text" class="form-control" placeholder="নাম" name="name">
                                     </div>
                                 </div>
@@ -289,16 +296,13 @@
                                         <input type="number" class="form-control" placeholder="মোট কিস্তি" name="installment_qty">
                                     </div>
                                 </div>
-
-                                <button type="submit" class="btn btn-info btn-round"> সেভ করুন</button>
+                                <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn btn-info btn-round"> সেভ করুন</button>
+                                </div>
                             </div>
                         </form>
                     </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
-            </div>
+
         </div>
     </div>
 </div>
@@ -309,12 +313,16 @@
     <div class="modal fade" id="largeEditModal{{$item->id}}" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-body">
-                    <div class="card shadow">
-                        <div class="header">
-                            <h2><strong> পাকেজ</strong> এডিট করুন </h2>
-                        </div>
-                        <div class="body">
+
+                        <div class="modal-header">
+                            <h5 class="modal-title"><strong>পাকেজ</strong> এডিট করুন</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+
+
+                        <div class="modal-body">
                             <form action="{{url('/admin/saving/'.$type.'/packages/'.$item->id)}}" method="POST">
                                 {{csrf_field()}}
                                 {{method_field('PATCH')}}
@@ -363,15 +371,14 @@
                                             <input type="number" class="form-control" placeholder="মোট কিস্তি" name="installment_qty" value="{{$item->installment_qty}}">
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-info btn-round">সেভ করুন</button>
+                                    <div class="col md 12 text-center">
+                                        <button type="submit" class="btn btn-info btn-round">সেভ করুন</button>
+                                    </div>
                                 </div>
                             </form>
-                        </div>
-                    </div>
+
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
-                </div>
+
             </div>
         </div>
     </div>

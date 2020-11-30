@@ -64,7 +64,14 @@
             <div class="col-lg-12">
                 <div class="card shadow">
                     <div class="header">
-                        <h2><strong>পদবী </strong> </h2>
+                        <div class="clearfix">
+                            <div class="float-left">
+                                <h2>পদবী  </h2>
+                            </div>
+                            <div class="float-right">
+                                <a data-toggle="modal" data-target="#largeModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> পদবী  তৈরি করুন </a>
+                            </div>
+                        </div>
 
                     </div>
                     <div class="body">
@@ -92,11 +99,7 @@
                                     <div class="col-lg-3 col-md-12">
                                         <button class="btn btn-primary btn-round">খুজুন</button>
                                     </div>
-                                    <div class="col-md-3">
-                                        <a  data-toggle="modal" data-target="#largeModal" class="btn btn-success btn-round">
-                                            পদবী তৈরি করুন
-                                        </a>
-                                    </div>
+
                                 </div>
                             </form>
                         </div>
@@ -164,12 +167,14 @@
 <div class="modal fade" id="largeModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-body">
-                <div class="card shadow">
-                    <div class="header">
+
+                    <div class="modal-header">
                         <h2><strong>পদবী</strong> তৈরি করুন</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
                     </div>
-                    <div class="body">
+                    <div class="modal-body">
                         <form action="{{url('admin/roles')}}" method="POST">
                             {{csrf_field()}}
                             <div class="row clearfix">
@@ -179,16 +184,14 @@
                                         <input type="text" class="form-control" placeholder="পদবী" name="name">
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-info btn-round">সংরক্ষণ করুন</button>
+                                <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn btn-info btn-round">সংরক্ষণ করুন</button>
+                                </div>
                             </div>
                         </form>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">বন্ধ করুন</button>
-            </div>
-        </div>
+
     </div>
 </div>
 <!--Add Modal End-->
@@ -198,12 +201,17 @@
     <div class="modal fade" id="largeEditModal{{$role->id}}" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-body">
-                    <div class="card shadow">
-                        <div class="header">
+
+                        {{-- <div class="header">
                             <h2><strong>পদবী আধুনিক করুন</strong></h2>
+                        </div> --}}
+                        <div class="modal-header">
+                            <h2><strong>পদবী</strong> আধুনিক করুন</h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
                         </div>
-                        <div class="body">
+                        <div class="modal-body">
                             <form action="{{url('admin/roles/'.$role->id)}}" method="POST">
                                 {{csrf_field()}}
                                 {{method_field('PATCH')}}
@@ -215,17 +223,16 @@
                                             <input type="text" class="form-control" placeholder="পদবী" name="name" value="{{$role->name}}">
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-info btn-round">সংরক্ষণ করুন</button>
+                                    <div class="col-md-12 text-center">
+                                        <button type="submit" class="btn btn-info btn-round">সংরক্ষণ করুন</button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
-                </div>
-            </div>
-        </div>
+
+
     </div>
     <!--Edit  Modal End-->
 @endforeach

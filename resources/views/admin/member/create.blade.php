@@ -443,7 +443,7 @@
 
 
 
-                            <div class="col-md-12">
+                            <div class="col-md-12 text-center">
 
                                 <button class="btn btn-primary btn-round"> সেভ করুন</button>
 

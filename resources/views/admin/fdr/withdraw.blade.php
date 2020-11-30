@@ -39,13 +39,25 @@
 
                 <div class="card shadow">
 
-                    <div class="header">
+                    {{-- <div class="header">
                         <h2><strong>এফ ডি আর খুঁজুন</strong><small></small> </h2>
                         <ul class="header-dropdown">
                             <li class="remove">
                                 <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
                             </li>
                         </ul>
+                    </div> --}}
+
+                    <div class="header">
+                        <div class="clearfix">
+                            <div class="float-left">
+                                <h2>এফ ডি আর খুঁজুন </h2>
+                            </div>
+                            <div class="float-right">
+                                <a data-toggle="modal" data-target="#profiteWithdrawModal" class="btn btn-primary"> <i class="fas fa-fw fa-minus"></i> উত্তোলন করুন </a>
+                            </div>
+                        </div>
+
                     </div>
 
                     <div class="body members_profiles">
@@ -122,7 +134,7 @@
 
                         </div>
 
-                        <div class="col-lg-5 col-md-5 col-sm-12 offset-1">
+                        {{-- <div class="col-lg-5 col-md-5 col-sm-12 offset-1">
 
                             <div class="header">
 
@@ -184,14 +196,92 @@
 
                                 </div>
 
-                                <div class="col-md-6 offset-3">
+                                <div class="col-md-12 text-center">
 
                                     <button class="btn btn-primary btn-round"> উত্তোলন করুন</button>
 
                                 </div>
                             </form>
 
+                        </div> --}}
+                        <!--  Modal Start -->
+                    <div class="modal fade" id="profiteWithdrawModal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2><strong> উত্তোলন </strong>  করুন</h2>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{{url('admin/fdr/withdraw')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
+                                        {{csrf_field()}}
+
+                                        <input type="hidden" name="fdr_id" value="{{$fdr->id}}">
+                                        <input type="hidden" name="user_id" value="{{$fdr->user_id}}">
+                                        <div class="col-lg-12 col-md-12">
+
+                                            <div class="form-group">
+
+                                                <label for=""><small> উত্তলনের উৎস </small></label>
+                                                <select name="withdraw_source" id="" class="form-control ms">
+                                                    <option value="revenue">মূলধনসহ উত্তোলন</option>
+                                                    <option value="profit"> লাভ উত্তোলন</option>
+                                                </select>
+
+
+                                            </div>
+
+                                        </div>
+                                        <div class="col-lg-12 col-md-12">
+
+                                            <div class="form-group">
+
+                                                <label for=""><small> উত্তলনের পরিমান</small></label>
+
+                                                <input type="number" step="any" class="form-control" name="amount" placeholder="উত্তলনের পরিমান" id="amount">
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-lg-12 col-md-12">
+
+                                            <div class="form-group">
+
+                                                <label for=""><small> উত্তলনের তারিখ </small></label>
+
+                                                <input type="date" class="form-control" name="date" placeholder="উত্তলনের তারিখ">
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-lg-12 col-md-12">
+
+                                            <div class="form-group">
+
+                                                <label for=""><small> মতামত </small></label>
+
+                                                <textarea name="note" class="form-control" placeholder="মতামত"></textarea>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-12 text-center">
+
+                                            <button class="btn btn-primary btn-round"> উত্তোলন করুন</button>
+
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                    <!--Add Modal End-->
                     </div>
                     @endif
                 </div>
@@ -230,8 +320,7 @@
                             <thead>
 
                             <tr>
-                                <th>সিরিয়াল</th>
-
+                                <th> #</th>
                                 <th> তারিখ</th>
                                 <th> মাস </th>
                                 <th> লেনদেন কোড </th>
@@ -240,7 +329,6 @@
                                 <th>ব্যালেন্স</th>
                                 <th> নোট</th>
                                 <th>আদায়কারীর নাম</th>
-                                <th> #</th>
 
                             </tr>
 
@@ -255,8 +343,30 @@
 
                                 <tr>
 
-                                    <td>{{\App\NumberConverter::en2bn($loop->iteration)}}</td>
-                                    <td>{{\App\NumberConverter::en2bn($item->started_at)}}</td>
+                                    <td>
+
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+
+                                        <a href="{{url('admin/fdr-transaction/'.$item->id.'/edit')}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট</a>
+                                            {!! Form::open([
+                                               'method'=>'DELETE',
+                                               'url' => ['/admin/fdr-transaction', $item->id],
+                                               'style' => 'display:inline'
+                                            ]) !!}
+                                            {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন ', array(
+                                                 'type' => 'submit',
+                                                 'class' => 'dropdown-item',
+                                                'title' => 'Delete user',
+                                                'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
+                                                 )) !!}
+                                            {!! Form::close() !!}
+                                        </div>
+                                    </td>                                    <td>{{\App\NumberConverter::en2bn($item->started_at)}}</td>
                                     <td>{{ \App\BanglaMonth::MonthName(date('m',strtotime($item->started_at)))}}</td>
 
                                     <td>{{$item->txn_id??''}}</td>
@@ -292,30 +402,7 @@
                                     <td>{{$item->note??''}}</td>
                                     <td>{{$item->receiver->name??''}}</td>
 
-                                    <td>
 
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-
-                                        <a href="{{url('admin/fdr-transaction/'.$item->id.'/edit')}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট</a>
-                                            {!! Form::open([
-                                               'method'=>'DELETE',
-                                               'url' => ['/admin/fdr-transaction', $item->id],
-                                               'style' => 'display:inline'
-                                            ]) !!}
-                                            {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন ', array(
-                                                 'type' => 'submit',
-                                                 'class' => 'dropdown-item',
-                                                'title' => 'Delete user',
-                                                'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
-                                                 )) !!}
-                                            {!! Form::close() !!}
-                                        </div>
-                                    </td>
                                 </tr>
                             @endforeach
                             <tr>

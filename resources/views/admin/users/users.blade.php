@@ -107,35 +107,27 @@
                         <table class="table table-bordered table-striped table-hover dataTable js-plaintable">
                             <thead>
                             <tr>
-                                <th>সিরিয়াল </th>
+                                <th>ক্রিয়াকলাপ</th>
                                 <th>নাম </th>
                                 <th>ফোন </th>
                                 <th>ইমেইল</th>
                                 <th>পদবী </th>
                                 <th>অবস্থা</th>
-                                <th>ক্রিয়াকলাপ</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th>সিরিয়াল </th>
+                                <th>ক্রিয়াকলাপ</th>
                                 <th>নাম </th>
                                 <th>ফোন </th>
                                 <th>ইমেইল</th>
                                 <th>পদবী </th>
                                 <th>অবস্থা</th>
-                                <th>ক্রিয়াকলাপ</th>
                             </tr>
                             </tfoot>
                             <tbody>
                             @foreach($users as $item)
                                 <tr>
-                                    <td>{{$loop->iteration}}</td>
-                                    <td>{{$item->name}}</td>
-                                    <td>{{$item->phone}}</td>
-                                    <td>{{$item->email}}</td>
-                                    <td>{{$item->role}}</td>
-                                    <td>{{ucfirst($item->status)}}</td>
                                     <td>
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -159,7 +151,12 @@
                                                  )) !!}
                                             {!! Form::close() !!}
                                         </div>
-                                    </td>
+                                    </td>                                    <td>{{$item->name}}</td>
+                                    <td>{{$item->phone}}</td>
+                                    <td>{{$item->email}}</td>
+                                    <td>{{$item->role}}</td>
+                                    <td>{{ucfirst($item->status)}}</td>
+
                                 </tr>
 
                             @endforeach
@@ -192,30 +189,30 @@
                     <div class="row clearfix">
                         <div class="col-lg-6 col-md-12">
                             <div class="form-group">
-                                <label for=""><small>Name</small></label>
-                                <input type="text" class="form-control" placeholder="User Name" name="name">
+                                <label for=""><small>নাম</small></label>
+                                <input type="text" class="form-control" placeholder="ব্যবহারকারীর নাম" name="name">
                             </div>
                         </div>
 
                         <div class="col-lg-6 col-md-12">
                             <div class="form-group">
-                                <label for=""><small>Email</small></label>
-                                <input type="email" class="form-control" placeholder="Email" name="email">
+                                <label for=""><small>ই-মেইল</small></label>
+                                <input type="email" class="form-control" placeholder="ব্যবহারকারীর ই-মেইল" name="email">
                             </div>
                         </div>
 
 
                         <div class="col-lg-6 col-md-12">
                             <div class="form-group">
-                                <label for=""><small>Username</small></label>
-                                <input type="text" class="form-control" placeholder="Username" name="username">
+                                <label for=""><small>ইউজারনেম</small></label>
+                                <input type="text" class="form-control" placeholder="ইউজারনেম" name="username">
                             </div>
                         </div>
 
                         <div class="col-lg-6 col-md-12">
                             <div class="form-group">
-                                <label for=""><small>Password</small></label>
-                                <input type="password" class="form-control" placeholder="Password" name="password">
+                                <label for=""><small>পাসওয়ার্ড</small></label>
+                                <input type="password" class="form-control" placeholder="পাসওয়ার্ড" name="password">
                             </div>
                         </div>
 
@@ -223,20 +220,20 @@
 
                         <div class="col-lg-6 col-md-12">
                             <div class="form-group">
-                                <label for=""><small>Phone</small></label>
-                                <input type="text" class="form-control" placeholder="Phone" name="phone">
+                                <label for=""><small>ফোন</small></label>
+                                <input type="text" class="form-control" placeholder="ফোন" name="phone">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-12">
                             <div class="form-group">
-                                <label for=""><small>Address</small></label>
-                                <input type="text" class="form-control" placeholder="Address" name="address">
+                                <label for=""><small>ঠিকানা</small></label>
+                                <input type="text" class="form-control" placeholder="ঠিকানা" name="address">
                             </div>
                         </div>
 
                         <div class="col-lg-6 col-md-12">
                             <div class="form-group">
-                                <label for=""><small>Division</small></label>
+                                <label for=""><small>বিভাগ</small></label>
                                 <select class="form-control ms" name="division" id="division-form" onchange="get_district_list(this.value)">
                                     <option value="">-- Please select --</option>
                                     @foreach($divisions as $item)
@@ -248,7 +245,7 @@
 
                         <div class="col-lg-6 col-md-12">
                             <div class="form-group">
-                                <label for=""><small>District</small></label>
+                                <label for=""><small>জেলা</small></label>
                                 <select class="form-control ms district-form" name="district" id="district-form"  onchange="get_thana_list(this.value)">
                                     <option value="">-- Please select a District --</option>
                                 </select>
@@ -257,7 +254,7 @@
 
                         <div class="col-lg-6 col-md-12">
                             <div class="form-group">
-                                <label for=""><small>Upozila/Thana</small></label>
+                                <label for=""><small>উপজেলা / থানা</small></label>
                                 <select class="form-control ms thana-form" name="thana" id="thana-form">
                                     <option value="">-- Please select a Upozilla --</option>
                                 </select>
@@ -265,7 +262,7 @@
                         </div>
                         <div class="col-lg-6 col-md-12">
                             <div class="form-group">
-                                <label for=""><small>Role</small></label>
+                                <label for=""><small>চরিত্র</small></label>
                                 <select name="role" class="form-control ms">
                                     <option value="">-- Select a Role --</option>
                                     <?php foreach ($roles as $key => $item): ?>
@@ -277,7 +274,7 @@
                         <div class="col-lg-6 col-md-12">
                             <div class="form-group">
 
-                                <label for=""><small>Status</small></label>
+                                <label for=""><small>অবস্থা</small></label>
                                 <select name="status" class="form-control ms">
                                     <option value="active">Active</option>
                                     <option value="pending">Pending</option>
@@ -286,13 +283,13 @@
                         </div>
                         <div class="col-lg-6 col-md-12">
                             <div class="form-group">
-                                <label for=""><small>Photo</small></label>
-                                <input type="file" class="form-control" placeholder="Photo" name="photo">
+                                <label for=""><small>ছবি</small></label>
+                                <input type="file" class="form-control" placeholder="ছবি" name="photo">
                             </div>
                         </div>
                         <div class="col-md-12 text-center">
 
-                            <button type="submit" class="btn btn-info btn-round">SAVE CHANGES</button>
+                            <button type="submit" class="btn btn-info btn-round">জমা করুন</button>
                         </div>
                     </div>
                 </form>
@@ -307,12 +304,14 @@
     <div class="modal fade" id="largeEditModal{{$item->id}}" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-body">
-                    <div class="card shadow">
-                        <div class="header">
-                            <h2><strong>Update</strong> Users</h2>
+
+                        <div class="modal-header">
+                            <h2 class="modal-title"><strong>ব্যবহারকারীকে </strong> আধুনিক করুন</h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
                         </div>
-                        <div class="body">
+                        <div class="modal-body">
                             <form action="{{url('chairman/users/'.$item->id)}}" method="POST">
                                 {{csrf_field()}}
                                 {{method_field('PATCH')}}
@@ -333,50 +332,48 @@
                                 <div class="row clearfix">
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
-                                            <label for=""><small>Name</small></label>
-                                            <input type="text" class="form-control" placeholder="User Name" name="name" value="{{$item->name}}">
+                                            <label for=""><small>নাম</small></label>
+                                            <input type="text" class="form-control" placeholder="ব্যবহারকারীর নাম" name="name" value="{{$item->name}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="form-group">
+                                            <label for=""><small>ই-মেইল</small></label>
+                                            <input type="email" class="form-control" placeholder="ব্যবহারকারীর ই-মেইল" name="email" value="{{$item->email}}" readonly>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
-                                            <label for=""><small>Email</small></label>
-                                            <input type="email" class="form-control" placeholder="Email" name="email" value="{{$item->email}}" readonly>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-12">
-                                        <div class="form-group">
-                                            <label for=""><small>Password</small></label>
-                                            <input type="password" class="form-control" placeholder="Password" name="password">
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-lg-6 col-md-12">
-                                        <div class="form-group">
-                                            <label for=""><small>Username</small></label>
-                                            <input type="text" class="form-control" placeholder="Username" name="username"  value="{{$item->username}}">
+                                            <label for=""><small>পাসওয়ার্ড</small></label>
+                                            <input type="password" class="form-control" placeholder="পাসওয়ার্ড" name="password">
                                         </div>
                                     </div>
 
 
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
-                                            <label for=""><small>Phone</small></label>
-                                            <input type="text" class="form-control" placeholder="Phone" name="phone" value="{{$item->phone}}">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-12">
-                                        <div class="form-group">
-                                            <label for=""><small>Address</small></label>
-                                            <input type="text" class="form-control" placeholder="Address" name="address" value="{{$item->address}}">
+                                            <label for=""><small>ইউজারনেম</small></label>
+                                            <input type="text" class="form-control" placeholder="ইউজারনেম" name="username"  value="{{$item->username}}">
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
-                                            <label for=""><small>Division</small></label>
+                                            <label for=""><small>ফোন</small></label>
+                                            <input type="text" class="form-control" placeholder="ফোন" name="phone" value="{{$item->phone}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="form-group">
+                                            <label for=""><small>ঠিকানা</small></label>
+                                            <input type="text" class="form-control" placeholder="ঠিকানা" name="address" value="{{$item->address}}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="form-group">
+                                            <label for=""><small>বিভাগ</small></label>
                                             <select class="form-control ms" name="division" id="division-form" onchange="get_district_list(this.value)">
                                                 <option value="">-- Please select --</option>
                                                 @foreach($divisions as $division)
@@ -388,7 +385,7 @@
 
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
-                                            <label for=""><small>District</small></label>
+                                            <label for=""><small>জেলা</small></label>
                                             <select class="form-control ms district-form" name="district" id="district-form"  onchange="get_thana_list(this.value)">
 
                                                 <option value="">-- Please select --</option>
@@ -402,7 +399,7 @@
 
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
-                                            <label for=""><small>Upozila/Thana</small></label>
+                                            <label for=""><small>উপজেলা / থানা</small></label>
                                             <select class="form-control ms thana-form" name="thana" id="thana-form">
                                                 <option value="">-- Please select --</option>
                                                 @foreach($thanas as $thana)
@@ -413,7 +410,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
-                                            <label for=""><small>Role</small></label>
+                                            <label for=""><small>চরিত্র</small></label>
                                             <select name="role" class="form-control ms">
                                                 <option value="">-- Select a Role --</option>
                                                 <?php foreach ($roles as $key => $role): ?>
@@ -425,7 +422,7 @@
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
 
-                                            <label for=""><small>Status</small></label>
+                                            <label for=""><small>অবস্থা</small></label>
                                             <select name="status" class="form-control ms">
                                                 <option value="active"  {{$item->status=='active' ? 'selected' : ''}} >Active</option>
                                                 <option value="pending" {{$item->status=='pending' ? 'selected' : ''}}>Pending</option>
@@ -434,20 +431,17 @@
                                     </div>
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
-                                            <label for=""><small>Photo</small></label>
+                                            <label for=""><small>ছবি</small></label>
                                             <input type="file" class="form-control" placeholder="Photo" name="photo">
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-info btn-round">SAVE CHANGES</button>
+                                    <div class="col-md-12 text-center">
+                                        <button type="submit" class="btn btn-info btn-round">জমা করুন</button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
-                </div>
-            </div>
         </div>
     </div>
     <!--Edit  Modal End-->

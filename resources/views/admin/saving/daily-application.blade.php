@@ -371,15 +371,15 @@
                                     </div>
 
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
 
-                                    <button type="submit" class="btn btn-info btn-round"> সেভ করুন</button>
-                                </div>
 
 
                             </div>
 
+                            <div class="col-lg-6 col-md-6 col-sm-12 text-center">
 
+                                <button type="submit" class="btn btn-info btn-round"> সেভ করুন</button>
+                            </div>
                         </div>
                     </form>
 

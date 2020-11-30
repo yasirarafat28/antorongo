@@ -105,36 +105,27 @@
                         <table class="table table-bordered table-striped table-hover dataTable js-plaintable">
                             <thead>
                             <tr>
-                                <th>সিরিয়াল </th>
+                                <th>ক্রিয়াকলাপ</th>
                                 <th>কোড   </th>
                                 <th>খাত  </th>
                                 <th> টাকার পরিমান  </th>
                                 <th>  তারিখ</th>
                                 <th>  অবস্থা</th>
-                                <th>ক্রিয়াকলাপ</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th>সিরিয়াল </th>
+                                <th>ক্রিয়াকলাপ</th>
                                 <th>কোড   </th>
                                 <th>খাত  </th>
                                 <th> টাকার পরিমান  </th>
                                 <th>  তারিখ</th>
                                 <th>  অবস্থা</th>
-                                <th>ক্রিয়াকলাপ</th>
                             </tr>
                             </tfoot>
                             <tbody>
                             @foreach($transactions ?? array() as $item)
                                 <tr>
-                                    <td>{{\App\NumberConverter::en2bn($loop->iteration)}}</td>
-
-                                    <td>{{$item->txn_id}}</td>
-                                    <td>{{$item->head->name??''}}</td>
-                                    <td>{{\App\NumberConverter::en2bn($item->amount)}}</td>
-                                    <td>{{$item->date}}</td>
-                                    <td>{{ucfirst($item->status)}}</td>
                                     <td style="width: 12%">
 
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -160,6 +151,12 @@
                                             {!! Form::close() !!}
                                         </div>
                                     </td>
+                                    <td>{{$item->txn_id}}</td>
+                                    <td>{{$item->head->name??''}}</td>
+                                    <td>{{\App\NumberConverter::en2bn($item->amount)}}</td>
+                                    <td>{{$item->date}}</td>
+                                    <td>{{ucfirst($item->status)}}</td>
+
                                 </tr>
 
                             @endforeach
@@ -181,11 +178,16 @@
 <div class="modal fade" id="largeShowModal{{$item->id}}" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-body">
-                <div class="card shadow">
-                    <div class="header">
+
+
+                    <div class="modal-header">
+                        <h2><strong> আয়ের</strong> বিস্তারিত</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="body">
+
+                    <div class="modal-body">
 
                         <table class="table">
                             <tbody>
@@ -211,31 +213,27 @@
                             </tr>
                             </tbody>
                         </table>
-                    </div>
-                </div>
+
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">বন্ধ করুন</button>
-            </div>
+
         </div>
     </div>
 </div>
 <div class="modal fade" id="largeEditModal{{$item->id}}" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-body">
-                <div class="card shadow">
-                    <div class="header">
+
+                    <div class="modal-header">
+                        <h2><strong> আয়ের</strong> এডিট করুন</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="body">
+                    <div class="modal-body">
 
                         <div class="col-lg-10 col-md-10 col-sm-12 offset-1">
 
-                            <div class="header">
 
-                                <h2><strong> আয় এডিট </strong>  করুন</h2>
-
-                            </div>
                             <form action="{{url('admin/income/'.$item->id)}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
                                 {{csrf_field()}}
 
@@ -311,7 +309,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6 offset-3">
+                                <div class="col-md-12 text-center">
 
                                     <button class="btn btn-primary btn-round"> সেভ করুন</button>
 
@@ -319,12 +317,9 @@
                             </form>
 
                         </div>
-                    </div>
-                </div>
+
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">বন্ধ করুন</button>
-            </div>
+
         </div>
     </div>
 </div>

@@ -40,13 +40,24 @@
 
                 <div class="card shadow">
 
+
+
                     <div class="header">
-                        <h2><strong>সঞ্চয় খুঁজুন</strong><small></small> </h2>
-                        <ul class="header-dropdown">
-                            <li class="remove">
-                                <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
-                            </li>
-                        </ul>
+                        <div class="clearfix">
+                            <div class="float-left">
+                                <h2>সঞ্চয় খুঁজুন </h2>
+                            </div>
+                            <div class="float-right">
+                                <button
+                                    data-toggle="modal" data-target="#AddProfitModal" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> লাভ যোগ করুন
+                                </button>
+                                <button
+                                    data-toggle="modal" data-target="#SavingDepositModal" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> জমা করুন
+                                </button>
+                            </div>
+
+                        </div>
+
                     </div>
 
                     <div class="body members_profiles">
@@ -122,8 +133,9 @@
                             <hr>
 
 
-                            <span class="job_post"> মোট  লভ্যাংশ : {{\App\NumberConverter::en2bn($total_profit)}} টাকা || <button
-                                        class="btn btn-primary" id="add_profit_add_btn" onclick="Add_profit_Wrapper()">লাভ যোগ করুন </button></span>
+                            <span class="job_post"> মোট  লভ্যাংশ : {{\App\NumberConverter::en2bn($total_profit)}} টাকা ||
+
+                            </span>
 
                             <hr>
 
@@ -135,26 +147,112 @@
 
                         </div>
 
-                        <div class="col-lg-5 col-md-5 col-sm-12 offset-1">
+                         <!--  Modal Start -->
+                    <div class="modal fade" id="SavingDepositModal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2><strong> জমা </strong>  করুন</h2>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{{url('admin/saving/deposit')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
+                                        {{csrf_field()}}
+                                        <input type="hidden" name="saving_id" value="{{$saving->id}}">
+                                        <input type="hidden" name="user_id" value="{{$saving->user_id}}">
 
-                            <div class="header">
 
-                                <h2><strong> জমা </strong>  করুন</h2>
+                                        <div class="col-lg-12 col-md-12">
 
+                                            <div class="form-group">
+
+                                                <label for=""><small> জমার পরিমান</small></label>
+
+                                                <input type="number" step="any" class="form-control" name="amount" placeholder="জমার পরিমান" id="amount">
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-lg-12 col-md-12">
+
+                                            <div class="form-group">
+
+                                                <label for=""><small> জমার তারিখ </small></label>
+
+                                                <input type="date" class="form-control" name="date" placeholder="জমার তারিখ">
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-lg-12 col-md-12">
+
+                                            <div class="form-group">
+
+                                                <label for=""><small> মতামত </small></label>
+
+                                                <textarea name="note" class="form-control" placeholder="মতামত"></textarea>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="col-md-12">
+                                                <div class="checkbox">
+                                                    <input id="remember_me_2" name="invoice" type="checkbox">
+                                                    <label for="remember_me_2">
+                                                        টাকা জমার রশিদ
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 text-center">
+
+                                            <button class="btn btn-primary btn-round"> জমা করুন</button>
+
+                                        </div>
+                                    </form>
+
+                                </div>
                             </div>
-                            <form action="{{url('admin/saving/deposit')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
+                        </div>
+                    </div>
+                    <!--Add Modal End-->
+                 </div>
+                 @endif
+                </div>
+            </div>
+        </div>
+        @if($saving)
+
+            <!--  Modal Start -->
+            <div class="modal fade" id="AddProfitModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2><strong> সঞ্চয় </strong> এর লাভ যোগ করুন</h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{url('admin/saving/add-profit-manually')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
                                 {{csrf_field()}}
+
                                 <input type="hidden" name="saving_id" value="{{$saving->id}}">
                                 <input type="hidden" name="user_id" value="{{$saving->user_id}}">
-
 
                                 <div class="col-lg-12 col-md-12">
 
                                     <div class="form-group">
 
-                                        <label for=""><small> জমার পরিমান</small></label>
+                                        <label for=""><small> লাভের পরিমান</small></label>
 
-                                        <input type="number" step="any" class="form-control" name="amount" placeholder="জমার পরিমান" id="amount">
+                                        <input type="number" step="any" class="form-control" name="amount" placeholder="লাভের পরিমান" id="amount">
 
                                     </div>
 
@@ -164,9 +262,9 @@
 
                                     <div class="form-group">
 
-                                        <label for=""><small> জমার তারিখ </small></label>
+                                        <label for=""><small> লাভের তারিখ </small></label>
 
-                                        <input type="date" class="form-control" name="date" placeholder="জমার তারিখ">
+                                        <input type="date" class="form-control" name="date" placeholder="উত্তলনের তারিখ">
 
                                     </div>
                                 </div>
@@ -183,111 +281,22 @@
                                     </div>
 
                                 </div>
-                                <div class="col-lg-12 col-md-12">
-                                    <div class="col-md-12">
-                                        <div class="checkbox">
-                                            <input id="remember_me_2" name="invoice" type="checkbox">
-                                            <label for="remember_me_2">
-                                                টাকা জমার রশিদ
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="col-md-6 offset-3">
+                                <div class="col-md-12 text-center">
 
-                                    <button class="btn btn-primary btn-round"> জমা করুন</button>
+                                    <button class="btn btn-primary btn-round"> লাভ যোগ  করুন</button>
 
                                 </div>
                             </form>
 
                         </div>
                     </div>
-                    @endif
                 </div>
-
             </div>
-
-        </div>
-            @if($saving)
-                <div class="row clearfix"  id="add-profit-wrapper" style="display: none;">
-
-                    <div class="col-sm-12 col-md-12 col-lg-12">
-
-                        <div class="card shadow">
-
-                            <div class="header">
-
-                                <h2><strong> সঞ্চয় </strong> এর লাভ যোগ করুন</h2>
-
-                                <ul class="header-dropdown">
-
-                                    <li class="remove">
-
-                                        <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
-
-                                    </li>
-
-                                </ul>
-
-                            </div>
-
-                            <div class="body table-responsive members_profiles">
-                                <form action="{{url('admin/saving/add-profit-manually')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
-                                    {{csrf_field()}}
-
-                                    <input type="hidden" name="saving_id" value="{{$saving->id}}">
-                                    <input type="hidden" name="user_id" value="{{$saving->user_id}}">
-
-                                    <div class="col-lg-12 col-md-12">
-
-                                        <div class="form-group">
-
-                                            <label for=""><small> লাভের পরিমান</small></label>
-
-                                            <input type="number" step="any" class="form-control" name="amount" placeholder="লাভের পরিমান" id="amount">
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-lg-12 col-md-12">
-
-                                        <div class="form-group">
-
-                                            <label for=""><small> লাভের তারিখ </small></label>
-
-                                            <input type="date" class="form-control" name="date" placeholder="উত্তলনের তারিখ">
-
-                                        </div>
-                                    </div>
+            <!--Add Modal End-->
 
 
-                                    <div class="col-lg-12 col-md-12">
-
-                                        <div class="form-group">
-
-                                            <label for=""><small> মতামত </small></label>
-
-                                            <textarea name="note" class="form-control" placeholder="মতামত"></textarea>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-md-6 offset-3">
-
-                                        <button class="btn btn-primary btn-round"> লাভ যোগ  করুন</button>
-
-                                    </div>
-                                </form>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endif
+        @endif
 
         @if($transactions)
         <div class="row clearfix">
@@ -320,8 +329,7 @@
 
                                 <tr>
 
-                                    <th>সিরিয়াল</th>
-
+                                    <th> #</th>
                                     <th> তারিখ</th>
                                     <th> মাস </th>
                                     <th> লেনদেন কোড </th>
@@ -330,7 +338,6 @@
                                     <th>ব্যালেন্স</th>
                                     <th> নোট</th>
                                     <th>আদায়কারীর নাম</th>
-                                    <th> #</th>
 
                                 </tr>
 
@@ -345,8 +352,28 @@
 
                                 <tr>
 
-                                    <td>{{\App\NumberConverter::en2bn($loop->iteration)}}</td>
-                                    <td>{{\App\NumberConverter::en2bn($item->date)}}</td>
+                                    <td>
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                        aria-labelledby="dropdownMenuLink">
+                                            <a href="{{url('admin/saving-transaction/'.$item->id.'/edit')}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট</a>
+                                                {!! Form::open([
+                                                   'method'=>'DELETE',
+                                                   'url' => ['/admin/saving-transaction', $item->id],
+                                                   'style' => 'display:inline'
+                                                ]) !!}
+                                                {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন ', array(
+                                                     'type' => 'submit',
+                                                     'class' => 'dropdown-item',
+                                                    'title' => 'Delete user',
+                                                    'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
+                                                     )) !!}
+                                                {!! Form::close() !!}
+                                        </div>
+                                    </td>                                    <td>{{\App\NumberConverter::en2bn($item->date)}}</td>
                                     <td>{{ \App\BanglaMonth::MonthName(date('m',strtotime($item->date)))}}</td>
 
                                     <td>{{$item->txn_id??''}}</td>
@@ -378,28 +405,7 @@
                                     <td>{{\App\NumberConverter::en2bn($total)}}</td>
                                     <td>{{$item->note}}</td>
                                     <td>{{$item->receiver->name??''}}</td>
-                                    <td>
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                        aria-labelledby="dropdownMenuLink">
-                                            <a href="{{url('admin/saving-transaction/'.$item->id.'/edit')}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট</a>
-                                                {!! Form::open([
-                                                   'method'=>'DELETE',
-                                                   'url' => ['/admin/saving-transaction', $item->id],
-                                                   'style' => 'display:inline'
-                                                ]) !!}
-                                                {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন ', array(
-                                                     'type' => 'submit',
-                                                     'class' => 'dropdown-item',
-                                                    'title' => 'Delete user',
-                                                    'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
-                                                     )) !!}
-                                                {!! Form::close() !!}
-                                        </div>
-                                    </td>
+
                                 </tr>
                                 @endforeach
                                 <tr>

@@ -150,15 +150,23 @@
         <div class="row clearfix">
             <div class="col-lg-12">
                 <div class="card shadow">
+
                     <div class="header">
-                        <h2><strong>কর্মচারীর বেতন  </strong> </h2>
+                        <div class="clearfix">
+                            <div class="float-left">
+                                <h2>কর্মচারীর বেতন  </h2>
+                            </div>
+                            <div class="float-right">
+                                <a data-toggle="modal" data-target="#largeModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> কর্মচারীর বেতন যোগ করুন </a>
+                            </div>
+                        </div>
 
                     </div>
                     <div class="body table-responsive">
                         <table class="table table-bordered table-striped table-hover dataTable js-plaintable">
                             <thead>
                             <tr>
-                                <th>সিরিয়াল </th>
+                                <th>ক্রিয়াকলাপ</th>
                                 <th>কর্মচারী </th>
                                 <th>মূল বেতন </th>
                                 <th>মহার্ঘ ভাতা </th>
@@ -166,13 +174,11 @@
                                 <th>পেশাগত কর </th>
                                 <th>মোট পরিশোধযোগ্য </th>
                                 <th>মোট পরিশোধ </th>
-
-                                <th>ক্রিয়াকলাপ</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th>সিরিয়াল </th>
+                                <th>ক্রিয়াকলাপ</th>
                                 <th>কর্মচারী </th>
                                 <th>মূল বেতন </th>
                                 <th>মহার্ঘ ভাতা </th>
@@ -180,23 +186,11 @@
                                 <th>পেশাগত কর </th>
                                 <th>মোট পরিশোধযোগ্য </th>
                                 <th>মোট পরিশোধ </th>
-
-                                <th>ক্রিয়াকলাপ</th>
                             </tr>
                             </tfoot>
                             <tbody>
                             @foreach($records as $item)
                                 <tr>
-                                    <td>{{\App\NumberConverter::en2bn($loop->iteration)}}</td>
-                                    <td> {{$item->user->name}}</td>
-                                    <td>+ {{\App\NumberConverter::en2bn($item->basic_allowance)}} টাকা</td>
-                                    <td>+ {{\App\NumberConverter::en2bn($item->dearness_allowance)}} টাকা</td>
-                                    <td>- {{\App\NumberConverter::en2bn($item->p_fund_deduction)}} টাকা</td>
-                                    <td>- {{\App\NumberConverter::en2bn($item->pro_tax_deduction)}} টাকা</td>
-                                    <td> +{{\App\NumberConverter::en2bn($item->payable_amount)}} টাকা</td>
-                                    <td> +{{\App\NumberConverter::en2bn($item->paid_amount)}} টাকা</td>
-
-
                                     <td>
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -205,7 +199,7 @@
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                             aria-labelledby="dropdownMenuLink">
 
-                                        <a data-toggle="modal" data-target="#largeShowModal{{$item->id}}" class="dropdown-item" title="সম্পাদনা করুন"><i class="fa fa-edit"> </i> এডিট</a>
+                                        <a data-toggle="modal" data-target="#largeShowModal{{$item->id}}" class="dropdown-item" title="সম্পাদনা করুন"><i class="fa fa-eye"> </i> বিস্তারিত</a>
 
                                             {!! Form::open([
                                                'method'=>'DELETE',
@@ -221,6 +215,16 @@
                                             {!! Form::close() !!}
                                         </div>
                                     </td>
+                                    <td> {{$item->user->name}}</td>
+                                    <td>+ {{\App\NumberConverter::en2bn($item->basic_allowance)}} টাকা</td>
+                                    <td>+ {{\App\NumberConverter::en2bn($item->dearness_allowance)}} টাকা</td>
+                                    <td>- {{\App\NumberConverter::en2bn($item->p_fund_deduction)}} টাকা</td>
+                                    <td>- {{\App\NumberConverter::en2bn($item->pro_tax_deduction)}} টাকা</td>
+                                    <td> +{{\App\NumberConverter::en2bn($item->payable_amount)}} টাকা</td>
+                                    <td> +{{\App\NumberConverter::en2bn($item->paid_amount)}} টাকা</td>
+
+
+
                                 </tr>
 
                             @endforeach
@@ -242,12 +246,14 @@
 <div class="modal fade" id="largeModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-body">
-                <div class="card shadow">
-                    <div class="header">
+
+                    <div class="modal-header">
                         <h2><strong> বেতন </strong> যোগ করুন</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
                     </div>
-                    <div class="body">
+                    <div class="modal-body">
                         <form action="{{url('admin/hr/salary-payment')}}" method="POST">
                             {{csrf_field()}}
                             <div class="row clearfix">
@@ -398,7 +404,7 @@
                                     <h4>মোট বেতন : <span id="total-salary">0</span></h4>
                                 </div>
 
-                                <div class="col-lg-6 col-md-6">
+                                <div class="col-lg-12 col-md-12 text-center">
                                     <button type="submit" class="btn btn-info btn-round">সেভ করুন</button>
                                 </div>
 
@@ -407,11 +413,7 @@
                         </form>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">বন্ধ করুন</button>
-            </div>
-        </div>
+
     </div>
 </div>
 <!--Add Modal End-->
@@ -422,12 +424,15 @@
     <div class="modal fade" id="largeShowModal{{$item->id}}" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-body">
-                    <div class="card shadow">
-                        <div class="header">
-                            <h2><strong> বেতন </strong> যোগ করুন</h2>
+
+                        <div class="modal-header">
+                            <h2><strong> বেতন </strong>বিস্তারিত দেখুন</h2>
+
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
                         </div>
-                        <div class="body">
+                        <div class="modal-body">
                             <table class="table table-bordered table-striped table-hover">
                                 <tbody>
                                     <tr>
@@ -490,11 +495,7 @@
                             </table>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">বন্ধ করুন</button>
-                </div>
-            </div>
+
         </div>
     </div>
     <!--Show Modal End-->

@@ -170,7 +170,7 @@
                         <table class="table table-bordered table-striped table-hover dataTable  js-full-datatable">
                             <thead>
                             <tr>
-                                <th>সিরিয়াল </th>
+                                <th> #</th>
                                 <th>সভ্য আইডি </th>
                                 <th>সঞ্চয় আইডি </th>
                                 <th>লেনদেন কোড </th>
@@ -180,12 +180,11 @@
                                 <th>পরিমান</th>
                                 <th> অবস্থা</th>
                                 <th> পরিশোধের সময়</th>
-                                <th> #</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th>সিরিয়াল </th>
+                                <th> #</th>
                                 <th>সভ্য আইডি </th>
                                 <th>সঞ্চয় আইডি </th>
                                 <th>লেনদেন কোড </th>
@@ -195,7 +194,6 @@
                                 <th>পরিমান</th>
                                 <th> অবস্থা</th>
                                 <th> পরিশোধের সময়</th>
-                                <th> #</th>
                             </tr>
                             </tfoot>
                             <tbody>
@@ -205,8 +203,29 @@
 
                                     <tr>
 
-                                        <td>{{$loop->iteration}}</td>
-                                        <td>{{$item->user->unique_id??''}}</td>
+                                        <td>
+                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                aria-labelledby="dropdownMenuLink">
+
+                                            <a href="{{url('admin/fdr-transaction/'.$item->id.'/edit')}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট</a>
+                                                {!! Form::open([
+                                                   'method'=>'DELETE',
+                                                   'url' => ['/admin/fdr-transaction', $item->id],
+                                                   'style' => 'display:inline'
+                                                ]) !!}
+                                                {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন', array(
+                                                     'type' => 'submit',
+                                                     'class' => 'dropdown-item',
+                                                    'title' => 'Delete user',
+                                                    'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
+                                                     )) !!}
+                                                {!! Form::close() !!}
+                                            </div>
+                                        </td>                                        <td>{{$item->user->unique_id??''}}</td>
                                         <td>{{$item->fdr->txn_id??''}}</td>
                                         <td>{{$item->txn_id??''}}</td>
                                         <td>{{$item->user->name??''}}</td>
@@ -235,29 +254,7 @@
                                         </td>
                                         <td>নিশ্চিত </td>
                                         <td>{{\App\NumberConverter::en2bn($item->started_at)}}</td>
-                                        <td>
-                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                                aria-labelledby="dropdownMenuLink">
 
-                                            <a href="{{url('admin/fdr-transaction/'.$item->id.'/edit')}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট</a>
-                                                {!! Form::open([
-                                                   'method'=>'DELETE',
-                                                   'url' => ['/admin/fdr-transaction', $item->id],
-                                                   'style' => 'display:inline'
-                                                ]) !!}
-                                                {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন', array(
-                                                     'type' => 'submit',
-                                                     'class' => 'dropdown-item',
-                                                    'title' => 'Delete user',
-                                                    'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
-                                                     )) !!}
-                                                {!! Form::close() !!}
-                                            </div>
-                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
