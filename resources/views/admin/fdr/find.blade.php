@@ -11,20 +11,22 @@
 
 <!-- Main Content -->
 <section class="content">
-    <div class="block-header">
-        <div class="row">
-            <div class="col-lg-7 col-md-6 col-sm-12">
-                {{-- <h2>এফ ডি আর খুঁজুন</h2> --}}
-            </div>
-            <div class="col-lg-5 col-md-6 col-sm-12">
-                <ul class="breadcrumb float-md-right">
-                    <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0);">এফ ডি আর খুঁজুন</a></li>
-                </ul>
+
+    <div class="container-fluid">
+
+        <div class="block-header">
+            <div class="row">
+                <div class="col-lg-7 col-md-6 col-sm-12">
+                    <h2>এফ ডি আর খুঁজুন</h2>
+                </div>
+                <div class="col-lg-5 col-md-6 col-sm-12">
+                    <ul class="breadcrumb float-md-right">
+                        <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">এফ ডি আর খুঁজুন</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container-fluid">
 
         @if(session()->has('success'))
             <div class="alert alert-success">
@@ -322,7 +324,53 @@
                     <div class="body table-responsive members_profiles datatable ">
 
                         <table class="table table-hover">
+                            <thead>
+                                @php
+                                 $total_balance =0;
+                                @endphp
+                                <tbody>
+                                    <tr>
+                                        <td  colspan="5" class="text-right">
+                                            মোট জমা
 
+                                        </td>
+                                        <td>
+                                            {{\App\NumberConverter::en2bn($total_deposited)}} টাকা
+                                        </td>
+                                        <td  colspan="4"></td>
+                                    </tr>
+                                    <tr>
+                                        <td  colspan="5" class="text-right">
+                                            মোট লাভ
+
+                                        </td>
+                                        <td>
+                                            {{\App\NumberConverter::en2bn($total_profit)}} টাকা ({{\App\NumberConverter::en2bn(number_format($total_profit/$total_deposited*100,2))}}%)
+                                        </td>
+                                        <td  colspan="4"></td>
+                                    </tr>
+                                    <tr>
+                                        <td  colspan="5" class="text-right">
+                                            মোট উত্তোলন
+
+                                        </td>
+                                        <td>
+                                            {{\App\NumberConverter::en2bn($total_withdraw)}} টাকা
+                                        </td>
+                                        <td  colspan="4"></td>
+                                    </tr>
+                                    <tr>
+                                        <td  colspan="5" class="text-right">
+                                            বর্তমান ব্যালেন্স
+
+                                        </td>
+                                        <td>
+                                            {{\App\NumberConverter::en2bn($total_balance)}} টাকা
+                                        </td>
+                                        <td  colspan="4"></td>
+                                    </tr>
+                                </tbody>
+                            </thead>
                             <thead>
 
                                 <tr>
@@ -417,46 +465,7 @@
 
                                 </tr>
                                 @endforeach
-                                <tr>
-                                    <td  colspan="5" class="text-right">
-                                        মোট জমা
 
-                                    </td>
-                                    <td>
-                                        {{\App\NumberConverter::en2bn($total_deposited)}} টাকা
-                                    </td>
-                                    <td  colspan="4"></td>
-                                </tr>
-                                <tr>
-                                    <td  colspan="5" class="text-right">
-                                        মোট লাভ
-
-                                    </td>
-                                    <td>
-                                        {{\App\NumberConverter::en2bn($total_profit)}} টাকা ({{\App\NumberConverter::en2bn(number_format($total_profit/$total_deposited*100,2))}}%)
-                                    </td>
-                                    <td  colspan="4"></td>
-                                </tr>
-                                <tr>
-                                    <td  colspan="5" class="text-right">
-                                        মোট উত্তোলন
-
-                                    </td>
-                                    <td>
-                                        {{\App\NumberConverter::en2bn($total_withdraw)}} টাকা
-                                    </td>
-                                    <td  colspan="4"></td>
-                                </tr>
-                                <tr>
-                                    <td  colspan="5" class="text-right">
-                                        বর্তমান ব্যালেন্স
-
-                                    </td>
-                                    <td>
-                                        {{\App\NumberConverter::en2bn($total_balance)}} টাকা
-                                    </td>
-                                    <td  colspan="4"></td>
-                                </tr>
 
                                 @if($fdr->status=='closed')
                                     <tr>

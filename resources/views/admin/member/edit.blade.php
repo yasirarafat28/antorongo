@@ -10,25 +10,16 @@
 
 <link rel="stylesheet" href="{{asset('assets/css/timeline.css')}}">
 <section class="content profile-page">
-    <div class="block-header">
-        <div class="row">
-            <div class="col-lg-7 col-md-6 col-sm-12">
-                <h2>Profile
-                    <small>Welcome to {{\App\Setting::setting()->app_name}}</small>
-                </h2>
-            </div>
-            <div class="col-lg-5 col-md-6 col-sm-12">
-                <button class="btn btn-white btn-icon btn-round hidden-sm-down float-right m-l-10" type="button">
-                    <i class="zmdi zmdi-plus"></i>
-                </button>
-                <ul class="breadcrumb float-md-right">
-                    <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                    <li class="breadcrumb-item active">প্রফাইল</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+
     <div class="container-fluid">
+
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">সদস্য তথ্য এডিট করুন</h1>
+            <ul class="breadcrumb float-md-right">
+                <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
+                <li class="breadcrumb-item active">তথ্য এডিট করুন</li>
+            </ul>
+        </div>
         <div class="col-md-12">
 
             @if(session()->has('success'))

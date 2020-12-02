@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="{{asset('assets/css/timeline.css')}}">
 
 <section class="content profile-page">
-    <div class="block-header">
+    {{-- <div class="block-header">
         <div class="row">
             <div class="col-lg-7 col-md-6 col-sm-12"></div>
             <div class="col-lg-5 col-md-6 col-sm-12">
@@ -21,8 +21,22 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="container-fluid">
+
+        <div class="block-header">
+            <div class="row">
+                <div class="col-lg-7 col-md-6 col-sm-12">
+                    <h1 class="h3 mb-0 text-gray-800">তথ্য এডিট করুন</h1>
+                </div>
+                <div class="col-lg-5 col-md-6 col-sm-12">
+                    <ul class="breadcrumb float-md-right">
+                        <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
+                        <li class="breadcrumb-item active">তথ্য এডিট করুন</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         <div class="col-md-12">
 
             @if(session()->has('success'))

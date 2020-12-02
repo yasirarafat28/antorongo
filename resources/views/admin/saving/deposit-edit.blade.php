@@ -10,7 +10,7 @@
 
 <link rel="stylesheet" href="{{asset('assets/css/timeline.css')}}">
 <section class="content profile-page">
-    <div class="block-header">
+    {{-- <div class="block-header">
         <div class="row">
             <div class="col-lg-7 col-md-6 col-sm-12">
                 <h2>Profile
@@ -27,9 +27,20 @@
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="container-fluid">
+    </div> --}}
 
+
+
+    <div class="container-fluid">
+ <!-- Page Heading -->
+ <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">জমা করুন</h1>
+
+    <ul class="breadcrumb float-md-right">
+        <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
+        <li class="breadcrumb-item"><a href="javascript:void(0);">জমা করুন</a></li>
+    </ul>
+</div>
             @if(session()->has('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}

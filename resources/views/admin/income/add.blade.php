@@ -11,20 +11,22 @@
 
 <!-- Main Content -->
 <section class="content">
-    <div class="block-header">
-        <div class="row">
-            <div class="col-lg-7 col-md-6 col-sm-12">
-            </div>
-            <div class="col-lg-5 col-md-6 col-sm-12">
-                <ul class="breadcrumb float-md-right">
-                    <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0);">সঞ্চয় খুঁজুন</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+
     <div class="container-fluid">
 
+        <div class="block-header">
+            <div class="row">
+                <div class="col-lg-7 col-md-6 col-sm-12">
+                    <h3><small><strong> আয় যোগ </strong>  করুন</small></h3>
+                </div>
+                <div class="col-lg-5 col-md-6 col-sm-12">
+                    <ul class="breadcrumb float-md-right">
+                        <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">আয় যোগ করুন</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         @if(session()->has('success'))
             <div class="alert alert-success">
                 {{ session('success') }}

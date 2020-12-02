@@ -11,19 +11,22 @@
 
 <!-- Main Content -->
 <section class="content">
-    <div class="block-header">
-        <div class="row">
-            <div class="col-lg-7 col-md-6 col-sm-12">
-            </div>
-            <div class="col-lg-5 col-md-6 col-sm-12">
-                <ul class="breadcrumb float-md-right">
-                    <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0);">সদস্য খুঁজুন</a></li>
-                </ul>
+
+    <div class="container-fluid">
+
+        <div class="block-header">
+            <div class="row">
+                <div class="col-lg-6 col-md-4 col-sm-12">
+                    <h3><small>কালেকশন/আদায় করুন</small></h3>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <ul class="breadcrumb float-md-right">
+                        <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">কালেকশন/আদায় করুন</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container-fluid">
 
         @if(session()->has('success'))
             <div class="alert alert-success">
@@ -54,7 +57,7 @@
                     <div class="header">
                         <div class="clearfix">
                             <div class="float-left">
-                                <h2>সঞ্চয় খুঁজুন</h2>
+                                <h2>কালেকশন/আদায় করুন</h2>
                             </div>
                             <div class="float-right">
                                 <a data-toggle="modal" data-target="#collection_coll_Modal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> কিস্তি আদায় করুন </a>
@@ -66,7 +69,7 @@
                             <div class="row clearfix">
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="সঞ্চয় নাম্বার" name="q" value="{{$query}}">
+                                        <input type="text" class="form-control" placeholder="ঋণ  নাম্বার" name="q" value="{{$query}}">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12">

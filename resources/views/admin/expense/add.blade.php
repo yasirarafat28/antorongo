@@ -12,11 +12,13 @@
 <!-- Main Content -->
 <section class="content">
     <div class="container-fluid">
+        <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">সঞ্চয় খুঁজুন</h1>
+            <h1 class="h3 mb-0 text-gray-800">ব্যয় যোগ করুন</h1>
+
             <ul class="breadcrumb float-md-right">
                 <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                <li class="breadcrumb-item active">সঞ্চয় খুঁজুন</li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">ব্যয় যোগ করুন</a></li>
             </ul>
         </div>
 
@@ -110,7 +112,7 @@
 
                                 </div>
 
-                                <div class="col-md-6 offset-3">
+                                <div class="col-md-12 text-center">
 
                                     <button class="btn btn-primary btn-round"> সেভ করুন</button>
 

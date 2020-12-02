@@ -290,7 +290,7 @@
         <div class="modal-content">
 
                     <div class="modal-header">
-                        <h2><strong> মিটিং</strong> বিস্তারিত</h2>
+                        <h2><strong> খাত</strong> এডিট করুন</h2>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -345,7 +345,7 @@
         <div class="modal-content">
 
                     <div class="modal-header">
-                        <h2><strong> মিটিং</strong> যোগ করুন</h2>
+                        <h2><strong> খাত</strong> বিস্তারিত</h2>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -355,21 +355,18 @@
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    <td>বিষয়</td>
+                                    <td>নাম</td>
                                     <td>{{$item->subject}}</td>
                                 </tr>
                                 <tr>
-                                    <td>অতিথি</td>
+                                    <td>স্লাগ</td>
                                     <td>{{$item->guest}}</td>
                                 </tr>
                                 <tr>
-                                    <td>সিদ্ধান্ত</td>
+                                    <td>মুল খাত</td>
                                     <td>{{$item->decision}}</td>
                                 </tr>
-                                <tr>
-                                    <td>বিস্তারিত</td>
-                                    <td>{!! $item->details !!}</td>
-                                </tr>
+
                             </tbody>
                         </table>
                     </div>

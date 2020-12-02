@@ -11,20 +11,22 @@
 
 <!-- Main Content -->
 <section class="content">
-    <div class="block-header">
-        <div class="row">
-            <div class="col-lg-7 col-md-6 col-sm-12">
-            </div>
-            <div class="col-lg-5 col-md-6 col-sm-12">
-                <ul class="breadcrumb float-md-right">
-                    <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0);">সদস্য খুঁজুন</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+
     <div class="container-fluid">
 
+        <div class="block-header">
+            <div class="row">
+                <div class="col-lg-7 col-md-6 col-sm-12">
+                    <h3><strong>ঋণ খুঁজুন</strong><small></small> </h3>
+                </div>
+                <div class="col-lg-5 col-md-6 col-sm-12">
+                    <ul class="breadcrumb float-md-right">
+                        <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">ঋণ খুঁজুন</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
         <div class="row clearfix">
             <div class="col-sm-12 col-md-12 col-lg-12">
@@ -32,7 +34,7 @@
                 <div class="card shadow">
 
                     <div class="header">
-                        <h2><strong>সঞ্চয় খুঁজুন</strong><small></small> </h2>
+                        <h2><strong>ঋণ খুঁজুন</strong><small></small> </h2>
                         <ul class="header-dropdown">
                             <li class="remove">
                                 <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
@@ -45,7 +47,7 @@
                             <div class="row clearfix">
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="সঞ্চয় নাম্বার" name="q" value="{{$query}}">
+                                        <input type="text" class="form-control" placeholder="ঋণ নাম্বার" name="q" value="{{$query}}">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
