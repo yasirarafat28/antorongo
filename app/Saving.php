@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Saving extends Model
 {
@@ -29,5 +30,19 @@ class Saving extends Model
     {
         return $this->belongsTo('App\User','identifier_id');
 
+    }
+
+
+    public function histories(){
+        return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','saving');
+    }
+    public function deposits(){
+        return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','saving')->where('flag','deposit');
+    }
+    public function profits(){
+        return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','saving')->where('flag','profit');
+    }
+    public function withdraws(){
+        return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','saving')->where('flag','withdraw');
     }
 }

@@ -54,6 +54,9 @@
                                 <button
                                     data-toggle="modal" data-target="#SavingDepositModal" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> জমা করুন
                                 </button>
+                                <button
+                                    data-toggle="modal" data-target="#withdrawModal" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> উত্তোলন  করুন
+                                </button>
                             </div>
 
                         </div>
@@ -79,226 +82,291 @@
                     <hr>
                     @if($saving)
 
-                    <div class="col-md-12 row mb-3">
+                        <div class="col-md-12 row mb-3">
 
 
 
-                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <div class="col-lg-4 col-md-4 col-sm-12">
 
-                            <div class="header">
+                                <div class="header">
 
-                                <h2><strong> সঞ্চয় </strong> বিস্তারিত</h2>
+                                    <h2><strong> সঞ্চয় </strong> বিস্তারিত</h2>
+
+                                </div>
+
+                                <span class="m-t-0 m-b-0"><strong>নামঃ  {{$saving->user->name}}</strong></span>
+                                <hr>
+
+                                <span class="job_post">সভ্য আইডি : {{$saving->user->unique_id??''}}</span>
+
+                                <hr>
+
+                                <span class="job_post">সঞ্চয় আইডি : {{$saving->txn_id??''}}</span>
+                                <hr>
+                                <span class="job_post">ধরন :
+                                    @if($saving->type=='short')
+                                        স্বল্প মেয়াদী (৫ বছর মেয়াদী)
+                                    @elseif($saving->type=='long')
+                                        দীর্ঘ মেয়াদী (১০ বছর মেয়াদী)
+                                    @else
+                                        দৈনিক
+                                    @endif
+
+                                </span>
+
+                                <?php
+                                    $deposited  = $saving->deposits->sum('amount');
+                                    $total_profit  = $saving->profits->sum('amount');
+                                    $total_withdraw  = $saving->withdraws->sum('outgoing');
+
+                                ?>
+
+                                <hr>
+
+                                <span class="job_post"> পলিসির পরিমান  : {{\App\NumberConverter::en2bn($saving->target_amount)}} টাকা </span>
+
+                                <hr>
+
+                                <span class="job_post"> মোট কালেকশন/আদায় : {{\App\NumberConverter::en2bn($deposited)}} টাকা </span>
+
+                                <hr>
+
+                                <span class="job_post"> মোট  ফেরত : {{\App\NumberConverter::en2bn($saving->return_amount)}} টাকা </span>
+
+                                <hr>
+
+
+                                <span class="job_post"> মোট  লভ্যাংশ : {{\App\NumberConverter::en2bn($total_profit)}} টাকা ||
+
+                                </span>
+
+                                <hr>
+
+                                <span class="job_post"> অবস্থা : {{$saving->status}} </span>
+
+                                <hr>
+
+                                <br>
 
                             </div>
 
-                            <span class="m-t-0 m-b-0"><strong>নামঃ  {{$saving->user->name}}</strong></span>
-                            <hr>
-
-                            <span class="job_post">সভ্য আইডি : {{$saving->user->unique_id??''}}</span>
-
-                            <hr>
-
-                            <span class="job_post">সঞ্চয় আইডি : {{$saving->txn_id??''}}</span>
-                            <hr>
-                            <span class="job_post">ধরন :
-                                @if($saving->type=='short')
-                                    স্বল্প মেয়াদী (৫ বছর মেয়াদী)
-                                @elseif($saving->type=='long')
-                                    দীর্ঘ মেয়াদী (১০ বছর মেয়াদী)
-                                @else
-                                    দৈনিক
-                                @endif
-
-                            </span>
-
-                            <?php
-                                $deposited  = $transactions->where('type','deposit')->sum('amount');
-                                $total_profit  = $transactions->where('type','profit')->sum('amount');
-                                $total_withdraw  = $transactions->sum('outgoing');
-
-                            ?>
-
-                            <hr>
-
-                            <span class="job_post"> পলিসির পরিমান  : {{\App\NumberConverter::en2bn($saving->target_amount)}} টাকা </span>
-
-                            <hr>
-
-                            <span class="job_post"> মোট কালেকশন/আদায় : {{\App\NumberConverter::en2bn($deposited)}} টাকা </span>
-
-                            <hr>
-
-                            <span class="job_post"> মোট  ফেরত : {{\App\NumberConverter::en2bn($saving->return_amount)}} টাকা </span>
-
-                            <hr>
+                            <!--  Modal Start -->
+                        <div class="modal fade" id="SavingDepositModal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h2><strong> জমা </strong>  করুন</h2>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{url('admin/saving/deposit')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
+                                            {{csrf_field()}}
+                                            <input type="hidden" name="saving_id" value="{{$saving->id}}">
+                                            <input type="hidden" name="user_id" value="{{$saving->user_id}}">
 
 
-                            <span class="job_post"> মোট  লভ্যাংশ : {{\App\NumberConverter::en2bn($total_profit)}} টাকা ||
+                                            <div class="col-lg-12 col-md-12">
 
-                            </span>
+                                                <div class="form-group">
 
-                            <hr>
+                                                    <label for=""><small> জমার পরিমান</small></label>
 
-                            <span class="job_post"> অবস্থা : {{$saving->status}} </span>
+                                                    <input type="number" step="any" class="form-control" name="amount" placeholder="জমার পরিমান" id="amount">
 
-                            <hr>
-
-                            <br>
-
-                        </div>
-
-                         <!--  Modal Start -->
-                    <div class="modal fade" id="SavingDepositModal" tabindex="-1" role="dialog">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h2><strong> জমা </strong>  করুন</h2>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="{{url('admin/saving/deposit')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
-                                        {{csrf_field()}}
-                                        <input type="hidden" name="saving_id" value="{{$saving->id}}">
-                                        <input type="hidden" name="user_id" value="{{$saving->user_id}}">
-
-
-                                        <div class="col-lg-12 col-md-12">
-
-                                            <div class="form-group">
-
-                                                <label for=""><small> জমার পরিমান</small></label>
-
-                                                <input type="number" step="any" class="form-control" name="amount" placeholder="জমার পরিমান" id="amount">
+                                                </div>
 
                                             </div>
 
-                                        </div>
+                                            <div class="col-lg-12 col-md-12">
 
-                                        <div class="col-lg-12 col-md-12">
+                                                <div class="form-group">
 
-                                            <div class="form-group">
+                                                    <label for=""><small> জমার তারিখ </small></label>
 
-                                                <label for=""><small> জমার তারিখ </small></label>
+                                                    <input type="date" class="form-control" name="date" placeholder="জমার তারিখ">
 
-                                                <input type="date" class="form-control" name="date" placeholder="জমার তারিখ">
-
-                                            </div>
-                                        </div>
-
-
-                                        <div class="col-lg-12 col-md-12">
-
-                                            <div class="form-group">
-
-                                                <label for=""><small> মতামত </small></label>
-
-                                                <textarea name="note" class="form-control" placeholder="মতামত"></textarea>
-
-                                            </div>
-
-                                        </div>
-                                        <div class="col-lg-12 col-md-12">
-                                            <div class="col-md-12">
-                                                <div class="checkbox">
-                                                    <input id="remember_me_2" name="invoice" type="checkbox">
-                                                    <label for="remember_me_2">
-                                                        টাকা জমার রশিদ
-                                                    </label>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-md-12 text-center">
 
-                                            <button class="btn btn-primary btn-round"> জমা করুন</button>
+                                            <div class="col-lg-12 col-md-12">
 
-                                        </div>
-                                    </form>
+                                                <div class="form-group">
 
+                                                    <label for=""><small> মতামত </small></label>
+
+                                                    <textarea name="note" class="form-control" placeholder="মতামত"></textarea>
+
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="col-md-12">
+                                                    <div class="checkbox">
+                                                        <input id="remember_me_2" name="invoice" type="checkbox">
+                                                        <label for="remember_me_2">
+                                                            টাকা জমার রশিদ
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12 text-center">
+
+                                                <button class="btn btn-primary btn-round"> জমা করুন</button>
+
+                                            </div>
+                                        </form>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!--Add Modal End-->
+                        <!--Add Modal End-->
+
+
+                        <!--  Modal Start -->
+                        <div class="modal fade" id="AddProfitModal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h2><strong> সঞ্চয় </strong> এর লাভ যোগ করুন</h2>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{url('admin/saving/add-profit-manually')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
+                                            {{csrf_field()}}
+
+                                            <input type="hidden" name="saving_id" value="{{$saving->id}}">
+                                            <input type="hidden" name="user_id" value="{{$saving->user_id}}">
+
+                                            <div class="col-lg-12 col-md-12">
+
+                                                <div class="form-group">
+
+                                                    <label for=""><small> লাভের পরিমান</small></label>
+
+                                                    <input type="number" step="any" class="form-control" name="amount" placeholder="লাভের পরিমান" id="amount">
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-lg-12 col-md-12">
+
+                                                <div class="form-group">
+
+                                                    <label for=""><small> লাভের তারিখ </small></label>
+
+                                                    <input type="date" class="form-control" name="date" placeholder="উত্তলনের তারিখ">
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-lg-12 col-md-12">
+
+                                                <div class="form-group">
+
+                                                    <label for=""><small> মতামত </small></label>
+
+                                                    <textarea name="note" class="form-control" placeholder="মতামত"></textarea>
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-12 text-center">
+
+                                                <button class="btn btn-primary btn-round"> লাভ যোগ  করুন</button>
+
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Add Modal End-->
+
+
+                        <div class="modal fade" id="withdrawModal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title"><strong>উত্তোলন</strong> করুন</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                    <div class="modal-body">
+                                       <form action="{{url('admin/saving/withdraw')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
+                                            {{csrf_field()}}
+                                            <input type="hidden" name="saving_id" value="{{$saving->id}}">
+                                            <input type="hidden" name="user_id" value="{{$saving->user_id}}">
+
+
+                                            <div class="col-lg-12 col-md-12">
+
+                                                <div class="form-group">
+
+                                                    <label for=""><small> উত্তলনের পরিমান</small></label>
+
+                                                    <input type="number" step="any" class="form-control" name="amount" placeholder="উত্তলনের পরিমান" id="amount">
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-lg-12 col-md-12">
+
+                                                <div class="form-group">
+
+                                                    <label for=""><small> উত্তলনের তারিখ </small></label>
+
+                                                    <input type="date" class="form-control" name="date" placeholder="উত্তলনের তারিখ">
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-lg-12 col-md-12">
+
+                                                <div class="form-group">
+
+                                                    <label for=""><small> মতামত </small></label>
+
+                                                    <textarea name="note" class="form-control" placeholder="মতামত"></textarea>
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-12 text-center">
+
+                                                <button class="btn btn-primary btn-round"> উত্তোলন করুন</button>
+
+                                            </div>
+                                         </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
                  </div>
                  @endif
                 </div>
             </div>
         </div>
-        @if($saving)
-
-            <!--  Modal Start -->
-            <div class="modal fade" id="AddProfitModal" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h2><strong> সঞ্চয় </strong> এর লাভ যোগ করুন</h2>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="{{url('admin/saving/add-profit-manually')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
-                                {{csrf_field()}}
-
-                                <input type="hidden" name="saving_id" value="{{$saving->id}}">
-                                <input type="hidden" name="user_id" value="{{$saving->user_id}}">
-
-                                <div class="col-lg-12 col-md-12">
-
-                                    <div class="form-group">
-
-                                        <label for=""><small> লাভের পরিমান</small></label>
-
-                                        <input type="number" step="any" class="form-control" name="amount" placeholder="লাভের পরিমান" id="amount">
-
-                                    </div>
-
-                                </div>
-
-                                <div class="col-lg-12 col-md-12">
-
-                                    <div class="form-group">
-
-                                        <label for=""><small> লাভের তারিখ </small></label>
-
-                                        <input type="date" class="form-control" name="date" placeholder="উত্তলনের তারিখ">
-
-                                    </div>
-                                </div>
-
-
-                                <div class="col-lg-12 col-md-12">
-
-                                    <div class="form-group">
-
-                                        <label for=""><small> মতামত </small></label>
-
-                                        <textarea name="note" class="form-control" placeholder="মতামত"></textarea>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="col-md-12 text-center">
-
-                                    <button class="btn btn-primary btn-round"> লাভ যোগ  করুন</button>
-
-                                </div>
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--Add Modal End-->
-
-
-        @endif
-
-        @if($transactions)
+        @if($saving->histories)
         <div class="row clearfix">
 
             <div class="col-sm-12 col-md-12 col-lg-12">
@@ -393,8 +461,7 @@
                             @php
                                 $total =0;
                             @endphp
-
-                            @foreach($transactions as $item)
+                            @foreach($saving->histories as $item)
 
 
                                 <tr>
@@ -406,10 +473,10 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                         aria-labelledby="dropdownMenuLink">
-                                            <a href="{{url('admin/saving-transaction/'.$item->id.'/edit')}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট</a>
+                                            <a href="{{url('admin/transactions/'.$item->id.'/edit')}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট</a>
                                                 {!! Form::open([
                                                    'method'=>'DELETE',
-                                                   'url' => ['/admin/saving-transaction', $item->id],
+                                                   'url' => ['/admin/transactions', $item->id],
                                                    'style' => 'display:inline'
                                                 ]) !!}
                                                 {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন ', array(
@@ -425,9 +492,9 @@
 
                                     <td>{{$item->txn_id??''}}</td>
                                     <td>
-                                        @if($item->type=='deposit')
+                                        @if($item->flag=='deposit')
                                             জমা
-                                        @elseif($item->type=='profit')
+                                        @elseif($item->flag=='profit')
                                             লাভ
                                         @else
                                             উত্তোলন
@@ -436,26 +503,47 @@
 
                                     <td style="color: green;font-weight: 700;">
 
-                                        @php
-                                            $total +=$item->amount;
-                                            $total -=$item->outgoing;
-                                        @endphp
-
-
-                                        @if($item->type=='deposit' || $item->type=='profit')
+                                        @if($item->flag=='deposit' || $item->flag=='profit')
                                             + {{\App\NumberConverter::en2bn($item->amount)}} টাকা
                                         @else
-                                            - {{\App\NumberConverter::en2bn($item->outgoing)}} টাকা
+                                            - {{\App\NumberConverter::en2bn($item->amount)}} টাকা
                                         @endif
 
                                     </td>
-                                    <td>{{\App\NumberConverter::en2bn($total)}}</td>
+                                    <td>{{\App\NumberConverter::en2bn($total??'')}}</td>
                                     <td>{{$item->note}}</td>
                                     <td>{{$item->receiver->name??''}}</td>
 
                                 </tr>
                                 @endforeach
 
+                                    </td>
+                                    <td>
+                                        {{\App\NumberConverter::en2bn($total_profit)}} টাকা
+                                        ({{\App\NumberConverter::en2bn(number_format($deposited?$total_profit/$deposited*100:0,2))}}%)
+                                    </td>
+                                    <td colspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td  colspan="5" class="text-right">
+                                        মোট উত্তোলন
+
+                                    </td>
+                                    <td>
+                                        {{\App\NumberConverter::en2bn($total_withdraw)}} টাকা
+                                    </td>
+                                    <td colspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td  colspan="5" class="text-right">
+                                        বর্তমান ব্যালেন্স
+
+                                    </td>
+                                    <td>
+                                        {{\App\NumberConverter::en2bn($total)}} টাকা
+                                    </td>
+                                    <td colspan="3"></td>
+                                </tr>
 
                                 @if($saving->status=='closed')
                                 <tr>

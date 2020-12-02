@@ -44,15 +44,6 @@
 
                 <div class="card shadow">
 
-                    {{-- <div class="header">
-                        <h2><strong>এফ ডি আর খুঁজুন</strong><small></small> </h2>
-                        <ul class="header-dropdown">
-                            <li class="remove">
-                                <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
-                            </li>
-                        </ul>
-                    </div> --}}
-
                     <div class="header">
                         <div class="clearfix">
                             <div class="float-left">
@@ -92,135 +83,237 @@
 
                         @endphp
 
-                    <div class="col-md-12 row mb-3">
+                    <div class="row mb-3">
+
+                        <div class="col-md-12 text-center mb-3">
+                            <h2><strong> এফ ডি আর </strong> বিস্তারিত</h2>
+                        </div>
 
 
 
-                        <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div class="col-md-4">
 
-                            <div class="header">
+                            <div class="body">
 
-                                <h2><strong> এফ ডি আর </strong> বিস্তারিত</h2>
+                                <table class="table table-stripped">
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-right">নামঃ</td>
+                                            <td class="text-left">{{$fdr->user->name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">নামঃ</td>
+                                            <td class="text-left">{{$fdr->user->name}}</td>
+                                        </tr>
 
+                                        <tr>
+                                            <td class="text-right">নামঃ</td>
+                                            <td class="text-left">{{$fdr->user->name}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="text-right">নামঃ</td>
+                                            <td class="text-left">{{$fdr->user->name}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="text-right">নামঃ</td>
+                                            <td class="text-left">{{$fdr->user->name}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="text-right">নামঃ</td>
+                                            <td class="text-left">{{$fdr->user->name}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+                                            <span class="m-t-0 m-b-0"><strong>নামঃ  {{$fdr->user->name}}</strong></span>
+                                        <hr>
+
+                                        <span class="job_post">সভ্য আইডি : {{$fdr->user->unique_id??''}}</span>
+
+                                        <hr>
+
+                                        <span class="job_post">এফ ডি আর আইডি : {{$fdr->txn_id??''}}</span>
+                                        <hr>
+                                        <span class="job_post">ধরন :
+                                            @if($fdr->profit_type=='daily')
+                                                দৈনিক
+                                            @elseif($fdr->profit_type=='weekly')
+                                                মাসিক
+                                            @else
+                                                বাৎসরিক
+                                            @endif
+
+                                        </span>
+
+                                        <hr>
+
+                                        <span class="job_post">  টাকার পরিমান  : {{\App\NumberConverter::en2bn($fdr->transactions->where('type','deposit')->sum('amount'))}} টাকা </span>
+
+                                        <hr>
+
+                                        <span class="job_post"> মোট প্রাপ্ত লাভ  : {{\App\NumberConverter::en2bn($fdr->transactions->where('type','profit')->sum('amount'))}} টাকা ||
+                                        </span>
+
+                                        <hr>
+
+                                        <span class="job_post"> অবস্থা : {{$fdr->status}} </span>
                             </div>
-
-                            <span class="m-t-0 m-b-0"><strong>নামঃ  {{$fdr->user->name}}</strong></span>
-                            <hr>
-
-                            <span class="job_post">সভ্য আইডি : {{$fdr->user->unique_id??''}}</span>
-
-                            <hr>
-
-                            <span class="job_post">এফ ডি আর আইডি : {{$fdr->txn_id??''}}</span>
-                            <hr>
-                            <span class="job_post">ধরন :
-                                @if($fdr->profit_type=='daily')
-                                    দৈনিক
-                                @elseif($fdr->profit_type=='weekly')
-                                    মাসিক
-                                @else
-                                    বাৎসরিক
-                                @endif
-
-                            </span>
-
-                            <hr>
-
-                            <span class="job_post">  টাকার পরিমান  : {{\App\NumberConverter::en2bn($fdr->transactions->where('type','deposit')->sum('amount'))}} টাকা </span>
-
-                            <hr>
-
-                            <span class="job_post"> মোট প্রাপ্ত লাভ  : {{\App\NumberConverter::en2bn($fdr->transactions->where('type','profit')->sum('amount'))}} টাকা ||
-                            </span>
-
-                            <hr>
-
-                            <span class="job_post"> অবস্থা : {{$fdr->status}} </span>
 
                             <hr>
                             <br>
 
                         </div>
 
+                        <div class="col-md-8">
+
+                            <div class="row">
+
+                                <!-- Earnings (Monthly) Card Example -->
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                       মোট এফ ডি আর</div>
+                                                    <div class="h6 mb-0 font-weight-bold text-gray-800">৪৫৩ টি</div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <!-- Pending Requests Card Example -->
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card border-left-warning shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                        মোট লাভ</div>
+                                                    <div class="h6 mb-0 font-weight-bold text-gray-800">$ ৩৪৫৩৪</div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card border-left-info shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                        মোট উত্তোলন</div>
+                                                    <div class="h6 mb-0 font-weight-bold text-gray-800">$ ৩৪৫৩৪</div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a data-toggle="modal" data-target="#addProfiteModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> লাভ যোগ করুন </a>
+                                <a data-toggle="modal" data-target="#withDrawModal" class="btn btn-primary"> <i class="fas fa-fw fa-minus"></i> উত্তোলন করুন </a>
+
+
+
+
+                        </div>
+
 
                              <!--  Modal Start -->
-                    <div class="modal fade" id="withDrawModal" tabindex="-1" role="dialog">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h2><strong> উত্তোলন </strong>  করুন</h2>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="{{url('admin/fdr/withdraw')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
-                                        {{csrf_field()}}
+                        <div class="modal fade" id="withDrawModal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h2><strong> উত্তোলন </strong>  করুন</h2>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{url('admin/fdr/withdraw')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
+                                            {{csrf_field()}}
 
-                                        <input type="hidden" name="fdr_id" value="{{$fdr->id}}">
-                                        <input type="hidden" name="user_id" value="{{$fdr->user_id}}">
-                                        <div class="col-lg-12 col-md-12">
+                                            <input type="hidden" name="fdr_id" value="{{$fdr->id}}">
+                                            <input type="hidden" name="user_id" value="{{$fdr->user_id}}">
+                                            <div class="col-lg-12 col-md-12">
 
-                                            <div class="form-group">
+                                                <div class="form-group">
 
-                                                <label for=""><small> উত্তলনের উৎস </small></label>
-                                                <select name="withdraw_source" id="" class="form-control ms">
-                                                    <option value="revenue">মূলধনসহ উত্তোলন</option>
-                                                    <option value="profit"> লাভ উত্তোলন</option>
-                                                </select>
+                                                    <label for=""><small> উত্তলনের উৎস </small></label>
+                                                    <select name="withdraw_source" id="" class="form-control ms">
+                                                        <option value="revenue">মূলধনসহ উত্তোলন</option>
+                                                        <option value="profit"> লাভ উত্তোলন</option>
+                                                    </select>
 
+
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-12 col-md-12">
+
+                                                <div class="form-group">
+
+                                                    <label for=""><small> উত্তলনের পরিমান</small></label>
+
+                                                    <input type="number" step="any" class="form-control" name="amount" placeholder="উত্তলনের পরিমান" id="amount">
+
+                                                </div>
 
                                             </div>
 
-                                        </div>
-                                        <div class="col-lg-12 col-md-12">
+                                            <div class="col-lg-12 col-md-12">
 
-                                            <div class="form-group">
+                                                <div class="form-group">
 
-                                                <label for=""><small> উত্তলনের পরিমান</small></label>
+                                                    <label for=""><small> উত্তলনের তারিখ </small></label>
 
-                                                <input type="number" step="any" class="form-control" name="amount" placeholder="উত্তলনের পরিমান" id="amount">
+                                                    <input type="date" class="form-control" name="date" placeholder="উত্তলনের তারিখ">
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-lg-12 col-md-12">
+
+                                                <div class="form-group">
+
+                                                    <label for=""><small> মতামত </small></label>
+
+                                                    <textarea name="note" class="form-control" placeholder="মতামত"></textarea>
+
+                                                </div>
 
                                             </div>
 
-                                        </div>
+                                            <div class="col-md-12 text-center">
 
-                                        <div class="col-lg-12 col-md-12">
-
-                                            <div class="form-group">
-
-                                                <label for=""><small> উত্তলনের তারিখ </small></label>
-
-                                                <input type="date" class="form-control" name="date" placeholder="উত্তলনের তারিখ">
+                                                <button class="btn btn-primary btn-round"> উত্তোলন করুন</button>
 
                                             </div>
-                                        </div>
+                                        </form>
 
-
-                                        <div class="col-lg-12 col-md-12">
-
-                                            <div class="form-group">
-
-                                                <label for=""><small> মতামত </small></label>
-
-                                                <textarea name="note" class="form-control" placeholder="মতামত"></textarea>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-md-12 text-center">
-
-                                            <button class="btn btn-primary btn-round"> উত্তোলন করুন</button>
-
-                                        </div>
-                                    </form>
-
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!--Add Modal End-->
+                        <!--Add Modal End-->
                     </div>
                     @endif
                 </div>

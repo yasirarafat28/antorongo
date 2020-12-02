@@ -6,6 +6,8 @@ use App\NumberConverter;
 use App\Saving;
 use App\SavingPackage;
 use App\SavingTransaction;
+use App\Transaction;
+use App\TransactionHead;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,22 +44,22 @@ class SavingController extends Controller
 
             $query = $request->q;
 
-            $saving = Saving::with('user')->where('txn_id',$request->q)->first();
+            $saving = Saving::with('user','histories')->where('txn_id',$request->q)->first();
         }
         else{
             $saving ='';
             $query = '';
         }
 
-        if($saving){
+        // if($saving){
 
-            $transactions = SavingTransaction::with('user','receiver')->where('saving_id',$saving->id)->orderBy('date','ASC')->get();
-        }else{
-            $transactions = '';
+        //     $transactions = SavingTransaction::with('user','receiver')->where('saving_id',$saving->id)->orderBy('date','ASC')->get();
+        // }else{
+        //     $transactions = '';
 
-        }
+        // }
 
-        return view('admin/saving/find',compact('transactions','saving','query'));
+        return view('admin/saving/find',compact('saving','query'));
     }
 
     public  function WithdrawView(Request $request)
@@ -109,27 +111,69 @@ class SavingController extends Controller
 
     public function Deposit(Request $request)
     {
-        $transaction = new SavingTransaction();
+
+        $this->validate($request,[
+            'saving_id'=>'required',
+            'user_id'=>'required',
+            'amount'=>'required',
+            'date'=>'required',
+        ]);
+
+
+        $head = TransactionHead::where('slug','saving_project_5_income')->first();
+
+        if(!$head){
+            return back()->withError('Related head didn\'t found!');
+        }
+
+
+
+        $transaction = new Transaction();
         $transaction->txn_id = uniqid();
-        $transaction->saving_id = $request->saving_id;
+        $transaction->transaction_for = 'saving';
+        $transaction->transactable_id = $request->saving_id;
+        $transaction->flag = 'deposit';
+        $transaction->type = 'income';
+        $transaction->head_id = $head->id;
         $transaction->user_id = $request->user_id;
-        $transaction->received_by = Auth::user()->id;
-        $transaction->type = 'deposit';
-        $transaction->amount = NumberConverter::bn2en($request->amount);
         $transaction->note = $request->note;
         $transaction->date = $request->date;
-        $transaction->status = 'approved';
+        $transaction->amount = NumberConverter::bn2en($request->amount);
+        $transaction->added_by = Auth::user()->id;
+        $transaction->admin_status ='approved';
         $transaction->manager_status = 'approved';
-        $transaction->admin_status = 'approved';
+        $transaction->status = 'approved';
         $transaction->save();
 
         if ($request->invoice)
         {
-            $user = User::find($request->user_id);
-            $date =  $request->date;
-            $saving_amount = NumberConverter::bn2en($request->amount);
-            return view('admin/invoice',compact('user','saving_amount','date'));
+            return redirect('transaction-invoice/'.$transaction->txn_id);
         }
+
+
+
+
+        // $transaction = new SavingTransaction();
+        // $transaction->txn_id = uniqid();
+        // $transaction->saving_id = $request->saving_id;
+        // $transaction->user_id = $request->user_id;
+        // $transaction->received_by = Auth::user()->id;
+        // $transaction->type = 'deposit';
+        // $transaction->amount = NumberConverter::bn2en($request->amount);
+        // $transaction->note = $request->note;
+        // $transaction->date = $request->date;
+        // $transaction->status = 'approved';
+        // $transaction->manager_status = 'approved';
+        // $transaction->admin_status = 'approved';
+        // $transaction->save();
+
+        // if ($request->invoice)
+        // {
+        //     $user = User::find($request->user_id);
+        //     $date =  $request->date;
+        //     $saving_amount = NumberConverter::bn2en($request->amount);
+        //     return view('admin/invoice',compact('user','saving_amount','date'));
+        // }
 
         return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
 
@@ -140,8 +184,10 @@ class SavingController extends Controller
     public function CollectionList(Request $request,$type)
     {
         $saving_ids = Saving::where('type',$type)->get('id');
-        $transactions = SavingTransaction::with('user','receiver','savings')->where(function ($q) use ($request,$saving_ids){
-            $q->whereIn('saving_id',$saving_ids);
+        $transactions = Transaction::with('user','receiver','savings')->where('transaction_for','saving')
+        ->where('flag','deposit')
+        ->whereIn('transactable_id',$saving_ids)
+        ->where(function ($q) use ($request,$saving_ids){
             if ($request->has('from') && $request->from) {
                 $from = date("Y-m-d", strtotime($request->from));
                 $q->where('date', '>=',  $from);
@@ -154,15 +200,18 @@ class SavingController extends Controller
 
             }
 
-        })->where('type','deposit')->orderBy('date','DESC')->paginate(25);
+        })
+        ->orderBy('date','DESC')->paginate(25);
         return view('admin/saving/collection-list',compact('transactions'));
     }
 
     public function WithdrawList(Request $request,$type)
     {
         $saving_ids = Saving::where('type',$type)->get('id');
-        $transactions = SavingTransaction::with('user','receiver','savings')->where(function ($q) use ($request,$saving_ids){
-            $q->whereIn('saving_id',$saving_ids);
+        $transactions = Transaction::with('user','receiver','savings')->where('transaction_for','saving')
+        ->where('flag','withdraw')
+        ->whereIn('transactable_id',$saving_ids)
+        ->where(function ($q) use ($request,$saving_ids){
             if ($request->has('from') && $request->from) {
                 $from = date("Y-m-d", strtotime($request->from));
                 $q->where('date', '>=',  $from);
@@ -175,7 +224,8 @@ class SavingController extends Controller
 
             }
 
-        })->where('type','withdraw')->paginate(25);
+        })
+        ->orderBy('date','DESC')->paginate(25);
         return view('admin/saving/withdraw-list',compact('transactions'));
     }
 
