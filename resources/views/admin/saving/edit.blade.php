@@ -11,18 +11,23 @@
 <link rel="stylesheet" href="{{asset('assets/css/timeline.css')}}">
 
 <section class="content profile-page">
-    <div class="block-header">
-        <div class="row">
-            <div class="col-lg-7 col-md-6 col-sm-12"></div>
-            <div class="col-lg-5 col-md-6 col-sm-12">
-                <ul class="breadcrumb float-md-right">
-                    <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                    <li class="breadcrumb-item active">সঞ্চয় অধিভুক্তির ফর্ম </li>
-                </ul>
+
+    <div class="container-fluid">
+
+        <div class="block-header">
+            <div class="row">
+                <div class="col-lg-7 col-md-6 col-sm-12">
+                    <h3><small>তথ্য এডিট করুন</small></h3>
+                </div>
+                <div class="col-lg-5 col-md-6 col-sm-12">
+                    <ul class="breadcrumb float-md-right">
+                        <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
+                        <li class="breadcrumb-item active">তথ্য এডিট করুন</li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container-fluid">
+
         <div class="col-md-12">
 
             @if(session()->has('success'))
@@ -40,7 +45,7 @@
 
                 <div class="header">
 
-                    <h2><strong> বাক্তিগত</strong>  তথ্য</h2>
+                    <h2><strong>তথ্য</strong> এডিট করুন</h2>
 
                 </div>
 
@@ -188,7 +193,7 @@
                             </div>
 
 
-                                <div class="col-lg-6 col-md-12 col-sm-12 text-center">
+                                <div class="col-lg-12 col-md-12 col-sm-12 text-center">
 
                                     <button type="submit" class="btn btn-info btn-round"> সেভ করুন</button>
                                 </div>

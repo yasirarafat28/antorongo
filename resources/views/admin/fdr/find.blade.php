@@ -49,10 +49,10 @@
                             <div class="float-left">
                                 <h2>এফ ডি আর খুঁজুন </h2>
                             </div>
-                            <div class="float-right">
+                            {{-- <div class="float-right">
                                 <a data-toggle="modal" data-target="#addProfiteModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> লাভ যোগ করুন </a>
                                 <a data-toggle="modal" data-target="#withDrawModal" class="btn btn-primary"> <i class="fas fa-fw fa-minus"></i> উত্তোলন করুন </a>
-                            </div>
+                            </div> --}}
                         </div>
 
                     </div>
@@ -98,38 +98,64 @@
                                 <table class="table table-stripped">
                                     <tbody>
                                         <tr>
-                                            <td class="text-right">নামঃ</td>
+                                            <td class="text-right">নাম :</td>
                                             <td class="text-left">{{$fdr->user->name}}</td>
                                         </tr>
                                         <tr>
-                                            <td class="text-right">নামঃ</td>
-                                            <td class="text-left">{{$fdr->user->name}}</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="text-right">নামঃ</td>
-                                            <td class="text-left">{{$fdr->user->name}}</td>
+                                            <td class="text-right">সভ্য আইডি : </td>
+                                            <td class="text-left">{{$fdr->user->unique_id??''}}</td>
                                         </tr>
 
                                         <tr>
-                                            <td class="text-right">নামঃ</td>
-                                            <td class="text-left">{{$fdr->user->name}}</td>
+                                            <td class="text-right">এফ ডি আর আইডি : </td>
+                                            <td class="text-left">{{$fdr->txn_id??''}}</td>
                                         </tr>
 
                                         <tr>
-                                            <td class="text-right">নামঃ</td>
-                                            <td class="text-left">{{$fdr->user->name}}</td>
+                                            <td class="text-right">
+                                                ধরন :
+                                            </td>
+                                            <td class="text-left">
+                                                @if($fdr->profit_type=='daily')
+                                                    দৈনিক
+                                                @elseif($fdr->profit_type=='weekly')
+                                                    মাসিক
+                                                @else
+                                                    বাৎসরিক
+                                                @endif
+                                            </td>
                                         </tr>
 
                                         <tr>
-                                            <td class="text-right">নামঃ</td>
-                                            <td class="text-left">{{$fdr->user->name}}</td>
+                                            <td class="text-right">
+                                                টাকার পরিমান  :
+                                            </td>
+                                            <td class="text-left">
+                                                {{\App\NumberConverter::en2bn($fdr->transactions->where('type','deposit')->sum('amount'))}} টাকা
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="text-right">
+                                                মোট প্রাপ্ত লাভ  :
+                                            </td>
+                                            <td class="text-left">
+                                                {{\App\NumberConverter::en2bn($fdr->transactions->where('type','profit')->sum('amount'))}} টাকা ||
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">
+                                                অবস্থা :
+                                            </td>
+                                            <td class="text-left">
+                                                {{$fdr->status}}
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
 
 
-                                            <span class="m-t-0 m-b-0"><strong>নামঃ  {{$fdr->user->name}}</strong></span>
+                                            {{-- <span class="m-t-0 m-b-0"><strong>নামঃ  {{$fdr->user->name}}</strong></span>
                                         <hr>
 
                                         <span class="job_post">সভ্য আইডি : {{$fdr->user->unique_id??''}}</span>
@@ -160,7 +186,7 @@
 
                                         <hr>
 
-                                        <span class="job_post"> অবস্থা : {{$fdr->status}} </span>
+                                        <span class="job_post"> অবস্থা : {{$fdr->status}} </span> --}}
                             </div>
 
                             <hr>
@@ -172,14 +198,68 @@
 
                             <div class="row">
 
+
+                                {{-- <thead>
+                                    @php
+                                     $total_balance =0;
+                                    @endphp
+                                    <tbody>
+                                        <tr>
+                                            <td  colspan="5" class="text-right">
+                                                মোট জমা
+
+                                            </td>
+                                            <td>
+                                                {{\App\NumberConverter::en2bn($total_deposited)}} টাকা
+                                            </td>
+                                            <td  colspan="4"></td>
+                                        </tr>
+                                        <tr>
+                                            <td  colspan="5" class="text-right">
+                                                মোট লাভ
+
+                                            </td>
+                                            <td>
+                                                {{\App\NumberConverter::en2bn($total_profit)}} টাকা ({{\App\NumberConverter::en2bn(number_format($total_profit/$total_deposited*100,2))}}%)
+                                            </td>
+                                            <td  colspan="4"></td>
+                                        </tr>
+                                        <tr>
+                                            <td  colspan="5" class="text-right">
+                                                মোট উত্তোলন
+
+                                            </td>
+                                            <td>
+                                                {{\App\NumberConverter::en2bn($total_withdraw)}} টাকা
+                                            </td>
+                                            <td  colspan="4"></td>
+                                        </tr>
+                                        <tr>
+                                            <td  colspan="5" class="text-right">
+                                                বর্তমান ব্যালেন্স
+
+                                            </td>
+                                            <td>
+                                                {{\App\NumberConverter::en2bn($total_balance)}} টাকা
+                                            </td>
+                                            <td  colspan="4"></td>
+                                        </tr>
+                                    </tbody>
+                                </thead> --}}
+
+
                                 <!-- Earnings (Monthly) Card Example -->
-                                <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="col-xl-6 col-md-6 mb-4">
+                                    @php
+                                     $total_balance =0;
+                                    @endphp
                                     <div class="card border-left-primary shadow h-100 py-2">
                                         <div class="card-body">
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                       মোট এফ ডি আর</div>
+                                                        মোট জমা
+                                                    </div>
                                                     <div class="h6 mb-0 font-weight-bold text-gray-800">৪৫৩ টি</div>
                                                 </div>
                                                 <div class="col-auto">
@@ -191,15 +271,15 @@
                                 </div>
 
 
-
                                 <!-- Pending Requests Card Example -->
-                                <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="col-xl-6 col-md-6 mb-4">
                                     <div class="card border-left-warning shadow h-100 py-2">
                                         <div class="card-body">
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                        মোট লাভ</div>
+                                                        মোট লাভ
+                                                    </div>
                                                     <div class="h6 mb-0 font-weight-bold text-gray-800">$ ৩৪৫৩৪</div>
                                                 </div>
                                                 <div class="col-auto">
@@ -209,13 +289,31 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="col-xl-6 col-md-6 mb-4">
                                     <div class="card border-left-info shadow h-100 py-2">
                                         <div class="card-body">
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                        মোট উত্তোলন</div>
+                                                        মোট উত্তোলন
+                                                    </div>
+                                                    <div class="h6 mb-0 font-weight-bold text-gray-800">$ ৩৪৫৩৪</div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-md-6 mb-4">
+                                    <div class="card border-left-info shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                        বর্তমান ব্যালেন্স
+                                                    </div>
                                                     <div class="h6 mb-0 font-weight-bold text-gray-800">$ ৩৪৫৩৪</div>
                                                 </div>
                                                 <div class="col-auto">
@@ -417,53 +515,7 @@
                     <div class="body table-responsive members_profiles datatable ">
 
                         <table class="table table-hover">
-                            <thead>
-                                @php
-                                 $total_balance =0;
-                                @endphp
-                                <tbody>
-                                    <tr>
-                                        <td  colspan="5" class="text-right">
-                                            মোট জমা
 
-                                        </td>
-                                        <td>
-                                            {{\App\NumberConverter::en2bn($total_deposited)}} টাকা
-                                        </td>
-                                        <td  colspan="4"></td>
-                                    </tr>
-                                    <tr>
-                                        <td  colspan="5" class="text-right">
-                                            মোট লাভ
-
-                                        </td>
-                                        <td>
-                                            {{\App\NumberConverter::en2bn($total_profit)}} টাকা ({{\App\NumberConverter::en2bn(number_format($total_profit/$total_deposited*100,2))}}%)
-                                        </td>
-                                        <td  colspan="4"></td>
-                                    </tr>
-                                    <tr>
-                                        <td  colspan="5" class="text-right">
-                                            মোট উত্তোলন
-
-                                        </td>
-                                        <td>
-                                            {{\App\NumberConverter::en2bn($total_withdraw)}} টাকা
-                                        </td>
-                                        <td  colspan="4"></td>
-                                    </tr>
-                                    <tr>
-                                        <td  colspan="5" class="text-right">
-                                            বর্তমান ব্যালেন্স
-
-                                        </td>
-                                        <td>
-                                            {{\App\NumberConverter::en2bn($total_balance)}} টাকা
-                                        </td>
-                                        <td  colspan="4"></td>
-                                    </tr>
-                                </tbody>
-                            </thead>
                             <thead>
 
                                 <tr>
