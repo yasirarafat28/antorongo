@@ -27,6 +27,9 @@ Route::post('/get-thana-list-by-district', 'ThanaController@getThana')->name('ge
 Route::post('/getSalaryStructure', 'SalarySetupController@getSalaryStructure')->name('getSalaryStructure');
 
 
+Route::get('/transaction-invoice/{txn_id}', 'InvoiceController@transaction_invoice')->name('transaction_invoice');
+
+
 
 //All User Route
 Route::group(['middleware' => ['auth']], function () {

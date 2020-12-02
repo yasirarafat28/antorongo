@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCurrentAccountsTable extends Migration
+class AddCalcutableInTransactionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateCurrentAccountsTable extends Migration
      */
     public function up()
     {
-        Schema::create('current_accounts', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('transaction', function (Blueprint $table) {
+            //
+
+            $table->enum('canculatable',['yes','no'])->default('yes');
         });
     }
 
@@ -26,6 +27,8 @@ class CreateCurrentAccountsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('current_accounts');
+        Schema::table('transactions', function (Blueprint $table) {
+            //
+        });
     }
 }

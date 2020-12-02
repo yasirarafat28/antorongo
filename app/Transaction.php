@@ -26,6 +26,18 @@ class Transaction extends Model
 
     }
 
+
+    public function receiver()
+    {
+        return $this->belongsTo('App\User','received_by');
+
+    }
+
+    public function savings()
+    {
+        return $this->belongsTo('App\Saving','transactable_id');
+    }
+
     public static function TransactionByHeadDate($id,$from,$to)
     {
 
