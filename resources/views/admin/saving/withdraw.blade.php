@@ -35,427 +35,425 @@
                 {{ $errors->first() }}
             </div>
         @endif
-        <div class="row clearfix">
-            <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="row clearfix">
+                <div class="col-sm-12 col-md-12 col-lg-12">
 
-                <div class="card shadow">
-                    <div class="header">
-                        <div class="clearfix">
-                            <div class="float-left">
-                                <h2> সঞ্চয় খুঁজুন </h2>
+                    <div class="card shadow">
+                        <div class="header">
+                            <div class="clearfix">
+                                <div class="float-left">
+                                    <h2> সঞ্চয় খুঁজুন </h2>
+                                </div>
+                                {{-- <div class="float-right">
+                                    <a data-toggle="modal" data-target="#withdrawModal" class="btn btn-primary">  উত্তোলন করুন </a>
+                                </div> --}}
                             </div>
-                            {{-- <div class="float-right">
-                                <a data-toggle="modal" data-target="#withdrawModal" class="btn btn-primary">  উত্তোলন করুন </a>
-                            </div> --}}
                         </div>
-                    </div>
-                    {{-- <div class="header">
-                        <h2><strong>সঞ্চয় খুঁজুন</strong><small></small> </h2>
-                        <ul class="header-dropdown">
-                            <li class="remove">
-                                <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
-                            </li>
-                        </ul>
-                    </div> --}}
+                        {{-- <div class="header">
+                            <h2><strong>সঞ্চয় খুঁজুন</strong><small></small> </h2>
+                            <ul class="header-dropdown">
+                                <li class="remove">
+                                    <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
+                                </li>
+                            </ul>
+                        </div> --}}
 
-                    <div class="body members_profiles">
-                        <form method="GET">
-                            <div class="row clearfix">
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="সঞ্চয় নাম্বার" name="q" value="{{$query}}">
+                        <div class="body members_profiles">
+                            <form method="GET">
+                                <div class="row clearfix">
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="সঞ্চয় নাম্বার" name="q" value="{{$query}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12">
+                                        <button class="btn btn-primary btn-round">খুজুন</button>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-12">
-                                    <button class="btn btn-primary btn-round">খুজুন</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-
-                    <hr>
-                    @if($saving)
-
-                    <div class="row mb-3">
-
-                        <div class="col-md-12 text-center mb-3">
-                            <h2><strong> সঞ্চয় </strong> বিস্তারিত</h2>
+                            </form>
                         </div>
 
 
-                        <div class="col-md-4">
+                        <hr>
+                        @if($saving)
 
-                            <div class="body">
+                        <div class="row mb-3">
 
-                                <table class="table table-stripped">
-                                    <tbody>
-                                        <tr>
-                                            <td class="text-right">নাম :</td>
-                                            <td class="text-left">{{$saving->user->name}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-right">সভ্য আইডি : </td>
-                                            <td class="text-left">{{$saving->user->unique_id??''}}</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="text-right">সঞ্চয় আইডি : </td>
-                                            <td class="text-left">{{$saving->txn_id??''}}</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="text-right">
-                                                ধরন :
-                                            </td>
-                                            <td class="text-left">
-                                                @if($saving->type=='short')
-                                                স্বল্প মেয়াদী (৫ বছর মেয়াদী)
-                                                @elseif($saving->type=='long')
-                                                    দীর্ঘ মেয়াদী (১০ বছর মেয়াদী)
-                                                @else
-                                                    দৈনিক
-                                                @endif
-                                            </td>
-                                        </tr>
-
-                                        <?php
-                                            $deposited  = $transactions->where('type','deposit')->sum('amount');
-                                            $total_profit  = $transactions->where('type','profit')->sum('amount');
-                                            $total_withdraw  = $transactions->sum('outgoing');
-                                        ?>
-
-                                        @if($saving->type=='daily')
-                                        <tr>
-                                            <td class="text-right">
-                                                মোট জমা হয়েছে :
-                                            </td>
-                                            <td class="text-left">
-                                                {{\App\NumberConverter::en2bn($deposited)}} টাকা
-                                            </td>
-                                        </tr>
-                                        @else
-                                        <tr>
-                                            <td class="text-right">
-                                                পলিসির পরিমান  :
-                                            </td>
-                                            <td class="text-left">
-                                                {{\App\NumberConverter::en2bn($saving->target_amount)}} টাকা
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-right">
-                                                মোট জমা হয়েছে :
-                                            </td>
-                                            <td class="text-left">
-                                                {{\App\NumberConverter::en2bn($deposited)}} টাকা
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-right">
-                                                মোট লাভ হয়েছে :
-                                            </td>
-                                            <td class="text-left">
-                                                {{\App\NumberConverter::en2bn($total_profit)}} টাকা
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-right">
-                                                মোট  ফেরত :
-                                            </td>
-                                            <td class="text-left">
-                                                {{\App\NumberConverter::en2bn($saving->return_amount)}} টাকা
-                                            </td>
-                                        </tr>
-                                        @endif
-                                        <tr>
-                                            <td class="text-right">
-                                                অবস্থা :
-                                            </td>
-                                            <td class="text-left">
-                                                {{$saving->status}}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-
-                                {{-- <span class="m-t-0 m-b-0"><strong>নামঃ  {{$saving->user->name}}</strong></span>
-                                <hr>
-
-                                <span class="job_post">সভ্য আইডি : {{$saving->user->unique_id??''}}</span>
-
-                                <hr>
-
-                                <span class="job_post">সঞ্চয় আইডি : {{$saving->txn_id??''}}</span>
-                                <hr>
-                                <span class="job_post">ধরন :
-                                    @if($saving->type=='short')
-                                        স্বল্প মেয়াদী (৫ বছর মেয়াদী)
-                                    @elseif($saving->type=='long')
-                                        দীর্ঘ মেয়াদী (১০ বছর মেয়াদী)
-                                    @else
-                                        দৈনিক
-                                    @endif
-
-                                </span>
-
-                                <?php
-                                    $deposited  = $transactions->where('type','deposit')->sum('amount');
-                                    $total_profit  = $transactions->where('type','profit')->sum('amount');
-                                    $total_withdraw  = $transactions->sum('outgoing');
-
-                                ?>
-
-                                <hr>
-                                @if($saving->type=='daily')
-                                    <span class="job_post"> মোট জমা হয়েছে : {{\App\NumberConverter::en2bn($deposited)}} টাকা </span>
-
-                                    <hr>
-                                @else
-
-                                    <span class="job_post"> পলিসির পরিমান  : {{\App\NumberConverter::en2bn($saving->target_amount)}} টাকা </span>
-
-                                    <hr>
-
-                                    <span class="job_post"> মোট জমা হয়েছে : {{\App\NumberConverter::en2bn($deposited)}} টাকা </span>
-
-                                    <hr>
-
-                                    <span class="job_post"> মোট লাভ হয়েছে : {{\App\NumberConverter::en2bn($total_profit)}} টাকা </span>
-
-                                    <hr>
-
-                                    <span class="job_post"> মোট  ফেরত : {{\App\NumberConverter::en2bn($saving->return_amount)}} টাকা </span>
-
-                                    <hr>
-                                @endif
-
-                                <span class="job_post"> অবস্থা : {{$saving->status}} </span>  --}}
-                            </div>
-
-                            <hr>
-                            <br>
-                        </div>
-
-
-
-                             {{-- <div class="header">
-
+                            <div class="col-md-12 text-center mb-3">
                                 <h2><strong> সঞ্চয় </strong> বিস্তারিত</h2>
-
-                            </div> --}}
-
-
-                            <div class="col-md-8">
-
-                                <div class="row">
+                            </div>
 
 
-                                    {{-- <thead>
-                                        @php
-                                            $total =0;
-                                        @endphp
+                            <div class="col-md-4">
+
+                                <div class="body">
+
+                                    <table class="table table-stripped">
                                         <tbody>
                                             <tr>
-                                                <td  colspan="5" class="text-right">
-                                                    মোট জমা
+                                                <td class="text-right">নাম :</td>
+                                                <td class="text-left">{{$saving->user->name}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-right">সভ্য আইডি : </td>
+                                                <td class="text-left">{{$saving->user->unique_id??''}}</td>
+                                            </tr>
 
+                                            <tr>
+                                                <td class="text-right">সঞ্চয় আইডি : </td>
+                                                <td class="text-left">{{$saving->txn_id??''}}</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="text-right">
+                                                    ধরন :
                                                 </td>
-                                                <td>
+                                                <td class="text-left">
+                                                    @if($saving->type=='short')
+                                                    স্বল্প মেয়াদী (৫ বছর মেয়াদী)
+                                                    @elseif($saving->type=='long')
+                                                        দীর্ঘ মেয়াদী (১০ বছর মেয়াদী)
+                                                    @else
+                                                        দৈনিক
+                                                    @endif
+                                                </td>
+                                            </tr>
+
+                                            <?php
+                                                $deposited  = $transactions->where('type','deposit')->sum('amount');
+                                                $total_profit  = $transactions->where('type','profit')->sum('amount');
+                                                $total_withdraw  = $transactions->sum('outgoing');
+                                            ?>
+
+                                            @if($saving->type=='daily')
+                                            <tr>
+                                                <td class="text-right">
+                                                    মোট জমা হয়েছে :
+                                                </td>
+                                                <td class="text-left">
                                                     {{\App\NumberConverter::en2bn($deposited)}} টাকা
                                                 </td>
-                                                <td colspan="3"></td>
+                                            </tr>
+                                            @else
+                                            <tr>
+                                                <td class="text-right">
+                                                    পলিসির পরিমান  :
+                                                </td>
+                                                <td class="text-left">
+                                                    {{\App\NumberConverter::en2bn($saving->target_amount)}} টাকা
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <td  colspan="5" class="text-right">
-                                                    মোট লাভ
-
+                                                <td class="text-right">
+                                                    মোট জমা হয়েছে :
                                                 </td>
-                                                <td>
-                                                    {{\App\NumberConverter::en2bn($total_profit)}} টাকা ({{\App\NumberConverter::en2bn(number_format($total_profit/$deposited*100,2))}}%)
+                                                <td class="text-left">
+                                                    {{\App\NumberConverter::en2bn($deposited)}} টাকা
                                                 </td>
-                                                <td colspan="3"></td>
                                             </tr>
                                             <tr>
-                                                <td  colspan="5" class="text-right">
-                                                    মোট উত্তোলন
-
+                                                <td class="text-right">
+                                                    মোট লাভ হয়েছে :
                                                 </td>
-                                                <td>
-                                                    {{\App\NumberConverter::en2bn($total_withdraw)}} টাকা
+                                                <td class="text-left">
+                                                    {{\App\NumberConverter::en2bn($total_profit)}} টাকা
                                                 </td>
-                                                <td colspan="3"></td>
                                             </tr>
                                             <tr>
-                                                <td  colspan="5" class="text-right">
-                                                    বর্তমান ব্যালেন্স
-
+                                                <td class="text-right">
+                                                    মোট  ফেরত :
                                                 </td>
-                                                <td>
-                                                    {{\App\NumberConverter::en2bn($total)}} টাকা
+                                                <td class="text-left">
+                                                    {{\App\NumberConverter::en2bn($saving->return_amount)}} টাকা
                                                 </td>
-                                                <td colspan="3"></td>
+                                            </tr>
+                                            @endif
+                                            <tr>
+                                                <td class="text-right">
+                                                    অবস্থা :
+                                                </td>
+                                                <td class="text-left">
+                                                    {{$saving->status}}
+                                                </td>
                                             </tr>
                                         </tbody>
-                                    </thead> --}}
+                                    </table>
 
 
-                                    <!-- Earnings (Monthly) Card Example -->
-                                    <div class="col-xl-6 col-md-6 mb-4">
-                                        @php
-                                            $total =0;
-                                        @endphp
-                                        <div class="card border-left-primary shadow h-100 py-2">
-                                            <div class="card-body">
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col mr-2">
-                                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                            মোট জমা
-                                                        </div>
-                                                        <div class="h6 mb-0 font-weight-bold text-gray-800">৪৫৩ টি</div>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {{-- <span class="m-t-0 m-b-0"><strong>নামঃ  {{$saving->user->name}}</strong></span>
+                                    <hr>
 
+                                    <span class="job_post">সভ্য আইডি : {{$saving->user->unique_id??''}}</span>
 
-                                    <!-- Pending Requests Card Example -->
-                                    <div class="col-xl-6 col-md-6 mb-4">
-                                        <div class="card border-left-warning shadow h-100 py-2">
-                                            <div class="card-body">
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col mr-2">
-                                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                            মোট লাভ
-                                                        </div>
-                                                        <div class="h6 mb-0 font-weight-bold text-gray-800">$ ৩৪৫৩৪</div>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-md-6 mb-4">
-                                        <div class="card border-left-info shadow h-100 py-2">
-                                            <div class="card-body">
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col mr-2">
-                                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                            মোট উত্তোলন
-                                                        </div>
-                                                        <div class="h6 mb-0 font-weight-bold text-gray-800">$ ৩৪৫৩৪</div>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-md-6 mb-4">
-                                        <div class="card border-left-info shadow h-100 py-2">
-                                            <div class="card-body">
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col mr-2">
-                                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                            বর্তমান ব্যালেন্স
-                                                        </div>
-                                                        <div class="h6 mb-0 font-weight-bold text-gray-800">$ ৩৪৫৩৪</div>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <hr>
+
+                                    <span class="job_post">সঞ্চয় আইডি : {{$saving->txn_id??''}}</span>
+                                    <hr>
+                                    <span class="job_post">ধরন :
+                                        @if($saving->type=='short')
+                                            স্বল্প মেয়াদী (৫ বছর মেয়াদী)
+                                        @elseif($saving->type=='long')
+                                            দীর্ঘ মেয়াদী (১০ বছর মেয়াদী)
+                                        @else
+                                            দৈনিক
+                                        @endif
+
+                                    </span>
+
+                                    <?php
+                                        $deposited  = $transactions->where('type','deposit')->sum('amount');
+                                        $total_profit  = $transactions->where('type','profit')->sum('amount');
+                                        $total_withdraw  = $transactions->sum('outgoing');
+
+                                    ?>
+
+                                    <hr>
+                                    @if($saving->type=='daily')
+                                        <span class="job_post"> মোট জমা হয়েছে : {{\App\NumberConverter::en2bn($deposited)}} টাকা </span>
+
+                                        <hr>
+                                    @else
+
+                                        <span class="job_post"> পলিসির পরিমান  : {{\App\NumberConverter::en2bn($saving->target_amount)}} টাকা </span>
+
+                                        <hr>
+
+                                        <span class="job_post"> মোট জমা হয়েছে : {{\App\NumberConverter::en2bn($deposited)}} টাকা </span>
+
+                                        <hr>
+
+                                        <span class="job_post"> মোট লাভ হয়েছে : {{\App\NumberConverter::en2bn($total_profit)}} টাকা </span>
+
+                                        <hr>
+
+                                        <span class="job_post"> মোট  ফেরত : {{\App\NumberConverter::en2bn($saving->return_amount)}} টাকা </span>
+
+                                        <hr>
+                                    @endif
+
+                                    <span class="job_post"> অবস্থা : {{$saving->status}} </span>  --}}
                                 </div>
-                                {{-- <a data-toggle="modal" data-target="#addProfiteModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> লাভ যোগ করুন </a> --}}
-                                <a data-toggle="modal" data-target="#withdrawModal" class="btn btn-primary">  উত্তোলন করুন </a>
+
+                                <hr>
+                                <br>
                             </div>
 
 
-                        <div class="modal fade" id="withdrawModal" tabindex="-1" role="dialog">
-                            <div class="modal-dialog modal-lg" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title"><strong>উত্তোলন</strong> করুন</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
-                                        </button>
-                                      </div>
-                                    <div class="modal-body">
-                                       <form action="{{url('admin/saving/withdraw')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
-                                            {{csrf_field()}}
-                                            <input type="hidden" name="saving_id" value="{{$saving->id}}">
-                                            <input type="hidden" name="user_id" value="{{$saving->user_id}}">
+
+                                {{-- <div class="header">
+
+                                    <h2><strong> সঞ্চয় </strong> বিস্তারিত</h2>
+
+                                </div> --}}
 
 
-                                            <div class="col-lg-12 col-md-12">
+                                <div class="col-md-8">
 
-                                                <div class="form-group">
+                                    <div class="row">
 
-                                                    <label for=""><small> উত্তলনের পরিমান</small></label>
 
-                                                    <input type="number" step="any" class="form-control" name="amount" placeholder="উত্তলনের পরিমান" id="amount">
+                                        {{-- <thead>
+                                            @php
+                                                $total =0;
+                                            @endphp
+                                            <tbody>
+                                                <tr>
+                                                    <td  colspan="5" class="text-right">
+                                                        মোট জমা
+
+                                                    </td>
+                                                    <td>
+                                                        {{\App\NumberConverter::en2bn($deposited)}} টাকা
+                                                    </td>
+                                                    <td colspan="3"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td  colspan="5" class="text-right">
+                                                        মোট লাভ
+
+                                                    </td>
+                                                    <td>
+                                                        {{\App\NumberConverter::en2bn($total_profit)}} টাকা ({{\App\NumberConverter::en2bn(number_format($total_profit/$deposited*100,2))}}%)
+                                                    </td>
+                                                    <td colspan="3"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td  colspan="5" class="text-right">
+                                                        মোট উত্তোলন
+
+                                                    </td>
+                                                    <td>
+                                                        {{\App\NumberConverter::en2bn($total_withdraw)}} টাকা
+                                                    </td>
+                                                    <td colspan="3"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td  colspan="5" class="text-right">
+                                                        বর্তমান ব্যালেন্স
+
+                                                    </td>
+                                                    <td>
+                                                        {{\App\NumberConverter::en2bn($total)}} টাকা
+                                                    </td>
+                                                    <td colspan="3"></td>
+                                                </tr>
+                                            </tbody>
+                                        </thead> --}}
+
+
+                                        <!-- Earnings (Monthly) Card Example -->
+                                        <div class="col-xl-6 col-md-6 mb-4">
+                                            @php
+                                                $total =0;
+                                            @endphp
+                                            <div class="card border-left-primary shadow h-100 py-2">
+                                                <div class="card-body">
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col mr-2">
+                                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                                মোট জমা
+                                                            </div>
+                                                            <div class="h6 mb-0 font-weight-bold text-gray-800">৪৫৩ টি</div>
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Pending Requests Card Example -->
+                                        <div class="col-xl-6 col-md-6 mb-4">
+                                            <div class="card border-left-warning shadow h-100 py-2">
+                                                <div class="card-body">
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col mr-2">
+                                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                                মোট লাভ
+                                                            </div>
+                                                            <div class="h6 mb-0 font-weight-bold text-gray-800">$ ৩৪৫৩৪</div>
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-md-6 mb-4">
+                                            <div class="card border-left-info shadow h-100 py-2">
+                                                <div class="card-body">
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col mr-2">
+                                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                                মোট উত্তোলন
+                                                            </div>
+                                                            <div class="h6 mb-0 font-weight-bold text-gray-800">$ ৩৪৫৩৪</div>
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-md-6 mb-4">
+                                            <div class="card border-left-info shadow h-100 py-2">
+                                                <div class="card-body">
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col mr-2">
+                                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                                বর্তমান ব্যালেন্স
+                                                            </div>
+                                                            <div class="h6 mb-0 font-weight-bold text-gray-800">$ ৩৪৫৩৪</div>
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- <a data-toggle="modal" data-target="#addProfiteModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> লাভ যোগ করুন </a> --}}
+                                    <a data-toggle="modal" data-target="#withdrawModal" class="btn btn-primary">  উত্তোলন করুন </a>
+                                </div>
+
+
+                            <div class="modal fade" id="withdrawModal" tabindex="-1" role="dialog">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title"><strong>উত্তোলন</strong> করুন</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                        <form action="{{url('admin/saving/withdraw')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
+                                                {{csrf_field()}}
+                                                <input type="hidden" name="saving_id" value="{{$saving->id}}">
+                                                <input type="hidden" name="user_id" value="{{$saving->user_id}}">
+
+
+                                                <div class="col-lg-12 col-md-12">
+
+                                                    <div class="form-group">
+
+                                                        <label for=""><small> উত্তলনের পরিমান</small></label>
+
+                                                        <input type="number" step="any" class="form-control" name="amount" placeholder="উত্তলনের পরিমান" id="amount">
+
+                                                    </div>
 
                                                 </div>
 
-                                            </div>
+                                                <div class="col-lg-12 col-md-12">
 
-                                            <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
 
-                                                <div class="form-group">
+                                                        <label for=""><small> উত্তলনের তারিখ </small></label>
 
-                                                    <label for=""><small> উত্তলনের তারিখ </small></label>
+                                                        <input type="date" class="form-control" name="date" placeholder="উত্তলনের তারিখ">
 
-                                                    <input type="date" class="form-control" name="date" placeholder="উত্তলনের তারিখ">
-
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-lg-12 col-md-12">
-
-                                                <div class="form-group">
-
-                                                    <label for=""><small> মতামত </small></label>
-
-                                                    <textarea name="note" class="form-control" placeholder="মতামত"></textarea>
-
+                                                    </div>
                                                 </div>
 
-                                            </div>
 
-                                            <div class="col-md-12 text-center">
+                                                <div class="col-lg-12 col-md-12">
 
-                                                <button class="btn btn-primary btn-round"> উত্তোলন করুন</button>
+                                                    <div class="form-group">
 
-                                            </div>
-                                         </form>
+                                                        <label for=""><small> মতামত </small></label>
 
+                                                        <textarea name="note" class="form-control" placeholder="মতামত"></textarea>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-md-12 text-center">
+
+                                                    <button class="btn btn-primary btn-round"> উত্তোলন করুন</button>
+
+                                                </div>
+                                            </form>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
+
+
+
                         </div>
-
-
-
-
+                        @endif
                     </div>
                 </div>
-                    @endif
-                </div>
-
             </div>
-
 
 
         @if($transactions)

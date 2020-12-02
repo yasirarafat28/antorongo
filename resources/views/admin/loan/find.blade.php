@@ -61,132 +61,289 @@
                     <hr>
                     @if($loan)
 
-                    <div class="col-md-12 row mb-3">
+                    <div class="row mb-3">
 
-
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-
-                            <div class="header">
-
-                                <h2><strong> ঋণ  </strong> বিস্তারিত</h2>
-
-                            </div>
-
-                            <span class="m-t-0 m-b-0"><strong>নামঃ  {{$loan->user->name}}</strong></span>
-                            <hr>
-
-                            <span class="job_post">সভ্য আইডি : {{$loan->user->unique_id}}</span>
-
-                            <hr>
-
-                            <span class="job_post">ঋণ আইডি : {{$loan->unique_id}}</span>
-                            <hr>
-
-
-                            <span class="job_post"> ঋণের পরিমান  :
-                                @if($loan->status=='active')
-                                    {{\App\NumberConverter::en2bn($loan->approved_amount)}}
-                                @else
-                                    {{\App\NumberConverter::en2bn($loan->request_amount)}}
-                                @endif
-
-                                টাকা </span>
-
-                            <hr>
-
-
-                            <span class="job_post"> মোট পরিশোধ যোগ্য  :
-                                <?php
-                                    if ($loan->status=='active')
-                                        $payable = $loan->approved_amount + ($loan->approved_amount* $loan->interest_rate/100);
-                                    else
-                                        $payable = $loan->request_amount + ($loan->request_amount* $loan->interest_rate/100);
-                                ?>
-
-                               {{\App\NumberConverter::en2bn($payable)}} টাকা </span>
-
-                            <hr>
-
-                            <span class="job_post"> মোট পরিশোধ : {{\App\NumberConverter::en2bn($transactions->sum('incoming'))}} টাকা </span>
-
-                            <hr>
-
-                            <span class="job_post"> মোট বকেয়া : {{\App\NumberConverter::en2bn($payable-$transactions->sum('incoming'))}} টাকা </span>
-
-                            <hr>
-
-                            <span class="job_post"> অবস্থা : {{$loan->status}} </span>
-
-                            <hr>
-
-                            <br>
-
+                        <div class="col-md-12 text-center mb-3">
+                            <h2><strong> ঋণ</strong> বিস্তারিত</h2>
                         </div>
 
-                        <div class="col-lg-5 col-md-5 col-sm-12 offset-1">
+                        <div class="col-md-4">
+                            <div class="body">
 
-                            <!--<div class="header">
+                                <table class="table table-stripped">
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-right">নাম :</td>
+                                            <td class="text-left">{{$loan->user->name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">সভ্য আইডি : </td>
+                                            <td class="text-left">{{$loan->user->unique_id}}</td>
+                                        </tr>
 
-                                <h2><strong> জমা </strong>  করুন</h2>
+                                        <tr>
+                                            <td class="text-right">ঋণ আইডি :</td>
+                                            <td class="text-left">{{$loan->unique_id}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="text-right">
+                                                ঋণের পরিমান  :
+                                            </td>
+                                            <td class="text-left">
+                                                @if($loan->status=='active')
+                                                {{\App\NumberConverter::en2bn($loan->approved_amount)}}
+                                                @else
+                                                    {{\App\NumberConverter::en2bn($loan->request_amount)}}
+                                                @endif
+
+                                                টাকা
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="text-right">
+                                                মোট পরিশোধ যোগ্য  :
+                                            </td>
+                                            <td class="text-left">
+                                                <?php
+                                                    if ($loan->status=='active')
+                                                        $payable = $loan->approved_amount + ($loan->approved_amount* $loan->interest_rate/100);
+                                                    else
+                                                        $payable = $loan->request_amount + ($loan->request_amount* $loan->interest_rate/100);
+                                                ?>
+
+                                                    {{\App\NumberConverter::en2bn($payable)}} টাকা
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="text-right">
+                                                মোট পরিশোধ :
+                                            </td>
+                                            <td class="text-left">
+                                                {{\App\NumberConverter::en2bn($transactions->sum('incoming'))}} টাকা
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">
+                                                মোট বকেয়া :
+                                            </td>
+                                            <td class="text-left">
+                                                {{\App\NumberConverter::en2bn($payable-$transactions->sum('incoming'))}} টাকা
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">
+                                                অবস্থা :
+                                            </td>
+                                            <td class="text-left">
+                                                {{$loan->status}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                            {{-- <span class="m-t-0 m-b-0"><strong>নামঃ  {{$loan->user->name}}</strong></span>
+                                            <hr>
+
+                                            <span class="job_post">সভ্য আইডি : {{$loan->user->unique_id}}</span>
+
+                                            <hr>
+
+                                            <span class="job_post">ঋণ আইডি : {{$loan->unique_id}}</span>
+                                            <hr>
+
+
+                                            <span class="job_post"> ঋণের পরিমান  :
+                                                @if($loan->status=='active')
+                                                    {{\App\NumberConverter::en2bn($loan->approved_amount)}}
+                                                @else
+                                                    {{\App\NumberConverter::en2bn($loan->request_amount)}}
+                                                @endif
+
+                                                টাকা </span>
+
+                                            <hr>
+
+
+                                            <span class="job_post"> মোট পরিশোধ যোগ্য  :
+                                                <?php
+                                                    if ($loan->status=='active')
+                                                        $payable = $loan->approved_amount + ($loan->approved_amount* $loan->interest_rate/100);
+                                                    else
+                                                        $payable = $loan->request_amount + ($loan->request_amount* $loan->interest_rate/100);
+                                                ?>
+
+                                            {{\App\NumberConverter::en2bn($payable)}} টাকা </span>
+
+                                            <hr>
+
+                                            <span class="job_post"> মোট পরিশোধ : {{\App\NumberConverter::en2bn($transactions->sum('incoming'))}} টাকা </span>
+
+                                            <hr>
+
+                                            <span class="job_post"> মোট বকেয়া : {{\App\NumberConverter::en2bn($payable-$transactions->sum('incoming'))}} টাকা </span>
+
+                                            <hr>
+
+                                            <span class="job_post"> অবস্থা : {{$loan->status}} </span> --}}
 
                             </div>
-                            <form action="{{route('LoanDepositSubmit')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
-                                {{csrf_field()}}
-                                <input type="hidden" name="loan_id" value="1">
-                                <input type="hidden" name="user_id" value="3">
+                            <hr>
+                        <br>
+                    </div>
 
+                    <div class="col-md-8">
 
-                                <div class="col-lg-12 col-md-12">
+                        <div class="row">
 
-                                    <div class="form-group">
+                            <!-- Earnings (Monthly) Card Example -->
+                            <div class="col-xl-6 col-md-6 mb-4">
 
-                                        <label for=""><small> কিস্তির পরিমান</small></label>
-
-                                        <input type="number" step="any" class="form-control" name="amount" placeholder="কিস্তির পরিমান" id="amount">
-
-                                    </div>
-
-                                </div>
-
-                                <div class="col-lg-12 col-md-12">
-
-                                    <div class="form-group">
-
-                                        <label for=""><small> তারিখ </small></label>
-
-                                        <input type="date" class="form-control" name="date" placeholder=" তারিখ">
-
+                                <div class="card border-left-primary shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                    মোট জমা
+                                                </div>
+                                                <div class="h6 mb-0 font-weight-bold text-gray-800">৪৫৩ টি</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                            </div>
 
 
-                                <div class="col-lg-12 col-md-12">
-
-                                    <div class="form-group">
-
-                                        <label for=""><small> মতামত </small></label>
-
-                                        <textarea name="note" class="form-control" placeholder="মতামত"></textarea>
-
+                            <!-- Pending Requests Card Example -->
+                            <div class="col-xl-6 col-md-6 mb-4">
+                                <div class="card border-left-warning shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                    মোট লাভ
+                                                </div>
+                                                <div class="h6 mb-0 font-weight-bold text-gray-800">$ ৩৪৫৩৪</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
                                     </div>
-
                                 </div>
-
-                                <div class="col-md-6 offset-3">
-
-                                    <button class="btn btn-primary btn-round"> জমা করুন</button>
-
+                            </div>
+                            <div class="col-xl-6 col-md-6 mb-4">
+                                <div class="card border-left-info shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                    মোট উত্তোলন
+                                                </div>
+                                                <div class="h6 mb-0 font-weight-bold text-gray-800">$ ৩৪৫৩৪</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </form>-->
+                            </div>
+                            <div class="col-xl-6 col-md-6 mb-4">
+                                <div class="card border-left-info shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                    বর্তমান ব্যালেন্স
+                                                </div>
+                                                <div class="h6 mb-0 font-weight-bold text-gray-800">$ ৩৪৫৩৪</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
+                        <a data-toggle="modal" data-target="#LoanDepositModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> কিস্তি আদায় করুন </a>
+                    </div>
+
+                    <div class="modal fade" id="LoanDepositModal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2><strong>জমা</strong>  করুন</h2>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <form action="{{route('LoanDepositSubmit')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
+                                        {{csrf_field()}}
+                                        <input type="hidden" name="loan_id" value="1">
+                                        <input type="hidden" name="user_id" value="3">
+
+
+                                        <div class="col-lg-12 col-md-12">
+
+                                            <div class="form-group">
+
+                                                <label for=""><small> কিস্তির পরিমান</small></label>
+
+                                                <input type="number" step="any" class="form-control" name="amount" placeholder="কিস্তির পরিমান" id="amount">
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-lg-12 col-md-12">
+
+                                            <div class="form-group">
+
+                                                <label for=""><small> তারিখ </small></label>
+
+                                                <input type="date" class="form-control" name="date" placeholder=" তারিখ">
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-lg-12 col-md-12">
+
+                                            <div class="form-group">
+
+                                                <label for=""><small> মতামত </small></label>
+
+                                                <textarea name="note" class="form-control" placeholder="মতামত"></textarea>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-12 text-center">
+
+                                            <button class="btn btn-primary btn-round"> জমা করুন</button>
+
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    @endif
+                    <!--Add Modal End-->
                 </div>
-
+                @endif
             </div>
-
         </div>
+    </div>
         @if($loan)
         <div class="row clearfix">
             <div class="col-lg-12">
