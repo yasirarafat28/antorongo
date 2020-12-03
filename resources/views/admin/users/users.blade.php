@@ -66,7 +66,7 @@
                     <div class="header">
                         <div class="clearfix">
                             <div class="float-left">
-                                <h2>Users </h2>
+                                <h2>কর্মচারী তালিকা </h2>
                             </div>
                             <div class="float-right">
                                 <a data-toggle="modal" data-target="#largeModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> সদস্য যোগ করুন </a>

@@ -15,11 +15,11 @@
     <div class="container-fluid" id="printable">
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">ঋণের তথ্য খুঁজুন</h1>
+            <h1 class="h3 mb-0 text-gray-800">লেনদেনের স্টেটমেন্ট</h1>
 
             <ul class="breadcrumb float-md-right">
                 <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0);">ঋণের তথ্য খুঁজুন</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">লেনদেনের স্টেটমেন্ট</a></li>
             </ul>
         </div>
 
