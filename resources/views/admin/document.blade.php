@@ -62,19 +62,55 @@
         <div class="row clearfix">
             <div class="col-lg-12">
                 <div class="card shadow">
-                    <div class="header">
-                        <div class="clearfix">
-                            <div class="float-left">
-                                <h2>ডকুমেন্ট এর তালিকা  </h2>
+                        <div class="header">
+                            <div class="clearfix">
+                                <div class="float-left">
+                                    <h2>ডকুমেন্ট এর তালিকা  </h2>
+                                </div>
+                                <div class="float-right">
+                                    <a data-toggle="modal" data-target="#largeModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> ডকুমেন্ট যোগ করুন </a>
+                                </div>
                             </div>
-                            <div class="float-right">
-                                <a data-toggle="modal" data-target="#largeModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> ডকুমেন্ট যোগ করুন </a>
-                            </div>
-                        </div>
 
-                    </div>
+                        </div>
                     <div class="body">
-                        <table class="table table-bordered table-striped table-hover dataTable js-plaintable">
+                        @forelse ($records??array() as $document)
+                            <div class="col-lg-3 col-md-4 col-sm-12">
+                                <div class="">
+                                    <div class="card-body file_manager">
+                                        <div class="file">
+                                            <a target="_blank" href="{{
+                                                // storage_file_path(
+                                                    $document->file??''}}">
+                                                <div class="hover">
+                                                    <!--<button type="button" class="bg-transparent remove text-danger">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>-->
+                                                </div>
+                                                <div class="icon">
+                                                    <i class="fa fa-file"></i>
+                                                </div>
+                                                <div class="file-name">
+                                                    <p class="m-b-5 text-muted">{{$document->title}}</p>
+                                                    <small>
+                                                        {{-- Size: {{number_format($document->size/1000000,2)}} MB  --}}
+                                                        <span class="date text-muted">{{date('F d, Y',strtotime($document->created_at))}}</span></small>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        @empty
+
+                            <div class="col-md-12 text-center">
+                                <h5><strong>Sorry!</strong> No record found!</h5>
+                            </div>
+
+                        @endforelse
+
+                        {{-- <table class="table table-bordered table-striped table-hover dataTable js-plaintable">
                             <thead>
                             <tr>
                                 <th>সিরিয়াল </th>
@@ -101,7 +137,7 @@
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                                 aria-labelledby="dropdownMenuLink">
-                                                {{-- <a class="dropdown-item"  title="বিস্তারিত" href="{{url($item->file??'')}}"><i class="fa fa-eye"> </i> বিস্তারিত </i></a> --}}
+                                                 <a class="dropdown-item"  title="বিস্তারিত" href="{{url($item->file??'')}}"><i class="fa fa-eye"> </i> বিস্তারিত </i></a>
                                                 <a data-toggle="modal" data-target="#largeEditModal{{$item->id}}" class="dropdown-item" title="সম্পাদনা করুন"><i class="fa fa-edit"> </i> এডিট</a>
                                                 {!! Form::open([
                                                 'method'=>'DELETE',
@@ -124,13 +160,13 @@
                         </table>
                         <div class="pull-right">
                             {!! $records->appends(\Illuminate\Support\Facades\Request::except('page'))->links() !!}
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
         </div>
-        <!-- #END# Exportable Table -->
     </div>
+        <!-- #END# Exportable Table -->
 </section>
 
 <!-- Add Modal Start -->
@@ -156,12 +192,19 @@
                                 </div>
 
 
-                                <div class="col-lg-12 col-md-12">
+                                {{-- <div class="col-lg-12 col-md-12">
                                     <div class="form-group">
                                         <label for=""><small>ডকুমেন্ট</small></label>
                                         <input type="file" class="form-control" placeholder="ডকুমেন্ট" name="file">
                                     </div>
+                                </div> --}}
+
+                                <div class='col-md-12 mb-4 mt-2'>
+                                    <!-- Dropzone -->
+                                    <div action="{{route('upload')}}" class='dropzone' >
+                                    </div>
                                 </div>
+
                                 <div class="col-md-12 text-center">
                                 <button type="submit" class="btn btn-info btn-round">সেভ করুন</button>
                                 </div>
@@ -169,16 +212,14 @@
                         </form>
                     </div>
                 </div>
-            </div>
-
-
-</div>
+        </div>
+    </div>
 <!--Add Modal End-->
 
 
 @foreach($records as $item)
 <!-- Edit Modal Start -->
-<div class="modal fade" id="largeEditModal{{$item->id}}" tabindex="-1" role="dialog">
+{{-- <div class="modal fade" id="largeEditModal{{$item->id}}" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
 
@@ -218,7 +259,7 @@
                 </div>
 
     </div>
-</div>
+</div> --}}
 
 <!--Edit Modal End-->
 
@@ -235,5 +276,69 @@
 
 @section('script')
 
+<script>
+    var CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
+
+    //Dropzone.autoDiscover = false;
+    var myDropzone = new Dropzone(".dropzone",{
+
+        addRemoveLinks: true,
+        acceptedFiles: ".jpeg,.jpg,.png,.pdf",
+        uploadMultiple:false,
+        success: function (file, response) {
+            let url = '';
+            if(typeof file.xhr.response !== 'undefined'){
+                url = file.xhr.response;
+            }else{
+                url = response;
+
+            }
+            $('form').append('<input type="hidden" name="documents[]" value="' + url + '">')
+        },
+        success: function (file, response) {
+            console.log(response);
+            let url = '';
+            if(typeof file.xhr.response !== 'undefined'){
+                url = file.xhr.response;
+            }else{
+                url = response;
+
+            }
+            $('form').append('<input type="hidden" name="documents[]" value="' + url + '">')
+        },
+        addedFile: function (file) {
+            console.log(file);
+        },
+        removedfile: function (file) {
+            var url = ''
+            if (typeof file.xhr.response !== 'undefined') {
+                name = file.xhr.response
+            } else {
+                name = uploadedDocumentMap[file.name]
+            }
+
+            $.ajax({
+              type:"GET",
+              url:"{{url('documents-remove')}}/",
+              data:{
+                  "url":name
+              },
+              success:function(data){
+                  console.log(data);
+
+                    file.previewElement.remove();
+                    $('form').find('input[name="documents[]"][value="' + name +  '"]').remove();
+              },
+              error:function(xhr){
+                  console.log(xhr);
+              }
+            });
+
+        },
+    });
+    myDropzone.on("sending", function(file, xhr, formData) {
+       formData.append("_token", CSRF_TOKEN);
+    });
+</script>
 @endsection
 

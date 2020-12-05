@@ -163,5 +163,10 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::get('barcode-test/{id}', 'BarcodeController@test');
 
 
+    //document
+    Route::post('documents-upload', 'UploadController@upload')->name('upload');
+    Route::get('documents-remove/', 'UploadController@remove')->name('document-remove');
+
+
 });
 
