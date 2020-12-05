@@ -55,18 +55,18 @@ class ProfileController extends Controller
         $id = Auth::id();
         $user = User::find($id);
         //Division,District/Thana
-        $divisions = Division::orderBy('name','ASC')->get();
-        if ($user->division){
-            $districts=  District::where('division_id',$user->division)->orderBy('name','ASC')->get();
-        }
-        else{
-            $districts = array();
-        }
-        if ($user->district){
-            $thanas=  Thana::where('district_id',$user->district)->orderBy('name','ASC')->get();
-        }else{
-            $thanas = array();
-        }
+        // $divisions = Division::orderBy('name','ASC')->get();
+        // if ($user->division){
+        //     $districts=  District::where('division_id',$user->division)->orderBy('name','ASC')->get();
+        // }
+        // else{
+        //     $districts = array();
+        // }
+        // if ($user->district){
+        //     $thanas=  Thana::where('district_id',$user->district)->orderBy('name','ASC')->get();
+        // }else{
+        //     $thanas = array();
+        // }
 
         //End of Division,District/Thana
 
@@ -76,7 +76,7 @@ class ProfileController extends Controller
 
         //$activities = Activity::with('user')->where('user_id',Auth::user()->id)->orderBy('id','DESC')->paginate(25);
 
-        return view('admin.profile',compact('user','divisions','districts','thanas'));
+        return view('admin.profile',compact('user'));
 
     }
 
@@ -88,58 +88,79 @@ class ProfileController extends Controller
         if ($request->has('name')) {
             $user->name = $request->name;
         }
+        if ($request->has('name_bn')) {
+            $user->name_bn = $request->name_bn;
+        }
+        // if ($request->has('username')) {
+        //     $user->username = $request->username;
+        // }
+        if ($request->has('email')) {
+            $user->email = $request->email;
+        }
         if ($request->has('phone')) {
             $user->phone = $request->phone;
         }
-        /*if ($request->has('email')) {
-            $user->email = $request->email;
-        }*/
+
         if ($request->has('phone_2')) {
             $user->phone_2 = $request->phone_2;
         }
-        if ($request->has('father_name')) {
-            $user->father_name = $request->father_name;
-        }
-        if ($request->has('education_qualification')) {
-            $user->education_qualification = $request->education_qualification;
-        }
+
         if ($request->has('dob')) {
             $user->dob = $request->dob;
         }
+
         if ($request->has('blood_group')) {
             $user->blood_group = $request->blood_group;
         }
+
+        if ($request->has('present_address')) {
+            $user->present_address = $request->present_address;
+        }
+        if ($request->has('permanent_address')) {
+            $user->permanent_address = $request->permanent_address;
+        }
+        // if ($request->has('comment')) {
+        //     $user->comment = $request->comment;
+        // }
+
+
+        // if ($request->has('father_name')) {
+        //     $user->father_name = $request->father_name;
+        // }
+        // if ($request->has('education_qualification')) {
+        //     $user->education_qualification = $request->education_qualification;
+        // }
+
+
         //Address Information
 
-        if ($request->has('address')) {
-            $user->address = $request->address;
-        }
-        if ($request->has('division')) {
-            $user->division = $request->division ?? 0 ;
-        }
-        if ($request->has('district')) {
-            $user->district = $request->district ?? 0 ;
-        }
-        if ($request->has('thana')) {
-            $user->thana = $request->thana ?? 0 ;
-        }
+
+        // if ($request->has('division')) {
+        //     $user->division = $request->division ?? 0 ;
+        // }
+        // if ($request->has('district')) {
+        //     $user->district = $request->district ?? 0 ;
+        // }
+        // if ($request->has('thana')) {
+        //     $user->thana = $request->thana ?? 0 ;
+        // }
 
         //Nominee's information
-        if ($request->has('nominee_name')) {
-            $user->nominee_name = $request->nominee_name;
-        }
-        if ($request->has('nominee_phone')) {
-            $user->nominee_phone = $request->nominee_phone;
-        }
-        if ($request->has('nominee_email')) {
-            $user->nominee_email = $request->nominee_email;
-        }
-        if ($request->has('nominee_dob')) {
-            $user->nominee_dob = $request->nominee_dob;
-        }
-        if ($request->has('nominee_relation')) {
-            $user->nominee_relation = $request->nominee_relation;
-        }
+        // if ($request->has('nominee_name')) {
+        //     $user->nominee_name = $request->nominee_name;
+        // }
+        // if ($request->has('nominee_phone')) {
+        //     $user->nominee_phone = $request->nominee_phone;
+        // }
+        // if ($request->has('nominee_email')) {
+        //     $user->nominee_email = $request->nominee_email;
+        // }
+        // if ($request->has('nominee_dob')) {
+        //     $user->nominee_dob = $request->nominee_dob;
+        // }
+        // if ($request->has('nominee_relation')) {
+        //     $user->nominee_relation = $request->nominee_relation;
+        // }
 
         //All Image file
 
@@ -153,38 +174,38 @@ class ProfileController extends Controller
             $user->photo = $imageUrl ;
         }
 
-        if ($request->hasFile('signature')) {
+        // if ($request->hasFile('signature')) {
 
-            $image      = $request->file('signature');
-            $imageName  = 'user_signature_'.date('ymdhis').'.'.$image->getClientOriginalExtension();
-            $path       = 'images/users/';
-            $image->move($path, $imageName);
-            $imageUrl   = $path . $imageName;
-            $user->signature = $imageUrl ;
-        }
+        //     $image      = $request->file('signature');
+        //     $imageName  = 'user_signature_'.date('ymdhis').'.'.$image->getClientOriginalExtension();
+        //     $path       = 'images/users/';
+        //     $image->move($path, $imageName);
+        //     $imageUrl   = $path . $imageName;
+        //     $user->signature = $imageUrl ;
+        // }
 
-        if ($request->hasFile('nominee_photo')) {
+        // if ($request->hasFile('nominee_photo')) {
 
-            $image      = $request->file('nominee_photo');
-            $imageName  = 'user_nominee_'.date('ymdhis').'.'.$image->getClientOriginalExtension();
-            $path       = 'images/users/';
-            $image->move($path, $imageName);
-            $imageUrl   = $path . $imageName;
-            $user->nominee_photo = $imageUrl ;
-        }
+        //     $image      = $request->file('nominee_photo');
+        //     $imageName  = 'user_nominee_'.date('ymdhis').'.'.$image->getClientOriginalExtension();
+        //     $path       = 'images/users/';
+        //     $image->move($path, $imageName);
+        //     $imageUrl   = $path . $imageName;
+        //     $user->nominee_photo = $imageUrl ;
+        // }
 
-        if ($request->hasFile('nominee_signature')) {
+        // if ($request->hasFile('nominee_signature')) {
 
-            $image      = $request->file('nominee_signature');
-            $imageName  = 'user_nominee_'.date('ymdhis').'.'.$image->getClientOriginalExtension();
-            $path       = 'images/users/';
-            $image->move($path, $imageName);
-            $imageUrl   = $path . $imageName;
-            $user->nominee_signature = $imageUrl ;
-        }
+        //     $image      = $request->file('nominee_signature');
+        //     $imageName  = 'user_nominee_'.date('ymdhis').'.'.$image->getClientOriginalExtension();
+        //     $path       = 'images/users/';
+        //     $image->move($path, $imageName);
+        //     $imageUrl   = $path . $imageName;
+        //     $user->nominee_signature = $imageUrl ;
+        // }
 
         $user->save();
-        return back()->withSuccess('Profile Information Updated');
+        return back()->withSuccess('প্রোফাইল তথ্য সফলভাবে আপডেট হয়েছে!');
     }
 
     public function change_password(Request $request){
@@ -197,7 +218,7 @@ class ProfileController extends Controller
             'confirm_password' => 'required|same:new_password',
         ],
             [
-                'new_password.different' => 'You have to put different password than old one',
+                'new_password.different' => 'আপনাকে পুরানো পাসওয়ার্ডের চেয়ে আলাদা পাসওয়ার্ড রাখতে হবে',
             ]
 
         );
@@ -206,9 +227,9 @@ class ProfileController extends Controller
             User::where('id',$user->id)->update([
                 'password' => Hash::make($request->new_password),
             ]);
-            return back()->withSuccess('Password Changed Successfully');
+            return back()->withSuccess('পাসওয়ার্ড সফলভাবে পরিবর্তিত হয়েছে');
         }else{
-            return back()->withErrors('Your current password is incorrect');
+            return back()->withErrors('আপনার বর্তমান পাসওয়ার্ডটি ভুল');
         }
 
 
