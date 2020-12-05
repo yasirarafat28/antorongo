@@ -7,6 +7,12 @@
     .dataTables_wrapper .dt-buttons{
         display: none;
     }
+    .dropdown-item {
+
+padding: 6px !important;
+
+}
+
 </style>
 
 <!-- Main Content -->
@@ -73,17 +79,30 @@
                             </div>
 
                         </div>
-                    <div class="body">
+                    <div class="body d-flex">
                         @forelse ($records??array() as $document)
                             <div class="col-lg-3 col-md-4 col-sm-12">
                                 <div class="">
                                     <div class="card-body file_manager">
                                         <div class="file">
-                                        <a target="_blank" href="{{url($document->file??'')}}">
+                                            <a target="_blank" href="{{url($document->file??'')}}">
                                                 <div class="hover">
-                                                    <button type="button" class="bg-transparent remove text-danger">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
+                                                    <div class="d-flex">
+                                                    <button data-toggle="modal" data-target="#largeEditModal{{$document->id}}" class="dropdown-item" title="এডিট করুন"><i class="fa fa-edit"> </i> এডিট</button>
+
+                                                        {!! Form::open([
+                                                            'method'=>'DELETE',
+                                                            'url' => ['/admin/documents', $document->id],
+                                                            'style' => 'display:inline'
+                                                            ]) !!}
+                                                            {!! Form::button('<i class="fa fa-trash"></i>  মুছে ফেলুন', array(
+                                                                'type' => 'submit',
+                                                                'class' => 'dropdown-item',
+                                                                'title' => 'Delete user',
+                                                                'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
+                                                                )) !!}
+                                                        {!! Form::close() !!}
+                                                    </div>
                                                 </div>
                                                 <div class="icon">
                                                     <i class="fa fa-file"></i>
@@ -95,6 +114,7 @@
                                                         <span class="date text-muted">{{date('F d, Y',strtotime($document->created_at))}}</span></small>
                                                 </div>
                                             </a>
+
                                         </div>
                                     </div>
                                 </div>
@@ -215,11 +235,11 @@
 <!--Add Modal End-->
 
 
-        @foreach($records as $item)
+        @foreach($records??array() as $item)
         <!-- Edit Modal Start -->
-        <div class="modal fade" id="largeEditModal{{$item->id}}" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
+                <div class="modal fade" id="largeEditModal{{$item->id}}" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
 
                             <div class="modal-header">
                                 <h2><strong> ডকুমেন্ট</strong> এডিট</h2>
@@ -237,7 +257,7 @@
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label for=""><small> নাম</small></label>
-                                                <input type="text" class="form-control" placeholder="নাম" name="title">
+                                                <input type="text" class="form-control" placeholder="নাম" name="title" value="{{$item->title}}">
                                             </div>
                                         </div>
 
@@ -255,88 +275,21 @@
                                 </form>
                             </div>
                         </div>
-
-            </div>
-        </div>
+                    </div>
+                </div>
 
         <!--Edit Modal End-->
 
         @endforeach
 
+@endsection
+
+
+@section('script')
 <script>
     $(document).ready(function(){
         $( 'textarea.ckeditor' ).ckeditor();
     });
 </script>
-
-@endsection
-
-
-@section('script')
-
-{{-- <script>
-    var CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
-
-    //Dropzone.autoDiscover = false;
-    var myDropzone = new Dropzone(".dropzone",{
-
-        addRemoveLinks: true,
-        acceptedFiles: ".jpeg,.jpg,.png,.pdf",
-        uploadMultiple:false,
-        success: function (file, response) {
-            let url = '';
-            if(typeof file.xhr.response !== 'undefined'){
-                url = file.xhr.response;
-            }else{
-                url = response;
-
-            }
-            $('form').append('<input type="hidden" name="documents[]" value="' + url + '">')
-        },
-        success: function (file, response) {
-            console.log(response);
-            let url = '';
-            if(typeof file.xhr.response !== 'undefined'){
-                url = file.xhr.response;
-            }else{
-                url = response;
-
-            }
-            $('form').append('<input type="hidden" name="documents[]" value="' + url + '">')
-        },
-        addedFile: function (file) {
-            console.log(file);
-        },
-        removedfile: function (file) {
-            var url = ''
-            if (typeof file.xhr.response !== 'undefined') {
-                name = file.xhr.response
-            } else {
-                name = uploadedDocumentMap[file.name]
-            }
-
-            $.ajax({
-              type:"GET",
-              url:"{{url('documents-remove')}}/",
-              data:{
-                  "url":name
-              },
-              success:function(data){
-                  console.log(data);
-
-                    file.previewElement.remove();
-                    $('form').find('input[name="documents[]"][value="' + name +  '"]').remove();
-              },
-              error:function(xhr){
-                  console.log(xhr);
-              }
-            });
-
-        },
-    });
-    myDropzone.on("sending", function(file, xhr, formData) {
-       formData.append("_token", CSRF_TOKEN);
-    });
-</script> --}}
 @endsection
 
