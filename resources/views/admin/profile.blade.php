@@ -10,7 +10,7 @@
 
 <link rel="stylesheet" href="{{asset('assets/css/timeline.css')}}">
 <section class="content profile-page">
-    <div class="block-header">
+    {{-- <div class="block-header">
         <div class="row">
             <div class="col-lg-7 col-md-6 col-sm-12">
                 <h2>Profile
@@ -27,8 +27,18 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div> --}}
+
     <div class="container-fluid">
+        <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800">প্রফাইল</h1>
+
+                <ul class="breadcrumb float-md-right">
+                    <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">প্রফাইল</a></li>
+                </ul>
+            </div>
         <div class="col-md-12">
 
             @if(session()->has('success'))
@@ -41,9 +51,9 @@
                 </div>
             @endif
         </div>
-        <form action="{{url('admin/members/'.$user->id)}}" method="POST"  enctype="multipart/form-data">
+        <form action="{{url('/profile-update/'.$user->id)}}" method="POST"  enctype="multipart/form-data">
             {{csrf_field()}}
-            {{method_field('PATCH')}}
+            {{-- {{method_field('PATCH')}} --}}
             <div class="col-md-12">
                 <div class="card shadow">
 
@@ -57,7 +67,7 @@
                         <div class="row clearfix">
 
 
-                            <div class="col-lg-4 col-md-4 col-sm-12">
+                            {{-- <div class="col-lg-4 col-md-4 col-sm-12">
 
                                 <div class="form-group">
 
@@ -101,15 +111,17 @@
 
                                 </div>
 
-                            </div>
+                            </div> --}}
+
+                            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 
                             <div class="col-lg-4 col-md-4 col-sm-12">
 
                                 <div class="form-group">
 
-                                    <label for=""><small> নাম</small></label>
+                                    <label for=""><small> নাম (বাংলা)</small><strong>*</strong></label>
 
-                                    <input type="text" class="form-control" placeholder="নাম" name="name_bn" value="{{$user->name_bn}}">
+                                    <input type="text" class="form-control" placeholder="নাম (বাংলা)" name="name_bn" value="{{$user->name_bn}}">
 
                                 </div>
 
@@ -119,9 +131,34 @@
 
                                 <div class="form-group">
 
-                                    <label for=""><small> নাম (ইংরেজীতে)</small></label>
+                                    <label for=""><small> নাম (ইংরেজি)</small><strong>*</strong></label>
 
-                                    <input type="text" class="form-control" placeholder="নাম (ইংরেজীতে)" name="name" value="{{$user->name}}">
+                                    <input type="text" class="form-control" placeholder="নাম (ইংরেজি)" name="name" value="{{$user->name}}">
+
+                                </div>
+
+                            </div>
+
+                            {{-- <div class="col-lg-4 col-md-4 col-sm-12">
+
+                                <div class="form-group">
+
+                                    <label for=""><small>ইউজার নেম</small></label>
+
+                                    <input type="text" class="form-control" placeholder="ইউজার নেম" name="username" value="{{$user->username}}">
+
+                                </div>
+
+                            </div> --}}
+
+
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+
+                                <div class="form-group">
+
+                                    <label for=""><small> ই-মেইল</small></label>
+
+                                    <input type="email" class="form-control" placeholder="ই-মেইল" name="email" value="{{$user->email}}" readonly required>
 
                                 </div>
 
@@ -129,7 +166,7 @@
 
 
 
-                            <div class="col-lg-4 col-md-4 col-sm-12">
+                            {{-- <div class="col-lg-4 col-md-4 col-sm-12">
 
                                 <div class="form-group">
 
@@ -164,27 +201,45 @@
 
                                 </div>
 
-                            </div>
+                            </div> --}}
 
 
 
                             <div class="col-lg-4 col-md-4 col-sm-12">
 
-                                <div class="input-group">
-
+                                <div class="form-group">
+                                    <label for=""><small> জন্মতারিখ</small></label>
                                         <span class="input-group-addon">
 
                                             <i class="zmdi zmdi-calendar"></i>
 
                                         </span>
 
-                                    <input type="text" class="form-control datepicker" name="dob" value="" placeholder=" জন্মতারিখ" data-dtp="dtp_EPzkD" value="{{$user->dob}}">
+
+                                    <input type="text" class="form-control datepicker" name="dob" placeholder=" জন্মতারিখ" data-dtp="dtp_EPzkD" value="{{date('Y-m-d', strtotime($user->dob))}}">
 
                                 </div>
 
                             </div>
 
                             <div class="col-lg-4 col-md-4 col-sm-12">
+                                <div class="form-group">
+                                    <label for=""><small>রক্তের গ্রুপ</small></label>
+                                    <select id="" class="form-control ms" name="blood_group">
+                                    <option value="">-- রক্তের গ্রুপ নির্বাচন করুন--</option>
+                                        <option value="a+" {{$user->blood_group=='a+' ? 'selected' :''}}>A RhD positive (A+)</option>
+                                        <option value="a-" {{$user->blood_group=='a-' ? 'selected' :''}}>RhD negative (A-)</option>
+                                        <option value="b+" {{$user->blood_group=='b+' ? 'selected' :''}}>B RhD positive (B+)</option>
+                                        <option value="b-" {{$user->blood_group=='b-' ? 'selected' :''}}>B RhD negative (B-)</option>
+                                        <option value="o+" {{$user->blood_group=='o+' ? 'selected' :''}}>O RhD positive (O+)</option>
+                                        <option value="o-" {{$user->blood_group=='o-' ? 'selected' :''}}>O RhD negative (O-)</option>
+                                        <option value="ab+" {{$user->blood_group=='ab+' ? 'selected' :''}}>AB RhD positive (AB+)</option>
+                                        <option value="ab-" {{$user->blood_group=='ab-' ? 'selected' :''}}>AB RhD negative (AB-)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            {{-- <div class="col-lg-4 col-md-4 col-sm-12">
 
                                 <div class="form-group">
 
@@ -194,9 +249,9 @@
 
                                 </div>
 
-                            </div>
+                            </div> --}}
 
-                            <div class="col-lg-4 col-md-4 col-sm-12">
+                            {{-- <div class="col-lg-4 col-md-4 col-sm-12">
 
                                 <div class="form-group">
 
@@ -206,9 +261,9 @@
 
                                 </div>
 
-                            </div>
+                            </div> --}}
 
-                            <div class="col-lg-4 col-md-4 col-sm-12">
+                            {{-- <div class="col-lg-4 col-md-4 col-sm-12">
 
                                 <div class="form-group">
 
@@ -230,7 +285,7 @@
 
                                 </div>
 
-                            </div>
+                            </div> --}}
                             <div class="col-lg-4 col-md-4 col-sm-12">
 
                                 <div class="form-group">
@@ -279,7 +334,7 @@
                                 </div>
 
                             </div>
-                            <div class="col-lg-4 col-md-4 col-sm-12">
+                            {{-- <div class="col-lg-4 col-md-4 col-sm-12">
 
                                 <div class="form-group">
 
@@ -289,9 +344,9 @@
 
                                 </div>
 
-                            </div>
+                            </div> --}}
 
-                            <div class="col-lg-4 col-md-4 col-sm-12">
+                            {{-- <div class="col-lg-4 col-md-4 col-sm-12">
 
                                 <div class="form-group">
 
@@ -301,7 +356,8 @@
 
                                 </div>
 
-                            </div>
+                            </div> --}}
+
                             <div class="col-lg-4 col-md-4 col-sm-12">
 
                                 <div class="form-group">
@@ -316,7 +372,7 @@
 
 
 
-                            <div class="col-lg-4 col-md-4 col-sm-12">
+                            {{-- <div class="col-lg-4 col-md-4 col-sm-12">
 
                                 <div class="form-group">
 
@@ -326,9 +382,13 @@
 
                                 </div>
 
+                            </div> --}}
+
+                            <div class="col-md-12 text-center">
+
+                                <button class="btn btn-primary btn-round"> সেভ করুন</button>
+
                             </div>
-
-
                         </div>
 
                     </div>
@@ -336,7 +396,7 @@
                 </div>
 
 
-                <div class="card shadow">
+                {{-- <div class="card shadow">
 
                     <div class="header">
 
@@ -457,20 +517,42 @@
 
 
 
-                            <div class="col-md-12">
 
-                                <button class="btn btn-primary btn-round"> সেভ করুন</button>
-
-                            </div>
 
                         </div>
 
 
                     </div>
 
-                </div>
+                </div> --}}
+
             </div>
         </form>
+        <div class="col-md-12">
+            <div class="card shadow">
+                <div class="header">
+                    <h2><strong>সুরক্ষা </strong>সেটিং</h2>
+                </div>
+                <div class="body">
+                    <form action="{{route('change_password')}}" method="POST" id="form">
+                        {{csrf_field()}}
+                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="বর্তমান পাসওয়ার্ড" name="old_password" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="নতুন পাসওয়ার্ড" name="new_password" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="নিশ্চিত করুন নতুন পাসওয়ার্ড" name="confirm_password" required>
+                        </div>
+                        <div class="col-md-12 text-center">
+                            <button type="submit" class="btn btn-primary btn-round">সেভ করুন</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 

@@ -33,7 +33,7 @@ Route::get('/transaction-invoice/{txn_id}', 'InvoiceController@transaction_invoi
 
 //All User Route
 Route::group(['middleware' => ['auth']], function () {
-    Route::post('/profile-update', 'ProfileController@profileUpdate');
+    Route::post('/profile-update/{user_id}', 'ProfileController@profileUpdate');
     Route::post('/change_password', 'ProfileController@change_password')->name('change_password');
     Route::get('/password-reset', 'AccountController@passwordReset');
     Route::get('user-password-generator', 'AccessGeneratorController@index');
