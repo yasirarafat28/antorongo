@@ -102,7 +102,7 @@ class DocumentController extends Controller
         }
         $document->status = 'active';
         $document->save();
-        return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
+        return back()->withSuccess('সফলভাবে এডিট করা হয়েছে');
     }
 
     /**
@@ -115,6 +115,6 @@ class DocumentController extends Controller
     {
         //
         Document::destroy($id);
-        return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
+        return back()->withSuccess('সফলভাবে মুছে ফেলা হয়েছে');
     }
 }
