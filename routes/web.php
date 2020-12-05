@@ -21,6 +21,9 @@ Route::get('/', function () {
 Auth::routes();
 
 
+//Temporary Controller
+Route::get('/fdr_transaction_sync', 'TemporaryController@fdr_transaction_sync');
+
 
 Route::post('/get-district-list-by-division', 'DistrictController@getDistrict')->name('getDistrict');
 Route::post('/get-thana-list-by-district', 'ThanaController@getThana')->name('getThana');
@@ -156,8 +159,11 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::get('fdr/edit/{id}', 'FdrController@FdrEdit')->name('FdrEdit');
     Route::post('fdr/edit/{id}', 'FdrController@FdrUpdate')->name('FdrUpdate');
 
+    Route::post('fdr/close/{id}', 'FdrController@close')->name('fdrClose');
+
     //Printing
     Route::get('print/saving/{txn_id}', 'PrintController@saving')->name('print.saving');
+    Route::get('print/fdr/{txn_id}', 'PrintController@fdr')->name('fdr.saving');
 
     //Salary
     Route::resource('hr/salary-setup', 'SalarySetupController');

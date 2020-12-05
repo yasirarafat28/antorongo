@@ -77,9 +77,9 @@
                     @if($fdr)
 
                         @php
-                            $total_deposited = $fdr->transactions->where('type','deposit')->sum('amount');
-                            $total_profit = $fdr->transactions->where('type','profit')->sum('amount');
-                            $total_withdraw = $fdr->transactions->where('type','withdraw')->sum('amount');
+                            $total_deposited = $fdr->deposits->sum('amount');
+                            $total_profit = $fdr->profits->sum('amount');
+                            $total_withdraw = $fdr->withdraws->sum('amount');
 
                         @endphp
 
@@ -131,7 +131,7 @@
                                                 টাকার পরিমান  :
                                             </td>
                                             <td class="text-left">
-                                                {{\App\NumberConverter::en2bn($fdr->transactions->where('type','deposit')->sum('amount'))}} টাকা
+                                                {{\App\NumberConverter::en2bn($total_deposited)}} টাকা
                                             </td>
                                         </tr>
 
@@ -140,7 +140,7 @@
                                                 মোট প্রাপ্ত লাভ  :
                                             </td>
                                             <td class="text-left">
-                                                {{\App\NumberConverter::en2bn($fdr->transactions->where('type','profit')->sum('amount'))}} টাকা ||
+                                                {{\App\NumberConverter::en2bn($total_profit)}} টাকা ||
                                             </td>
                                         </tr>
                                         <tr>
@@ -154,39 +154,6 @@
                                     </tbody>
                                 </table>
 
-
-                                            {{-- <span class="m-t-0 m-b-0"><strong>নামঃ  {{$fdr->user->name}}</strong></span>
-                                        <hr>
-
-                                        <span class="job_post">সভ্য আইডি : {{$fdr->user->unique_id??''}}</span>
-
-                                        <hr>
-
-                                        <span class="job_post">এফ ডি আর আইডি : {{$fdr->txn_id??''}}</span>
-                                        <hr>
-                                        <span class="job_post">ধরন :
-                                            @if($fdr->profit_type=='daily')
-                                                দৈনিক
-                                            @elseif($fdr->profit_type=='weekly')
-                                                মাসিক
-                                            @else
-                                                বাৎসরিক
-                                            @endif
-
-                                        </span>
-
-                                        <hr>
-
-                                        <span class="job_post">  টাকার পরিমান  : {{\App\NumberConverter::en2bn($fdr->transactions->where('type','deposit')->sum('amount'))}} টাকা </span>
-
-                                        <hr>
-
-                                        <span class="job_post"> মোট প্রাপ্ত লাভ  : {{\App\NumberConverter::en2bn($fdr->transactions->where('type','profit')->sum('amount'))}} টাকা ||
-                                        </span>
-
-                                        <hr>
-
-                                        <span class="job_post"> অবস্থা : {{$fdr->status}} </span> --}}
                             </div>
 
                             <hr>
@@ -197,61 +164,9 @@
                         <div class="col-md-8">
 
                             <div class="row">
-
-
-                                {{-- <thead>
-                                    @php
-                                     $total_balance =0;
-                                    @endphp
-                                    <tbody>
-                                        <tr>
-                                            <td  colspan="5" class="text-right">
-                                                মোট জমা
-
-                                            </td>
-                                            <td>
-                                                {{\App\NumberConverter::en2bn($total_deposited)}} টাকা
-                                            </td>
-                                            <td  colspan="4"></td>
-                                        </tr>
-                                        <tr>
-                                            <td  colspan="5" class="text-right">
-                                                মোট লাভ
-
-                                            </td>
-                                            <td>
-                                                {{\App\NumberConverter::en2bn($total_profit)}} টাকা ({{\App\NumberConverter::en2bn(number_format($total_profit/$total_deposited*100,2))}}%)
-                                            </td>
-                                            <td  colspan="4"></td>
-                                        </tr>
-                                        <tr>
-                                            <td  colspan="5" class="text-right">
-                                                মোট উত্তোলন
-
-                                            </td>
-                                            <td>
-                                                {{\App\NumberConverter::en2bn($total_withdraw)}} টাকা
-                                            </td>
-                                            <td  colspan="4"></td>
-                                        </tr>
-                                        <tr>
-                                            <td  colspan="5" class="text-right">
-                                                বর্তমান ব্যালেন্স
-
-                                            </td>
-                                            <td>
-                                                {{\App\NumberConverter::en2bn($total_balance)}} টাকা
-                                            </td>
-                                            <td  colspan="4"></td>
-                                        </tr>
-                                    </tbody>
-                                </thead> --}}
-
-
-                                <!-- Earnings (Monthly) Card Example -->
                                 <div class="col-xl-6 col-md-6 mb-4">
                                     @php
-                                     $total_balance =0;
+                                        $total =0;
                                     @endphp
                                     <div class="card border-left-primary shadow h-100 py-2">
                                         <div class="card-body">
@@ -260,7 +175,7 @@
                                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                         মোট জমা
                                                     </div>
-                                                    <div class="h6 mb-0 font-weight-bold text-gray-800">৪৫৩ টি</div>
+                                                <div class="h6 mb-0 font-weight-bold text-gray-800">$ {{App\NumberConverter::en2bn(number_format($total_deposited,2))}} টাকা </div>
                                                 </div>
                                                 <div class="col-auto">
                                                     <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -280,7 +195,7 @@
                                                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                         মোট লাভ
                                                     </div>
-                                                    <div class="h6 mb-0 font-weight-bold text-gray-800">$ ৩৪৫৩৪</div>
+                                                    <div class="h6 mb-0 font-weight-bold text-gray-800">$ {{App\NumberConverter::en2bn(number_format($total_profit,2))}} টাকা </div>
                                                 </div>
                                                 <div class="col-auto">
                                                     <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -297,7 +212,7 @@
                                                     <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                                         মোট উত্তোলন
                                                     </div>
-                                                    <div class="h6 mb-0 font-weight-bold text-gray-800">$ ৩৪৫৩৪</div>
+                                                    <div class="h6 mb-0 font-weight-bold text-gray-800">$ {{App\NumberConverter::en2bn(number_format($total_withdraw,2))}} টাকা </div>
                                                 </div>
                                                 <div class="col-auto">
                                                     <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -314,7 +229,7 @@
                                                     <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                                         বর্তমান ব্যালেন্স
                                                     </div>
-                                                    <div class="h6 mb-0 font-weight-bold text-gray-800">$ ৩৪৫৩৪</div>
+                                                    <div class="h6 mb-0 font-weight-bold text-gray-800">$ {{App\NumberConverter::en2bn(number_format($fdr->balance(),2))}} টাকা </div>
                                                 </div>
                                                 <div class="col-auto">
                                                     <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -325,10 +240,48 @@
                                 </div>
                             </div>
 
+                            <a href="{{url('admin/fdr/edit/'.$fdr->id)}}" class="btn btn-primary"><i class="fa fa-edit"> </i> এডিট</a>
+                            @if($fdr->status=='pending')
+                                <a href="{{url('admin/fdr-approve/'.$fdr->id)}}" class="btn btn-primary"><i class="fa fa-check"> </i> অনুমোদন করুন</a>
+                                <a href="{{url('admin/fdr-decline/'.$fdr->id)}}" class="btn btn-primary"><i class="fa fa-times"> প্রত্যাখ্যান করুন</i></a>
+                            @elseif($fdr->status=='approved')
                             <a data-toggle="modal" data-target="#addProfiteModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> লাভ যোগ করুন </a>
-                                <a data-toggle="modal" data-target="#withDrawModal" class="btn btn-primary"> <i class="fas fa-fw fa-minus"></i> উত্তোলন করুন </a>
+                            <a data-toggle="modal" data-target="#withDrawModal" class="btn btn-primary"> <i class="fa fa-upload"></i> উত্তোলন করুন </a>
+                                {!! Form::open([
+                                    'method'=>'POST',
+                                    'url' => ['/admin/fdr/close', $fdr->id],
+                                    'style' => 'display:inline'
+                                ]) !!}
+                                {!! Form::button('<i class="fa fa-trash"></i>  সদস্য পদ প্রত্যাহার', array(
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-danger',
+                                    'title' => 'সদস্য পদ প্রত্যাহার',
+                                    'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
+                                    )) !!}
+                                {!! Form::close() !!}
+
+                            @endif
 
 
+
+                            <a href="{{url('admin/print/fdr/'.$fdr->txn_id)}}" class="btn btn-primary"><i class="fa fa-print"> </i> প্রিন্ট </a>
+
+
+
+                            @if ($fdr->status=='closed')
+                            <br>
+
+                            <br>
+
+                            <div class="col-md-12">
+
+                                <div class="alert alert-danger">
+                                    সদস্য পদ প্রত্যাহার করা হয়েছে ।
+
+                                </div>
+                            </div>
+
+                        @endif
 
 
                         </div>
@@ -412,6 +365,73 @@
                             </div>
                         </div>
                         <!--Add Modal End-->
+
+
+                        <!--  Modal Start -->
+                        <div class="modal fade" id="addProfiteModal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h2><strong> এফ ডি আর </strong> এর লাভ যোগ করুন</h2>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{url('admin/fdr/add-profit-manually')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
+                                            {{csrf_field()}}
+
+                                            <input type="hidden" name="fdr_id" value="{{$fdr->id}}">
+                                            <input type="hidden" name="user_id" value="{{$fdr->user_id}}">
+
+                                            <div class="col-lg-12 col-md-12">
+
+                                                <div class="form-group">
+
+                                                    <label for=""><small> লাভের পরিমান</small></label>
+
+                                                    <input type="number" step="any" class="form-control" name="amount" placeholder="লাভের পরিমান" id="amount">
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-lg-12 col-md-12">
+
+                                                <div class="form-group">
+
+                                                    <label for=""><small> লাভের তারিখ </small></label>
+
+                                                    <input type="date" class="form-control" name="date" placeholder="উত্তলনের তারিখ">
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-lg-12 col-md-12">
+
+                                                <div class="form-group">
+
+                                                    <label for=""><small> মতামত </small></label>
+
+                                                    <textarea name="note" class="form-control" placeholder="মতামত"></textarea>
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-12 text-center">
+
+                                                <button class="btn btn-primary btn-round"> লাভ যোগ  করুন</button>
+
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                     @endif
                 </div>
@@ -420,76 +440,8 @@
 
         </div>
 
-        @if($fdr->transactions)
+        @if($fdr->histories)
 
-
-        <!--  Modal Start -->
-        <div class="modal fade" id="addProfiteModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2><strong> এফ ডি আর </strong> এর লাভ যোগ করুন</h2>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{{url('admin/fdr/add-profit-manually')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
-                            {{csrf_field()}}
-
-                            <input type="hidden" name="fdr_id" value="{{$fdr->id}}">
-                            <input type="hidden" name="user_id" value="{{$fdr->user_id}}">
-
-                            <div class="col-lg-12 col-md-12">
-
-                                <div class="form-group">
-
-                                    <label for=""><small> লাভের পরিমান</small></label>
-
-                                    <input type="number" step="any" class="form-control" name="amount" placeholder="লাভের পরিমান" id="amount">
-
-                                </div>
-
-                            </div>
-
-                            <div class="col-lg-12 col-md-12">
-
-                                <div class="form-group">
-
-                                    <label for=""><small> লাভের তারিখ </small></label>
-
-                                    <input type="date" class="form-control" name="date" placeholder="উত্তলনের তারিখ">
-
-                                </div>
-                            </div>
-
-
-                            <div class="col-lg-12 col-md-12">
-
-                                <div class="form-group">
-
-                                    <label for=""><small> মতামত </small></label>
-
-                                    <textarea name="note" class="form-control" placeholder="মতামত"></textarea>
-
-                                </div>
-
-                            </div>
-
-                            <div class="col-md-12 text-center">
-
-                                <button class="btn btn-primary btn-round"> লাভ যোগ  করুন</button>
-
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--Add Modal End-->
-        @endif
-        @if($fdr->transactions)
         <div class="row clearfix">
 
             <div class="col-sm-12 col-md-12 col-lg-12">
@@ -519,13 +471,14 @@
                             <thead>
 
                                 <tr>
+
                                     <th> #</th>
                                     <th> তারিখ</th>
                                     <th> মাস </th>
                                     <th> লেনদেন কোড </th>
                                     <th> লেনদেনের ধরন </th>
                                     <th>পরিমান</th>
-                                    <th>ব্যালেন্স</th>
+                                    <!--<th>ব্যালেন্স</th>-->
                                     <th> নোট</th>
                                     <th>আদায়কারীর নাম</th>
 
@@ -535,50 +488,42 @@
 
                             <tbody>
                             @php
-                                $total_balance =0;
+                                $total =0;
                             @endphp
-                            @foreach($transactions as $item)
+                            @forelse($fdr->histories as $item)
 
 
                                 <tr>
 
                                     <td>
-
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                         aria-labelledby="dropdownMenuLink">
-
-                                        <a href="{{url('admin/fdr-transaction/'.$item->id.'/edit')}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট</a>
-                                        <a title="মুছে ফেলুন ">
-                                            {!! Form::open([
-                                               'method'=>'DELETE',
-                                               'url' => ['/admin/fdr-transaction', $item->id],
-                                               'style' => 'display:inline'
-                                            ]) !!}
-                                            {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন  ', array(
-                                                 'type' => 'submit',
-                                                 'class' => 'dropdown-item',
-                                                'title' => 'Delete user',
-                                                'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
-                                                 )) !!}
-                                            {!! Form::close() !!}
-                                        </a>
+                                            <a href="{{url('admin/transactions/'.$item->id.'/edit')}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট</a>
+                                                {!! Form::open([
+                                                   'method'=>'DELETE',
+                                                   'url' => ['/admin/transactions', $item->id],
+                                                   'style' => 'display:inline'
+                                                ]) !!}
+                                                {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন ', array(
+                                                     'type' => 'submit',
+                                                     'class' => 'dropdown-item',
+                                                    'title' => 'মুছে ফেলুন',
+                                                    'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
+                                                     )) !!}
+                                                {!! Form::close() !!}
                                         </div>
-                                    </td>
-
-
-
-                                    <td>{{\App\NumberConverter::en2bn($item->started_at)}}</td>
-                                    <td>{{ \App\BanglaMonth::MonthName(date('m',strtotime($item->started_at)))}}</td>
+                                    </td>                                    <td>{{\App\NumberConverter::en2bn($item->date)}}</td>
+                                    <td>{{ \App\BanglaMonth::MonthName(date('m',strtotime($item->date)))}}</td>
 
                                     <td>{{$item->txn_id??''}}</td>
                                     <td>
-                                        @if($item->type=='deposit')
+                                        @if($item->flag=='deposit')
                                             জমা
-                                        @elseif($item->type=='profit')
+                                        @elseif($item->flag=='profit')
                                             লাভ
                                         @else
                                             উত্তোলন
@@ -587,42 +532,24 @@
 
                                     <td style="color: green;font-weight: 700;">
 
-                                        @if($item->type=='deposit' || $item->type=='profit')
+                                        @if($item->flag=='deposit' || $item->flag=='profit')
                                             + {{\App\NumberConverter::en2bn($item->amount)}} টাকা
-
-                                            @php
-                                                $total_balance +=$item->amount;
-                                            @endphp
                                         @else
                                             - {{\App\NumberConverter::en2bn($item->amount)}} টাকা
-                                            @php
-                                                $total_balance -=$item->amount;
-                                            @endphp
                                         @endif
 
                                     </td>
-                                    <td>
-                                        {{\App\NumberConverter::en2bn($total_balance)}} টাকা
-                                    </td>
-                                    <td>{{$item->note??''}}</td>
+                                    <!--<td>{{\App\NumberConverter::en2bn($total??'')}}</td>-->
+                                    <td>{{$item->note}}</td>
                                     <td>{{$item->receiver->name??''}}</td>
 
-
                                 </tr>
-                                @endforeach
-
-
-                                @if($fdr->status=='closed')
+                                @empty
                                     <tr>
-                                        <td colspan="8">
-
-                                            <div class="alert alert-danger">
-                                                সদস্য পদ প্রত্যাহার
-
-                                            </div>
-                                        </td>
+                                        <td colspan="9" class="text-center" >No Entry found!</td>
                                     </tr>
-                                @endif
+                                @endforelse
+
                             </tbody>
                         </table>
                     </div>

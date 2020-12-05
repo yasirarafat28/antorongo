@@ -185,8 +185,9 @@
                             @foreach($records ?? array() as $item)
                                 <tr>
                                     <td style="width: 12%">
+                                        <a href="/admin/fdr/find?q={{$item->txn_id}}"><i class="fa fa-eye"></i></a>
 
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                        <!--<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
                                         </a>
@@ -202,15 +203,16 @@
                                             <a href="{{url('admin/fdr/withdraw?q='.$item->txn_id)}}" class="dropdown-item"><i class="fa fa-money-bill-alt"> </i> উত্তোলন করুন</a>
 
                                         @endif
-                                        </div>
-                                    </td>                                    <td>{{$item->user->unique_id??''}}</td>
+                                        </div>-->
+                                    </td>
+                                    <td>{{$item->user->unique_id??''}}</td>
                                     <td>{{$item->txn_id}}</td>
                                     <td>{{$item->old_txn}}</td>
                                     <td>{{$item->user->name_bn??''}}</td>
-                                    <td>{{\App\NumberConverter::en2bn($item->transactions->where('type','deposit')->sum('amount'))}} টাকা  </td>
+                                    <td>{{\App\NumberConverter::en2bn($item->deposits->sum('amount'))}} টাকা  </td>
                                     <td>{{\App\NumberConverter::en2bn($item->duration)}} মাস </td>
                                     <td>{{\App\NumberConverter::en2bn($item->interest_rate)}} % </td>
-                                    <td>{{\App\NumberConverter::en2bn($item->transactions->where('type','profit')->sum('amount'))}} টাকা  </td>
+                                    <td>{{\App\NumberConverter::en2bn($item->profits->sum('amount'))}} টাকা  </td>
                                     <td>{{ucfirst($item->status)}}</td>
                                     <td>{{$item->started_at}}</td>
 

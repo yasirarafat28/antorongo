@@ -163,9 +163,9 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{url('admin/fdr/application')}}">আবেদন  </a>
                         <a class="collapse-item" href="{{url('admin/fdr/list')}}">এফ ডি আর তালিকা  </a>
-                        <a class="collapse-item" href="{{url('admin/fdr/withdraw')}}">এফ ডি আর উত্তোলন  </a>
-                        <a class="collapse-item" href="{{url('admin/fdr/withdraw-report')}}" >উত্তোলন রিপোর্ট  </a>
                         <a class="collapse-item" href="{{url('admin/fdr/profit-report')}}" >লাভের রিপোর্ট  </a>
+                        <!--<a class="collapse-item" href="{{url('admin/fdr/withdraw')}}">এফ ডি আর উত্তোলন  </a>-->
+                        <a class="collapse-item" href="{{url('admin/fdr/withdraw-report')}}" >উত্তোলন রিপোর্ট  </a>
                     </div>
                 </div>
             </li>
