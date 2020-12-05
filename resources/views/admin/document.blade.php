@@ -79,13 +79,11 @@
                                 <div class="">
                                     <div class="card-body file_manager">
                                         <div class="file">
-                                            <a target="_blank" href="{{
-                                                // storage_file_path(
-                                                    $document->file??''}}">
+                                        <a target="_blank" href="{{url($document->file??'')}}">
                                                 <div class="hover">
-                                                    <!--<button type="button" class="bg-transparent remove text-danger">
+                                                    <button type="button" class="bg-transparent remove text-danger">
                                                         <i class="fa fa-trash"></i>
-                                                    </button>-->
+                                                    </button>
                                                 </div>
                                                 <div class="icon">
                                                     <i class="fa fa-file"></i>
