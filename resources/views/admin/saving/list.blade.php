@@ -146,7 +146,7 @@
                             @foreach($records ?? array() as $item)
                                 <tr>
                                     <td style="width: 12%">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                        <!--<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
                                         </a>
@@ -161,8 +161,11 @@
                                             <a href="{{url('admin/saving/'.$type.'/withdraw?q='.$item->txn_id)}}" class="dropdown-item"><i class="fa fa-money-bill-alt"> </i> উত্তোলন করুন</a>
 
                                         @endif
-                                        </div>
-                                    </td>                                    <td>{{$item->user->unique_id??''}}</td>
+                                        </div>-->
+
+                                    <a href="/admin/saving/find?q={{$item->txn_id}}"> <i class="fa fa-eye"></i> </a>
+                                    </td>
+                                    <td>{{$item->user->unique_id??''}}</td>
                                     <td>{{$item->txn_id}}</td>
                                     <td>{{$item->user->name_bn??''}}</td>
                                     @if($type='daily')

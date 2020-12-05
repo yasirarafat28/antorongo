@@ -348,15 +348,40 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button
-                                    data-toggle="modal" data-target="#AddProfitModal" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> লাভ যোগ করুন
-                                </button>
-                                <button
-                                    data-toggle="modal" data-target="#SavingDepositModal" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> জমা করুন
-                                </button>
-                                <button
-                                    data-toggle="modal" data-target="#withdrawModal" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> উত্তোলন  করুন
-                                </button>
+
+                                <div class="col-md-12">
+
+                                    <a href="{{url('admin/saving/edit/'.$saving->id)}}" class="btn btn-primary"><i class="fa fa-edit"> </i> এডিট </a>
+                                    @if($saving->status=='pending')
+                                        <a href="{{url('admin/saving-approve/'.$saving->id)}}" class="btn btn-primary"><i class="fa fa-check"> </i> অনুমোদন করুন</a>
+                                        <a href="{{url('admin/saving-decline/'.$saving->id)}}" class="btn btn-danger"><i class="fa fa-times"> প্রত্যাখ্যান করুন</i></a>
+                                    @elseif($saving->status=='approved')
+                                    <button
+                                        data-toggle="modal" data-target="#AddProfitModal" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> লাভ যোগ করুন
+                                    </button>
+                                    <button
+                                        data-toggle="modal" data-target="#SavingDepositModal" class="btn btn-primary"><i class="fa fa-download"></i> জমা করুন
+                                    </button>
+                                    <button
+                                        data-toggle="modal" data-target="#withdrawModal" class="btn btn-primary"><i class="fa fa-upload"></i> উত্তোলন  করুন
+                                    </button>
+                                        <a href="#" class="btn btn-primary"><i class="fa fa-trash"> </i> সদস্য পদ প্রত্যাহার</a>
+                                    @endif
+                                </div>
+
+                                @if ($saving->status=='closed')
+
+                                    <br>
+
+                                    <div class="col-md-12">
+
+                                        <div class="alert alert-danger">
+                                            সদস্য পদ প্রত্যাহার করা হয়েছে ।
+
+                                        </div>
+                                    </div>
+
+                                @endif
                             </div>
 
                             <!--  Modal Start -->
