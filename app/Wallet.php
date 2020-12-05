@@ -15,8 +15,8 @@ class Wallet extends Model
     public static function balance($wallet='office'){
 
         $totalCreadit  = Transaction::where('type','income')->where('wallet',$wallet)
-            ->where('status','approved')->sum('amount');
-        $totalDebit  = Transaction::where('type','expense')->where('wallet',$wallet)->where('status','!=','declined')
+            ->where('status','approved')->where('calculatable','yes')->sum('amount');
+        $totalDebit  = Transaction::where('type','expense')->where('wallet',$wallet)->where('calculatable','yes')->where('status','!=','declined')
             ->sum('amount');
 
         $balance = $totalCreadit-$totalDebit;
