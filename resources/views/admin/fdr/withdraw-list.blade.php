@@ -25,18 +25,17 @@
 
             <div class="row">
 
-                <!-- Earnings (Monthly) Card Example -->
                 <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-left-primary shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                         মোট উত্তোলন</div>
-                                    <div class="h6 mb-0 font-weight-bold text-gray-800">$ ৩৪৫৩৪</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$ {{App\NumberConverter::en2bn(number_format($total,2))}} টাকা </div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                         </div>
@@ -141,27 +140,26 @@
 
                                         <td>
 
+
                                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                                aria-labelledby="dropdownMenuLink">
-
-                                            <a href="{{url('admin/fdr-transaction/'.$item->id.'/edit')}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট</a>
-
-                                                {!! Form::open([
-                                                   'method'=>'DELETE',
-                                                   'url' => ['/admin/fdr-transaction', $item->id],
-                                                   'style' => 'display:inline'
-                                                ]) !!}
-                                                {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন', array(
-                                                     'type' => 'submit',
-                                                     'class' => 'dropdown-item',
-                                                    'title' => 'Delete user',
-                                                    'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
-                                                     )) !!}
-                                                {!! Form::close() !!}
+                                            aria-labelledby="dropdownMenuLink">
+                                                <a href="{{url('admin/transactions/'.$item->id.'/edit')}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট</a>
+                                                    {!! Form::open([
+                                                    'method'=>'DELETE',
+                                                    'url' => ['/admin/transactions', $item->id],
+                                                    'style' => 'display:inline'
+                                                    ]) !!}
+                                                    {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন ', array(
+                                                        'type' => 'submit',
+                                                        'class' => 'dropdown-item',
+                                                        'title' => 'মুছে ফেলুন',
+                                                        'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
+                                                        )) !!}
+                                                    {!! Form::close() !!}
                                             </div>
                                         </td>                                        <td>{{$item->user->unique_id??''}}</td>
                                         <td>{{$item->fdr->txn_id??''}}</td>

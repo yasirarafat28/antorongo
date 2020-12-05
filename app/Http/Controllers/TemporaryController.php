@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Crypt;
 use App\Fdr;
+use App\FdrTransaction;
 use App\Loan;
 use App\LoanTransaction;
 use App\Saving;
@@ -97,5 +98,18 @@ class TemporaryController extends Controller
     	}
 
     	return $count;
+    }
+
+    public function fdr_transaction_sync(){
+        $records = Fdr::get();
+        foreach($records as  $fdr){
+            $prev_deposit = FdrTransaction::where('fdr_id',$fdr->id)->where('type','deposit')->sum('amount');
+            $fdr->amount = $prev_deposit;
+            $fdr->status = 'pending';
+            $fdr->save();
+
+        }
+        return 'success';
+
     }
 }

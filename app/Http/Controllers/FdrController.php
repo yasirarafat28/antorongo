@@ -8,6 +8,8 @@ use App\Fdr;
 use App\FdrTransaction;
 use Illuminate\Support\Facades\Auth;
 use App\NumberConverter;
+use App\Transaction;
+use App\TransactionHead;
 
 class FdrController extends Controller
 {
@@ -151,7 +153,6 @@ class FdrController extends Controller
         $end_at = date('Y-m-d H:i:s', strtotime($started_at . "+".$request->duration." months"));
 
 
-        //Create Saving Application
 
         $fdr = new Fdr();
         $fdr->txn_id = $request->fdr_unique_id??uniqid();
@@ -165,24 +166,24 @@ class FdrController extends Controller
         $fdr->interest_rate = NumberConverter::bn2en($request->interest_rate);
         $fdr->admin_status = 'approved';
         $fdr->manager_status = 'approved';
-        $fdr->status = 'approved';
+        $fdr->status = 'pending';
         $fdr->save();
 
 
-        $transaction = new FdrTransaction();
-        $transaction->txn_id = uniqid();
-        $transaction->type = 'deposit';
-        $transaction->user_id = $member->id;
-        $transaction->fdr_id = $fdr->id;
-        $transaction->amount = NumberConverter::bn2en($request->amount);
-        $transaction->started_at = $started_at;
-        $transaction->end_at = $end_at;
-        $transaction->added_by = Auth::user()->id;
-        $transaction->note = $request->note;
-        $transaction->admin_status = 'approved';
-        $transaction->manager_status = 'approved';
-        $transaction->status = 'approved';
-        $transaction->save();
+        // $transaction = new FdrTransaction();
+        // $transaction->txn_id = uniqid();
+        // $transaction->type = 'deposit';
+        // $transaction->user_id = $member->id;
+        // $transaction->fdr_id = $fdr->id;
+        // $transaction->amount = NumberConverter::bn2en($request->amount);
+        // $transaction->started_at = $started_at;
+        // $transaction->end_at = $end_at;
+        // $transaction->added_by = Auth::user()->id;
+        // $transaction->note = $request->note;
+        // $transaction->admin_status = 'approved';
+        // $transaction->manager_status = 'approved';
+        // $transaction->status = 'approved';
+        // $transaction->save();
         return back()->withSuccess('সফলভাবে অ্যাপ্লিকেশনটি সেভ করা হয়েছে');
     }
 
@@ -192,7 +193,7 @@ class FdrController extends Controller
     {
 
 
-        $records = Fdr::with('user','transactions')->where(function ($q) use ($request){
+        $records = Fdr::with('user','histories')->where(function ($q) use ($request){
             if ($request->has('from') && $request->from) {
                 $from = date("Y-m-d", strtotime($request->from));
                 $q->where('started_at', '>=',  $from);
@@ -205,28 +206,76 @@ class FdrController extends Controller
 
             }
 
+            if ($request->has('filterBy') && $request->filterBy !='all') {
+                $q->where('status', $request->filterBy);
+
+            }
+
         })->paginate(25);
-        return view('admin/fdr/list',compact('records'));
+
+
+
+        $active_count   = Fdr::where('status','approved')->count();
+        $pending_count   = Fdr::where('status','pending')->count();
+        $declined_count   = Fdr::where('status','declined')->count();
+        $closed_count   = Fdr::where('status','closed')->count();
+
+        return view('admin/fdr/list',compact('records','active_count','pending_count','declined_count','closed_count'));
     }
 
     public function AdminApprove($id)
     {
-        $saving = Fdr::find($id);
-        $saving->admin_status = 'approved';
-        $saving->manager_status = 'approved';
-        $saving->status = 'approved';
-        $saving->save();
+        $fdr = Fdr::find($id);
+        $fdr->admin_status = 'approved';
+        $fdr->manager_status = 'approved';
+        $fdr->status = 'approved';
+        $fdr->save();
+
+
+
+        $head = TransactionHead::where('slug','fdr_revenue_income')->first();
+
+        if(!$head){
+            return back()->withError('Related head didn\'t found!');
+        }
+
+        $deposit = Transaction::where('transaction_for','fdr')
+        ->where('transactable_id',$fdr->id)
+        ->where('flag','deposit')->first();
+
+        if(!$deposit){
+            $deposit = new Transaction();
+        }
+
+        $transaction = new Transaction();
+        $transaction->txn_id = uniqid();
+        $transaction->transaction_for = 'fdr';
+        $transaction->transactable_id = $fdr->id;
+        $transaction->flag = 'deposit';
+        $transaction->type = 'income';
+        $transaction->head_id = $head->id;
+        $transaction->user_id = $fdr->user_id;
+        $transaction->note = $fdr->note;
+        $transaction->date = $fdr->started_at;
+        $transaction->amount = NumberConverter::bn2en($fdr->amount);
+        $transaction->added_by = Auth::user()->id;
+        $transaction->received_by = Auth::user()->id;
+        $transaction->admin_status ='approved';
+        $transaction->manager_status = 'approved';
+        $transaction->status = 'approved';
+        $transaction->save();
+
 
         return back()->withSuccess('সফলভাবে আনুমদন করা হয়েছে');
     }
 
     public function AdminDecline($id)
     {
-        $saving = Fdr::find($id);
-        $saving->admin_status = 'declined';
-        $saving->manager_status = 'declined';
-        $saving->status = 'declined';
-        $saving->save();
+        $fdr = Fdr::find($id);
+        $fdr->admin_status = 'declined';
+        $fdr->manager_status = 'declined';
+        $fdr->status = 'declined';
+        $fdr->save();
 
         return back()->withSuccess('সফলভাবে প্রত্যাখ্যান করা হয়েছে');
     }
@@ -238,13 +287,13 @@ class FdrController extends Controller
         if ($request->has('id')) {
 
 
-            $fdr = Fdr::with('user','transactions','receiver')->where('id',$request->id)->first();
+            $fdr = Fdr::with('user','histories','receiver')->where('id',$request->id)->first();
             $query = $fdr->txn_id;
         }elseif ($request->has('q')) {
 
             $query = $request->q;
 
-            $fdr = Fdr::with('user','transactions','receiver')->where('txn_id',$request->q)->first();
+            $fdr = Fdr::with('user','histories','receiver')->where('txn_id',$request->q)->first();
         }
         else{
             $fdr ='';
@@ -254,42 +303,58 @@ class FdrController extends Controller
 
         if($fdr){
 
-            $transactions = FdrTransaction::with('user','receiver')->where('fdr_id',$fdr->id)->orderBy('id','DESC')->get();
+            $histories = FdrTransaction::with('user','receiver')->where('fdr_id',$fdr->id)->orderBy('id','DESC')->get();
         }else{
-            $transactions = '';
+            $histories = '';
         }
-        return view('admin/fdr/find',compact('fdr','query','transactions'));
+        return view('admin/fdr/find',compact('fdr','query','histories'));
     }
 
     public function withdraw(Request $request)
     {
-        $deposited = FdrTransaction::where('fdr_id',$request->fdr_id)->where('type','deposit')->sum('amount');
-        $profit = FdrTransaction::where('fdr_id',$request->fdr_id)->where('type','profit')->sum('amount');
-        $withdraw = FdrTransaction::where('fdr_id',$request->fdr_id)->where('type','withdraw')->sum('amount');
-        $profit_balance = $profit -$withdraw;
-        $revenue_profit_balance = $deposited+$profit -$withdraw;
-        if ($request->withdraw_source=='profit' && $profit_balance < NumberConverter::bn2en($request->amount))
-        {
-            return back()->withErrors('আপনার পর্যাপ্ত বালেন্স নেই');
-        }elseif ($request->withdraw_source=='revenue' && $revenue_profit_balance < NumberConverter::bn2en($request->amount))
-        {
-            return back()->withErrors('আপনার পর্যাপ্ত বালেন্স নেই');
+        $this->validate($request,[
+            'fdr_id'=>'required',
+            'user_id'=>'required',
+            'amount'=>'required',
+            'date'=>'required',
+        ]);
+
+        $fdr = Fdr::find($request->fdr_id);
+        if(!$fdr){
+            return back()->withError('Related FDR didn\'t found!');
         }
 
-        $transaction = new FdrTransaction();
+        if( ($request->withdraw_source=='profit'    &&  $fdr->profit_balance() < $request->amount) || ($request->withdraw_source=='revenue' &&  $fdr->balance() < $request->amount)){
+            return back()->withErrors('দুঃখিত ! উত্তোলন করার জন্য যথেষ্ট পরিমান ব্যালেন্স নেই!');
+        }
+
+        $head = TransactionHead::where('slug','fdr_expense')->first();
+
+        if(!$head){
+            return back()->withErrors('Related head didn\'t found!');
+        }
+        $transaction = new Transaction();
         $transaction->txn_id = uniqid();
-        $transaction->fdr_id = $request->fdr_id;
+        $transaction->transaction_for = 'fdr';
+        $transaction->transactable_id = $request->fdr_id;
+        $transaction->flag = 'withdraw';
+        $transaction->type = 'expense';
+        $transaction->head_id = $head->id;
         $transaction->user_id = $request->user_id;
-        $transaction->added_by = Auth::user()->id;
-        $transaction->type = 'withdraw';
-        $transaction->amount = NumberConverter::bn2en($request->amount);
         $transaction->note = $request->note;
-        $transaction->started_at = $request->date;
-        $transaction->status = 'approved';
+        $transaction->date = $request->date;
+        $transaction->amount = NumberConverter::bn2en($request->amount);
+        $transaction->added_by = Auth::user()->id;
+        $transaction->received_by = Auth::user()->id;
+        $transaction->admin_status ='approved';
         $transaction->manager_status = 'approved';
-        $transaction->admin_status = 'approved';
+        $transaction->status = 'approved';
         $transaction->save();
 
+        if ($request->invoice)
+        {
+            return redirect('transaction-invoice/'.$transaction->txn_id);
+        }
         return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
 
     }
@@ -297,8 +362,8 @@ class FdrController extends Controller
     public function  withdrawReport(Request $request)
     {
 
-        $transactions = FdrTransaction::with('user','receiver','fdr')->where(function ($q) use ($request){
-            $q->where('type','withdraw');
+        $transactions = Transaction::with('user','receiver','fdr')->where('transaction_for','fdr')->where(function ($q) use ($request){
+            $q->where('flag','withdraw');
             if ($request->has('from') && $request->from) {
                 $from = date("Y-m-d", strtotime($request->from));
                 $q->where('date', '>=',  $from);
@@ -312,40 +377,35 @@ class FdrController extends Controller
             }
 
         })->paginate(25);
-        return view('admin/fdr/withdraw-list',compact('transactions'));
-    }
-
-    public function  withdrawForm( Request $request)
-    {
 
 
-        if ($request->has('q')) {
+        $total = Transaction::where('transaction_for','fdr')
+        ->where('flag','withdraw')
+        ->where(function ($q) use ($request){
+            if ($request->has('from') && $request->from) {
+                $from = date("Y-m-d", strtotime($request->from));
+                $q->where('date', '>=',  $from);
 
-            $query = $request->q;
+            }
+            if ($request->has('to') && $request->to) {
 
-            $fdr = Fdr::with('user','transactions','receiver')->where('txn_id',$request->q)->first();
-        }
-        else{
-            $fdr ='';
-            $query = '';
-        }
+                $to = date("Y-m-d", strtotime($request->to));
+                $q->where('date', '<=',  $to);
 
+            }
 
-        if($fdr){
-
-            $transactions = FdrTransaction::with('user','receiver')->where('fdr_id',$fdr->id)->orderBy('id','DESC')->get();
-        }else{
-            $transactions = '';
-        }
-        return view('admin/fdr/withdraw',compact('fdr','query','transactions','request'));
+        })
+        ->sum('amount');
+        return view('admin/fdr/withdraw-list',compact('transactions','total'));
     }
 
 
     public function  profitReport(Request $request)
     {
 
-        $transactions = FdrTransaction::with('user','receiver','fdr')->where(function ($q) use ($request){
-            $q->where('type','profit');
+        $transactions = Transaction::with('user','receiver','fdr')->where(function ($q) use ($request){
+            $q->where('transaction_for','fdr');
+            $q->where('flag','profit');
             if ($request->has('from') && $request->from) {
                 $from = date("Y-m-d", strtotime($request->from));
                 $q->where('date', '>=',  $from);
@@ -359,24 +419,55 @@ class FdrController extends Controller
             }
 
         })->paginate(25);
-        return view('admin/fdr/profit-list',compact('transactions'));
+
+
+        $total = Transaction::where('transaction_for','fdr')
+        ->where('flag','profit')
+        ->where(function ($q) use ($request){
+            if ($request->has('from') && $request->from) {
+                $from = date("Y-m-d", strtotime($request->from));
+                $q->where('date', '>=',  $from);
+
+            }
+            if ($request->has('to') && $request->to) {
+
+                $to = date("Y-m-d", strtotime($request->to));
+                $q->where('date', '<=',  $to);
+
+            }
+
+        })
+        ->sum('amount');
+        return view('admin/fdr/profit-list',compact('transactions','total'));
     }
 
     public function ManualProfit(Request $request)
     {
 
-        $transaction = new FdrTransaction();
+
+        $this->validate($request,[
+            'fdr_id'=>'required',
+            'amount'=>'required',
+            'amount'=>'required',
+        ]);
+
+        $transaction = new Transaction();
         $transaction->txn_id = uniqid();
-        $transaction->fdr_id = $request->fdr_id;
+        $transaction->transaction_for = 'fdr';
+        $transaction->transactable_id = $request->fdr_id;
+        $transaction->flag = 'profit';
+        $transaction->type = 'expense';
+        $transaction->head_id = 0;
         $transaction->user_id = $request->user_id;
+        $transaction->note = $request->note;
+        $transaction->date = $request->date;
+        $transaction->amount = NumberConverter::bn2en($request->amount);
         $transaction->added_by = Auth::user()->id;
-        $transaction->type = 'profit';
-        $transaction->amount = $request->amount;
-        $transaction->note = 'FDR Daily Profit';
-        $transaction->started_at = date("Y-m-d H:i:s");
-        $transaction->status = 'approved';
+        $transaction->received_by = Auth::user()->id;
+        $transaction->admin_status ='approved';
         $transaction->manager_status = 'approved';
-        $transaction->admin_status = 'approved';
+        $transaction->status = 'approved';
+        $transaction->canculatable='no';
         $transaction->save();
 
         return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
@@ -439,6 +530,20 @@ class FdrController extends Controller
 
 
         return back()->withSuccess('সফলভাবে  সেভ করা হয়েছে');
+    }
+
+    public function close($id){
+
+
+        $fdr = Fdr::find($id);
+        if(!$fdr){
+            return back()->withError('Not found');
+        }
+
+        $fdr->status='closed';
+        $fdr->save();
+
+        return back()->withSuccess('সফলভাবে সদস্য পদ প্রত্যাহার করা হয়েছে!');
     }
 
 

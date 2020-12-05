@@ -21,6 +21,9 @@ Route::get('/', function () {
 Auth::routes();
 
 
+//Temporary Controller
+Route::get('/fdr_transaction_sync', 'TemporaryController@fdr_transaction_sync');
+
 
 Route::post('/get-district-list-by-division', 'DistrictController@getDistrict')->name('getDistrict');
 Route::post('/get-thana-list-by-district', 'ThanaController@getThana')->name('getThana');
@@ -120,7 +123,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::post('saving/daily-application', 'SavingController@SavingDailyApplication')->name('SavingDailyApplication');
     Route::resource('saving/{type}/packages', 'SavingPackageController');
     Route::resource('saving-transaction', 'SavingTransactionController');
-    Route::post('saving/add-profit-manually', 'SavingTransactionController@ManualProfit')->name('SavingManualProfit');
+    Route::post('saving/add-profit-manually', 'SavingController@ManualProfit')->name('SavingManualProfit');
+    Route::post('saving/close/{id}', 'SavingController@SavingClose')->name('SavingClose');
 
 
     Route::resource('fdr-transaction', 'FdrTransactionController');
@@ -154,6 +158,12 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::post('fdr/getFdrDetails', 'FdrController@getFdrDetails')->name('getFdrDetails');
     Route::get('fdr/edit/{id}', 'FdrController@FdrEdit')->name('FdrEdit');
     Route::post('fdr/edit/{id}', 'FdrController@FdrUpdate')->name('FdrUpdate');
+
+    Route::post('fdr/close/{id}', 'FdrController@close')->name('fdrClose');
+
+    //Printing
+    Route::get('print/saving/{txn_id}', 'PrintController@saving')->name('print.saving');
+    Route::get('print/fdr/{txn_id}', 'PrintController@fdr')->name('fdr.saving');
 
     //Salary
     Route::resource('hr/salary-setup', 'SalarySetupController');

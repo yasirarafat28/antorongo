@@ -38,6 +38,16 @@ class Transaction extends Model
         return $this->belongsTo('App\Saving','transactable_id');
     }
 
+    public function fdr()
+    {
+        return $this->belongsTo('App\Fdr','transactable_id');
+    }
+
+    public function loan()
+    {
+        return $this->belongsTo('App\Loan','transactable_id');
+    }
+
     public static function TransactionByHeadDate($id,$from,$to)
     {
 

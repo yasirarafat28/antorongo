@@ -100,10 +100,10 @@
                 <div id="shortSaving" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{url('admin/saving/short/application')}}">আবেদন  </a>
-                        <a class="collapse-item" href="{{url('admin/saving/find')}}" > <span>আদায়/ কালেকশন </span></a>
-                        <a class="collapse-item" href="{{url('admin/saving/short/collection-report')}}" > <span>আদায় রিপোর্ট</span></a>
                         <a class="collapse-item" href="{{url('admin/saving/short/list')}}">সঞ্চয় তালিকা</a>
-                        <a class="collapse-item" href="{{url('admin/saving/short/withdraw')}}">সঞ্চয় উত্তোলন</a>
+                        <!--<a class="collapse-item" href="{{url('admin/saving/find')}}" > <span>আদায়/ কালেকশন </span></a>-->
+                        <a class="collapse-item" href="{{url('admin/saving/short/collection-report')}}" > <span>আদায় রিপোর্ট</span></a>
+                        <!--<a class="collapse-item" href="{{url('admin/saving/short/withdraw')}}">সঞ্চয় উত্তোলন</a>-->
                         <a class="collapse-item" href="{{url('admin/saving/short/withdraw-report')}}" > <span>উত্তোলন রিপোর্ট</span></a>
                         <a class="collapse-item" href="{{url('admin/saving/short/packages')}}" > <span>পাকেজসমুহ</span></a>
                     </div>
@@ -118,10 +118,10 @@
                 <div id="longSaving" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{url('admin/saving/long/application')}}">আবেদন  </a>
-                        <a class="collapse-item" href="{{url('admin/saving/find')}}" > <span>আদায়/ কালেকশন </span></a>
-                        <a class="collapse-item" href="{{url('admin/saving/long/collection-report')}}" > <span>আদায় রিপোর্ট</span></a>
                         <a class="collapse-item" href="{{url('admin/saving/long/list')}}">সঞ্চয় তালিকা</a>
-                        <a class="collapse-item" href="{{url('admin/saving/long/withdraw')}}">সঞ্চয় উত্তোলন</a>
+                        <!--<a class="collapse-item" href="{{url('admin/saving/long/withdraw')}}">সঞ্চয় উত্তোলন</a>
+                        <a class="collapse-item" href="{{url('admin/saving/find')}}" > <span>আদায়/ কালেকশন </span></a>-->
+                        <a class="collapse-item" href="{{url('admin/saving/long/collection-report')}}" > <span>আদায় রিপোর্ট</span></a>
                         <a class="collapse-item" href="{{url('admin/saving/long/withdraw-report')}}" > <span>উত্তোলন রিপোর্ট</span></a>
                         <a class="collapse-item" href="{{url('admin/saving/long/packages')}}" > <span>পাকেজসমুহ</span></a>
                     </div>
@@ -136,10 +136,10 @@
                 <div id="dailySaving" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{url('admin/saving/daily/application')}}">আবেদন  </a>
-                        <a class="collapse-item" href="{{url('admin/saving/find')}}" > <span>আদায়/ কালেকশন </span></a>
-                        <a class="collapse-item" href="{{url('admin/saving/daily/collection-report')}}" > <span>আদায় রিপোর্ট</span></a>
                         <a class="collapse-item" href="{{url('admin/saving/daily/list')}}">সঞ্চয় তালিকা</a>
-                        <a class="collapse-item" href="{{url('admin/saving/daily/withdraw')}}">সঞ্চয় উত্তোলন</a>
+                        <!--<a class="collapse-item" href="{{url('admin/saving/daily/withdraw')}}">সঞ্চয় উত্তোলন</a>
+                        <a class="collapse-item" href="{{url('admin/saving/find')}}" > <span>আদায়/ কালেকশন </span></a>-->
+                        <a class="collapse-item" href="{{url('admin/saving/daily/collection-report')}}" > <span>আদায় রিপোর্ট</span></a>
                         <a class="collapse-item" href="{{url('admin/saving/daily/withdraw-report')}}" > <span>উত্তোলন রিপোর্ট</span></a>
                         <a class="collapse-item" href="{{url('admin/saving/daily/packages')}}" > <span>পাকেজসমুহ</span></a>
                     </div>
@@ -163,9 +163,9 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{url('admin/fdr/application')}}">আবেদন  </a>
                         <a class="collapse-item" href="{{url('admin/fdr/list')}}">এফ ডি আর তালিকা  </a>
-                        <a class="collapse-item" href="{{url('admin/fdr/withdraw')}}">এফ ডি আর উত্তোলন  </a>
-                        <a class="collapse-item" href="{{url('admin/fdr/withdraw-report')}}" >উত্তোলন রিপোর্ট  </a>
                         <a class="collapse-item" href="{{url('admin/fdr/profit-report')}}" >লাভের রিপোর্ট  </a>
+                        <!--<a class="collapse-item" href="{{url('admin/fdr/withdraw')}}">এফ ডি আর উত্তোলন  </a>-->
+                        <a class="collapse-item" href="{{url('admin/fdr/withdraw-report')}}" >উত্তোলন রিপোর্ট  </a>
                     </div>
                 </div>
             </li>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\NumberConverter;
 use Illuminate\Http\Request;
 use App\Transaction;
 use App\TransactionHead;
@@ -39,6 +40,50 @@ class TransactionController extends Controller
 
         $parents = TransactionHead::with('childs')->where('parent',0)->get();
 
-        return view('admin/transactions',compact('transactions','parents'));
+        return view('admin.transactions.index',compact('transactions','parents'));
+    }
+
+    public function create(){
+
+    }
+    public function store(Request $request){
+
+    }
+    public function edit($id){
+
+        $transaction = Transaction::find($id);
+        return view('admin.transactions.edit',compact('transaction'));
+
+    }
+    public function update(Request $request,$id){
+        $this->validate($request,[
+            'amount'=>'required',
+            'date'=>'required',
+        ]);
+        $transaction = Transaction::find($id);
+        //$income->head_id = $request->head_id;
+        $transaction->note = $request->note;
+        $transaction->date = $request->date;
+        $transaction->amount = NumberConverter::bn2en($request->amount);
+        $transaction->save();
+
+
+        if ($request->invoice)
+        {
+            return redirect('transaction-invoice/'.$transaction->txn_id);
+        }
+
+
+
+        return back()->withSuccess('সফলভাবে পরিবরতন করা হয়েছে!');
+
+
+    }
+    public function destroy(Request $request,$id){
+
+        Transaction::destroy($id);
+
+
+        return back()->withSuccess('সফলভাবে মুছে ফেলা হয়েছে!');
     }
 }

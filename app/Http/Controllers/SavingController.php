@@ -26,12 +26,7 @@ class SavingController extends Controller
         }else
             return view('admin/saving/application',compact('members','type','packages'));
     }
-    public  function depositView($type)
-    {
-        $packages = SavingPackage::where('type',$type)->get();
-        $members = User::where('role','member')->orderBy('name','ASC')->get();
-        return view('admin/saving/deposit',compact('members','type','packages'));
-    }
+
     public  function find(Request $request)
     {
 
@@ -51,58 +46,66 @@ class SavingController extends Controller
             $query = '';
         }
 
-        // if($saving){
-
-        //     $transactions = SavingTransaction::with('user','receiver')->where('saving_id',$saving->id)->orderBy('date','ASC')->get();
-        // }else{
-        //     $transactions = '';
-
-        // }
 
         return view('admin/saving/find',compact('saving','query'));
     }
 
-    public  function WithdrawView(Request $request)
-    {
-
-        if ($request->has('q')) {
-
-            $query = $request->q;
-
-            $saving = Saving::with('user')->where('txn_id',$request->q)->first();
-        }
-        else{
-            $saving ='';
-            $query = '';
-        }
-
-        if($saving){
-
-            $transactions = SavingTransaction::with('user','receiver')->where('saving_id',$saving->id)->orderBy('date','ASC')->get();
-        }else{
-            $transactions = '';
-
-        }
-
-        return view('admin/saving/withdraw',compact('transactions','saving','query'));
-    }
-
     public function Withdraw(Request $request)
     {
-        $transaction = new SavingTransaction();
+
+        $this->validate($request,[
+            'saving_id'=>'required',
+            'user_id'=>'required',
+            'amount'=>'required',
+            'date'=>'required',
+        ]);
+
+
+
+        $saving = Saving::find($request->saving_id);
+
+        if(!$saving){
+            return back()->withError('Related saving didn\'t found!');
+        }
+
+        if($saving->balance() < $request->amount){
+            return back()->withErrors('দুঃখিত ! উত্তোলন করার জন্য যথেষ্ট পরিমান ব্যালেন্স নেই!');
+        }
+
+        if($saving->type=='long'){
+            $flag = 'saving_project_10_expense';
+        }elseif($saving->type=='long'){
+            $flag = 'saving_project_5_expense';
+        }else{
+            $flag = 'daily_saving_expense';
+        }
+        $head = TransactionHead::where('slug',$flag)->first();
+
+        if(!$head){
+            return back()->withErrors('Related head didn\'t found!');
+        }
+        $transaction = new Transaction();
         $transaction->txn_id = uniqid();
-        $transaction->saving_id = $request->saving_id;
+        $transaction->transaction_for = 'saving';
+        $transaction->transactable_id = $request->saving_id;
+        $transaction->flag = 'withdraw';
+        $transaction->type = 'expense';
+        $transaction->head_id = $head->id;
         $transaction->user_id = $request->user_id;
-        $transaction->received_by = Auth::user()->id;
-        $transaction->type = 'withdraw';
-        $transaction->outgoing = NumberConverter::bn2en($request->amount);
         $transaction->note = $request->note;
         $transaction->date = $request->date;
-        $transaction->status = 'approved';
+        $transaction->amount = NumberConverter::bn2en($request->amount);
+        $transaction->added_by = Auth::user()->id;
+        $transaction->received_by = Auth::user()->id;
+        $transaction->admin_status ='approved';
         $transaction->manager_status = 'approved';
-        $transaction->admin_status = 'approved';
+        $transaction->status = 'approved';
         $transaction->save();
 
+        if ($request->invoice)
+        {
+            return redirect('transaction-invoice/'.$transaction->txn_id);
+        }
         return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
 
 
@@ -120,14 +123,25 @@ class SavingController extends Controller
         ]);
 
 
-        $head = TransactionHead::where('slug','saving_project_5_income')->first();
+
+        $saving = Saving::find($request->saving_id);
+
+        if(!$saving){
+            return back()->withError('Related saving didn\'t found!');
+        }
+
+        if($saving->type=='long'){
+            $flag = 'saving_project_10_income';
+        }elseif($saving->type=='long'){
+            $flag = 'saving_project_5_income';
+        }else{
+            $flag = 'daily_saving_collection_income';
+        }
+        $head = TransactionHead::where('slug',$flag)->first();
 
         if(!$head){
             return back()->withError('Related head didn\'t found!');
         }
-
-
-
         $transaction = new Transaction();
         $transaction->txn_id = uniqid();
         $transaction->transaction_for = 'saving';
@@ -140,6 +154,7 @@ class SavingController extends Controller
         $transaction->date = $request->date;
         $transaction->amount = NumberConverter::bn2en($request->amount);
         $transaction->added_by = Auth::user()->id;
+        $transaction->received_by = Auth::user()->id;
         $transaction->admin_status ='approved';
         $transaction->manager_status = 'approved';
         $transaction->status = 'approved';
@@ -149,36 +164,50 @@ class SavingController extends Controller
         {
             return redirect('transaction-invoice/'.$transaction->txn_id);
         }
+        return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
+    }
 
+    public function ManualProfit(Request $request)
+    {
 
+        $this->validate($request,[
+            'saving_id'=>'required',
+            'amount'=>'required',
+            'note'=>'required',
+            'amount'=>'required',
+        ]);
 
+        // $head = TransactionHead::where('slug','saving_project_5_income')->first();
 
-        // $transaction = new SavingTransaction();
-        // $transaction->txn_id = uniqid();
-        // $transaction->saving_id = $request->saving_id;
-        // $transaction->user_id = $request->user_id;
-        // $transaction->received_by = Auth::user()->id;
-        // $transaction->type = 'deposit';
-        // $transaction->amount = NumberConverter::bn2en($request->amount);
-        // $transaction->note = $request->note;
-        // $transaction->date = $request->date;
-        // $transaction->status = 'approved';
-        // $transaction->manager_status = 'approved';
-        // $transaction->admin_status = 'approved';
-        // $transaction->save();
-
-        // if ($request->invoice)
-        // {
-        //     $user = User::find($request->user_id);
-        //     $date =  $request->date;
-        //     $saving_amount = NumberConverter::bn2en($request->amount);
-        //     return view('admin/invoice',compact('user','saving_amount','date'));
+        // if(!$head){
+        //     return back()->withError('Related head didn\'t found!');
         // }
 
+        $transaction = new Transaction();
+        $transaction->txn_id = uniqid();
+        $transaction->transaction_for = 'saving';
+        $transaction->transactable_id = $request->saving_id;
+        $transaction->flag = 'profit';
+        $transaction->type = 'expense';
+        $transaction->head_id = 0;
+        $transaction->user_id = $request->user_id;
+        $transaction->note = $request->note;
+        $transaction->date = $request->date;
+        $transaction->amount = NumberConverter::bn2en($request->amount);
+        $transaction->added_by = Auth::user()->id;
+        $transaction->received_by = Auth::user()->id;
+        $transaction->admin_status ='approved';
+        $transaction->manager_status = 'approved';
+        $transaction->status = 'approved';
+        $transaction->canculatable='no';
+        $transaction->save();
+
+        if ($request->invoice)
+        {
+            return redirect('transaction-invoice/'.$transaction->txn_id);
+        }
+
         return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
-
-
-
     }
 
     public function CollectionList(Request $request,$type)
@@ -202,7 +231,26 @@ class SavingController extends Controller
 
         })
         ->orderBy('date','DESC')->paginate(25);
-        return view('admin/saving/collection-list',compact('transactions'));
+
+        $total = Transaction::where('transaction_for','saving')
+        ->where('flag','deposit')
+        ->whereIn('transactable_id',$saving_ids)
+        ->where(function ($q) use ($request,$saving_ids){
+            if ($request->has('from') && $request->from) {
+                $from = date("Y-m-d", strtotime($request->from));
+                $q->where('date', '>=',  $from);
+
+            }
+            if ($request->has('to') && $request->to) {
+
+                $to = date("Y-m-d", strtotime($request->to));
+                $q->where('date', '<=',  $to);
+
+            }
+
+        })
+        ->sum('amount');
+        return view('admin/saving/collection-list',compact('transactions','total'));
     }
 
     public function WithdrawList(Request $request,$type)
@@ -226,7 +274,29 @@ class SavingController extends Controller
 
         })
         ->orderBy('date','DESC')->paginate(25);
-        return view('admin/saving/withdraw-list',compact('transactions'));
+
+
+        $total = Transaction::where('transaction_for','saving')
+        ->where('flag','withdraw')
+        ->whereIn('transactable_id',$saving_ids)
+        ->where(function ($q) use ($request,$saving_ids){
+            if ($request->has('from') && $request->from) {
+                $from = date("Y-m-d", strtotime($request->from));
+                $q->where('date', '>=',  $from);
+
+            }
+            if ($request->has('to') && $request->to) {
+
+                $to = date("Y-m-d", strtotime($request->to));
+                $q->where('date', '<=',  $to);
+
+            }
+
+        })
+        ->sum('amount');
+
+
+        return view('admin/saving/withdraw-list',compact('transactions','total'));
     }
 
     public function SavingApplication(Request $request)
@@ -541,8 +611,13 @@ class SavingController extends Controller
 
             }
 
-        })->paginate(25);
-        return view('admin/saving/list',compact('records','type'));
+        })->orderBy('created_at','DESC')->paginate(25);
+
+        $active_count   = Saving::where('type',$type)->where('status','approved')->count();
+        $pending_count   = Saving::where('type',$type)->where('status','pending')->count();
+        $declined_count   = Saving::where('type',$type)->where('status','declined')->count();
+        $closed_count   = Saving::where('type',$type)->where('status','closed')->count();
+        return view('admin/saving/list',compact('records','type','active_count','pending_count','declined_count','closed_count'));
     }
 
     public function getSavingsByUser(Request $request)
@@ -622,5 +697,19 @@ class SavingController extends Controller
 
 
         return back()->withSuccess('সফলভাবে অ্যাপ্লিকেশনটি সেভ করা হয়েছে');
+    }
+
+
+    public function SavingClose($id){
+        $saving = Saving::find($id);
+        if(!$saving){
+            return back()->withError('Not found');
+        }
+
+        $saving->status='closed';
+        $saving->save();
+
+        return back()->withSuccess('সফলভাবে সদস্য পদ প্রত্যাহার করা হয়েছে!');
+
     }
 }
