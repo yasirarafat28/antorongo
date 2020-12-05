@@ -177,7 +177,7 @@
                                                 -
                                             @endif
 
-                                            {{\App\NumberConverter::en2bn($item->outgoing)}} টাকা
+                                            {{\App\NumberConverter::en2bn($item->amount)}} টাকা
 
                                         </td>
                                         <td>নিশ্চিত </td>

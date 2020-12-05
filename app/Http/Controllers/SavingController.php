@@ -23,6 +23,9 @@ class SavingController extends Controller
         if ($type=='daily')
         {
             return view('admin/saving/daily-application',compact('members','type','packages'));
+        }elseif ($type=='current')
+        {
+            return view('admin/saving/current-application',compact('members','type'));
         }else
             return view('admin/saving/application',compact('members','type','packages'));
     }
@@ -76,6 +79,8 @@ class SavingController extends Controller
             $flag = 'saving_project_10_expense';
         }elseif($saving->type=='long'){
             $flag = 'saving_project_5_expense';
+        }elseif($saving->type=='current'){
+            $flag = 'general_saving_refund_expense';
         }else{
             $flag = 'daily_saving_expense';
         }
@@ -134,6 +139,8 @@ class SavingController extends Controller
             $flag = 'saving_project_10_income';
         }elseif($saving->type=='long'){
             $flag = 'saving_project_5_income';
+        }elseif($saving->type=='current'){
+            $flag = 'general_saving_income';
         }else{
             $flag = 'daily_saving_collection_income';
         }
@@ -578,6 +585,132 @@ class SavingController extends Controller
         $saving->duration = $request->duration;
         $saving->started_at = $started_at;
         $saving->end_at = $end_at;
+        $saving->added_by = Auth::user()->id;
+        $saving->note = '';
+        $saving->admin_status = 'pending';
+        $saving->manager_status = 'pending';
+        $saving->status = 'pending';
+        $saving->save();
+
+
+        return back()->withSuccess('সফলভাবে অ্যাপ্লিকেশনটি সেভ করা হয়েছে');
+    }
+
+
+
+    public function SavingCurrentApplication(Request $request)
+    {
+
+        $this->validate($request,
+            [
+                'user_id' => 'required',
+            ]
+        );
+
+        if ($request->user_id=='no'){
+            $random_account = uniqid();
+            $random_email = uniqid().'temporaryemail@ontorongo.com';
+            $random_password = bcrypt('12345678');
+
+            $member = new User();
+            $member->role = 'member';
+
+            if ($request->has('name')){ $member->name = $request->name;}
+            if ($request->has('name_bn')){ $member->name_bn = $request->name_bn;}
+            if ($request->has('share_holder_name')){ $member->share_holder_name = $request->share_holder_name;}
+            if ($request->has('father_name')){ $member->father_name = $request->father_name;}
+            if ($request->has('mother_name')){ $member->mother_name = $request->mother_name;}
+            if ($request->has('dob')){ $member->dob = date("Y-m-d H:i:s", strtotime($request->dob));}
+            if ($request->has('nationality')){ $member->nationality = $request->nationality;}
+            if ($request->has('nid')){ $member->nid = $request->nid;}
+            if ($request->has('occupation')){ $member->occupation = $request->occupation;}
+            if ($request->has('company_name')){ $member->company_name = $request->company_name;}
+            if ($request->has('present_address')){ $member->present_address = $request->present_address;}
+            if ($request->has('permanent_address')){ $member->permanent_address = $request->permanent_address;}
+            if ($request->has('phone')){ $member->phone = $request->phone;}
+            if ($request->has('phone_2')){ $member->phone_2 = $request->phone_2;}
+            if ($request->has('comment')){ $member->comment = $request->comment;}
+            if ($request->has('contact_address')){ $member->contact_address = $request->contact_address;}
+            if ($request->has('nominee_name')){ $member->nominee_name = $request->nominee_name;}
+            if ($request->has('nominee_father_name')){ $member->nominee_father_name = $request->nominee_father_name;}
+            if ($request->has('nominee_present_address')){ $member->nominee_present_address = $request->nominee_present_address;}
+            if ($request->has('nominee_permanent_address')){ $member->nominee_permanent_address = $request->nominee_permanent_address;}
+            if ($request->has('nominee_share')){ $member->nominee_share = $request->nominee_share;}
+            if ($request->has('nominee_relation')){ $member->nominee_relation = $request->nominee_relation;}
+            if ($request->has('nominee_age')){ $member->nominee_age = $request->nominee_age;}
+
+            if ($request->has('account_type')){ $member->account_type = $request->account_type;}
+            if ($request->has('project')){ $member->project = $request->project;}
+
+            if ($request->has('email')){ $member->email = $request->email;}else{$member->email = $random_email;}
+            if ($request->has('unique_id')){ $member->unique_id = $request->unique_id;}else{$member->unique_id = $random_account;}
+            if ($request->has('password')){ $member->password = $request->password;}else{$member->password = $random_password;}
+
+            //All Image file
+
+            if ($request->hasFile('photo')) {
+
+                $image      = $request->file('photo');
+                $imageName  = 'member_'.date('ymdhis').'.'.$image->getClientOriginalExtension();
+                $path       = 'images/member/';
+                $image->move($path, $imageName);
+                $imageUrl   = $path . $imageName;
+                $member->photo = $imageUrl ;
+            }
+
+            if ($request->hasFile('signature')) {
+
+                $image      = $request->file('signature');
+                $imageName  = 'member_signature_'.date('ymdhis').'.'.$image->getClientOriginalExtension();
+                $path       = 'images/member/';
+                $image->move($path, $imageName);
+                $imageUrl   = $path . $imageName;
+                $member->signature = $imageUrl ;
+            }
+
+            if ($request->hasFile('nominee_photo')) {
+
+                $image      = $request->file('nominee_photo');
+                $imageName  = 'member_nominee_'.date('ymdhis').'.'.$image->getClientOriginalExtension();
+                $path       = 'images/member/';
+                $image->move($path, $imageName);
+                $imageUrl   = $path . $imageName;
+                $member->nominee_photo = $imageUrl ;
+            }
+
+            if ($request->hasFile('nominee_signature')) {
+
+                $image      = $request->file('nominee_signature');
+                $imageName  = 'member_nominee_'.date('ymdhis').'.'.$image->getClientOriginalExtension();
+                $path       = 'images/member/';
+                $image->move($path, $imageName);
+                $imageUrl   = $path . $imageName;
+                $member->nominee_signature = $imageUrl ;
+            }
+
+            $member->save();
+
+            $member->assignRole('member');
+        }
+        else{
+            $member = User::find($request->user_id);
+        }
+
+        $started_at = date('Y-m-d H:i:s',strtotime($request->date));
+        //$end_at = date('Y-m-d H:i:s', strtotime($started_at . "+ ".$request->duration." months"));
+
+
+        //Create Saving Application
+
+        $saving = new Saving();
+        $saving->txn_id = uniqid();
+        $saving->user_id = $member->id;
+        $saving->identifier_id = $request->identifier_id??0;
+        $saving->type = $request->type;
+        $saving->installment_amount = $request->installment_amount??0;
+        $saving->duration = $request->duration??0;
+        $saving->started_at = $started_at;
+        //$saving->end_at = $end_at;
         $saving->added_by = Auth::user()->id;
         $saving->note = '';
         $saving->admin_status = 'pending';

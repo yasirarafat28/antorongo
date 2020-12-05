@@ -104,6 +104,8 @@
                                                     স্বল্প মেয়াদী (৫ বছর মেয়াদী)
                                                     @elseif($saving->type=='long')
                                                         দীর্ঘ মেয়াদী (১০ বছর মেয়াদী)
+                                                    @elseif($saving->type=='current')
+                                                        সাধারন সঞ্চয়
                                                     @else
                                                         দৈনিক
                                                     @endif
@@ -254,9 +256,14 @@
                                         <a href="{{url('admin/saving-approve/'.$saving->id)}}" class="btn btn-primary"><i class="fa fa-check"> </i> অনুমোদন করুন</a>
                                         <a href="{{url('admin/saving-decline/'.$saving->id)}}" class="btn btn-danger"><i class="fa fa-times"> প্রত্যাখ্যান করুন</i></a>
                                     @elseif($saving->status=='approved')
-                                        <button
-                                            data-toggle="modal" data-target="#AddProfitModal" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> লাভ যোগ করুন
-                                        </button>
+
+                                    @if ($saving->type !='current')
+
+                                    <button
+                                        data-toggle="modal" data-target="#AddProfitModal" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> লাভ যোগ করুন
+                                    </button>
+
+                                    @endif
                                         <button
                                             data-toggle="modal" data-target="#SavingDepositModal" class="btn btn-primary"><i class="fa fa-download"></i> জমা করুন
                                         </button>

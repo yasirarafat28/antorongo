@@ -86,7 +86,7 @@ class IncomeController extends Controller
 
         $parents = TransactionHead::with('childs')->where('parent',0)->where('type','income')->get();
 
-        $transactions = Transaction::with('head')->where(function ($q) use ($request){
+        $transactions = Transaction::with('head')->where('canculatable','yes')->where(function ($q) use ($request){
             $q->where('type','income');
             if ($request->has('from') && $request->from) {
                 $from = date("Y-m-d", strtotime($request->from));
@@ -101,7 +101,26 @@ class IncomeController extends Controller
             }
 
         })->paginate(25);
-        return view('admin/income/list',compact('transactions','parents'));
+
+
+        $total = Transaction::where('canculatable','yes')->where(function ($q) use ($request){
+            $q->where('type','income');
+            if ($request->has('from') && $request->from) {
+                $from = date("Y-m-d", strtotime($request->from));
+                $q->where('date', '>=',  $from);
+
+            }
+            if ($request->has('to') && $request->to) {
+
+                $to = date("Y-m-d", strtotime($request->to));
+                $q->where('date', '<=',  $to);
+
+            }
+
+        })->sum('amount');
+
+
+        return view('admin/income/list',compact('transactions','parents','total'));
 
     }
 }
