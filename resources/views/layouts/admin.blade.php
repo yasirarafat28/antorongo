@@ -135,13 +135,30 @@
                 </a>
                 <div id="dailySaving" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{url('admin/saving/daily/application')}}">আবেদন  </a>
+                        <a class="collapse-item" href="{{url('admin/saving/current/application')}}">আবেদন  </a>
                         <a class="collapse-item" href="{{url('admin/saving/daily/list')}}">সঞ্চয় তালিকা</a>
                         <!--<a class="collapse-item" href="{{url('admin/saving/daily/withdraw')}}">সঞ্চয় উত্তোলন</a>
                         <a class="collapse-item" href="{{url('admin/saving/find')}}" > <span>আদায়/ কালেকশন </span></a>-->
                         <a class="collapse-item" href="{{url('admin/saving/daily/collection-report')}}" > <span>আদায় রিপোর্ট</span></a>
                         <a class="collapse-item" href="{{url('admin/saving/daily/withdraw-report')}}" > <span>উত্তোলন রিপোর্ট</span></a>
                         <a class="collapse-item" href="{{url('admin/saving/daily/packages')}}" > <span>পাকেজসমুহ</span></a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#currentSaving"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>সাধারণ সঞ্চয়</span>
+                </a>
+                <div id="currentSaving" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{url('admin/saving/current/application')}}">আবেদন  </a>
+                        <a class="collapse-item" href="{{url('admin/saving/current/list')}}">সঞ্চয় তালিকা</a>
+                        <a class="collapse-item" href="{{url('admin/saving/current/collection-report')}}" > <span>আদায় রিপোর্ট</span></a>
+                        <a class="collapse-item" href="{{url('admin/saving/current/withdraw-report')}}" > <span>উত্তোলন রিপোর্ট</span></a>
+
                     </div>
                 </div>
             </li>

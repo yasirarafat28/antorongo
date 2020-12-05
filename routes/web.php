@@ -121,6 +121,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::get('saving/{type}/application', 'SavingController@application');
     Route::post('saving/application', 'SavingController@SavingApplication')->name('SavingApplication');
     Route::post('saving/daily-application', 'SavingController@SavingDailyApplication')->name('SavingDailyApplication');
+    Route::post('saving/current-application', 'SavingController@SavingCurrentApplication')->name('SavingCurrentApplication');
     Route::resource('saving/{type}/packages', 'SavingPackageController');
     Route::resource('saving-transaction', 'SavingTransactionController');
     Route::post('saving/add-profit-manually', 'SavingController@ManualProfit')->name('SavingManualProfit');

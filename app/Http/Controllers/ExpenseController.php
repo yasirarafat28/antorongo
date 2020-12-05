@@ -74,7 +74,25 @@ class ExpenseController extends Controller
             }
 
         })->paginate(25);
-        return view('admin/expense/list',compact('transactions'));
+
+
+
+        $total = Transaction::where('canculatable','yes')->where(function ($q) use ($request){
+            $q->where('type','expense');
+            if ($request->has('from') && $request->from) {
+                $from = date("Y-m-d", strtotime($request->from));
+                $q->where('date', '>=',  $from);
+
+            }
+            if ($request->has('to') && $request->to) {
+
+                $to = date("Y-m-d", strtotime($request->to));
+                $q->where('date', '<=',  $to);
+
+            }
+
+        })->sum('amount');
+        return view('admin/expense/list',compact('transactions','total'));
 
     }
 }

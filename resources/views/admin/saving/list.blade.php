@@ -148,10 +148,10 @@
                                 <th>সভ্য আইডি </th>
                                 <th>সঞ্চয় আইডি </th>
                                 <th> সদস্য নাম  </th>
-                                @if($type='daily')
+                                @if($type=='daily')
                                     <th> দৈনিক সঞ্চয়ের পরিমান  </th>
                                     <th> সময়কাল (মাস)  </th>
-                                @else
+                                @elseif($type !='current')
                                     <th> পলিসির পরিমান  </th>
                                     <th> মোট লাভ</th>
                                     <th> মোট ফেরত</th>
@@ -166,10 +166,10 @@
                                 <th>সভ্য আইডি </th>
                                 <th>সঞ্চয় আইডি </th>
                                 <th> সদস্য নাম  </th>
-                                @if($type='daily')
+                                @if($type =='daily')
                                     <th> দৈনিক সঞ্চয়ের পরিমান  </th>
                                     <th> সময়কাল (মাস)  </th>
-                                @else
+                                @elseif($type !='current')
                                     <th> পলিসির পরিমান  </th>
                                     <th> মোট লাভ</th>
                                     <th> মোট ফেরত</th>
@@ -204,10 +204,10 @@
                                     <td>{{$item->user->unique_id??''}}</td>
                                     <td>{{$item->txn_id}}</td>
                                     <td>{{$item->user->name_bn??''}}</td>
-                                    @if($type='daily')
+                                    @if($type =='daily')
                                         <td>{{\App\NumberConverter::en2bn($item->installment_amount)}} টাকা </td>
                                         <td>{{\App\NumberConverter::en2bn($item->duration)}} মাস </td>
-                                    @else
+                                    @elseif($type !='current')
                                         <td>{{\App\NumberConverter::en2bn($item->target_amount)}}</td>
                                         <td>{{\App\NumberConverter::en2bn($item->return_amount-$item->target_amount)}}</td>
                                         <td>{{\App\NumberConverter::en2bn($item->return_amount)}}</td>
