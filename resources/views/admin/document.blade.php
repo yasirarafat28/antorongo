@@ -192,18 +192,18 @@
                                 </div>
 
 
-                                {{-- <div class="col-lg-12 col-md-12">
+                                <div class="col-lg-12 col-md-12">
                                     <div class="form-group">
                                         <label for=""><small>ডকুমেন্ট</small></label>
                                         <input type="file" class="form-control" placeholder="ডকুমেন্ট" name="file">
                                     </div>
-                                </div> --}}
+                                </div>
 
-                                <div class='col-md-12 mb-4 mt-2'>
+                                {{-- <div class='col-md-12 mb-4 mt-2'>
                                     <!-- Dropzone -->
                                     <div action="{{route('upload')}}" class='dropzone' >
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div class="col-md-12 text-center">
                                 <button type="submit" class="btn btn-info btn-round">সেভ করুন</button>
@@ -217,53 +217,53 @@
 <!--Add Modal End-->
 
 
-@foreach($records as $item)
-<!-- Edit Modal Start -->
-{{-- <div class="modal fade" id="largeEditModal{{$item->id}}" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
+        @foreach($records as $item)
+        <!-- Edit Modal Start -->
+        <div class="modal fade" id="largeEditModal{{$item->id}}" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
 
-                    <div class="modal-header">
-                        <h2><strong> ডকুমেন্ট</strong> এডিট</h2>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{{url('admin/documents/'.$item->id)}}" method="POST" enctype="multipart/form-data">
-                            {{csrf_field()}}
-
-                            {{method_field('PATCH')}}
-                            <div class="row clearfix">
-
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label for=""><small> নাম</small></label>
-                                        <input type="text" class="form-control" placeholder="নাম" name="title">
-                                    </div>
-                                </div>
-
-
-                                <div class="col-lg-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for=""><small>ডকুমেন্ট</small></label>
-                                        <input type="file" class="form-control" placeholder="ডকুমেন্ট" name="file">
-                                    </div>
-                                </div>
-                                <div class="col-md-12 text-center">
-                                <button type="submit" class="btn btn-info btn-round">সেভ করুন</button>
-                                </div>
+                            <div class="modal-header">
+                                <h2><strong> ডকুমেন্ট</strong> এডিট</h2>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-                        </form>
-                    </div>
-                </div>
+                            <div class="modal-body">
+                                <form action="{{url('admin/documents/'.$item->id)}}" method="POST" enctype="multipart/form-data">
+                                    {{csrf_field()}}
 
-    </div>
-</div> --}}
+                                    {{method_field('PATCH')}}
+                                    <div class="row clearfix">
 
-<!--Edit Modal End-->
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label for=""><small> নাম</small></label>
+                                                <input type="text" class="form-control" placeholder="নাম" name="title">
+                                            </div>
+                                        </div>
 
-@endforeach
+
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for=""><small>ডকুমেন্ট</small></label>
+                                                <input type="file" class="form-control" placeholder="ডকুমেন্ট" name="file">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 text-center">
+                                        <button type="submit" class="btn btn-info btn-round">সেভ করুন</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+            </div>
+        </div>
+
+        <!--Edit Modal End-->
+
+        @endforeach
 
 <script>
     $(document).ready(function(){
@@ -276,7 +276,7 @@
 
 @section('script')
 
-<script>
+{{-- <script>
     var CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
 
     //Dropzone.autoDiscover = false;
@@ -339,6 +339,6 @@
     myDropzone.on("sending", function(file, xhr, formData) {
        formData.append("_token", CSRF_TOKEN);
     });
-</script>
+</script> --}}
 @endsection
 
