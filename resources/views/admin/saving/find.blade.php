@@ -113,7 +113,7 @@
                                                 <?php
                                                     $deposited  = $saving->deposits->sum('amount');
                                                     $total_profit  = $saving->profits->sum('amount');
-                                                    $total_withdraw  = $saving->withdraws->sum('outgoing');
+                                                    $total_withdraw  = $saving->withdraws->sum('amount');
 
                                                 ?>
 
@@ -160,56 +160,6 @@
                                             </tr>
                                         </tbody>
                                     </table>
-
-                                {{-- <span class="m-t-0 m-b-0"><strong>নামঃ  {{$saving->user->name}}</strong></span>
-                                <hr>
-
-                                <span class="job_post">সভ্য আইডি : {{$saving->user->unique_id??''}}</span>
-
-                                <hr>
-
-                                <span class="job_post">সঞ্চয় আইডি : {{$saving->txn_id??''}}</span>
-                                <hr>
-                                <span class="job_post">ধরন :
-                                    @if($saving->type=='short')
-                                        স্বল্প মেয়াদী (৫ বছর মেয়াদী)
-                                    @elseif($saving->type=='long')
-                                        দীর্ঘ মেয়াদী (১০ বছর মেয়াদী)
-                                    @else
-                                        দৈনিক
-                                    @endif
-
-                                </span>
-
-                                <?php
-                                    $deposited  = $saving->deposits->sum('amount');
-                                    $total_profit  = $saving->profits->sum('amount');
-                                    $total_withdraw  = $saving->withdraws->sum('outgoing');
-
-                                ?>
-
-                                <hr>
-
-                                <span class="job_post"> পলিসির পরিমান  : {{\App\NumberConverter::en2bn($saving->target_amount)}} টাকা </span>
-
-                                <hr>
-
-                                <span class="job_post"> মোট কালেকশন/আদায় : {{\App\NumberConverter::en2bn($deposited)}} টাকা </span>
-
-                                <hr>
-
-                                <span class="job_post"> মোট  ফেরত : {{\App\NumberConverter::en2bn($saving->return_amount)}} টাকা </span>
-
-                                <hr>
-
-
-                                <span class="job_post"> মোট  লভ্যাংশ : {{\App\NumberConverter::en2bn($total_profit)}} টাকা ||
-
-                                </span>
-
-                                <hr>
-
-                                <span class="job_post"> অবস্থা : {{$saving->status}} </span> --}}
                                 </div>
                                 <hr>
 
@@ -221,58 +171,6 @@
                             <div class="col-md-8">
 
                                 <div class="row">
-
-
-                                    {{-- <thead>
-                                        @php
-                                            $total =0;
-                                        @endphp
-                                        <tbody>
-                                            <tr>
-                                                <td  colspan="5" class="text-right">
-                                                    মোট জমা
-
-                                                </td>
-                                                <td>
-                                                    {{\App\NumberConverter::en2bn($deposited)}} টাকা
-                                                </td>
-                                                <td colspan="3"></td>
-                                            </tr>
-                                            <tr>
-                                                <td  colspan="5" class="text-right">
-                                                    মোট লাভ
-
-                                                </td>
-                                                <td>
-                                                    {{\App\NumberConverter::en2bn($total_profit)}} টাকা ({{\App\NumberConverter::en2bn(number_format($total_profit/$deposited*100,2))}}%)
-                                                </td>
-                                                <td colspan="3"></td>
-                                            </tr>
-                                            <tr>
-                                                <td  colspan="5" class="text-right">
-                                                    মোট উত্তোলন
-
-                                                </td>
-                                                <td>
-                                                    {{\App\NumberConverter::en2bn($total_withdraw)}} টাকা
-                                                </td>
-                                                <td colspan="3"></td>
-                                            </tr>
-                                            <tr>
-                                                <td  colspan="5" class="text-right">
-                                                    বর্তমান ব্যালেন্স
-
-                                                </td>
-                                                <td>
-                                                    {{\App\NumberConverter::en2bn($total)}} টাকা
-                                                </td>
-                                                <td colspan="3"></td>
-                                            </tr>
-                                        </tbody>
-                                    </thead> --}}
-
-
-                                    <!-- Earnings (Monthly) Card Example -->
                                     <div class="col-xl-6 col-md-6 mb-4">
                                         @php
                                             $total =0;
@@ -284,7 +182,7 @@
                                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                             মোট জমা
                                                         </div>
-                                                        <div class="h6 mb-0 font-weight-bold text-gray-800">৪৫৩ টি</div>
+                                                    <div class="h6 mb-0 font-weight-bold text-gray-800">$ {{App\NumberConverter::en2bn(number_format($deposited,2))}} টাকা </div>
                                                     </div>
                                                     <div class="col-auto">
                                                         <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -304,7 +202,7 @@
                                                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                             মোট লাভ
                                                         </div>
-                                                        <div class="h6 mb-0 font-weight-bold text-gray-800">$ ৩৪৫৩৪</div>
+                                                        <div class="h6 mb-0 font-weight-bold text-gray-800">$ {{App\NumberConverter::en2bn(number_format($total_profit,2))}} টাকা </div>
                                                     </div>
                                                     <div class="col-auto">
                                                         <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -321,7 +219,7 @@
                                                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                                             মোট উত্তোলন
                                                         </div>
-                                                        <div class="h6 mb-0 font-weight-bold text-gray-800">$ ৩৪৫৩৪</div>
+                                                        <div class="h6 mb-0 font-weight-bold text-gray-800">$ {{App\NumberConverter::en2bn(number_format($total_withdraw,2))}} টাকা </div>
                                                     </div>
                                                     <div class="col-auto">
                                                         <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -338,7 +236,7 @@
                                                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                                             বর্তমান ব্যালেন্স
                                                         </div>
-                                                        <div class="h6 mb-0 font-weight-bold text-gray-800">$ ৩৪৫৩৪</div>
+                                                        <div class="h6 mb-0 font-weight-bold text-gray-800">$ {{App\NumberConverter::en2bn(number_format($saving->balance(),2))}} টাকা </div>
                                                     </div>
                                                     <div class="col-auto">
                                                         <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -356,17 +254,32 @@
                                         <a href="{{url('admin/saving-approve/'.$saving->id)}}" class="btn btn-primary"><i class="fa fa-check"> </i> অনুমোদন করুন</a>
                                         <a href="{{url('admin/saving-decline/'.$saving->id)}}" class="btn btn-danger"><i class="fa fa-times"> প্রত্যাখ্যান করুন</i></a>
                                     @elseif($saving->status=='approved')
-                                    <button
-                                        data-toggle="modal" data-target="#AddProfitModal" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> লাভ যোগ করুন
-                                    </button>
-                                    <button
-                                        data-toggle="modal" data-target="#SavingDepositModal" class="btn btn-primary"><i class="fa fa-download"></i> জমা করুন
-                                    </button>
-                                    <button
-                                        data-toggle="modal" data-target="#withdrawModal" class="btn btn-primary"><i class="fa fa-upload"></i> উত্তোলন  করুন
-                                    </button>
-                                        <a href="#" class="btn btn-primary"><i class="fa fa-trash"> </i> সদস্য পদ প্রত্যাহার</a>
+                                        <button
+                                            data-toggle="modal" data-target="#AddProfitModal" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> লাভ যোগ করুন
+                                        </button>
+                                        <button
+                                            data-toggle="modal" data-target="#SavingDepositModal" class="btn btn-primary"><i class="fa fa-download"></i> জমা করুন
+                                        </button>
+                                        <button
+                                            data-toggle="modal" data-target="#withdrawModal" class="btn btn-primary"><i class="fa fa-upload"></i> উত্তোলন  করুন
+                                        </button>
+                                        {!! Form::open([
+                                            'method'=>'POST',
+                                            'url' => ['/admin/saving/close', $saving->id],
+                                            'style' => 'display:inline'
+                                        ]) !!}
+                                        {!! Form::button('<i class="fa fa-trash"></i>  সদস্য পদ প্রত্যাহার', array(
+                                            'type' => 'submit',
+                                            'class' => 'btn btn-danger',
+                                            'title' => 'সদস্য পদ প্রত্যাহার',
+                                            'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
+                                            )) !!}
+                                        {!! Form::close() !!}
+
                                     @endif
+
+                                    <a href="{{url('admin/print/saving/'.$saving->txn_id)}}" class="btn btn-primary"><i class="fa fa-print"> </i> প্রিন্ট </a>
+
                                 </div>
 
                                 @if ($saving->status=='closed')
@@ -384,7 +297,7 @@
                                 @endif
                             </div>
 
-                            <!--  Modal Start -->
+                        <!--  Modal Start -->
                         <div class="modal fade" id="SavingDepositModal" tabindex="-1" role="dialog">
                             <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
@@ -631,7 +544,7 @@
                                     <th> লেনদেন কোড </th>
                                     <th> লেনদেনের ধরন </th>
                                     <th>পরিমান</th>
-                                    <th>ব্যালেন্স</th>
+                                    <!--<th>ব্যালেন্স</th>-->
                                     <th> নোট</th>
                                     <th>আদায়কারীর নাম</th>
 
@@ -643,7 +556,7 @@
                             @php
                                 $total =0;
                             @endphp
-                            @foreach($saving->histories as $item)
+                            @forelse($saving->histories as $item)
 
 
                                 <tr>
@@ -664,7 +577,7 @@
                                                 {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন ', array(
                                                      'type' => 'submit',
                                                      'class' => 'dropdown-item',
-                                                    'title' => 'Delete user',
+                                                    'title' => 'মুছে ফেলুন',
                                                     'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
                                                      )) !!}
                                                 {!! Form::close() !!}
@@ -692,52 +605,16 @@
                                         @endif
 
                                     </td>
-                                    <td>{{\App\NumberConverter::en2bn($total??'')}}</td>
+                                    <!--<td>{{\App\NumberConverter::en2bn($total??'')}}</td>-->
                                     <td>{{$item->note}}</td>
                                     <td>{{$item->receiver->name??''}}</td>
 
                                 </tr>
-                                @endforeach
-
-                                    {{-- </td>
-                                    <td>
-                                        {{\App\NumberConverter::en2bn($total_profit)}} টাকা
-                                        ({{\App\NumberConverter::en2bn(number_format($deposited?$total_profit/$deposited*100:0,2))}}%)
-                                    </td>
-                                    <td colspan="3"></td>
-                                </tr> --}}
-                                {{-- <tr>
-                                    <td  colspan="5" class="text-right">
-                                        মোট উত্তোলন
-
-                                    </td>
-                                    <td>
-                                        {{\App\NumberConverter::en2bn($total_withdraw)}} টাকা
-                                    </td>
-                                    <td colspan="3"></td>
-                                </tr>
-                                <tr>
-                                    <td  colspan="5" class="text-right">
-                                        বর্তমান ব্যালেন্স
-
-                                    </td>
-                                    <td>
-                                        {{\App\NumberConverter::en2bn($total)}} টাকা
-                                    </td>
-                                    <td colspan="3"></td>
-                                </tr> --}}
-
-                                @if($saving->status=='closed')
-                                <tr>
-                                    <td colspan="8">
-
-                                        <div class="alert alert-danger">
-                                            সদস্য পদ প্রত্যাহার
-
-                                        </div>
-                                    </td>
-                                </tr>
-                                @endif
+                                @empty
+                                    <tr>
+                                        <td colspan="9" class="text-center" >No Entry found!</td>
+                                    </tr>
+                                @endforelse
 
                             </tbody>
                         </table>
@@ -748,16 +625,6 @@
         @endif
     </div>
 </section>
-
-<script>
-    function Add_profit_Wrapper()
-    {
-
-        $('#add-profit-wrapper').toggle();
-
-        // /$(this).next(".add-profit-wrapper").toggle();
-    }
-</script>
 
 
 @endsection

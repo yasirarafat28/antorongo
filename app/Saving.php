@@ -32,6 +32,18 @@ class Saving extends Model
 
     }
 
+    public function balance(){
+
+        $totalCreadit  = Transaction::whereIn('flag',['deposit','profit'])->where('transaction_for','saving')
+            ->where('status','approved')->where('transactable_id',$this->id)->sum('amount');
+        $totalDebit  = Transaction::whereIn('flag',['withdraw'])->where('transaction_for','saving')
+        ->where('status','approved')->where('transactable_id',$this->id)->sum('amount');
+
+        $balance = $totalCreadit-$totalDebit;
+        return $balance;
+
+    }
+
 
     public function histories(){
         return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','saving');
