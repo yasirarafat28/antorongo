@@ -48,7 +48,8 @@
                                     <div class="h6 mb-0 font-weight-bold text-gray-800">৪৫৩ টি</div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                    <i class="fas fa-hand-holding-usd fa-2x text-gray-300"></i>
+
                                 </div>
                             </div>
                         </div>
