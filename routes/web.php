@@ -83,6 +83,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::post('loan/getLoansByUser', 'LoanController@getLoansByUser')->name('getLoansByUser');
     Route::post('loan/getLoanDetails', 'LoanController@getLoanDetails')->name('getLoanDetails');
 
+    Route::get('loan/depository/{id}', 'LoanController@depository')->name('loanDepository');
+    Route::post('loan/close/{id}', 'LoanController@close')->name('loanClose');
+
 
     Route::get('members/find', 'MemberController@MemberFind');
     Route::resource('members', 'MemberController');
@@ -165,6 +168,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     //Printing
     Route::get('print/saving/{txn_id}', 'PrintController@saving')->name('print.saving');
     Route::get('print/fdr/{txn_id}', 'PrintController@fdr')->name('fdr.saving');
+    Route::get('print/loan/{txn_id}', 'PrintController@loan')->name('loan.saving');
 
     //Salary
     Route::resource('hr/salary-setup', 'SalarySetupController');

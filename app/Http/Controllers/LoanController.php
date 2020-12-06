@@ -33,14 +33,7 @@ class LoanController extends Controller
             $query = '';
         }
 
-        if($loan){
-
-            $transactions = LoanTransaction::with('user','receiver')->where('loan_id',$loan->id)->orderBy('id','DESC')->get();
-        }else{
-            $transactions = '';
-
-        }
-        return view('admin/loan/find',compact('query','loan','transactions'));
+        return view('admin/loan/find',compact('query','loan'));
     }
 
 
@@ -50,7 +43,7 @@ class LoanController extends Controller
 
         $members = User::where('role','member')->orderBy('name','ASC')->get();
 
-        return view('admin/loan/edit',compact('query','loan','transactions','members'));
+        return view('admin/loan/edit',compact('loan','members'));
     }
 
     public function  LoanUpdate(Request $request,$id)
@@ -394,5 +387,35 @@ class LoanController extends Controller
         $records = Loan::with('user')->where('id',$request->loan_id)->first();
         return $records;
     }
+
+    public function depository($id){
+
+
+
+        $loan = Loan::find($id);
+        if(!$loan){
+            return back()->withError('Not found');
+        }
+
+        return view('admin.loan.depository',compact('loan'));
+    }
+
+
+
+
+    public function close($id){
+
+
+        $loan = Loan::find($id);
+        if(!$loan){
+            return back()->withError('Not found');
+        }
+
+        $loan->status='closed';
+        $loan->save();
+
+        return back()->withSuccess('সফলভাবে সদস্য পদ প্রত্যাহার করা হয়েছে!');
+    }
+
 
 }

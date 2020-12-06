@@ -35,9 +35,22 @@ class Loan extends Model
 
     }
 
-    public function transactions()
-    {
-        return $this->hasMany('App\LoanTransaction','loan_id');
 
+    public function histories(){
+        return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','loan');
     }
+
+    public function loan_give_away(){
+        return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','loan')->where('flag','give_away');
+    }
+    public function added_reveanues(){
+        return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','loan')->where('flag','revenue_add');
+    }
+    public function interests(){
+        return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','loan')->where('flag','interest');
+    }
+    public function paid_reveanues(){
+        return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','loan')->where('flag','revenue_deduct');
+    }
+
 }

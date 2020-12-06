@@ -257,13 +257,13 @@
                                         <a href="{{url('admin/saving-decline/'.$saving->id)}}" class="btn btn-danger"><i class="fa fa-times"> প্রত্যাখ্যান করুন</i></a>
                                     @elseif($saving->status=='approved')
 
-                                    @if ($saving->type !='current')
+                                        @if ($saving->type !='current')
 
-                                    <button
-                                        data-toggle="modal" data-target="#AddProfitModal" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> লাভ যোগ করুন
-                                    </button>
+                                            <button
+                                                data-toggle="modal" data-target="#AddProfitModal" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> লাভ যোগ করুন
+                                            </button>
 
-                                    @endif
+                                        @endif
                                         <button
                                             data-toggle="modal" data-target="#SavingDepositModal" class="btn btn-primary"><i class="fa fa-download"></i> জমা করুন
                                         </button>

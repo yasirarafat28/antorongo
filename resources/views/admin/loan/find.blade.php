@@ -61,6 +61,13 @@
                     <hr>
                     @if($loan)
 
+                    @php
+                        $total_interest = $loan->interests->sum('amount');
+                        $total_reveanue_paid = $loan->paid_reveanues->sum('amount');
+                        $total_reveanue_added = $loan->added_reveanues->sum('amount');
+                        $total_payable = $total_reveanue_added - $total_reveanue_paid;
+                    @endphp
+
                     <div class="row mb-3">
 
                         <div class="col-md-12 text-center mb-3">
@@ -103,26 +110,10 @@
 
                                         <tr>
                                             <td class="text-right">
-                                                মোট পরিশোধ যোগ্য  :
-                                            </td>
-                                            <td class="text-left">
-                                                <?php
-                                                    if ($loan->status=='active')
-                                                        $payable = $loan->approved_amount + ($loan->approved_amount* $loan->interest_rate/100);
-                                                    else
-                                                        $payable = $loan->request_amount + ($loan->request_amount* $loan->interest_rate/100);
-                                                ?>
-
-                                                    {{\App\NumberConverter::en2bn($payable)}} টাকা
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="text-right">
                                                 মোট পরিশোধ :
                                             </td>
                                             <td class="text-left">
-                                                {{\App\NumberConverter::en2bn($transactions->sum('incoming'))}} টাকা
+                                                {{\App\NumberConverter::en2bn($total_interest)}} টাকা
                                             </td>
                                         </tr>
                                         <tr>
@@ -130,7 +121,7 @@
                                                 মোট বকেয়া :
                                             </td>
                                             <td class="text-left">
-                                                {{\App\NumberConverter::en2bn($payable-$transactions->sum('incoming'))}} টাকা
+                                                {{\App\NumberConverter::en2bn($total_payable)}} টাকা
                                             </td>
                                         </tr>
                                         <tr>
@@ -143,50 +134,6 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                            {{-- <span class="m-t-0 m-b-0"><strong>নামঃ  {{$loan->user->name}}</strong></span>
-                                            <hr>
-
-                                            <span class="job_post">সভ্য আইডি : {{$loan->user->unique_id}}</span>
-
-                                            <hr>
-
-                                            <span class="job_post">ঋণ আইডি : {{$loan->unique_id}}</span>
-                                            <hr>
-
-
-                                            <span class="job_post"> ঋণের পরিমান  :
-                                                @if($loan->status=='active')
-                                                    {{\App\NumberConverter::en2bn($loan->approved_amount)}}
-                                                @else
-                                                    {{\App\NumberConverter::en2bn($loan->request_amount)}}
-                                                @endif
-
-                                                টাকা </span>
-
-                                            <hr>
-
-
-                                            <span class="job_post"> মোট পরিশোধ যোগ্য  :
-                                                <?php
-                                                    if ($loan->status=='active')
-                                                        $payable = $loan->approved_amount + ($loan->approved_amount* $loan->interest_rate/100);
-                                                    else
-                                                        $payable = $loan->request_amount + ($loan->request_amount* $loan->interest_rate/100);
-                                                ?>
-
-                                            {{\App\NumberConverter::en2bn($payable)}} টাকা </span>
-
-                                            <hr>
-
-                                            <span class="job_post"> মোট পরিশোধ : {{\App\NumberConverter::en2bn($transactions->sum('incoming'))}} টাকা </span>
-
-                                            <hr>
-
-                                            <span class="job_post"> মোট বকেয়া : {{\App\NumberConverter::en2bn($payable-$transactions->sum('incoming'))}} টাকা </span>
-
-                                            <hr>
-
-                                            <span class="job_post"> অবস্থা : {{$loan->status}} </span> --}}
 
                             </div>
                             <hr>
@@ -272,10 +219,53 @@
                             </div>
                         </div>
 
-                        <a data-toggle="modal" data-target="#LoanDepositModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> কিস্তি আদায় করুন </a>
+                        <a href="{{url('admin/loan/edit/'.$loan->id)}}" class="btn btn-primary"><i class="fa fa-edit"> </i> এডিট করুন  </a>
+                        @if($loan->status=='active')
+                            <a data-toggle="modal" data-target="#LoanInterestModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> লাভ আদায় করুন </a>
+                            <a data-toggle="modal" data-target="#LoanDeductRevenueModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> আসল আদায় করুন </a>
+                            <a data-toggle="modal" data-target="#LoanAddRevenueModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> আসল যোগ করুন </a>
+
+                            {!! Form::open([
+                                'method'=>'POST',
+                                'url' => ['/admin/loan/close', $loan->id],
+                                'style' => 'display:inline'
+                            ]) !!}
+                            {!! Form::button('<i class="fa fa-trash"></i>  সদস্য পদ প্রত্যাহার', array(
+                                'type' => 'submit',
+                                'class' => 'btn btn-danger',
+                                'title' => 'সদস্য পদ প্রত্যাহার',
+                                'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
+                                )) !!}
+                            {!! Form::close() !!}
+                        @elseif($loan->status=='pending')
+                            <a data-toggle="modal" data-target="#ActiveModal{{$loan->id}}" class="btn btn-primary"><i class="fa fa-check"> অনুমোদন </i></a>
+                            <a href="{{url('admin/loan/Remove/'.$loan->id)}}" class="btn btn-primary"><i class="fa fa-trash" onclick="return confirm('Are you Sure?? ');"> মুছে ফেলুন </i></a>
+                            @if($loan->status !='rejected')
+                                <a href="{{url('admin/loan/reject/'.$loan->id)}}" class="btn btn-danger"><i class="fa fa-times"> প্রত্যাখ্যান</i></a>
+                            @endif
+                        @endif
+
+                        <a href="{{url('admin/print/loan/'.$loan->unique_id)}}" class="btn btn-primary"><i class="fa fa-print"> </i> প্রিন্ট </a>
+                        <a href="{{url('admin/loan/depository/'.$loan->id)}}" class="btn btn-primary"><i class="fa fa-list"> </i> জামানত </a>
+
+
+                        @if ($loan->status=='closed')
+
+                        <br>
+                        <br>
+
+                        <div class="col-md-12">
+
+                            <div class="alert alert-danger">
+                                সদস্য পদ প্রত্যাহার করা হয়েছে ।
+
+                            </div>
+                        </div>
+
+                    @endif
                     </div>
 
-                    <div class="modal fade" id="LoanDepositModal" tabindex="-1" role="dialog">
+                    <div class="modal fade" id="LoanInterestModal" tabindex="-1" role="dialog">
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -338,130 +328,59 @@
                             </div>
                         </div>
                     </div>
-                    <!--Add Modal End-->
+
+                    <div class="modal fade" id="ActiveModal{{$loan->id}}" tabindex="-1" role="dialog">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+
+                                        <div class="modal-header">
+                                            <h2><strong>ঋণ অনুমোদন করুন </strong></h2>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{url('admin/loan/active/'.$loan->id)}}" method="POST">
+                                                {{csrf_field()}}
+                                                <div class="row clearfix">
+                                                    <div class="col-lg-6 col-md-12">
+                                                        <div class="form-group">
+                                                            <label for=""><small>ঋণের পরিমান </small></label>
+                                                            <input type="text" class="form-control" placeholder="ঋণের পরিমান" name="approved_amount" value="{{$loan->request_amount}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-12">
+                                                        <div class="form-group">
+                                                            <label for=""><small>মেয়াদ(মাস) </small></label>
+                                                            <input type="text" class="form-control" placeholder="মেয়াদ" name="duration" value="{{$loan->duration}}" >
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-12">
+                                                        <div class="form-group">
+                                                            <label for=""><small>লাভের হার  </small></label>
+                                                            <input type="text" class="form-control" placeholder="লাভের হার" name="interest_rate" value="{{$loan->interest_rate}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 text-center">
+                                                        <button type="submit" class="btn btn-info btn-round">সেভ করুন</button>
+                                                     </div>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
                 @endif
             </div>
         </div>
     </div>
-        @if($loan)
-        <div class="row clearfix">
-            <div class="col-lg-12">
-                <div class="card shadow">
-                    <div class="header">
-                        <h2><strong>জামানতের   </strong> বর্ণনা </h2>
-                    </div>
-                    <div class="body">
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                            <tr>
-                                <th>সিরিয়াল </th>
-                                <th>সভ্য নং </th>
-                                <th> নাম/বিবরন   </th>
-                                <th> পলিসির টাকা   </th>
-                                <th> স্বাক্ষর</th>
-                                <th>যাচাইকারীর স্বাক্ষর</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($loan->PersonDepositors as $item)
-
-                                <tr>
-                                    <td>{{\App\NumberConverter::en2bn($loop->iteration)}}</td>
-                                    <td>{{$item->unique_id}}</td>
-                                    <td>{{$item->description}}</td>
-                                    <td>{{\App\NumberConverter::en2bn($item->policy_amount)}} </td>
-                                    <td><img src="{{url($item->signature??'')}}" style="height: 40px;width: auto;"  onerror="this.onerror=null;this.src='{{asset('/front/images/no_img_avaliable.jpg')}}';"></td>
-                                    <td><img src="{{url($item->identifier_signature??'')}}"  style="height: 40px;width: auto;"  onerror="this.onerror=null;this.src='{{asset('/front/images/no_img_avaliable.jpg')}}';"></td>
 
 
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                    <br>
-                    <hr>
-
-                    <div class="body">
-                        <h4>সম্পদ জামানত (স্বর্ণালংকার)</h4>
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                            <tr>
-                                <th>সিরিয়াল </th>
-                                <th>সভ্য নং </th>
-                                <th> নাম/বিবরন   </th>
-                                <th> পরিমান   </th>
-                                <th> প্রতি ভরীর মূল্য</th>
-                                <th> মোট  মূল্য</th>
-                                <th> স্বাক্ষর</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($loan->OrnamentDepositors as $item)
-
-                                <tr>
-                                    <td>{{\App\NumberConverter::en2bn($loop->iteration)}}</td>
-                                    <td>{{$item->unique_id}}</td>
-                                    <td>{{$item->description}}</td>
-                                    <td>{{$item->qty}}</td>
-                                    <td>{{$item->unit_price}}</td>
-                                    <td>{{$item->total_amount}}</td>
-                                    <td><img src="{{url($item->signature??'')}}" style="height: 40px;width: auto;"  onerror="this.onerror=null;this.src='{{asset('/front/images/no_img_avaliable.jpg')}}';"></td>
-                                </tr>
-                            @endforeach
-
-                            </tbody>
-                        </table>
-                    </div>
-                    <br>
-                    <hr>
-
-                    <div class="body">
-                        <h4>সম্পদ জামানত (জমি/বাড়ী)</h4>
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                            <tr>
-                                <th>সিরিয়াল </th>
-                                <th>অবস্থান  </th>
-                                <th> মৌজা</th>
-                                <th>দাগ নং </th>
-                                <th> খতিঃ নং</th>
-                                <th> হোল্ডিং নং</th>
-                                <th> বর্ণনা </th>
-                                <th> পরিমান </th>
-                                <th>মূল্য  </th>
-                                <th> স্বাক্ষর</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($loan->PropertyDepositors as $item)
-
-                                <tr>
-                                    <td>{{\App\NumberConverter::en2bn($loop->iteration)}}</td>
-                                    <td>{{$item->position}}</td>
-                                    <td>{{$item->mouja}}</td>
-                                    <td>{{$item->dag}}</td>
-                                    <td>{{$item->khotiyan}}</td>
-                                    <td>{{$item->holding}}</td>
-                                    <td>{{$item->description}}</td>
-                                    <td>{{$item->qty}}</td>
-                                    <td>{{$item->total_amount}}</td>
-                                    <td><img src="{{url($item->signature??'')}}" style="height: 40px;width: auto;"  onerror="this.onerror=null;this.src='{{asset('/front/images/no_img_avaliable.jpg')}}';"></td>
-
-
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                    <hr>
-                </div>
-            </div>
-        </div>
-        @endif
-
-        @if($transactions)
+        @if($loan->histories)
         <div class="row clearfix">
 
             <div class="col-sm-12 col-md-12 col-lg-12">
@@ -490,54 +409,84 @@
 
                             <thead>
 
-                            <tr>
+                                <tr>
+                                    <th> #</th>
+                                    <th> তারিখ</th>
+                                    <th> মাস </th>
+                                    <th> লেনদেন কোড </th>
+                                    <th> লেনদেনের ধরন </th>
+                                    <th>পরিমান</th>
+                                    <th> নোট</th>
+                                    <th>আদায়কারীর নাম</th>
 
-                                <th>সিরিয়াল</th>
-                                <th>আদায়কারীর নাম</th>
-
-                                <th> লেনদেন কোড </th>
-                                <th> লেনদেনের ধরন </th>
-
-                                <th>পরিমান</th>
-                                <th> অবস্থা</th>
-
-                                <th> পরিশোধের সময়</th>
-
-                            </tr>
+                                </tr>
 
                             </thead>
 
                             <tbody>
-                            @foreach($transactions??array() as $item)
+                            @forelse($loan->histories as $item)
 
 
                                 <tr>
 
-                                    <td>{{\App\NumberConverter::en2bn($loop->iteration)}}</td>
-                                    <td>{{$item->receiver->name??''}}</td>
+                                    <td>
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                        aria-labelledby="dropdownMenuLink">
+                                            <a href="{{url('admin/transactions/'.$item->id.'/edit')}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট</a>
+                                                {!! Form::open([
+                                                   'method'=>'DELETE',
+                                                   'url' => ['/admin/transactions', $item->id],
+                                                   'style' => 'display:inline'
+                                                ]) !!}
+                                                {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন ', array(
+                                                     'type' => 'submit',
+                                                     'class' => 'dropdown-item',
+                                                    'title' => 'মুছে ফেলুন',
+                                                    'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
+                                                     )) !!}
+                                                {!! Form::close() !!}
+                                        </div>
+                                    </td>
+                                    <td>{{\App\NumberConverter::en2bn($item->date)}}</td>
+                                    <td>{{ \App\BanglaMonth::MonthName(date('m',strtotime($item->date)))}}</td>
 
                                     <td>{{$item->txn_id??''}}</td>
                                     <td>
-                                        @if($item->type=='collect')
-                                            কিস্তি গ্রহণ
-                                        @else
-                                             বিতরন
+                                        @if($item->flag=='give_away')
+                                             ঋণ প্রদান
+                                        @elseif($item->flag=='reveanue_add')
+                                            আসল যোগ
+                                        @elseif($item->flag=='reveanue_deduct')
+                                             আসল প্রদান
+                                        @elseif($item->flag=='interest')
+                                            সুদ
+
                                         @endif
                                     </td>
 
                                     <td style="color: green;font-weight: 700;">
 
-                                        @if($item->type=='collect')
-                                            + {{\App\NumberConverter::en2bn($item->incoming)}} টাকা
+                                        @if($item->flag=='reveanue_add' || $item->flag=='interest')
+                                            + {{\App\NumberConverter::en2bn($item->amount)}} টাকা
                                         @else
-                                            - {{\App\NumberConverter::en2bn($item->outgoing)}} টাকা
+                                            - {{\App\NumberConverter::en2bn($item->amount)}} টাকা
                                         @endif
 
                                     </td>
-                                    <td>নিশ্চিত </td>
-                                    <td>{{\App\NumberConverter::en2bn($item->date)}}</td>
+                                    <td>{{$item->note}}</td>
+                                    <td>{{$item->receiver->name??''}}</td>
+
                                 </tr>
-                            @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="9" class="text-center" >No Entry found!</td>
+                                    </tr>
+                                @endforelse
+
                             </tbody>
                         </table>
 

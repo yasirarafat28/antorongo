@@ -71,6 +71,12 @@
                     <span>বার্তা</span></a>
             </li>
 
+            <li class="nav-item active">
+                <a class="nav-link" href="/admin/balance">
+                    <i class="fas fa-fw fa-comment"></i>
+                    <span>ব্যালেন্স সমূহ </span></a>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#memberNav"
                     aria-expanded="true" aria-controls="collapseTwo">

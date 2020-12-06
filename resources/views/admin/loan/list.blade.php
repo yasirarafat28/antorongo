@@ -169,7 +169,10 @@
                             @foreach($records ?? array() as $item)
                                 <tr>
                                     <td>
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+
+                                        <a href="{{url('admin/loan/find?q='.$item->unique_id)}}" class="btn btn-primary"><i class="fa fa-eye"> </i> </a>
+
+                                        <!--<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
                                         </a>
@@ -188,7 +191,7 @@
                                                     @endif
                                                 @endif
 
-                                        </div>
+                                        </div>-->
                                     </td>                                    <td>{{$item->unique_id}}</td>
                                     <td>{{$item->old_txn}}</td>
                                     <td>{{$item->user->unique_id??''}}</td>
@@ -219,59 +222,6 @@
         <!-- #END# Exportable Table -->
     </div>
 </section>
-
-
-@foreach($records as $item)
-    <!-- Edit Large Modal -->
-    <div class="modal fade" id="ActiveModal{{$item->id}}" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-
-                        <div class="modal-header">
-                            <h2><strong>ঋণ অনুমোদন করুন </strong></h2>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="{{url('admin/loan/active/'.$item->id)}}" method="POST">
-                                {{csrf_field()}}
-                                <div class="row clearfix">
-                                    <div class="col-lg-6 col-md-12">
-                                        <div class="form-group">
-                                            <label for=""><small>ঋণের পরিমান </small></label>
-                                            <input type="text" class="form-control" placeholder="ঋণের পরিমান" name="approved_amount" value="{{$item->request_amount}}">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-12">
-                                        <div class="form-group">
-                                            <label for=""><small>মেয়াদ </small></label>
-                                            <input type="text" class="form-control" placeholder="মেয়াদ" name="duration" value="{{$item->name}}">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-12">
-                                        <div class="form-group">
-                                            <label for=""><small>লাভের হার  </small></label>
-                                            <input type="text" class="form-control" placeholder="লাভের হার" name="interest_rate" value="{{$item->interest_rate}}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 text-center">
-                                        <button type="submit" class="btn btn-info btn-round">সেভ করুন</button>
-                                     </div>
-                                </div>
-                            </form>
-                        </div>
-
-                {{-- <div class="modal-footer">
-                    <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
-                </div> --}}
-            </div>
-        </div>
-    </div>
-    <!--Edit  Modal End-->
-@endforeach
-
-
 
 
 @endsection
