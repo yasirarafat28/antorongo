@@ -36,10 +36,10 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                   মোট আদায়  </div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">$ 40,000</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ 40,000 টাকা</div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>

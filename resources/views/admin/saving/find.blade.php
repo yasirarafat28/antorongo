@@ -184,10 +184,10 @@
                                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                             মোট জমা
                                                         </div>
-                                                    <div class="h6 mb-0 font-weight-bold text-gray-800">$ {{App\NumberConverter::en2bn(number_format($deposited,2))}} টাকা </div>
+                                                    <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn(number_format($deposited,2))}} টাকা </div>
                                                     </div>
                                                     <div class="col-auto">
-                                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                                                     </div>
                                                 </div>
                                             </div>
@@ -204,10 +204,10 @@
                                                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                             মোট লাভ
                                                         </div>
-                                                        <div class="h6 mb-0 font-weight-bold text-gray-800">$ {{App\NumberConverter::en2bn(number_format($total_profit,2))}} টাকা </div>
+                                                        <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn(number_format($total_profit,2))}} টাকা </div>
                                                     </div>
                                                     <div class="col-auto">
-                                                        <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                                                     </div>
                                                 </div>
                                             </div>
@@ -221,10 +221,10 @@
                                                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                                             মোট উত্তোলন
                                                         </div>
-                                                        <div class="h6 mb-0 font-weight-bold text-gray-800">$ {{App\NumberConverter::en2bn(number_format($total_withdraw,2))}} টাকা </div>
+                                                        <div class="h6 mb-0 font-weight-bold text-gray-800">৳<strong></strong>{{App\NumberConverter::en2bn(number_format($total_withdraw,2))}} টাকা </div>
                                                     </div>
                                                     <div class="col-auto">
-                                                        <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                                                     </div>
                                                 </div>
                                             </div>
@@ -238,10 +238,10 @@
                                                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                                             বর্তমান ব্যালেন্স
                                                         </div>
-                                                        <div class="h6 mb-0 font-weight-bold text-gray-800">$ {{App\NumberConverter::en2bn(number_format($saving->balance(),2))}} টাকা </div>
+                                                        <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn(number_format($saving->balance(),2))}} টাকা </div>
                                                     </div>
                                                     <div class="col-auto">
-                                                        <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                                                     </div>
                                                 </div>
                                             </div>

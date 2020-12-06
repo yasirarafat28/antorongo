@@ -27,12 +27,12 @@
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     <h3>অফিস ব্যালেন্স</h3>
                                 </div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($office)}}</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn($office)}}</div>
 
                                 <a href="/admin/balance/transfer/office" class="text-link">ট্রান্সফার করুন</a>
                             </div>
                             <div class="col-auto">
-                            <i class="fas fa-users fa-2x text-gray-300"></i>
+                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
@@ -48,11 +48,11 @@
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                     <h3>ক্যাশিয়ারের ব্যালেন্স</h3>
                                 </div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($cashier)}}</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn($cashier)}}</div>
                                 <a href="/admin/balance/transfer/cashier" class="text-link">ট্রান্সফার করুন</a>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
@@ -69,11 +69,11 @@
                                     <h3>ব্যাংক ব্যালেন্স</h3>
 
                                 </div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($bank)}}</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn($bank)}}</div>
                                 <a href="/admin/balance/transfer/bank" class="text-link">ট্রান্সফার করুন</a>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-save fa-2x text-gray-300"></i>
+                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
