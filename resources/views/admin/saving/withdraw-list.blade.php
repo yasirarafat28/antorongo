@@ -16,11 +16,11 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">উত্তলনের তালিকা</h1>
+            <h1 class="h3 mb-0 text-gray-800">উত্তলনের রিপোর্ট</h1>
 
             <ul class="breadcrumb float-md-right">
                 <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0);">উত্তলনের তালিকা</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">উত্তলনের রিপোর্ট</a></li>
             </ul>
         </div>
 

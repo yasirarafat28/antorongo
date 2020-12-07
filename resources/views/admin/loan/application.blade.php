@@ -16,7 +16,7 @@
         <div class="block-header">
             <div class="row">
                 <div class="col-lg-7 col-md-6 col-sm-12">
-                    <h3>ঋণের আবেদন
+                    <h3>ঋণের আবেদন ফরম
                     </h3>
                 </div>
                 <div class="col-lg-5 col-md-6 col-sm-12">
@@ -25,7 +25,7 @@
                     </button>
                     <ul class="breadcrumb float-md-right">
                         <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                        <li class="breadcrumb-item active">ঋণের আবেদন</li>
+                        <li class="breadcrumb-item active">ঋণের আবেদন ফরম</li>
                     </ul>
                 </div>
             </div>

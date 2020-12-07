@@ -15,11 +15,11 @@
     <div class="container-fluid">
 
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">সঞ্চয় অধিভুক্তির ফর্ম</h1>
+            <h1 class="h3 mb-0 text-gray-800">সাধারন সঞ্চয় অধিভুক্তির ফর্ম</h1>
 
             <ul class="breadcrumb float-md-right">
                 <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0);">সঞ্চয় অধিভুক্তির ফর্ম</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">সাধারন সঞ্চয় অধিভুক্তির ফর্ম</a></li>
             </ul>
         </div>
 
@@ -41,7 +41,7 @@
 
                 <div class="header">
 
-                    <h2><strong> বাক্তিগত</strong>  তথ্য</h2>
+                    <h2><strong> সাধারন সঞ্চয় অধিভুক্তির ফর্ম</strong></h2>
 
                 </div>
 

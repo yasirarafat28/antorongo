@@ -35,6 +35,7 @@
                 {{ $errors->first() }}
             </div>
         @endif
+
         <div class="row clearfix">
             <div class="col-sm-12 col-md-12 col-lg-12">
 
@@ -454,7 +455,7 @@
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                           <span aria-hidden="true">&times;</span>
                                         </button>
-                                      </div>
+                                    </div>
                                     <div class="modal-body">
                                        <form action="{{url('admin/saving/withdraw')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
                                             {{csrf_field()}}

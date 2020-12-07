@@ -15,11 +15,11 @@
     <div class="container-fluid">
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">সদস্য তালিকা</h1>
+                <h1 class="h3 mb-0 text-gray-800">লাভের রিপোর্ট</h1>
 
                 <ul class="breadcrumb float-md-right">
                     <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0);">সদস্য তালিকা</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">লাভের রিপোর্ট</a></li>
                 </ul>
             </div>
 
@@ -48,7 +48,7 @@
             <div class="col-lg-12">
                 <div class="card shadow">
                     <div class="header">
-                        <h2><strong>উত্তলনের  </strong> রিপোর্ট </h2>
+                        <h2><strong>লাভের রিপোর্ট</strong></h2>
                     </div>
                     <div class="body table-responsive">
                         <form action="">

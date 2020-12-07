@@ -16,11 +16,11 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">ঋণ তালিকা</h1>
+            <h1 class="h3 mb-0 text-gray-800">কালেকশন/আদায়ের রিপোর্ট</h1>
 
             <ul class="breadcrumb float-md-right">
                 <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0);">ঋণ তালিকা</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">কালেকশন/আদায়ের রিপোর্ট</a></li>
             </ul>
         </div>
 
@@ -36,8 +36,8 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                   মোট আদায়  </div>
-                                  
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">$ {{App\NumberConverter::en2bn(number_format($total,2))}} টাকা</div>
+
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn(number_format($total,2))}} টাকা</div>
 
                             </div>
                             <div class="col-auto">

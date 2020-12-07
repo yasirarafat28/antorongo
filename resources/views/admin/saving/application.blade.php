@@ -40,7 +40,7 @@
 
                 <div class="header">
 
-                    <h2><strong> বাক্তিগত</strong>  তথ্য</h2>
+                    <h2><strong>সঞ্চয় </strong>অধিভুক্তির ফর্ম</h2>
 
                 </div>
 
