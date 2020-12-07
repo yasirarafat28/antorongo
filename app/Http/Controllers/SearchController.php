@@ -22,12 +22,12 @@ class SearchController extends Controller
             return redirect('admin/members/find?q='.$query);
         }
 
-        $fdr = Fdr::with('user','transactions','receiver')->where('txn_id',$query)->first();
+        $fdr = Fdr::with('user','receiver')->where('txn_id',$query)->first();
         if($fdr){
             return redirect('admin/fdr/find?q='.$query);
         }
 
-        $fdr = Fdr::with('user','transactions','receiver')->where('txn_id',$query)->first();
+        $fdr = Fdr::with('user','receiver')->where('txn_id',$query)->first();
         if($fdr){
             return redirect('admin/fdr/find?q='.$query);
         }

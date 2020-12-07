@@ -63,7 +63,8 @@ class MemberController extends Controller
             }
 
 
-            array_push($releted_user_ids,$member->id);
+            if($member)
+                array_push($releted_user_ids,$member->id);
 
 
 
