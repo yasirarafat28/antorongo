@@ -2,7 +2,7 @@
 @extends('layouts.receipt')
 @section('content')
     <div class="row">
-        <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+        <div class="well">
             <div class="row">
                 <div class="text-center">
                     <h3>{{\App\Setting::setting()->app_name}}</h3>
@@ -21,11 +21,11 @@
                                 $bar = App::make('BarCode');
                                 $barcontent = $bar->barcodeFactory()->renderBarcode(
                                         $text=$unique_id,
-                                        $size=100,
+                                        $size=50,
                                         $orientation='horizontal',
-                                        $code_type='code128', // code_type : code128,code39,code128b,code128a,code25,codabar
+                                        $code_type='code39', // code_type : code128,code39,code128b,code128a,code25,codabar
                                         $print=true,
-                                        $sizefactor=1,
+                                        $sizefactor=1.5,
                                         $filename = $unique_id.'.jpeg'
                                 )->filename($unique_id.'.jpeg');
                             @endphp
@@ -68,11 +68,11 @@
                             $bar = App::make('BarCode');
                             $barcontent = $bar->barcodeFactory()->renderBarcode(
                                     $text=$unique_id,
-                                    $size=100,
+                                    $size=50,
                                     $orientation='horizontal',
-                                    $code_type='code128', // code_type : code128,code39,code128b,code128a,code25,codabar
+                                    $code_type='code39', // code_type : code128,code39,code128b,code128a,code25,codabar
                                     $print=true,
-                                    $sizefactor=1,
+                                    $sizefactor=1.5,
                                     $filename = $unique_id.'.jpeg'
                             )->filename($unique_id.'.jpeg');
                         @endphp

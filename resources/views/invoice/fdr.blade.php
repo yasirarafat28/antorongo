@@ -2,14 +2,14 @@
 @extends('layouts.receipt')
 @section('content')
     <div class="row">
-        <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+        <div class="well">
             <div class="row">
                 <div class="text-center">
                     <h3>{{\App\Setting::setting()->app_name}}</h3>
                     <p style="line-height: 0.6em;font-size: 14px;"> রেজি নং-১৮৭/০১, ফোনঃ ৯০০৫০৫২</p>
                     <p style="line-height: 0.6em;font-size: 14px;">৭৪১, মনিপুর, মিরপুর, ঢাকা-১২১৬।</p>
                 </div>
-                <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="col-sm-6">
                     <address>
                         <h4>
                             <strong>সদস্য </strong>
@@ -21,16 +21,49 @@
                                 $bar = App::make('BarCode');
                                 $barcontent = $bar->barcodeFactory()->renderBarcode(
                                         $text=$unique_id,
-                                        $size=100,
+                                        $size=50,
                                         $orientation='horizontal',
-                                        $code_type='code128', // code_type : code128,code39,code128b,code128a,code25,codabar
+                                        $code_type='code39', // code_type : code128,code39,code128b,code128a,code25,codabar
                                         $print=true,
-                                        $sizefactor=1,
+                                        $sizefactor=1.5,
                                         $filename = $unique_id.'.jpeg'
                                 )->filename($unique_id.'.jpeg');
                             @endphp
                             <img src="{{url($barcontent)}}" alt="">
                         </div>
+                    </address>
+
+                </div>
+                <div class="col-sm-6">
+                    <address>
+                        <h4>
+                            <strong>এফ ডি আর</strong>
+                        </h4>
+                        <p>
+                            <em>Date: {{date('d M, Y',strtotime($fdr->started_at))}}</em>
+                        </p>
+                        <div>
+                            @php
+                                $unique_id  = $fdr->txn_id??'';
+                                $bar = App::make('BarCode');
+                                $barcontent = $bar->barcodeFactory()->renderBarcode(
+                                        $text=$unique_id,
+                                        $size=50,
+                                        $orientation='horizontal',
+                                        $code_type='code39', // code_type : code128,code39,code128b,code128a,code25,codabar
+                                        $print=true,
+                                        $sizefactor=1.5,
+                                        $filename = $unique_id.'.jpeg'
+                                )->filename($unique_id.'.jpeg');
+                            @endphp
+                            <img src="{{url($barcontent)}}" alt="">
+                        </div>
+                    </address>
+
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <address>
+
                         <br>
                         <table class="table">
                             <tbody>
@@ -56,28 +89,7 @@
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 text-right">
 
-                    <h4>
-                        <strong>এফ ডি আর</strong>
-                    </h4>
-                    <p>
-                        <em>Date: {{date('d M, Y',strtotime($fdr->started_at))}}</em>
-                    </p>
-                    <div>
-                        @php
-                            $unique_id  = $fdr->txn_id??'';
-                            $bar = App::make('BarCode');
-                            $barcontent = $bar->barcodeFactory()->renderBarcode(
-                                    $text=$unique_id,
-                                    $size=100,
-                                    $orientation='horizontal',
-                                    $code_type='code128', // code_type : code128,code39,code128b,code128a,code25,codabar
-                                    $print=true,
-                                    $sizefactor=1,
-                                    $filename = $unique_id.'.jpeg'
-                            )->filename($unique_id.'.jpeg');
-                        @endphp
-                        <img src="{{url($barcontent)}}" alt="">
-                    </div>
+
 
                     <br>
                     <table class="table">
