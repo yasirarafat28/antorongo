@@ -121,7 +121,7 @@
                                                 মোট বকেয়া :
                                             </td>
                                             <td class="text-left">
-                                                {{\App\NumberConverter::en2bn($total_payable)}} টাকা
+                                                {{\App\NumberConverter::en2bn($loan->current_payable())}} টাকা
                                             </td>
                                         </tr>
                                         <tr>
@@ -152,9 +152,9 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                    মোট জমা
+                                                    মোট আদায়
                                                 </div>
-                                                <div class="h6 mb-0 font-weight-bold text-gray-800">৪৫৩ টি</div>
+                                                <div class="h6 mb-0 font-weight-bold text-gray-800">$ {{App\NumberConverter::en2bn(number_format($total_reveanue_paid + $total_interest ,2))}} টাকা </div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -172,9 +172,27 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                    মোট লাভ
+                                                    মোট আসল আদায়
                                                 </div>
-                                                <div class="h6 mb-0 font-weight-bold text-gray-800">$ ৩৪৫৩৪</div>
+                                                <div class="h6 mb-0 font-weight-bold text-gray-800">$ {{App\NumberConverter::en2bn(number_format($total_reveanue_paid,2))}} টাকা </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6 col-md-6 mb-4">
+                                <div class="card border-left-info shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                    মত সুদ আদায়
+                                                </div>
+                                                <div class="h6 mb-0 font-weight-bold text-gray-800">$ {{App\NumberConverter::en2bn(number_format($total_interest,2))}} টাকা </div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -189,26 +207,9 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                    মোট উত্তোলন
+                                                    মোট বকেয়া
                                                 </div>
-                                                <div class="h6 mb-0 font-weight-bold text-gray-800">$ ৩৪৫৩৪</div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-md-6 mb-4">
-                                <div class="card border-left-info shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                    বর্তমান ব্যালেন্স
-                                                </div>
-                                                <div class="h6 mb-0 font-weight-bold text-gray-800">$ ৩৪৫৩৪</div>
+                                                <div class="h6 mb-0 font-weight-bold text-gray-800">$ {{App\NumberConverter::en2bn(number_format($loan->current_payable(),2))}} টাকা </div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -221,9 +222,10 @@
 
                         <a href="{{url('admin/loan/edit/'.$loan->id)}}" class="btn btn-primary"><i class="fa fa-edit"> </i> এডিট করুন  </a>
                         @if($loan->status=='active')
-                            <a data-toggle="modal" data-target="#LoanInterestModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> লাভ আদায় করুন </a>
+                            <a data-toggle="modal" data-target="#LoanInterestCollectModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> লাভ আদায় করুন </a>
                             <a data-toggle="modal" data-target="#LoanDeductRevenueModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> আসল আদায় করুন </a>
                             <a data-toggle="modal" data-target="#LoanAddRevenueModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> আসল যোগ করুন </a>
+                            <a data-toggle="modal" data-target="#LoanInterestAddModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> লাভ যোগ করুন </a>
 
                             {!! Form::open([
                                 'method'=>'POST',
@@ -265,113 +267,7 @@
                     @endif
                     </div>
 
-                    <div class="modal fade" id="LoanInterestModal" tabindex="-1" role="dialog">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h2><strong>জমা</strong>  করুন</h2>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-
-                                    <form action="{{route('LoanDepositSubmit')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
-                                        {{csrf_field()}}
-                                        <input type="hidden" name="loan_id" value="1">
-                                        <input type="hidden" name="user_id" value="3">
-
-
-                                        <div class="col-lg-12 col-md-12">
-
-                                            <div class="form-group">
-
-                                                <label for=""><small> কিস্তির পরিমান</small></label>
-
-                                                <input type="number" step="any" class="form-control" name="amount" placeholder="কিস্তির পরিমান" id="amount">
-
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-lg-12 col-md-12">
-
-                                            <div class="form-group">
-
-                                                <label for=""><small> তারিখ </small></label>
-
-                                                <input type="date" class="form-control" name="date" placeholder=" তারিখ">
-
-                                            </div>
-                                        </div>
-
-
-                                        <div class="col-lg-12 col-md-12">
-
-                                            <div class="form-group">
-
-                                                <label for=""><small> মতামত </small></label>
-
-                                                <textarea name="note" class="form-control" placeholder="মতামত"></textarea>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-md-12 text-center">
-
-                                            <button class="btn btn-primary btn-round"> জমা করুন</button>
-
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="modal fade" id="ActiveModal{{$loan->id}}" tabindex="-1" role="dialog">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-
-                                        <div class="modal-header">
-                                            <h2><strong>ঋণ অনুমোদন করুন </strong></h2>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                              </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="{{url('admin/loan/active/'.$loan->id)}}" method="POST">
-                                                {{csrf_field()}}
-                                                <div class="row clearfix">
-                                                    <div class="col-lg-6 col-md-12">
-                                                        <div class="form-group">
-                                                            <label for=""><small>ঋণের পরিমান </small></label>
-                                                            <input type="text" class="form-control" placeholder="ঋণের পরিমান" name="approved_amount" value="{{$loan->request_amount}}">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6 col-md-12">
-                                                        <div class="form-group">
-                                                            <label for=""><small>মেয়াদ(মাস) </small></label>
-                                                            <input type="text" class="form-control" placeholder="মেয়াদ" name="duration" value="{{$loan->duration}}" >
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6 col-md-12">
-                                                        <div class="form-group">
-                                                            <label for=""><small>লাভের হার  </small></label>
-                                                            <input type="text" class="form-control" placeholder="লাভের হার" name="interest_rate" value="{{$loan->interest_rate}}">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12 text-center">
-                                                        <button type="submit" class="btn btn-info btn-round">সেভ করুন</button>
-                                                     </div>
-                                                </div>
-                                            </form>
-                                        </div>
-
-                            </div>
-                        </div>
-                    </div>
-
+                    @include('admin.loan.modals')
 
                 </div>
                 @endif
@@ -458,19 +354,21 @@
                                     <td>
                                         @if($item->flag=='give_away')
                                              ঋণ প্রদান
-                                        @elseif($item->flag=='reveanue_add')
+                                        @elseif($item->flag=='revenue_add')
                                             আসল যোগ
-                                        @elseif($item->flag=='reveanue_deduct')
+                                        @elseif($item->flag=='revenue_deduct')
                                              আসল প্রদান
                                         @elseif($item->flag=='interest')
-                                            সুদ
+                                            সুদ আদায়
+                                        @elseif($item->flag=='add_interest')
+                                            সুদ যোগ
 
                                         @endif
                                     </td>
 
                                     <td style="color: green;font-weight: 700;">
 
-                                        @if($item->flag=='reveanue_add' || $item->flag=='interest')
+                                        @if($item->flag=='reveanue_add' || $item->flag=='add_interest' || $item->flag=='give_away')
                                             + {{\App\NumberConverter::en2bn($item->amount)}} টাকা
                                         @else
                                             - {{\App\NumberConverter::en2bn($item->amount)}} টাকা

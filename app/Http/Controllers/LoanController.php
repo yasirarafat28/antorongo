@@ -8,8 +8,11 @@ use App\DepositoryProperty;
 use App\Loan;
 use App\LoanTransaction;
 use App\NumberConverter;
+use App\Transaction;
+use App\TransactionHead;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class LoanController extends Controller
 {
@@ -128,7 +131,7 @@ class LoanController extends Controller
 
     public  function LoanList(Request $request)
     {
-        $records = Loan::with('user','transactions')->where(function ($q) use ($request){
+        $records = Loan::with('user')->where(function ($q) use ($request){
 
             if ($request->has('from') && $request->from) {
                 $from = date("Y-m-d", strtotime($request->from));
@@ -347,12 +350,55 @@ class LoanController extends Controller
 
     public function ApproveLoan(Request $request,$id)
     {
+        $this->validate($request,[
+            'approved_amount'=>'required',
+            'duration'=>'required',
+            'interest_rate'=>'required',
+        ]);
         $loan = Loan::find($id);
         $loan->approved_amount = $request->approved_amount;
         $loan->duration = $request->duration;
         $loan->interest_rate = $request->interest_rate;
         $loan->status = 'active';
         $loan->save();
+
+
+
+        $head = TransactionHead::where('slug','loan_giving_expense')->first();
+
+        if(!$head){
+            return back()->withError('Related head didn\'t found!');
+        }
+
+        $transaction = Transaction::where('transaction_for','loan')
+        ->where('transactable_id',$loan->id)
+        ->where('flag','give_away')->first();
+
+        if(!$transaction){
+            $transaction = new Transaction();
+        }
+
+
+        $transaction = new Transaction();
+        $transaction->txn_id = uniqid();
+        $transaction->transaction_for = 'loan';
+        $transaction->transactable_id = $loan->id;
+        $transaction->flag = 'give_away';
+        $transaction->type = 'expense';
+        $transaction->head_id = $head->id;
+        $transaction->user_id = $loan->user_id;
+        $transaction->note = $request->note;
+        $transaction->date = date('Y-m-d H:i:s');
+        $transaction->amount = NumberConverter::bn2en($request->approved_amount);
+        $transaction->added_by = Auth::user()->id;
+        $transaction->received_by = Auth::user()->id;
+        $transaction->admin_status ='approved';
+        $transaction->manager_status = 'approved';
+        $transaction->status = 'approved';
+        $transaction->canculatable='yes';
+        $transaction->save();
+
+
         return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
     }
 
@@ -418,4 +464,178 @@ class LoanController extends Controller
     }
 
 
+    public function add_interest(Request $request){
+        $this->validate($request,[
+            'loan_id'=>'required',
+            'amount'=>'required',
+            'date'=>'required',
+            'user_id'=>'required',
+        ]);
+
+        $transaction = new Transaction();
+        $transaction->txn_id = uniqid();
+        $transaction->transaction_for = 'loan';
+        $transaction->transactable_id = $request->loan_id;
+        $transaction->flag = 'add_interest';
+        $transaction->type = 'expense';
+        $transaction->head_id = 0;
+        $transaction->user_id = $request->user_id;
+        $transaction->note = $request->note;
+        $transaction->date = $request->date;
+        $transaction->amount = NumberConverter::bn2en($request->amount);
+        $transaction->added_by = Auth::user()->id;
+        $transaction->received_by = Auth::user()->id;
+        $transaction->admin_status ='approved';
+        $transaction->manager_status = 'approved';
+        $transaction->status = 'approved';
+        $transaction->canculatable='no';
+        $transaction->save();
+        return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
+    }
+
+
+    public function add_reveanue(Request $request){
+        $this->validate($request,[
+            'loan_id'=>'required',
+            'amount'=>'required',
+            'date'=>'required',
+            'user_id'=>'required',
+        ]);
+
+        $transaction = new Transaction();
+        $transaction->txn_id = uniqid();
+        $transaction->transaction_for = 'loan';
+        $transaction->transactable_id = $request->loan_id;
+        $transaction->flag = 'revenue_add';
+        $transaction->type = 'expense';
+        $transaction->head_id = 0;
+        $transaction->user_id = $request->user_id;
+        $transaction->note = $request->note;
+        $transaction->date = $request->date;
+        $transaction->amount = NumberConverter::bn2en($request->amount);
+        $transaction->added_by = Auth::user()->id;
+        $transaction->received_by = Auth::user()->id;
+        $transaction->admin_status ='approved';
+        $transaction->manager_status = 'approved';
+        $transaction->status = 'approved';
+        $transaction->canculatable='no';
+        $transaction->save();
+        return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
+    }
+
+
+    public function collect_reveanue(Request $request){
+        $this->validate($request,[
+            'loan_id'=>'required',
+            'amount'=>'required',
+            'date'=>'required',
+            'user_id'=>'required',
+        ]);
+
+
+        $head = TransactionHead::where('slug','loan_revenue_collect_income')->first();
+
+        if(!$head){
+            return back()->withError('Related head didn\'t found!');
+        }
+
+        $transaction = new Transaction();
+        $transaction->txn_id = uniqid();
+        $transaction->transaction_for = 'loan';
+        $transaction->transactable_id = $request->loan_id;
+        $transaction->flag = 'revenue_deduct';
+        $transaction->type = 'income';
+        $transaction->head_id = $head->id;
+        $transaction->user_id = $request->user_id;
+        $transaction->note = $request->note;
+        $transaction->date = $request->date;
+        $transaction->amount = NumberConverter::bn2en($request->amount);
+        $transaction->added_by = Auth::user()->id;
+        $transaction->received_by = Auth::user()->id;
+        $transaction->admin_status ='approved';
+        $transaction->manager_status = 'approved';
+        $transaction->status = 'approved';
+        $transaction->canculatable='yes';
+        $transaction->save();
+        return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
+    }
+
+
+    public function collect_interest(Request $request){
+        $this->validate($request,[
+            'loan_id'=>'required',
+            'amount'=>'required',
+            'date'=>'required',
+            'user_id'=>'required',
+        ]);
+
+
+        $head = TransactionHead::where('slug','loan_profit_collect_income')->first();
+
+        if(!$head){
+            return back()->withError('Related head didn\'t found!');
+        }
+
+        $transaction = new Transaction();
+        $transaction->txn_id = uniqid();
+        $transaction->transaction_for = 'loan';
+        $transaction->transactable_id = $request->loan_id;
+        $transaction->flag = 'interest';
+        $transaction->type = 'income';
+        $transaction->head_id = $head->id;
+        $transaction->user_id = $request->user_id;
+        $transaction->note = $request->note;
+        $transaction->date = $request->date;
+        $transaction->amount = NumberConverter::bn2en($request->amount);
+        $transaction->added_by = Auth::user()->id;
+        $transaction->received_by = Auth::user()->id;
+        $transaction->admin_status ='approved';
+        $transaction->manager_status = 'approved';
+        $transaction->status = 'approved';
+        $transaction->canculatable='yes';
+        $transaction->save();
+        return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
+    }
+
+
+    public function collections(Request $request){
+
+        $transactions = Transaction::with('user','receiver','loan')->where('transaction_for','loan')->whereIn('flag',['revenue_deduct','interest'])->where(function ($q) use ($request){
+
+            if ($request->has('from') && $request->from) {
+                $from = date("Y-m-d", strtotime($request->from));
+                $q->where('date', '>=',  $from);
+
+            }
+            if ($request->has('to') && $request->to) {
+
+                $to = date("Y-m-d", strtotime($request->to));
+                $q->where('date', '<=',  $to);
+
+            }
+
+        })->paginate(25);
+
+        $total = Transaction::where('transaction_for','loan')
+        ->whereIn('flag',['revenue_deduct','interest'])
+        ->where(function ($q) use ($request){
+            if ($request->has('from') && $request->from) {
+                $from = date("Y-m-d", strtotime($request->from));
+                $q->where('date', '>=',  $from);
+
+            }
+            if ($request->has('to') && $request->to) {
+
+                $to = date("Y-m-d", strtotime($request->to));
+                $q->where('date', '<=',  $to);
+
+            }
+
+        })
+        ->sum('amount');
+
+        return view('admin/loan/collection-report',compact('transactions','total'));
+
+
+    }
 }

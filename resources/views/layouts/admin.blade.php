@@ -13,13 +13,13 @@
 
     <!-- Custom fonts for this template-->
     <link href="/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link href="{{asset('admin/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')}}" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" media="all">
+    <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" media="all">
+    <link href="{{asset('admin/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')}}" rel="stylesheet" media="all" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" media="all">
 
 
-    <link rel="stylesheet" href="{{asset('admin/plugins/datatable/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/plugins/datatable/dataTables.bootstrap4.min.css')}}" media="all">
 
 
 
@@ -210,7 +210,7 @@
                         <a class="collapse-item" href="{{url('admin/loan/application')}}">ঋণ আবেদন  </a>
                         <a class="collapse-item" href="{{url('admin/loan/find')}}">ঋণ খুঁজুন  </a>
                         <a class="collapse-item" href="{{url('admin/loan/list')}}" >ঋণ তালিকা  </a>
-                        <a class="collapse-item" href="{{url('admin/collection/collect')}}">কালেকশন/আদায় করুন  </a>
+                        <!--<a class="collapse-item" href="{{url('admin/collection/collect')}}">কালেকশন/আদায় করুন  </a>-->
                         <a class="collapse-item" href="{{url('admin/collection/report')}}" >কালেকশন/আদায় রিপোর্ট  </a>
                     </div>
                 </div>

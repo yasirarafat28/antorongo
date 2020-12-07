@@ -36,7 +36,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                   মোট আদায়  </div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">$ 40,000</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">$ {{App\NumberConverter::en2bn(number_format($total,2))}} টাকা</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -110,10 +110,9 @@
                             <thead>
                             <tr>
                                 <th> #</th>
-                                <th>সভ্য আইডি </th>
+                                <th>সদস্য </th>
                                 <th> ঋণ  আইডি </th>
                                 <th>লেনদেন কোড </th>
-                                <th> সদস্য নাম  </th>
                                 <th> আদায়কারীর নাম  </th>
                                 <th> লেনদেনের ধরন </th>
                                 <th>পরিমান</th>
@@ -124,10 +123,9 @@
                             <tfoot>
                             <tr>
                                 <th> #</th>
-                                <th>সভ্য আইডি </th>
+                                <th>সদস্য </th>
                                 <th>ঋণ আইডি </th>
                                 <th>লেনদেন কোড </th>
-                                <th> সদস্য নাম  </th>
                                 <th> আদায়কারীর নাম  </th>
                                 <th> লেনদেনের ধরন </th>
                                 <th>পরিমান</th>
@@ -140,56 +138,64 @@
                             @foreach($transactions as $item)
 
 
-                                <tr>
+                            <tr>
 
-                                    <td>
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                                aria-labelledby="dropdownMenuLink">
+                                <td>
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                    aria-labelledby="dropdownMenuLink">
+                                        <a href="{{url('admin/transactions/'.$item->id.'/edit')}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট</a>
+                                            {!! Form::open([
+                                               'method'=>'DELETE',
+                                               'url' => ['/admin/transactions', $item->id],
+                                               'style' => 'display:inline'
+                                            ]) !!}
+                                            {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন ', array(
+                                                 'type' => 'submit',
+                                                 'class' => 'dropdown-item',
+                                                'title' => 'মুছে ফেলুন',
+                                                'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
+                                                 )) !!}
+                                            {!! Form::close() !!}
+                                    </div>
+                                </td>
 
-                                            <a href="{{url('admin/loan-transaction/'.$item->id.'/edit')}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট</a>
-                                                {!! Form::open([
-                                                   'method'=>'DELETE',
-                                                   'url' => ['/admin/loan-transaction', $item->id],
-                                                   'style' => 'display:inline'
-                                                ]) !!}
-                                                {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন', array(
-                                                     'type' => 'submit',
-                                                     'class' => 'dropdown-item',
-                                                    'title' => 'Delete user',
-                                                    'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
-                                                     )) !!}
-                                                {!! Form::close() !!}
-                                            </div>
-                                    </td>                                    <td>{{$item->user->unique_id??''}}</td>
-                                    <td>{{$item->loans->unique_id??''}}</td>
-                                    <td>{{$item->txn_id??''}}</td>
-                                    <td>{{$item->user->name??''}}</td>
-                                    <td>{{$item->receiver->name??''}}</td>
-                                    <td>
-                                        @if($item->type=='collect')
-                                            কিস্তি গ্রহণ
-                                        @else
-                                            বিতরন
-                                        @endif
-                                    </td>
+                                <td>{{$item->user->name_bn??''}} ({{$item->user->unique_id??''}})</td>
+                                <td>{{$item->loan->unique_id??''}}</td>
+                                <td>{{$item->txn_id??''}}</td>
+                                <td>{{$item->receiver->name??''}}</td>
+                                <td>
+                                    @if($item->flag=='give_away')
+                                         ঋণ প্রদান
+                                    @elseif($item->flag=='revenue_add')
+                                        আসল যোগ
+                                    @elseif($item->flag=='revenue_deduct')
+                                         আসল প্রদান
+                                    @elseif($item->flag=='interest')
+                                        সুদ আদায়
+                                    @elseif($item->flag=='add_interest')
+                                        সুদ যোগ
 
-                                    <td style="color: green;font-weight: 700;">
+                                    @endif
+                                </td>
 
-                                        @if($item->type=='collect')
-                                            + {{\App\NumberConverter::en2bn($item->incoming)}} টাকা
-                                        @else
-                                            - {{\App\NumberConverter::en2bn($item->outgoing)}} টাকা
-                                        @endif
+                                <td style="color: green;font-weight: 700;">
 
-                                    </td>
-                                    <td>নিশ্চিত </td>
-                                    <td>{{\App\NumberConverter::en2bn($item->date)}}</td>
+                                    @if($item->flag=='reveanue_add' || $item->flag=='add_interest' || $item->flag=='give_away')
+                                        + {{\App\NumberConverter::en2bn($item->amount)}} টাকা
+                                    @else
+                                        - {{\App\NumberConverter::en2bn($item->amount)}} টাকা
+                                    @endif
 
-                                </tr>
+                                </td>
+                                <td>{{$item->status}}</td>
+
+                                <td>{{\App\NumberConverter::en2bn($item->date)}}</td>
+
+                            </tr>
                             @endforeach
                             </tbody>
                         </table>

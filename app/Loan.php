@@ -36,6 +36,19 @@ class Loan extends Model
     }
 
 
+
+    public function current_payable(){
+
+        $total_give_away = $this->loan_give_away->sum('amount');
+        $total_reveanue_paid = $this->paid_reveanues->sum('amount');
+        $total_reveanue_added = $this->added_reveanues->sum('amount');
+
+        $total_interest_added = $this->added_interests->sum('amount');
+        $total_paid_interests = $this->interests->sum('amount');
+
+        $total_payable = $total_interest_added  +  $total_reveanue_added  +   $total_give_away - $total_reveanue_paid - $total_paid_interests;
+        return $total_payable;
+    }
     public function histories(){
         return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','loan');
     }
@@ -45,6 +58,9 @@ class Loan extends Model
     }
     public function added_reveanues(){
         return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','loan')->where('flag','revenue_add');
+    }
+    public function added_interests(){
+        return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','loan')->where('flag','add_interest');
     }
     public function interests(){
         return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','loan')->where('flag','interest');

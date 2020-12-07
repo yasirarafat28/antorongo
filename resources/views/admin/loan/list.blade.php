@@ -203,8 +203,8 @@
                                             {{\App\NumberConverter::en2bn($item->request_amount)}}
                                         @endif
                                     </td>
-                                    <td>{{\App\NumberConverter::en2bn($item->transactions->sum('incoming'))}}</td>
-                                    <td>{{\App\NumberConverter::en2bn($item->request_amount + ($item->request_amount* $item->interest_rate/100) - $item->transactions->sum('incoming'))}}</td>
+                                    <td>{{\App\NumberConverter::en2bn($item->interests->sum('amount')   +   $item->paid_reveanues->sum('amount'))}}</td>
+                                    <td>{{\App\NumberConverter::en2bn($item->current_payable())}}</td>
                                     <td>{{date('Y/m/d',strtotime($item->start_at))}}</td>
                                     <td>{{$item->status}}</td>
 

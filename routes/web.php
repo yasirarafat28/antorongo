@@ -79,12 +79,17 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::post('loan/application', 'LoanController@LoanApplicationSubmit')->name('LoanApplication');
     Route::get('collection/collect', 'CollectionController@Collect');
     Route::post('collection/collect', 'CollectionController@CollectSubmit')->name('LoanDepositSubmit');
-    Route::get('collection/report', 'CollectionController@Report');
+    Route::get('collection/report', 'LoanController@collections');
     Route::post('loan/getLoansByUser', 'LoanController@getLoansByUser')->name('getLoansByUser');
     Route::post('loan/getLoanDetails', 'LoanController@getLoanDetails')->name('getLoanDetails');
 
     Route::get('loan/depository/{id}', 'LoanController@depository')->name('loanDepository');
     Route::post('loan/close/{id}', 'LoanController@close')->name('loanClose');
+
+    Route::post('loan/add_reveanue', 'LoanController@add_reveanue')->name('loan.add_reveanue');
+    Route::post('loan/add_interest', 'LoanController@add_interest')->name('loan.add_interest');
+    Route::post('loan/collect_reveanue', 'LoanController@collect_reveanue')->name('loan.collect_reveanue');
+    Route::post('loan/collect_interest', 'LoanController@collect_interest')->name('loan.collect_interest');
 
 
     Route::get('members/find', 'MemberController@MemberFind');
