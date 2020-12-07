@@ -55,14 +55,27 @@
 
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
+
+                                        <label for=""><small> সদস্য বাছাই করুন</small></label>
+
+                                        <select name="user_id" id="user_id" onchange="getUser(this.value)" class="form-control z-index show-tick selectpicker"  data-live-search="true">
+                                            <option value="no">সদস্য বাছাই করুন</option>
+                                            @foreach($members??array() as $member)
+                                                <option value="{{$member->id}}">{{$member->name}} - {{$member->unique_id}} </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
                                         <label for=""><small> ব্যয় এর খাত বাছাই করুন </small></label>
                                         <select name="head_id" class="form-control ms">
                                             <option value="0">বাছাই করুন </option>
 
                                             @foreach($parents??array() as $parent)
-                                                @if(sizeof($parent->childs))
+                                                @if(sizeof($parent->transactable_childs))
                                                     <optgroup label="{{$parent->name}}">
-                                                        @foreach($parent->childs??array() as $item)
+                                                        @foreach($parent->transactable_childs??array() as $item)
                                                             <option value="{{$item->id}}">{{$item->name}}</option>
                                                         @endforeach
 

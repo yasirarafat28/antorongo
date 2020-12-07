@@ -557,6 +557,13 @@ class LoanController extends Controller
         $transaction->status = 'approved';
         $transaction->canculatable='yes';
         $transaction->save();
+
+
+        if ($request->invoice)
+        {
+            return redirect('transaction-invoice/'.$transaction->txn_id);
+        }
+
         return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
     }
 
@@ -594,6 +601,14 @@ class LoanController extends Controller
         $transaction->status = 'approved';
         $transaction->canculatable='yes';
         $transaction->save();
+
+
+
+        if ($request->invoice)
+        {
+            return redirect('transaction-invoice/'.$transaction->txn_id);
+        }
+
         return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
     }
 

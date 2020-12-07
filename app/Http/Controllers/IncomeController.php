@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\NumberConverter;
 use App\Transaction;
 use App\TransactionHead;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,17 +15,27 @@ class IncomeController extends Controller
 
     public function create(Request $request)
     {
-        $parents = TransactionHead::with('childs')->where('parent',0)->where('type','income')->get();
 
-        return view('admin/income/add',compact('parents'));
+        $members = User::where('role','member')->orderBy('name','ASC')->get();
+        $parents = TransactionHead::with('childs')->where('parent',0)->where('type','income')->where('system_managable','no')->get();
+
+        return view('admin/income/add',compact('parents','members'));
 
     }
     public function store(Request $request)
     {
+
+        $this->validate($request,[
+            'amount'=>'required',
+            'head_id'=>'required',
+            'date'=>'required',
+        ]);
+
         $income = new Transaction();
         $income->txn_id = uniqid();
         $income->type = 'income';
         $income->head_id = $request->head_id;
+        $income->user_id = $request->user_id??0;
         $income->note = $request->note;
         $income->date = $request->date;
         $income->amount = NumberConverter::bn2en($request->amount);
@@ -34,42 +45,40 @@ class IncomeController extends Controller
         $income->status = 'approved';
         $income->save();
 
+
+
         if ($request->invoice)
         {
-            $user = Auth::user();
-            $date =  $request->date;
-            $head = TransactionHead::find($request->head_id);
-            if ($head->slug=='addmission_fee_income') { $admission_fee = NumberConverter::bn2en($request->amount); }else{$admission_fee=0;}
-            if ($head->slug=='bank_profit_income') { $bank_profit = NumberConverter::bn2en($request->amount); }else{$bank_profit=0;}
-            if ($head->slug=='other_income') { $others = NumberConverter::bn2en($request->amount); }else{$others=0;}
-            if ($head->slug=='fine_income') { $fine = NumberConverter::bn2en($request->amount); }else{$fine=0;}
-            if ($head->slug=='bank_withdraw_income') { $bank_withdrawal = NumberConverter::bn2en($request->amount); }else{$bank_withdrawal=0;}
-            return view('admin/invoice',compact('user','date','admission_fee','bank_profit','others','fine','bank_withdrawal'));
+            return redirect('transaction-invoice/'.$income->txn_id);
         }
         return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
 
     }
     public function update(Request $request,$id)
     {
+
+
+
+        $this->validate($request,[
+            'amount'=>'required',
+            'head_id'=>'required',
+            'date'=>'required',
+        ]);
+
+
         $income = Transaction::find($id);
         $income->head_id = $request->head_id;
+        $income->user_id = $request->user_id??0;
         $income->note = $request->note;
         $income->date = $request->date;
         $income->amount = NumberConverter::bn2en($request->amount);
         $income->save();
 
 
+
         if ($request->invoice)
         {
-            $user = Auth::user();
-            $date =  $request->date;
-            $head = TransactionHead::find($request->head_id);
-            if ($head->slug=='addmission_fee_income') { $admission_fee = NumberConverter::bn2en($request->amount); }else{$admission_fee=0;}
-            if ($head->slug=='bank_profit_income') { $bank_profit = NumberConverter::bn2en($request->amount); }else{$bank_profit=0;}
-            if ($head->slug=='other_income') { $others = NumberConverter::bn2en($request->amount); }else{$others=0;}
-            if ($head->slug=='fine_income') { $fine = NumberConverter::bn2en($request->amount); }else{$fine=0;}
-            if ($head->slug=='bank_withdraw_income') { $bank_withdrawal = NumberConverter::bn2en($request->amount); }else{$bank_withdrawal=0;}
-            return view('admin/invoice',compact('user','date','admission_fee','bank_profit','others','fine','bank_withdrawal'));
+            return redirect('transaction-invoice/'.$income->txn_id);
         }
         return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
 

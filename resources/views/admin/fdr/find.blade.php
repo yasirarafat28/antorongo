@@ -437,7 +437,7 @@
 
         </div>
 
-        @if($fdr->histories)
+        @if( isset($fdr->histories) &&  $fdr->histories)
 
         <div class="row clearfix">
 

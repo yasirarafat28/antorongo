@@ -15,6 +15,10 @@ class TransactionHead extends Model
     public function childs()
     {
         return $this->hasMany('App\TransactionHead','parent');
+    }
+    public function transactable_childs()
+    {
+        return $this->hasMany('App\TransactionHead','parent')->where('system_managable','no');
 
     }
 
