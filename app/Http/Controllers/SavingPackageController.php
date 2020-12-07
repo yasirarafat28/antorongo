@@ -16,7 +16,12 @@ class SavingPackageController extends Controller
     public function index(Request $request, $type)
     {
         //
-        $records = SavingPackage::where('type',$type)->orderBy('target_amount','ASC')->paginate(25);
+        $records = SavingPackage::where('type',$type)->orderBy('target_amount','ASC');
+        if(isset($request->limit) && $request->limit=='-1'){
+            $records = $records->paginate($records->count());
+        }else{
+            $records = $records->paginate(25);
+        }
 
         return view('admin/saving-package/index',compact('records','type'));
     }

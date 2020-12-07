@@ -50,7 +50,7 @@ class ProfileController extends Controller
 
     }
 
-    public function MyProfile()
+    public function MyProfile(Request $request)
     {
         $id = Auth::id();
         $user = User::find($id);
@@ -74,7 +74,7 @@ class ProfileController extends Controller
         //$members = User::where('upline_1',$id)->orderBy('id','DESC')->get();
 
 
-        //$activities = Activity::with('user')->where('user_id',Auth::user()->id)->orderBy('id','DESC')->paginate(25);
+        //$activities = Activity::with('user')->where('user_id',Auth::user()->id)->orderBy('id','DESC');
 
         return view('admin.profile',compact('user'));
 

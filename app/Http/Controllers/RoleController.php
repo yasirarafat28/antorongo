@@ -12,9 +12,14 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $records = DB::table('roles')->whereNotIn('name',['admin','member'])->orderBy('name','ASC')->paginate(25);
+        $records = DB::table('roles')->whereNotIn('name',['admin','member'])->orderBy('name','ASC');
+        if(isset($request->limit) && $request->limit=='-1'){
+            $records = $records->paginate($records->count());
+        }else{
+            $records = $records->paginate(25);
+        }
         return view('admin.users.roles',compact('records'));
     }
 

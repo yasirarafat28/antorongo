@@ -237,7 +237,12 @@ class SavingController extends Controller
             }
 
         })
-        ->orderBy('date','DESC')->paginate(25);
+        ->orderBy('date','DESC');
+        if(isset($request->limit) && $request->limit=='-1'){
+            $transactions = $transactions->paginate($transactions->count());
+        }else{
+            $transactions = $transactions->paginate(25);
+        }
 
         $total = Transaction::where('transaction_for','saving')
         ->where('flag','deposit')
@@ -280,7 +285,12 @@ class SavingController extends Controller
             }
 
         })
-        ->orderBy('date','DESC')->paginate(25);
+        ->orderBy('date','DESC');
+        if(isset($request->limit) && $request->limit=='-1'){
+            $transactions = $transactions->paginate($transactions->count());
+        }else{
+            $transactions = $transactions->paginate(25);
+        }
 
 
         $total = Transaction::where('transaction_for','saving')
@@ -744,7 +754,17 @@ class SavingController extends Controller
 
             }
 
-        })->orderBy('created_at','DESC')->paginate(25);
+        })->orderBy('created_at','DESC');
+        if(isset($request->limit) && $request->limit=='-1'){
+            $records = $records->paginate($records->count());
+        }else{
+            $records = $records;
+        if(isset($request->limit) && $request->limit=='-1'){
+            $records = $records->paginate($records->count());
+        }else{
+            $records = $records->paginate(25);
+        }
+        }
 
         $active_count   = Saving::where('type',$type)->where('status','approved')->count();
         $pending_count   = Saving::where('type',$type)->where('status','pending')->count();

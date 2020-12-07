@@ -36,7 +36,12 @@ class UserController extends Controller
             }
 
         })
-        ->paginate(25);
+        ;
+        if(isset($request->limit) && $request->limit=='-1'){
+            $users = $users->paginate($users->count());
+        }else{
+            $users = $users->paginate(25);
+        }
 
         $roles = Role::all();
         $divisions = Division::orderBy('name','ASC')->get();

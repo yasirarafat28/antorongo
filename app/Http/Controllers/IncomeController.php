@@ -109,7 +109,12 @@ class IncomeController extends Controller
 
             }
 
-        })->paginate(25);
+        });
+        if(isset($request->limit) && $request->limit=='-1'){
+            $transactions = $transactions->paginate($transactions->count());
+        }else{
+            $transactions = $transactions->paginate(25);
+        }
 
 
         $total = Transaction::where('canculatable','yes')->where(function ($q) use ($request){

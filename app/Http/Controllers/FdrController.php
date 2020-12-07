@@ -211,7 +211,12 @@ class FdrController extends Controller
 
             }
 
-        })->paginate(25);
+        });
+        if(isset($request->limit) && $request->limit=='-1'){
+            $records = $records->paginate($records->count());
+        }else{
+            $records = $records->paginate(25);
+        }
 
 
 
@@ -376,7 +381,12 @@ class FdrController extends Controller
 
             }
 
-        })->paginate(25);
+        });
+        if(isset($request->limit) && $request->limit=='-1'){
+            $transactions = $transactions->paginate($transactions->count());
+        }else{
+            $transactions = $transactions->paginate(25);
+        }
 
 
         $total = Transaction::where('transaction_for','fdr')
@@ -418,7 +428,12 @@ class FdrController extends Controller
 
             }
 
-        })->paginate(25);
+        });
+        if(isset($request->limit) && $request->limit=='-1'){
+            $transactions = $transactions->paginate($transactions->count());
+        }else{
+            $transactions = $transactions->paginate(25);
+        }
 
 
         $total = Transaction::where('transaction_for','fdr')

@@ -627,6 +627,22 @@
 
 
 
+<script>
+    $(function() {
+        $('.dataTable').DataTable({
+            //dom: 'lBfrtp',
+            dom: 'lBfrtp',
+            bFilter:true,
+            //"lengthMenu": [[ 25, -1], [25, "All"]],
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ],
+            order:[],
+            paging: false,
+        });
+    });
+    </script>
+
     <script>
         $('select').selectpicker();
     </script>
@@ -647,7 +663,6 @@
 
 
     @yield('script')
-
 </body>
 
 </html>

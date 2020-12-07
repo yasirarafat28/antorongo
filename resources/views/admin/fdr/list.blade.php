@@ -4,9 +4,7 @@
 @endsection
 @section('content')
 <style>
-    .dataTables_wrapper .dt-buttons{
-        display: none;
-    }
+
 </style>
 
 <!-- Main Content -->
