@@ -52,8 +52,8 @@ class DashboardController extends Controller
         $loan = Loan::whereIn('status',['active','closed'])->get();
 
         $monthly_data = DB::table('transaction')
-        ->select(DB::raw("sum(case when `type`='income' then amount*1 else amount*0 end) as `income`"),DB::raw("sum(case when `type`='expense' then amount*1 else amount*0 end) as `expense`"), DB::raw('MONTH(created_at) as month'))
-        ->groupby('month')
+        ->select(DB::raw("sum(case when `type`='income' then amount*1 else amount*0 end) as `income`"),DB::raw("sum(case when `type`='expense' then amount*1 else amount*0 end) as `expense`"), DB::raw('MONTH(created_at) as month'), DB::raw('YEAR(created_at) as year'))
+        ->groupby('month','year')
         ->where('status','approved')
         ->where('canculatable','yes')
         ->orderBy('created_at','ASC')
