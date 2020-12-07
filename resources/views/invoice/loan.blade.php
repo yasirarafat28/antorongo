@@ -21,9 +21,9 @@
                                 $bar = App::make('BarCode');
                                 $barcontent = $bar->barcodeFactory()->renderBarcode(
                                         $text=$unique_id,
-                                        $size=50,
+                                        $size=100,
                                         $orientation='horizontal',
-                                        $code_type='code39', // code_type : code128,code39,code128b,code128a,code25,codabar
+                                        $code_type='code128', // code_type : code128,code39,code128b,code128a,code25,codabar
                                         $print=true,
                                         $sizefactor=1,
                                         $filename = $unique_id.'.jpeg'
@@ -68,9 +68,9 @@
                             $bar = App::make('BarCode');
                             $barcontent = $bar->barcodeFactory()->renderBarcode(
                                     $text=$unique_id,
-                                    $size=50,
+                                    $size=100,
                                     $orientation='horizontal',
-                                    $code_type='code39', // code_type : code128,code39,code128b,code128a,code25,codabar
+                                    $code_type='code128', // code_type : code128,code39,code128b,code128a,code25,codabar
                                     $print=true,
                                     $sizefactor=1,
                                     $filename = $unique_id.'.jpeg'
