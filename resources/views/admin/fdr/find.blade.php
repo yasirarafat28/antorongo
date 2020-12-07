@@ -63,8 +63,11 @@
                                         <input type="text" class="form-control" placeholder="এফ ডি আর নাম্বার" name="q" value="{{$query}}">
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-12">
+                                <div class="col-lg-3 col-md-12">
                                     <button class="btn btn-primary btn-round">খুজুন</button>
+                                </div>
+                                <div class="col-lg-3 col-md-12">
+                                    <a href="?limit=-1" class="btn btn-success">সবগুলো দেখুন</a>
                                 </div>
                             </div>
                         </form>

@@ -106,6 +106,10 @@
                                         <button class="btn btn-primary btn-round"><i class="fa fa-search"></i></button>
                                     </div>
                                 </div>
+                                <div class="col-lg-2 col-md-1">
+                                    <br>
+                                    <a href="?limit=-1" class="btn btn-success">সবগুলো দেখুন</a>
+                                </div>
                             </div>
                         </form>
                     </div>
