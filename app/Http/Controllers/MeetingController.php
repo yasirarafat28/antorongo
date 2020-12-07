@@ -12,10 +12,15 @@ class MeetingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $records = Meeting::orderBy('id','DESC')->paginate(25);
+        $records = Meeting::orderBy('id','DESC');
+        if(isset($request->limit) && $request->limit=='-1'){
+            $records = $records->paginate($records->count());
+        }else{
+            $records = $records->paginate(25);
+        }
 
         return view('admin/meeting',compact('records'));
     }

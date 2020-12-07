@@ -13,12 +13,17 @@ class SalaryPaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
 
         $members = User::where('role','admin')->orderBy('name','ASC')->get();
-        $records = SalaryPayment::with('user')->orderBy('id','DESC')->paginate(25);
+        $records = SalaryPayment::with('user')->orderBy('id','DESC');
+        if(isset($request->limit) && $request->limit=='-1'){
+            $records = $records->paginate($records->count());
+        }else{
+            $records = $records->paginate(25);
+        }
 
         return view('admin/hr/salary-payment',compact('records','members'));
     }

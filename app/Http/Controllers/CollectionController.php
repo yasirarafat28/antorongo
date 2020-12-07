@@ -81,7 +81,12 @@ class CollectionController extends Controller
 
             }
 
-        })->paginate(25);
+        });
+        if(isset($request->limit) && $request->limit=='-1'){
+            $transactions = $transactions->paginate($transactions->count());
+        }else{
+            $transactions = $transactions->paginate(25);
+        }
         return view('admin/loan/collection-report',compact('transactions'));
     }
 }

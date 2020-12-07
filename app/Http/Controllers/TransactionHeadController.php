@@ -12,11 +12,16 @@ class TransactionHeadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($type='income')
+    public function index(Request $request ,$type='income')
     {
         //
         $parents = TransactionHead::where('parent',0)->where('type',$type)->orderBy('id','DESC')->get();
-        $records = TransactionHead::with('parent')->where('type',$type)->where('parent','!=',0)->orderBy('id','DESC')->paginate(25);
+        $records = TransactionHead::with('parent')->where('type',$type)->where('parent','!=',0)->orderBy('id','DESC');
+        if(isset($request->limit) && $request->limit=='-1'){
+            $records = $records->paginate($records->count());
+        }else{
+            $records = $records->paginate(25);
+        }
 
         return view('admin.transaction-head',compact('records','parents','type'));
     }

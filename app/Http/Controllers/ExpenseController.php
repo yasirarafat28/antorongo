@@ -106,7 +106,12 @@ class ExpenseController extends Controller
 
             }
 
-        })->paginate(25);
+        });
+        if(isset($request->limit) && $request->limit=='-1'){
+            $transactions = $transactions->paginate($recortransactionsds->count());
+        }else{
+            $transactions = $transactions->paginate(25);
+        }
 
 
 
