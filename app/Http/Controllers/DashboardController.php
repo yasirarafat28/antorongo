@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Fdr;
 use App\FdrTransaction;
+use App\Loan;
 use App\Saving;
 use App\SavingTransaction;
 use Auth;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -42,7 +44,23 @@ class DashboardController extends Controller
             $q->whereIn('fdr_id',$fdr_list);
         })->where('type','deposit')->get();
 
-        return view('admin/dashboard',compact('members','daily_saving_transactions','daily_savings','short_savings','short_saving_transactions','long_savings','long_saving_transactions','fdr_list','fdr_transactions'));
+        $loan = Loan::whereIn('status',['active','closed'])->get();
+
+        $monthly_data = DB::table('transaction')
+        ->select(DB::raw("sum(case when `type`='income' then amount*1 else amount*0 end) as `income`"),DB::raw("sum(case when `type`='expense' then amount*1 else amount*0 end) as `expense`"), DB::raw('MONTH(created_at) as month'))
+        ->groupby('month')
+        ->where('status','approved')
+        ->orderBy('created_at','ASC')
+        ->get();
+
+        $pie_chart_data = DB::table('transaction')
+        ->select(DB::raw("sum(case when `type`='income' then amount*1 else amount*0 end) as `income`"),DB::raw("sum(case when `type`='expense' then amount*1 else amount*0 end) as `expense`"))
+        ->where('status','approved')
+        ->first();
+
+        return view('admin/dashboard',compact('members','daily_saving_transactions','daily_savings','short_savings',
+        'short_saving_transactions','long_savings','long_saving_transactions','fdr_list','fdr_transactions',
+        'loan','monthly_data','pie_chart_data'));
     }
 
 }

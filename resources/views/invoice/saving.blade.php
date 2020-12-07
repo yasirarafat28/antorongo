@@ -23,7 +23,7 @@
                                         $text=$unique_id,
                                         $size=50,
                                         $orientation='horizontal',
-                                        $code_type='code39', // code_type : code128,code39,code128b,code128a,code25,codabar
+                                        $code_type='code128', // code_type : code128,code39,code128b,code128a,code25,codabar
                                         $print=true,
                                         $sizefactor=1.5,
                                         $filename = $unique_id.'.jpeg'
@@ -70,7 +70,7 @@
                                     $text=$unique_id,
                                     $size=50,
                                     $orientation='horizontal',
-                                    $code_type='code39', // code_type : code128,code39,code128b,code128a,code25,codabar
+                                    $code_type='code128', // code_type : code128,code39,code128b,code128a,code25,codabar
                                     $print=true,
                                     $sizefactor=1.5,
                                     $filename = $unique_id.'.jpeg'

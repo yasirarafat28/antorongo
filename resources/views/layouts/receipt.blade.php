@@ -29,6 +29,10 @@
 
         @page { margin: 0; }
         body { margin: 1.6cm; }
+
+        img{
+            height: 80px;
+        }
     </style>
 
 </head>
