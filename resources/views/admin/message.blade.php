@@ -250,13 +250,14 @@
 	position: relative;
 }
 .candidate_revew_search_box form button {
-	padding: 11px 12px;
+	padding: 7px 11px;
 	position: absolute;
 	right: 0;
 	top: 50%;
 	transform: translateY(-50%);
 	border-radius: 10px;
 }
+
 </style>
 
 @endsection
@@ -266,21 +267,30 @@
 	<!--Main container start -->
 	<main class="ttr-wrapper">
 		<div class="container-fluid">
-			<div class="db-breadcrumb">
+			{{-- <div class="db-breadcrumb">
 				<h4 class="breadcrumb-title">Messages</h4>
 				<ul class="db-breadcrumb-list">
 					<li><a href="#"><i class="fa fa-home"></i>Home</a></li>
 					<li>Messages</li>
 				</ul>
-			</div>
+            </div> --}}
+             <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800">বার্তা</h1>
+
+                <ul class="breadcrumb float-md-right">
+                    <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">বার্তা</a></li>
+                </ul>
+            </div>
 			<div class="row message_container">
                 <div class="col-sm-12 col-md-6 col-lg-5 col-xl-4 pr0 pl0">
                     <div class="inbox_user_list">
                         <div class="iu_heading">
                             <div class="candidate_revew_search_box">
                                 <form class="form-inline my-2 my-lg-0">
-                                    <input class="form-control mr-sm-2" type="search" name="q" value="{{$_GET['q']??''}}" placeholder="Serach" aria-label="Search">
-                                    <button class="btn my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                                    <input class="form-control mr-sm-2" type="search" name="q" value="{{$_GET['q']??''}}" placeholder="অনুসন্ধান করুন" aria-label="Search">
+                                    <button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
                                 </form>
                             </div>
                         </div>
@@ -382,8 +392,8 @@
 
                             <div class=" align-middle " style="position: relative; top: 20%;">
                                 <h1 class="text-primary"><strong class="font-accent"><i class="material-icons" style="font-size: 80px">message</i></strong></h1>
-                                <h3 class="text-primary"><strong class="font-accent">Select a Conversation</strong></h3>
-                                <p class="text-info">Try selecting a conversation or searching for someone specific.</p>
+                                <h3 class="text-primary"><strong class="font-accent">একটি কথোপকথন নির্বাচন করুন</strong></h3>
+                                <p class="text-info">কোন কথোপকথন নির্বাচন করার বা নির্দিষ্ট কারো সন্ধানের চেষ্টা করুন.</p>
                             </div>
                         </div>
                     @endif
@@ -423,7 +433,7 @@
                     <div class="message_input">
                         <form class="form-inline" id="send-form">
                             <input type="hidden" name="receiver_id" value="{{$_GET['receiver_id']??0}}">
-                            <input class="form-control" type="message" id="message" placeholder="Enter text here..." aria-label="Search" name="message">
+                            <input class="form-control" type="message" id="message" placeholder="এখানে টেক্সট লিখুন..." aria-label="Search" name="message">
                             <button class="btn btn-primary btn-round" type="submit">Send <span class="flaticon-paper-plane"></span></button>
                         </form>
                     </div>
