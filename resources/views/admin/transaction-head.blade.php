@@ -36,70 +36,7 @@
             </ul>
         </div>
 
-        <div class="row">
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-primary shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    উপার্জন (মাসিক)</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">৳ 40,000 টাকা</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-success shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                    উপার্জন (বার্ষিক)</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">৳ 40,000 টাকা</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row clearfix">
-            <div class="col-lg-12">
-                <div class="card action_bar shadow">
-                    <div class="body">
-                        <div class="row clearfix">
-                            <div class="col-lg-5 col-md-5 col-6">
-                            </div>
-                            <div class="col-lg-7 col-md-7 col-3 text-right">
-                                <a  data-toggle="modal" data-target="#largeModal" class="btn btn-neutral hidden-sm-down">
-                                    <i class="zmdi zmdi-plus-circle"></i>
-                                </a>
-
-
-                                <button type="button" class="btn btn-neutral hidden-sm-down" onclick="$('.buttons-csv')[0].click();">
-                                    <i class="zmdi zmdi-archive"></i>
-                                </button>
-                                <button type="button" class="btn btn-neutral hidden-sm-down" onclick="$('.buttons-print')[0].click();">
-                                    <i class="zmdi zmdi-print"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <!-- Exportable Table -->
         <div class="row clearfix">
@@ -143,27 +80,31 @@
                             @foreach($records as $item)
                                 <tr>
                                     <td>
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <a  data-toggle="modal" data-target="#largeShowModal{{$item->id}}" class="dropdown-item"><i class="fa fa-eye"> </i> দেখুন</a>
-                                            <a data-toggle="modal" data-target="#largeEditModal{{$item->id}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট</a>
-                                                {!! Form::open([
-                                                'method'=>'DELETE',
-                                                'url' => ['/admin/transaction-head', $item->id],
-                                                'style' => 'display:inline'
-                                                ]) !!}
-                                                {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন', array(
-                                                    'type' => 'submit',
-                                                    'class' => 'dropdown-item',
-                                                    'title' => 'Delete user',
-                                                    'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
-                                                    )) !!}
-                                                {!! Form::close() !!}
-                                        </div>
+                                        @if ($item->system_managable=='no')
+                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                aria-labelledby="dropdownMenuLink">
+                                                <a  data-toggle="modal" data-target="#largeShowModal{{$item->id}}" class="dropdown-item"><i class="fa fa-eye"> </i> দেখুন</a>
+                                                <a data-toggle="modal" data-target="#largeEditModal{{$item->id}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট</a>
+                                                    {!! Form::open([
+                                                    'method'=>'DELETE',
+                                                    'url' => ['/admin/transaction-head', $item->id],
+                                                    'style' => 'display:inline'
+                                                    ]) !!}
+                                                    {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন', array(
+                                                        'type' => 'submit',
+                                                        'class' => 'dropdown-item',
+                                                        'title' => 'Delete user',
+                                                        'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
+                                                        )) !!}
+                                                    {!! Form::close() !!}
+                                            </div>
+
+                                        @endif
+
                                     </td>                                    <td> {{$item->name}}</td>
                                     <td>{{App\TransactionHead::find($item->parent)->name??''}}</td>
                                     <td>{{strip_tags($item->slug)}}</td>
