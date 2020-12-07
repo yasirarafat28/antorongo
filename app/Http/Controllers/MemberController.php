@@ -55,53 +55,26 @@ class MemberController extends Controller
             }
 
             if (sizeof($releted_query)<1) {
-                $releted_users = array();
+                $releted_user_ids = array();
             }else{
 
-                $releted_users = User::where('unique_id','like','%'.$releted_query[0].'%')->orWhere('unique_id','like','%'.$releted_query[1].'%')->orWhere('unique_id','like','%'.$releted_query[2].'%')->orWhere('unique_id','like','%'.$releted_query[3].'%')->orWhere('unique_id','like','%'.$query.'%')
-                //->orWhere('email',$releted_query[0])->orWhere('email',$releted_query[1])->orWhere('email',$query)
-                //->orWhere('phone',$releted_query[0])->orWhere('phone',$releted_query[1])->orWhere('phone',$query)
-                ->get();
-
-                /*$releted_users = User::where(function ($q) use ($releted_query,$member){
-                    $q->where('unique_id',$releted_query[0]);
-                    foreach ($releted_query as $key => $item) {
-                        $q->orWhere('unique_id',$item);
-                    }
-
-                })
-                ->get();*/
+                $releted_user_ids = User::where('unique_id','like','%'.$releted_query[0].'%')->orWhere('unique_id','like','%'.$releted_query[1].'%')->orWhere('unique_id','like','%'.$releted_query[2].'%')->orWhere('unique_id','like','%'.$releted_query[3].'%')->orWhere('unique_id','like','%'.$query.'%')
+                ->get('id')->pluck('id')->toArray();
             }
 
 
+            array_push($releted_user_ids,$member->id);
 
 
 
-            $loan_records = Loan::with('user')->where(function ($q) use ($releted_users,$member){
+            //return $releted_user_ids;
 
-                //$q->where('user_id',$member->id);
-                foreach ($releted_users as $key => $releted_user) {
-                    $q->orWhere('user_id',$releted_user->id);
-                }
 
-            })->get();
 
-            $saving_records = Saving::with('user')->where(function ($q) use ($releted_users,$member){
+            $loan_records = Loan::with('user')->whereIn('user_id',$releted_user_ids)->get();
 
-                //$q->where('user_id',$member->id);
-                foreach ($releted_users as $key => $releted_user) {
-                    $q->orWhere('user_id',$releted_user->id);
-                }
-
-            })->get();
-            $FDR_records = Fdr::with('user')->where(function ($q) use ($releted_users){
-
-                //$q->where('user_id',$member->id);
-                foreach ($releted_users as $key => $releted_user) {
-                    $q->orWhere('user_id',$releted_user->id);
-                }
-
-            })->get();
+            $saving_records = Saving::with('user')->whereIn('user_id',$releted_user_ids)->get();
+            $FDR_records = Fdr::with('user')->whereIn('user_id',$releted_user_ids)->get();
         }elseif ($request->has('id')) {
 
             $query = $request->id;
