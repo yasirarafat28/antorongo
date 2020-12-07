@@ -77,7 +77,7 @@ class MemberController extends Controller
 
 
 
-            $loan_records = Loan::with('user','transactions')->where(function ($q) use ($releted_users,$member){
+            $loan_records = Loan::with('user')->where(function ($q) use ($releted_users,$member){
 
                 //$q->where('user_id',$member->id);
                 foreach ($releted_users as $key => $releted_user) {
@@ -94,7 +94,7 @@ class MemberController extends Controller
                 }
 
             })->get();
-            $FDR_records = Fdr::with('user','transactions')->where(function ($q) use ($releted_users){
+            $FDR_records = Fdr::with('user')->where(function ($q) use ($releted_users){
 
                 //$q->where('user_id',$member->id);
                 foreach ($releted_users as $key => $releted_user) {
@@ -107,10 +107,10 @@ class MemberController extends Controller
             $query = $request->id;
             $member = User::where('id',$request->id)->first();
 
-            $loan_records = Loan::with('user','transactions')->where('user_id',$member->id)->get();
+            $loan_records = Loan::with('user')->where('user_id',$member->id)->get();
 
             $saving_records = Saving::with('user')->where('user_id',$member->id)->get();
-            $FDR_records = Fdr::with('user','transactions')->where('user_id',$member->id)->get();
+            $FDR_records = Fdr::with('user')->where('user_id',$member->id)->get();
         }
         else{
             $member ='';

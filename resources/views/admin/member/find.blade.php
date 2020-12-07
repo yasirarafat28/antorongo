@@ -389,40 +389,42 @@
                                 <table class="table table-bordered table-striped table-hover dataTable js-plaintable">
                                     <thead>
                                     <tr>
-                                        <th>সিরিয়াল </th>
+                                        <th>ক্রিয়াকলাপ</th>
                                         <th>ঋণ আইডি </th>
-                                        <th>সদস্য আইডি </th>
+                                        <th>পুরাতন ঋণ আইডি </th>
+                                        <th> সদস্য আইডি  </th>
                                         <th> সদস্য নাম  </th>
                                         <th> ঋণের পরিমান  </th>
                                         <th> মোট পরিশোধ</th>
                                         <th> মোট বকেয়া</th>
                                         <th> তারিখ </th>
                                         <th>  অবস্থা</th>
-                                        <th>  </th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach( $loan_records?? array() as $item)
-                                        <tr>
-                                            <td>{{$loop->iteration}}</td>
-                                            <td>{{$item->unique_id}}</td>
-                                            <td>{{$item->user->unique_id??''}}</td>
-                                            <td>{{$item->user->name_bn??''}}</td>
-                                            <td>
-                                                @if($item->status=='active')
-                                                    {{\App\NumberConverter::en2bn($item->approved_amount)}}
-                                                @else
-                                                    {{\App\NumberConverter::en2bn($item->request_amount)}}
-                                                @endif
-                                            </td>
-                                            <td>{{\App\NumberConverter::en2bn($item->transactions->sum('incoming'))}}</td>
-                                            <td>{{\App\NumberConverter::en2bn($item->request_amount + ($item->request_amount* $item->interest_rate/100) - $item->transactions->sum('incoming'))}}</td>
-                                            <td>{{date('Y/m/d',strtotime($item->start_at))}}</td>
-                                            <td>{{$item->status}}</td>
-                                            <td>
-                                                <a href="{{url('admin/loan/find?id='.$item->id)}}" class="btn  btn-primary"><i class="zmdi zmdi-eye"> </i> বিস্তারিত </a>
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <td>
+
+                                            <a href="{{url('admin/loan/find?q='.$item->unique_id)}}" class="btn btn-primary"><i class="fa fa-eye"> </i> </a>
+
+                                        </td>                                    <td>{{$item->unique_id}}</td>
+                                        <td>{{$item->old_txn}}</td>
+                                        <td>{{$item->user->unique_id??''}}</td>
+                                        <td>{{$item->user->name_bn??''}}</td>
+                                        <td>
+                                            @if($item->status=='active')
+                                                {{\App\NumberConverter::en2bn($item->approved_amount)}}
+                                            @else
+                                                {{\App\NumberConverter::en2bn($item->request_amount)}}
+                                            @endif
+                                        </td>
+                                        <td>{{\App\NumberConverter::en2bn($item->interests->sum('amount')   +   $item->paid_reveanues->sum('amount'))}}</td>
+                                        <td>{{\App\NumberConverter::en2bn($item->current_payable())}}</td>
+                                        <td>{{date('Y/m/d',strtotime($item->start_at))}}</td>
+                                        <td>{{$item->status}}</td>
+
+                                    </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -465,7 +467,7 @@
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{$item->txn_id}}</td>
-                                            <td>{{$item->user->name_bn}}</td>
+                                            <td>{{$item->user->name_bn??""}}</td>
                                             @if($type='daily')
                                                 <td>{{\App\NumberConverter::en2bn($item->installment_amount)}} টাকা </td>
                                                 <td>{{\App\NumberConverter::en2bn($item->duration)}} মাস </td>
@@ -503,36 +505,38 @@
                                 <table class="table table-bordered table-striped table-hover dataTable js-plaintable">
                                     <thead>
                                     <tr>
-                                        <th>সিরিয়াল </th>
+                                        <th>ক্রিয়াকলাপ</th>
                                         <th>সভ্য আইডি </th>
                                         <th>এফ ডি আর আইডি </th>
+                                        <th>পুরাতন  এফ ডি আর আইডি </th>
                                         <th> সদস্য নাম  </th>
                                         <th> পরিমান  </th>
                                         <th> সময়কাল (মাস)  </th>
                                         <th> লাভের হার</th>
+
                                         <th> প্রাপ্ত লাভ  </th>
                                         <th>  অবস্থা</th>
                                         <th>  তারিখ</th>
-                                        <th>  </th>
                                     </tr>
                                     </thead>
 
                                     <tbody>
                                     @foreach($FDR_records ?? array() as $item)
                                         <tr>
-                                            <td>{{$loop->iteration}}</td>
+                                            <td style="width: 12%">
+                                                <a href="/admin/fdr/find?q={{$item->txn_id}}"><i class="fa fa-eye"></i></a>
+
+                                            </td>
                                             <td>{{$item->user->unique_id??''}}</td>
                                             <td>{{$item->txn_id}}</td>
+                                            <td>{{$item->old_txn}}</td>
                                             <td>{{$item->user->name_bn??''}}</td>
-                                            <td>{{\App\NumberConverter::en2bn($item->transactions->where('type','deposit')->sum('amount'))}} টাকা  </td>
+                                            <td>{{\App\NumberConverter::en2bn($item->deposits->sum('amount'))}} টাকা  </td>
                                             <td>{{\App\NumberConverter::en2bn($item->duration)}} মাস </td>
                                             <td>{{\App\NumberConverter::en2bn($item->interest_rate)}} % </td>
-                                            <td>{{\App\NumberConverter::en2bn($item->transactions->where('type','profit')->sum('amount'))}} টাকা  </td>
+                                            <td>{{\App\NumberConverter::en2bn($item->profits->sum('amount'))}} টাকা  </td>
                                             <td>{{ucfirst($item->status)}}</td>
                                             <td>{{$item->started_at}}</td>
-                                            <td>
-                                                <a href="{{url('admin/fdr/find?id='.$item->id)}}" class="btn  btn-primary"><i class="zmdi zmdi-eye"> </i> বিস্তারিত </a>
-                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>

@@ -561,7 +561,7 @@ class LoanController extends Controller
 
         if ($request->invoice)
         {
-            return redirect('transaction-invoice/'.$income->txn_id);
+            return redirect('transaction-invoice/'.$transaction->txn_id);
         }
 
         return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
@@ -606,7 +606,7 @@ class LoanController extends Controller
 
         if ($request->invoice)
         {
-            return redirect('transaction-invoice/'.$income->txn_id);
+            return redirect('transaction-invoice/'.$transaction->txn_id);
         }
 
         return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');

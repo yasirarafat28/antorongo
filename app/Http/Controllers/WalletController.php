@@ -42,12 +42,36 @@ class WalletController extends Controller
 
 
 
+        if($request->from=='office'){
+            if($request->to=='bank'){
+                $from_head = TransactionHead::where('slug','Bank _ expense')->first();
+            }else{
+                $from_head = TransactionHead::where('slug','Ajker_prodan')->first();
+            }
+
+            if(!$from_head){
+                return back()->withError('Related head didn\'t found!');
+            }
+
+        }elseif($request->to =='office' ){
+            if($request->from=='bank'){
+                $to_head = TransactionHead::where('slug','bank_withdraw_income')->first();
+            }else{
+                $to_head = TransactionHead::where('slug','Ajker_hate nagod')->first();
+            }
+
+            if(!$to_head){
+                return back()->withError('Related head didn\'t found!');
+            }
+
+        }
+
         //debit
         $deduct = new Transaction();
         $deduct->txn_id = uniqid();
         $deduct->type = 'expense';
         $deduct->wallet = $request->from;
-        $deduct->head_id = $request->head_id??0;
+        $deduct->head_id = $from_head->id??0;
         $deduct->note = $request->note;
         $deduct->date = $request->date;
         $deduct->amount = NumberConverter::bn2en($request->amount);
@@ -55,37 +79,37 @@ class WalletController extends Controller
         $deduct->admin_status ='approved';
         $deduct->manager_status = 'approved';
         $deduct->status = 'approved';
+        $deduct->canculatable = 'yes';
         $deduct->save();
 
 
 
         //credit
-        $deduct = new Transaction();
-        $deduct->txn_id = uniqid();
-        $deduct->type = 'income';
-        $deduct->wallet = $request->to;
-        $deduct->head_id = $request->head_id??0;
-        $deduct->note = $request->note;
-        $deduct->date = $request->date;
-        $deduct->amount = NumberConverter::bn2en($request->amount);
-        $deduct->added_by = Auth::user()->id;
-        $deduct->admin_status ='approved';
-        $deduct->manager_status = 'approved';
-        $deduct->status = 'approved';
-        $deduct->save();
+        $credit = new Transaction();
+        $credit->txn_id = uniqid();
+        $credit->type = 'income';
+        $credit->wallet = $request->to;
+        $credit->head_id = $to_head->id??0;
+        $credit->note = $request->note;
+        $credit->date = $request->date;
+        $credit->amount = NumberConverter::bn2en($request->amount);
+        $credit->added_by = Auth::user()->id;
+        $credit->canculatable = 'yes';
+        $credit->admin_status ='approved';
+        $credit->manager_status = 'approved';
+        $credit->status = 'approved';
+        $credit->save();
 
         if ($request->invoice)
         {
-            $user = Auth::user();
-            $date =  $request->date;
-            $head = TransactionHead::find($request->head_id);
-            if ($head->slug=='addmission_fee_income') { $admission_fee = NumberConverter::bn2en($request->amount); }else{$admission_fee=0;}
-            if ($head->slug=='bank_profit_income') { $bank_profit = NumberConverter::bn2en($request->amount); }else{$bank_profit=0;}
-            if ($head->slug=='other_income') { $others = NumberConverter::bn2en($request->amount); }else{$others=0;}
-            if ($head->slug=='fine_income') { $fine = NumberConverter::bn2en($request->amount); }else{$fine=0;}
-            if ($head->slug=='bank_withdraw_income') { $bank_withdrawal = NumberConverter::bn2en($request->amount); }else{$bank_withdrawal=0;}
-            return view('admin/invoice',compact('user','date','admission_fee','bank_profit','others','fine','bank_withdrawal'));
+            if($request->from=='office')
+                return redirect('transaction-invoice/'.$deduct->txn_id);
+            elseif($request->to=='office')
+                return redirect('transaction-invoice/'.$credit->txn_id);
+            else
+                return redirect('transaction-invoice/'.$credit->txn_id);
         }
+
         return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
 
     }
