@@ -16349,3 +16349,18 @@ figure figcaption {
     .single-text .owl-dots .owl-dot.active > span {
       width: 20px;
       background-color: #fff; }
+
+
+
+.card {
+background:#fff;
+margin-bottom:30px;
+transition:.5s;
+border:0;
+border-radius:.1875rem;
+display:inline-block;
+position:relative;
+width:100%;
+box-shadow:none;
+padding: 2em;
+}
