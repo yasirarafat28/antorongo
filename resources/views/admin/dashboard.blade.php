@@ -80,11 +80,11 @@
                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                     ৫ বছর মেয়াদী সঞ্চয়
                                 </div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">18৫৪৫১৫ টাকা</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ 18৫৪৫১৫ টাকা</div>
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">৩৪৫৩ জন</div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
@@ -96,14 +96,14 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                     ১০ বছর মেয়াদী সঞ্চয়
                                 </div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">18৫৪৫১৫ টাকা</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ 18৫৪৫১৫ টাকা</div>
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">৩৪৫৩ জন</div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
@@ -118,11 +118,11 @@
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     দৈনিক সঞ্চয়
                                 </div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">18৫৪৫১৫ টাকা</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ 18৫৪৫১৫ টাকা</div>
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">৩৪৫৩ জন</div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
@@ -137,11 +137,11 @@
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                     সাধারণ সঞ্চয়
                                 </div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">18৫৪৫১৫ টাকা</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ 18৫৪৫১৫ টাকা</div>
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">৩৪৫৩ জন</div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
@@ -156,11 +156,11 @@
                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                     এফ ডি আর
                                 </div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">18৫৪৫১৫ টাকা</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ 18৫৪৫১৫ টাকা</div>
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">৩৪৫৩ জন</div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
