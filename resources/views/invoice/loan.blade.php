@@ -82,37 +82,21 @@
                     <br>
                     <table class="table">
                         <tbody>
-                            <tr>
-                                <td  style="width: 40%">
-                                    ধরন :
-                                </td>
-                                <td class="text-left">
-                                    @if($loan->type=='short')
-                                    স্বল্প মেয়াদী (৫ বছর মেয়াদী)
-                                    @elseif($loan->type=='long')
-                                        দীর্ঘ মেয়াদী (১০ বছর মেয়াদী)
-                                    @elseif($loan->type=='current')
-                                        সাধারন সঞ্চয়
-                                    @else
-                                        দৈনিক
-                                    @endif
-                                </td>
-                            </tr>
 
                             <tr>
                                 <td  style="width: 40%">
-                                    পলিসির পরিমান  :
+                                    ঋণের পরিমান   :
                                 </td>
                                 <td class="text-left">
-                                    {{\App\NumberConverter::en2bn($loan->target_amount)}} টাকা
+                                    {{\App\NumberConverter::en2bn($loan->approved_amount)}} টাকা
                                 </td>
                             </tr>
                             <tr>
                                 <td style="width: 40%">
-                                    মোট  ফেরত :
+                                    সুদের হার :
                                 </td>
                                 <td class="text-left">
-                                    {{\App\NumberConverter::en2bn($loan->return_amount)}} টাকা
+                                    {{\App\NumberConverter::en2bn(number_format($loan->interest_rate,2))}} %
                                 </td>
                             </tr>
                             <tr>
