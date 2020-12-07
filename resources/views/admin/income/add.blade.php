@@ -41,18 +41,20 @@
 
                 <div class="card shadow">
 
-
-                    <hr>
                     <div class="col-md-12 row mb-3">
 
+                        <div class="header">
+                            <div class="clearfix">
+                                <div class="float-left">
+                                    <h2><strong>আয় যোগ </strong>করুন</h2>
+                                </div>
+                                <div class="float-right">
+                                </div>
+                            </div>
 
+                        </div>
                         <div class="col-lg-10 col-md-10 col-sm-12 offset-1">
 
-                            <div class="header">
-
-                                <h2><strong> আয় যোগ </strong>  করুন</h2>
-
-                            </div>
                             <form action="{{url('admin/income')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
                                 {{csrf_field()}}
 

@@ -8,20 +8,28 @@
 
 <!-- Main Content -->
 <section class="content">
-    <div class="block-header">
-        <div class="row">
-            <div class="col-lg-7 col-md-6 col-sm-12">
-            </div>
-            <div class="col-lg-5 col-md-6 col-sm-12">
-                <ul class="breadcrumb float-md-right">
-                    <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0);">ব্যয় এর   তালিকা</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid">
 
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">লেনদেন এর তালিকা </h1>
+
+            <ul class="breadcrumb float-md-right">
+                <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">লেনদেন এর তালিকা </a></li>
+            </ul>
+        </div>
+            @if(session()->has('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if($errors->any())
+                <div class="alert alert-danger">
+                    {{ $errors->first() }}
+                </div>
+            @endif
         <div class="row clearfix">
             <div class="col-lg-12">
                 <div class="card action_bar shadow">
@@ -110,7 +118,7 @@
             <div class="col-lg-12">
                 <div class="card shadow">
                     <div class="header">
-                        <h2><strong>ব্যয় এর  </strong> তালিকা </h2>
+                        <h2><strong>লেনদেন </strong>এর তালিকা </h2>
                     </div>
                     <div class="body">
                         <table class="table table-bordered table-striped table-hover dataTable js-plaintable">
@@ -181,14 +189,16 @@
 <div class="modal fade" id="largeShowModal{{$item->id}}" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-body">
-                <div class="card shadow">
-                    <div class="header">
-                    </div>
-                    <div class="body">
+            <div class="modal-header">
+                <h5 class="modal-title"><strong>লেনদেন </strong>এর বিস্তারিত</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <div class="modal-body">
 
-                        <table class="table">
-                            <tbody>
+                    <table class="table">
+                        <tbody>
                             <tr>
                                 <td>কোড </td>
                                 <td>{{$item->txn_id}}</td>
@@ -209,14 +219,9 @@
                                 <td>বিস্তারিত</td>
                                 <td>{!! $item->note !!}</td>
                             </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">বন্ধ করুন</button>
-            </div>
         </div>
     </div>
 </div>

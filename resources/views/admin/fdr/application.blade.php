@@ -43,7 +43,7 @@
 
                 <div class="header">
 
-                    <h2><strong> বাক্তিগত</strong>  তথ্য</h2>
+                    <h2><strong> এফ ডি আর  ফর্ম </strong></h2>
 
                 </div>
 

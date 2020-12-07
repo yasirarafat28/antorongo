@@ -153,10 +153,9 @@
             <div class="col-lg-12">
                 <div class="card shadow">
                     <div class="header">
-                        <h2><strong>Users </strong> </h2>
                         <div class="clearfix">
                             <div class="float-left">
-                                <h2>Users </h2>
+                                <h2><strong>সঞ্চয় পাকেজ সমূহ </strong></h2>
                             </div>
                             <div class="float-right">
                                 <a data-toggle="modal" data-target="#largeModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> পাকেজ যোগ করুন </a>
