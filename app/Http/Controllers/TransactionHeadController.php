@@ -18,7 +18,7 @@ class TransactionHeadController extends Controller
         $parents = TransactionHead::where('parent',0)->where('type',$type)->orderBy('id','DESC')->get();
         $records = TransactionHead::with('parent')->where('type',$type)->where('parent','!=',0)->orderBy('id','DESC')->paginate(25);
 
-        return view('admin/transaction-head',compact('records','parents','type'));
+        return view('admin.transaction-head',compact('records','parents','type'));
     }
 
     /**

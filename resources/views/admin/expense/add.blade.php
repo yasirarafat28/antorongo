@@ -37,19 +37,18 @@
             <div class="col-sm-12 col-md-12 col-lg-12">
 
                 <div class="card shadow">
+                    <div class="header">
+                        <div class="clearfix">
+                            <div class="float-left">
+                                <h2><strong>ব্যয় যোগ </strong>করুন</h2>
+                            </div>
+                        </div>
 
-
-                    <hr>
+                    </div>
                     <div class="col-md-12 row mb-3">
-
 
                         <div class="col-lg-10 col-md-10 col-sm-12 offset-1">
 
-                            <div class="header">
-
-                                <h2><strong> ব্যয় যোগ </strong>  করুন</h2>
-
-                            </div>
                             <form action="{{url('admin/expense')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
                                 {{csrf_field()}}
 

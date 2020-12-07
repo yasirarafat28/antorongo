@@ -66,7 +66,7 @@
                     <div class="header">
                         <div class="clearfix">
                             <div class="float-left">
-                                <h2>পদবী  </h2>
+                                <h2>পদবী  তালিকা</h2>
                             </div>
                             <div class="float-right">
                                 <a data-toggle="modal" data-target="#largeModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> পদবী  তৈরি করুন </a>

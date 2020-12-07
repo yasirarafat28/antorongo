@@ -17,7 +17,7 @@
         <div class="block-header">
             <div class="row">
                 <div class="col-lg-7 col-md-6 col-sm-12">
-                    <h3><small><strong> লেনদেন পরিবরতন </strong>  করুন</small></h3>
+                    <h3><small><strong>লেনদেন পরিবরতন </strong> করুন</small></h3>
                 </div>
                 <div class="col-lg-5 col-md-6 col-sm-12">
                     <ul class="breadcrumb float-md-right">

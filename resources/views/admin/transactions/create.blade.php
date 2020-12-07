@@ -17,12 +17,12 @@
         <div class="block-header">
             <div class="row">
                 <div class="col-lg-7 col-md-6 col-sm-12">
-                    <h3><small><strong> আয় যোগ </strong>  করুন</small></h3>
+                    <h3><small><strong>লেনদেন যোগ করুন</strong></small></h3>
                 </div>
                 <div class="col-lg-5 col-md-6 col-sm-12">
                     <ul class="breadcrumb float-md-right">
                         <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                        <li class="breadcrumb-item"><a href="javascript:void(0);">আয় যোগ করুন</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">লেনদেন যোগ করুন</a></li>
                     </ul>
                 </div>
             </div>
@@ -52,7 +52,7 @@
 
                             <div class="header">
 
-                                <h2><strong> আয় যোগ </strong>  করুন</h2>
+                                <h2><strong>লেনদেন যোগ</strong> করুন</h2>
 
                             </div>
                             <form action="{{url('admin/income')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
