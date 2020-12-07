@@ -120,8 +120,8 @@
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                     সাধারণ সঞ্চয়
                                 </div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn(0)}} টাকা</div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">{{\App\NumberConverter::en2bn(0)}} জন</div>
+                                <!--<div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($current_savings->sum('amount'))}} টাকা</div>-->
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">{{\App\NumberConverter::en2bn($current_savings->count())}} জন</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

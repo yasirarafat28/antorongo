@@ -39,6 +39,11 @@ class DashboardController extends Controller
             $q->whereIn('saving_id',$long_savings);
         })->where('type','deposit')->get();
 
+        $current_savings = Saving::where('type','current')->get('id');
+        $long_saving_transactions = SavingTransaction::with('user','receiver','savings')->where(function ($q) use ($current_savings){
+            $q->whereIn('saving_id',$current_savings);
+        })->where('type','deposit')->get();
+
         $fdr_list = Fdr::get('id');
         $fdr_transactions = FdrTransaction::with('user')->where(function ($q) use ($fdr_list){
             $q->whereIn('fdr_id',$fdr_list);
@@ -50,17 +55,19 @@ class DashboardController extends Controller
         ->select(DB::raw("sum(case when `type`='income' then amount*1 else amount*0 end) as `income`"),DB::raw("sum(case when `type`='expense' then amount*1 else amount*0 end) as `expense`"), DB::raw('MONTH(created_at) as month'))
         ->groupby('month')
         ->where('status','approved')
+        ->where('canculatable','yes')
         ->orderBy('created_at','ASC')
         ->get();
 
         $pie_chart_data = DB::table('transaction')
         ->select(DB::raw("sum(case when `type`='income' then amount*1 else amount*0 end) as `income`"),DB::raw("sum(case when `type`='expense' then amount*1 else amount*0 end) as `expense`"))
         ->where('status','approved')
+        ->where('canculatable','yes')
         ->first();
 
         return view('admin/dashboard',compact('members','daily_saving_transactions','daily_savings','short_savings',
         'short_saving_transactions','long_savings','long_saving_transactions','fdr_list','fdr_transactions',
-        'loan','monthly_data','pie_chart_data'));
+        'loan','monthly_data','pie_chart_data','current_savings'));
     }
 
 }
