@@ -4,9 +4,7 @@
 @endsection
 @section('content')
 <style>
-    .dataTables_wrapper .dt-buttons{
-        display: none;
-    }
+
 
     .table td, .table th {
     padding: .25rem;

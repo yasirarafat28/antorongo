@@ -745,6 +745,11 @@ class SavingController extends Controller
             }
 
         })->orderBy('created_at','DESC')->paginate(25);
+        if(isset($request->limit) && $request->limit=='-1'){
+            $records = $records->get();
+        }else{
+            $records = $records->paginate(25);
+        }
 
         $active_count   = Saving::where('type',$type)->where('status','approved')->count();
         $pending_count   = Saving::where('type',$type)->where('status','pending')->count();

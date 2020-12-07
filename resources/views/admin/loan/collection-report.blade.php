@@ -4,9 +4,7 @@
 @endsection
 @section('content')
 <style>
-    .dataTables_wrapper .dt-buttons{
-        display: none;
-    }
+
 </style>
 
 <!-- Main Content -->
@@ -36,7 +34,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                   মোট আদায়  </div>
-                                  
+
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">$ {{App\NumberConverter::en2bn(number_format($total,2))}} টাকা</div>
 
                             </div>

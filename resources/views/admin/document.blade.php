@@ -4,9 +4,7 @@
 @endsection
 @section('content')
 <style>
-    .dataTables_wrapper .dt-buttons{
-        display: none;
-    }
+
     .dropdown-item {
 
 padding: 6px !important;

@@ -4,9 +4,7 @@
 @endsection
 @section('content')
 <style>
-    .dataTables_wrapper .dt-buttons{
-        display: none;
-    }
+
 </style>
 
 <!-- Main Content -->
@@ -129,13 +127,9 @@
                                         <button class="btn btn-primary btn-round">খুঁজুন</button>
                                     </div>
                                 </div>
-                                <div class="col-lg-2 col-md-2 text-right">
-                                    <button type="button" class="btn btn-neutral hidden-sm-down" onclick="$('.buttons-csv')[0].click();">
-                                        <i class="zmdi zmdi-archive"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-neutral hidden-sm-down" onclick="$('.buttons-print')[0].click();">
-                                        <i class="zmdi zmdi-print"></i>
-                                    </button>
+                                <div class="col-lg-2 col-md-2">
+                                    <br>
+                                    <a href="?limit=-1" class="btn btn-success">সবগুলো দেখুন</a>
                                 </div>
                             </div>
                         </form>
