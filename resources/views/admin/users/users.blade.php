@@ -287,7 +287,7 @@
                         </div>
                         <div class="col-md-12 text-center">
 
-                            <button type="submit" class="btn btn-info btn-round">জমা করুন</button>
+                            <button type="submit" class="btn btn-info btn-round">সেভ করুন</button>
                         </div>
                     </div>
                 </form>
@@ -434,7 +434,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12 text-center">
-                                        <button type="submit" class="btn btn-info btn-round">জমা করুন</button>
+                                        <button type="submit" class="btn btn-info btn-round">সেভ করুন</button>
                                     </div>
                                 </div>
                             </form>
