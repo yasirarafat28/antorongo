@@ -37,11 +37,11 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">কর্মচারীর বেতন</h1>
+            <h1 class="h3 mb-0 text-gray-800">কর্মচারীর বেতন সেট</h1>
 
             <ul class="breadcrumb float-md-right">
                 <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0);">কর্মচারীর বেতন</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">কর্মচারীর বেতন সেট</a></li>
             </ul>
         </div>
         <div class="row">
@@ -115,10 +115,10 @@
                     <div class="header">
                         <div class="clearfix">
                             <div class="float-left">
-                                <h2>কর্মচারীর বেতন  </h2>
+                                <h2>কর্মচারীর বেতন সেট</h2>
                             </div>
                             <div class="float-right">
-                                <a data-toggle="modal" data-target="#largeModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> কর্মচারীর বেতন যোগ করুন </a>
+                                <a data-toggle="modal" data-target="#largeModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i>কর্মচারীর বেতন সেট</a>
                             </div>
                         </div>
 
@@ -207,7 +207,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h2><strong> বেতন </strong> যোগ করুন</h2>
+                <h2><strong>কর্মচারীর </strong>বেতন সেট করুন</h2>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
