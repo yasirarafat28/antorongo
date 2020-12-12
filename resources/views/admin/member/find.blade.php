@@ -68,9 +68,7 @@
                                     <button class="btn btn-primary btn-round">খুঁজুন</button>
 
                                 </div>
-                                <div class="col-lg-3 col-md-12">
-                                    <a href="?limit=-1" class="btn btn-success">সবগুলো দেখুন</a>
-                                </div>
+
 
                             </div>
 

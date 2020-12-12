@@ -36,7 +36,7 @@
             <div class="row">
 
                 <!-- Earnings (Monthly) Card Example -->
-                <div class="col-xl-3 col-md-6 mb-4">
+                {{-- <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-left-primary shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
@@ -51,7 +51,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
 
             </div>
@@ -97,6 +97,9 @@
                                     <div class="col-lg-3 col-md-12">
                                         <button class="btn btn-primary btn-round">খুজুন</button>
                                     </div>
+                                    <div class="col-lg-3 col-md-12">
+                                        <a href="?limit=-1" class="btn btn-success">সবগুলো দেখুন</a>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -134,11 +137,11 @@
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                             aria-labelledby="dropdownMenuLink">
 
-                                        <a href="{{url('chairman/member-profile/'.$item->id)}}" class="dropdown-item"  title="বিস্তারিত"><i class="fa fa-eye"> </i> বিস্তারিত </i></a>
+                                        <a href="{{url('admin/users/'.$item->id)}}" class="dropdown-item"  title="বিস্তারিত"><i class="fa fa-eye"> </i> বিস্তারিত </i></a>
                                         <a data-toggle="modal" data-target="#largeEditModal{{$item->id}}" class="dropdown-item" title="সম্পাদনা করুন"><i class="fa fa-edit"> </i> এডিট</a>
                                             {!! Form::open([
                                                'method'=>'DELETE',
-                                               'url' => ['/chairman/users', $item->id],
+                                               'url' => ['/admin/users', $item->id],
                                                'style' => 'display:inline'
                                             ]) !!}
                                             {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন', array(
@@ -149,12 +152,12 @@
                                                  )) !!}
                                             {!! Form::close() !!}
                                         </div>
-                                    </td>                                    <td>{{$item->name}}</td>
+                                    </td>
+                                    <td>{{$item->name}}</td>
                                     <td>{{$item->phone}}</td>
                                     <td>{{$item->email}}</td>
                                     <td>{{$item->role}}</td>
                                     <td>{{ucfirst($item->status)}}</td>
-
                                 </tr>
 
                             @endforeach
@@ -229,7 +232,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-6 col-md-12">
+                        {{-- <div class="col-lg-6 col-md-12">
                             <div class="form-group">
                                 <label for=""><small>বিভাগ</small></label>
                                 <select class="form-control ms" name="division" id="division-form" onchange="get_district_list(this.value)">
@@ -257,7 +260,7 @@
                                     <option value="">-- Please select a Upozilla --</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-lg-6 col-md-12">
                             <div class="form-group">
                                 <label for=""><small>চরিত্র</small></label>
@@ -310,7 +313,7 @@
                               </button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{url('chairman/users/'.$item->id)}}" method="POST">
+                            <form action="{{url('admin/users/'.$item->id)}}" method="POST">
                                 {{csrf_field()}}
                                 {{method_field('PATCH')}}
 
@@ -369,7 +372,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6 col-md-12">
+                                    {{-- <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
                                             <label for=""><small>বিভাগ</small></label>
                                             <select class="form-control ms" name="division" id="division-form" onchange="get_district_list(this.value)">
@@ -405,7 +408,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
                                             <label for=""><small>চরিত্র</small></label>
@@ -447,7 +450,7 @@
 
 
 
-<script type="text/javascript">
+{{-- <script type="text/javascript">
 
     function get_district_list(division_id)
     {
@@ -502,7 +505,7 @@
 
         });
     }
-</script>
+</script> --}}
 
 @endsection
 

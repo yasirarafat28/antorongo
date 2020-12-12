@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Auth;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class UserController extends Controller
 {
@@ -68,6 +69,7 @@ class UserController extends Controller
     {
 
         $this->validate($request, [
+            'name'=>'required',
             'email' => 'required|unique:users',
             'phone' => 'required|unique:users',
             'username' => 'required|unique:users',
@@ -82,8 +84,11 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->username = $request->username;
         $user->phone = $request->phone;
+        $user->present_address = $request->address;
+        $user->status = $request->status;
         $user->password = $random_password;
         $user->role =$request->role;
+        $user->joined_by = Auth::user()->id;
         $user->save();
 
         $user->syncRoles($request->role);
@@ -103,7 +108,7 @@ class UserController extends Controller
 
         //Confirmation Email
 
-        return back()->withSuccess('Member Joined Successfully');
+        return back()->withSuccess('সদস্য সফলভাবে যোগদান করেছেন!');
     }
 
     /**
@@ -140,9 +145,11 @@ class UserController extends Controller
 
 
         $this->validate($request, [
+            'name'=>'required',
             'email' => 'required',
             'phone' => 'required',
             'username' => 'required',
+            'role' => 'required',
         ]);
 
 
@@ -154,14 +161,13 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->username = $request->username;
         $user->phone = $request->phone;
-        $user->division = $request->division;
-        $user->district = $request->district;
-        $user->thana = $request->thana;
-        $user->address = $request->address;
+        // $user->division = $request->division;
+        // $user->district = $request->district;
+        // $user->thana = $request->thana;
+        $user->present_address = $request->address;
         $user->status = $request->status;
-
         $user->role =$request->role;
-        $user->upline_1 = Auth::user()->id;
+        // $user->upline_1 = Auth::user()->id;
         $user->joined_by = Auth::user()->id;
 
         if ($request->has('password'))
@@ -187,7 +193,7 @@ class UserController extends Controller
 
         //Confirmation Email
 
-        return back()->withSuccess('User Updated Successfully');
+        return back()->withSuccess('সদস্য সফলভাবে আপডেট হয়েছে');
     }
 
     /**
@@ -199,7 +205,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::destroy($id);
-        return back()->withSuccess('User Deleted Successfully');
+        return back()->withSuccess('সদস্য সফলভাবে মোছা হয়েছে');
     }
 
 
