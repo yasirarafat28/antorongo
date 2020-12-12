@@ -89,11 +89,6 @@ class UserController extends Controller
         $user->password = $random_password;
         $user->role =$request->role;
         $user->joined_by = Auth::user()->id;
-        $user->save();
-
-        $user->syncRoles($request->role);
-
-        //All Image file
 
         if ($request->hasFile('photo')) {
 
@@ -104,6 +99,14 @@ class UserController extends Controller
             $imageUrl   = $path . $imageName;
             $user->photo = $imageUrl ;
         }
+
+        $user->save();
+
+        $user->syncRoles($request->role);
+
+        //All Image file
+
+
 
 
         //Confirmation Email
@@ -156,7 +159,7 @@ class UserController extends Controller
         $random_password = Hash::make($request->password);
 
         $user = User::find($id);
-        $user->unique_id = uniqid();
+        // $user->unique_id = uniqid();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->username = $request->username;
@@ -164,7 +167,7 @@ class UserController extends Controller
         // $user->division = $request->division;
         // $user->district = $request->district;
         // $user->thana = $request->thana;
-        $user->present_address = $request->address;
+        $user->present_address = $request->present_address;
         $user->status = $request->status;
         $user->role =$request->role;
         // $user->upline_1 = Auth::user()->id;
@@ -174,11 +177,6 @@ class UserController extends Controller
         {
             $user->password = $random_password;
         }
-        $user->save();
-
-        $user->syncRoles($request->role);
-
-        //All Image file
 
         if ($request->hasFile('photo')) {
 
@@ -189,6 +187,14 @@ class UserController extends Controller
             $imageUrl   = $path . $imageName;
             $user->photo = $imageUrl ;
         }
+
+        $user->save();
+
+        $user->syncRoles($request->role);
+
+        //All Image file
+
+
 
 
         //Confirmation Email

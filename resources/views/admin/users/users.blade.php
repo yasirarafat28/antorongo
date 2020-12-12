@@ -67,7 +67,7 @@
                                 <h2>কর্মচারী তালিকা </h2>
                             </div>
                             <div class="float-right">
-                                <a data-toggle="modal" data-target="#largeModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> সদস্য যোগ করুন </a>
+                                <a data-toggle="modal" data-target="#largeModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i>কর্মচারী যোগ করুন </a>
                             </div>
                         </div>
 
@@ -137,7 +137,8 @@
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                             aria-labelledby="dropdownMenuLink">
 
-                                        <a href="{{url('admin/users/'.$item->id)}}" class="dropdown-item"  title="বিস্তারিত"><i class="fa fa-eye"> </i> বিস্তারিত </i></a>
+                                        {{-- <a href="{{url('admin/users/'.$item->id)}}" class="dropdown-item"  title="বিস্তারিত"><i class="fa fa-eye"> </i> বিস্তারিত </i></a> --}}
+                                        <a data-toggle="modal" data-target="#largeShowModal{{$item->id}}" class="dropdown-item" title="বিস্তারিত"><i class="fa fa-eye"> </i> বিস্তারিত</a>
                                         <a data-toggle="modal" data-target="#largeEditModal{{$item->id}}" class="dropdown-item" title="সম্পাদনা করুন"><i class="fa fa-edit"> </i> এডিট</a>
                                             {!! Form::open([
                                                'method'=>'DELETE',
@@ -179,7 +180,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><strong>সদস্য </strong>তৈরি করুন</h5>
+                <h5 class="modal-title"><strong>কর্মচারী </strong>তৈরি করুন</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -307,7 +308,7 @@
             <div class="modal-content">
 
                         <div class="modal-header">
-                            <h2 class="modal-title"><strong>ব্যবহারকারীকে </strong> আধুনিক করুন</h2>
+                            <h2 class="modal-title"><strong>কর্মচারী</strong> আধুনিক করুন</h2>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                               </button>
@@ -317,7 +318,7 @@
                                 {{csrf_field()}}
                                 {{method_field('PATCH')}}
 
-                                <?php
+                                {{-- <?php
                                 if ($item->division){
                                     $districts=  App\District::where('division_id',$item->division)->orderBy('name','ASC')->get();
                                 }
@@ -329,7 +330,7 @@
                                 }else{
                                     $thanas = array();
                                 }
-                                ?>
+                                ?> --}}
                                 <div class="row clearfix">
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
@@ -368,7 +369,7 @@
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
                                             <label for=""><small>ঠিকানা</small></label>
-                                            <input type="text" class="form-control" placeholder="ঠিকানা" name="address" value="{{$item->address}}">
+                                            <input type="text" class="form-control" placeholder="ঠিকানা" name="present_address" value="{{$item->present_address}}">
                                         </div>
                                     </div>
 
@@ -448,6 +449,56 @@
     <!--Edit  Modal End-->
 @endforeach
 
+@foreach($users as $row)
+    <!-- Show Modal Start -->
+    <div class="modal fade" id="largeShowModal{{$row->id}}" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title"><strong>কর্মচারী</strong> বিস্তারিত দেখুন</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                    <div class="modal-body">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>নাম </td>
+                                    <td>{{$row->name??''}}</td>
+                                </tr>
+                                <tr>
+                                    <td>ই-মেইল </td>
+                                    <td>{{$row->email??''}}</td>
+                                </tr>
+                                <tr>
+                                    <td>ইউজারনেম</td>
+                                    <td>{{$row->username??''}}</td>
+                                </tr>
+                                <tr>
+                                    <td>ফোন </td>
+                                    <td>{{$row->phone}}</td>
+                                </tr>
+                                <tr>
+                                    <td>ঠিকানা </td>
+                                    <td>{{$row->present_address}}</td>
+                                </tr>
+                                <tr>
+                                    <td>চরিত্র </td>
+                                    <td>{{$row->role}}</td>
+                                </tr>
+                                <tr>
+                                    <td>অবস্থা</td>
+                                    <td>{{$row->status}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+        </div>
+    </div>
+@endforeach
+    <!--show Modal End-->
 
 
 {{-- <script type="text/javascript">
