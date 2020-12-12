@@ -168,11 +168,146 @@
                                     </fieldset>
                                 @endforeach
                             </div>
-
                         </div>
-
-
                     </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-3" style="width: 50% !important;float:right !important;">
+                            <div class="header">
+
+                                <h2>সভাপতি</h2>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-3" style="width: 50% !important;float:right !important;">
+                            <div class="header">
+
+                                <h2>সাধারণ সম্পাদক</h2>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-3" style="width: 50% !important;float:right !important;">
+                            <div class="header">
+
+                                <h2>আর্থ-সম্পাদক</h2>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-3" style="width: 50% !important;float:right !important;">
+                            <div class="header">
+
+                                <h2>প্রস্তুত কারক</h2>
+
+                            </div>
+                        </div>
+                     </div>
+                    <div class="row" id="printable">
+                        <div class="col-sm-4" style="width: 50% !important;float:left !important;">
+                            <div class="body">
+
+                                <fieldset>
+
+                                        <legend></legend>
+
+                                        {{-- <legend><a href="{{url('')}}">:  টাকা</a></legend> --}}
+
+                                    <table class="table table-striped table-hover">
+                                        <tbody>
+
+                                            <tr>
+                                                <td><a href="{{url('')}}">ব্যাংক ঋণ </a></td>
+                                                <td style="width: 30%;">০ টাকা</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="{{url('')}}">ব্যাংক ঋণ পরিশোধ</a></td>
+                                                <td style="width: 30%;">০ টাকা</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="{{url('')}}">ব্যালেন্স</a></td>
+                                                <td style="width: 30%;">০ টাকা</td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" style="width: 50% !important;float:left !important;">
+                            <div class="body">
+
+                                <fieldset>
+
+                                        <legend></legend>
+
+                                        {{-- <legend><a href="{{url('')}}">:  টাকা</a></legend> --}}
+
+                                    <table class="table table-striped table-hover">
+                                        <tbody>
+
+                                            <tr>
+                                                <td><a href="{{url('')}}">এফ ডি আর </a></td>
+                                                <td style="width: 30%;">০ টাকা</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="{{url('')}}">হাতে নগদ</a></td>
+                                                <td style="width: 30%;">০ টাকা</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="{{url('')}}">ব্যাংক ব্যালেন্স</a></td>
+                                                <td style="width: 30%;">০ টাকা</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="{{url('')}}">সর্বমোট</a></td>
+                                                <td style="width: 30%;">০ টাকা</td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" style="width: 50% !important;float:left !important;">
+                            <div class="body">
+
+                                <fieldset>
+
+                                        <legend> </legend>
+
+                                        {{-- <legend><a href="{{url('')}}">:  টাকা</a></legend> --}}
+
+                                    <table class="table table-striped table-hover">
+                                        <tbody>
+
+                                            <tr>
+                                                <td><a href="{{url('')}}">ব্যাংকের নাম </a></td>
+                                                <td style="width: 30%;">টাকা পরিমাণ</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="{{url('')}}">যমুনা</a></td>
+                                                <td style="width: 30%;">০ টাকা</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="{{url('')}}">শাহজালাল</a></td>
+                                                <td style="width: 30%;">০ টাকা</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="{{url('')}}">মার্কেন্টাইল</a></td>
+                                                <td style="width: 30%;">০ টাকা</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="{{url('')}}">সর্বমোট</a></td>
+                                                <td style="width: 30%;">০ টাকা</td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                </fieldset>
+                            </div>
+                        </div>
+                     </div>
                     </div>
                 </div>
 
@@ -189,7 +324,7 @@
 
         <div class="col-md-2 offset-5">
 
-            <button class="btn btn-primary" onclick="printDiv()"><i class="zmdi zmdi-print"></i> Print</button>
+            <button class="btn btn-primary" onclick="printDiv()"><i class="zmdi zmdi-print"></i>প্রিন্ট করুন</button>
 
         </div>
 
