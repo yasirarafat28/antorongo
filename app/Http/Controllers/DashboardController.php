@@ -40,7 +40,7 @@ class DashboardController extends Controller
         })->where('type','deposit')->get();
 
         $current_savings = Saving::where('type','current')->get('id');
-        $long_saving_transactions = SavingTransaction::with('user','receiver','savings')->where(function ($q) use ($current_savings){
+        $current_saving_transactions = SavingTransaction::with('user','receiver','savings')->where(function ($q) use ($current_savings){
             $q->whereIn('saving_id',$current_savings);
         })->where('type','deposit')->get();
 
@@ -67,7 +67,7 @@ class DashboardController extends Controller
 
         return view('admin/dashboard',compact('members','daily_saving_transactions','daily_savings','short_savings',
         'short_saving_transactions','long_savings','long_saving_transactions','fdr_list','fdr_transactions',
-        'loan','monthly_data','pie_chart_data','current_savings'));
+        'loan','monthly_data','pie_chart_data','current_savings','current_saving_transactions'));
     }
 
 }

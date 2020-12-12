@@ -251,24 +251,22 @@ class FdrController extends Controller
         if(!$deposit){
             $deposit = new Transaction();
         }
-
-        $transaction = new Transaction();
-        $transaction->txn_id = uniqid();
-        $transaction->transaction_for = 'fdr';
-        $transaction->transactable_id = $fdr->id;
-        $transaction->flag = 'deposit';
-        $transaction->type = 'income';
-        $transaction->head_id = $head->id;
-        $transaction->user_id = $fdr->user_id;
-        $transaction->note = $fdr->note;
-        $transaction->date = $fdr->started_at;
-        $transaction->amount = NumberConverter::bn2en($fdr->amount);
-        $transaction->added_by = Auth::user()->id;
-        $transaction->received_by = Auth::user()->id;
-        $transaction->admin_status ='approved';
-        $transaction->manager_status = 'approved';
-        $transaction->status = 'approved';
-        $transaction->save();
+        $deposit->txn_id = uniqid();
+        $deposit->transaction_for = 'fdr';
+        $deposit->transactable_id = $fdr->id;
+        $deposit->flag = 'deposit';
+        $deposit->type = 'income';
+        $deposit->head_id = $head->id;
+        $deposit->user_id = $fdr->user_id;
+        $deposit->note = $fdr->note;
+        $deposit->date = $fdr->started_at;
+        $deposit->amount = NumberConverter::bn2en($fdr->amount);
+        $deposit->added_by = Auth::user()->id;
+        $deposit->received_by = Auth::user()->id;
+        $deposit->admin_status ='approved';
+        $deposit->manager_status = 'approved';
+        $deposit->status = 'approved';
+        $deposit->save();
 
 
         return back()->withSuccess('সফলভাবে আনুমদন করা হয়েছে');
