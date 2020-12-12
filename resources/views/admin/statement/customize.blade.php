@@ -211,20 +211,20 @@
 
                                         {{-- <legend><a href="{{url('')}}">:  টাকা</a></legend> --}}
 
-                                    <table class="table table-striped table-hover">
+                                    <table class="table table-bordered table-hover">
                                         <tbody>
 
                                             <tr>
                                                 <td><a href="{{url('')}}">ব্যাংক ঋণ </a></td>
-                                                <td style="width: 30%;">০ টাকা</td>
+                                                <td style="width: 50%;">456৪৫ টাকা</td>
                                             </tr>
                                             <tr>
                                                 <td><a href="{{url('')}}">ব্যাংক ঋণ পরিশোধ</a></td>
-                                                <td style="width: 30%;">০ টাকা</td>
+                                                <td style="width: 50%;">০ টাকা</td>
                                             </tr>
                                             <tr>
                                                 <td><a href="{{url('')}}">ব্যালেন্স</a></td>
-                                                <td style="width: 30%;">০ টাকা</td>
+                                                <td style="width: 50%;">০ টাকা</td>
                                             </tr>
 
 
@@ -242,24 +242,24 @@
 
                                         {{-- <legend><a href="{{url('')}}">:  টাকা</a></legend> --}}
 
-                                    <table class="table table-striped table-hover">
+                                    <table class="table table-bordered table-hover">
                                         <tbody>
 
                                             <tr>
                                                 <td><a href="{{url('')}}">এফ ডি আর </a></td>
-                                                <td style="width: 30%;">০ টাকা</td>
+                                                <td style="width: 50%;">০ টাকা</td>
                                             </tr>
                                             <tr>
                                                 <td><a href="{{url('')}}">হাতে নগদ</a></td>
-                                                <td style="width: 30%;">০ টাকা</td>
+                                                <td style="width: 50%;">০ টাকা</td>
                                             </tr>
                                             <tr>
                                                 <td><a href="{{url('')}}">ব্যাংক ব্যালেন্স</a></td>
-                                                <td style="width: 30%;">০ টাকা</td>
+                                                <td style="width: 50%;">০ টাকা</td>
                                             </tr>
                                             <tr>
                                                 <td><a href="{{url('')}}">সর্বমোট</a></td>
-                                                <td style="width: 30%;">০ টাকা</td>
+                                                <td style="width: 50%;">০ টাকা</td>
                                             </tr>
 
 
@@ -277,28 +277,28 @@
 
                                         {{-- <legend><a href="{{url('')}}">:  টাকা</a></legend> --}}
 
-                                    <table class="table table-striped table-hover">
+                                    <table class="table table-bordered table-hover">
                                         <tbody>
 
                                             <tr>
                                                 <td><a href="{{url('')}}">ব্যাংকের নাম </a></td>
-                                                <td style="width: 30%;">টাকা পরিমাণ</td>
+                                                <td style="width: 50%;">টাকা পরিমাণ</td>
                                             </tr>
                                             <tr>
                                                 <td><a href="{{url('')}}">যমুনা</a></td>
-                                                <td style="width: 30%;">০ টাকা</td>
+                                                <td style="width: 50%;">০ টাকা</td>
                                             </tr>
                                             <tr>
                                                 <td><a href="{{url('')}}">শাহজালাল</a></td>
-                                                <td style="width: 30%;">০ টাকা</td>
+                                                <td style="width: 50%;">০ টাকা</td>
                                             </tr>
                                             <tr>
                                                 <td><a href="{{url('')}}">মার্কেন্টাইল</a></td>
-                                                <td style="width: 30%;">০ টাকা</td>
+                                                <td style="width: 50%;">০ টাকা</td>
                                             </tr>
                                             <tr>
                                                 <td><a href="{{url('')}}">সর্বমোট</a></td>
-                                                <td style="width: 30%;">০ টাকা</td>
+                                                <td style="width: 50%;">০ টাকা</td>
                                             </tr>
 
 
