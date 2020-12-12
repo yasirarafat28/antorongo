@@ -124,7 +124,7 @@
 
                     </div>
                     <div class="body">
-                        <table class="table table-bordered table-striped table-hover dataTable js-plaintable">
+                        <table class="table table-bordered table-striped table-hover dataTable js-plaintable table-responsive">
                             <thead>
                             <tr>
                                 <th>ক্রিয়াকলাপ</th>
@@ -159,22 +159,31 @@
                                 @foreach($records as $item)
                                 <tr>
                                     <td>
-                                        <a data-toggle="modal" data-target="#largeEditModal{{$item->id}}" class="btn btn-icon btn-icon-mini" title="সম্পাদনা করুন"><i class="zmdi zmdi-edit"> </i></a>
-                                        <a class="btn btn-danger btn-icon btn-icon-mini" title="মুছে ফেলুন ">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+
+                                        <a data-toggle="modal" data-target="#largeEditModal{{$item->id}}" class="dropdown-item" title="এডিট করুন"><i class="fa fa-pencil"> </i>এডিট</a>
+
                                             {!! Form::open([
                                                'method'=>'DELETE',
                                                'url' => ['admin/hr/salary-setup', $item->id],
                                                'style' => 'display:inline'
                                             ]) !!}
-                                            {!! Form::button('<i class="fa fa-times"></i> ', array(
+                                            {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন', array(
                                                  'type' => 'submit',
-                                                 'class' => 'btn btn-danger btn-xs btnper',
+                                                 'class' => 'dropdown-item',
                                                 'title' => 'Delete user',
                                                 'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
                                                  )) !!}
                                             {!! Form::close() !!}
-                                        </a>
+
+                                        </div>
                                     </td>
+
                                     <td> {{$item->user->name}}</td>
                                     <td>+ {{\App\NumberConverter::en2bn($item->basic_allowance)}} টাকা</td>
                                     <td>+ {{\App\NumberConverter::en2bn($item->dearness_allowance)}} টাকা</td>
@@ -221,7 +230,7 @@
                                     <div class="form-group">
                                         <label for=""><small> কর্মচারী </small></label>
                                         <select class="form-control ms" name="user_id">
-                                            <option>-- বাছাই করুন --</option>
+                                            <option value="">-- বাছাই করুন --</option>
                                             @foreach($members as $member)
                                                 <option value="{{$member->id}}">{{$member->name}}</option>
                                             @endforeach

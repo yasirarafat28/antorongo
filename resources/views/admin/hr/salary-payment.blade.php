@@ -115,7 +115,7 @@
 
                     </div>
                     <div class="body table-responsive">
-                        <table class="table table-bordered table-striped table-hover dataTable js-plaintable">
+                        <table class="table table-bordered table-striped table-hover dataTable js-plaintable table-responsive">
                             <thead>
                             <tr>
                                 <th>ক্রিয়াকলাপ</th>
