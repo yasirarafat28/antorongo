@@ -73,14 +73,15 @@
 
             <li class="nav-item active">
                 <a class="nav-link" href="/admin/balance">
-                    <i class="fas fa-fw fa-comment"></i>
-                    <span>ব্যালেন্স সমূহ </span></a>
+                    <i class="fas fa-coins"></i>
+                    <span>ব্যালেন্স সমূহ </span>
+                </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#memberNav"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-users"></i>
                     <span>সদস্য ম্যানেজমেন্ট</span>
                 </a>
                 <div id="memberNav" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -100,7 +101,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#shortSaving"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-hand-holding-usd"></i>
                     <span>স্বল্প মেয়াদী সঞ্চয়</span>
                 </a>
                 <div id="shortSaving" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -118,7 +119,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#longSaving"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-hand-holding-usd"></i>
                     <span>দীর্ঘ মেয়াদী সঞ্চয়</span>
                 </a>
                 <div id="longSaving" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -136,7 +137,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#dailySaving"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-hand-holding-usd"></i>
                     <span>দৈনিক সঞ্চয়</span>
                 </a>
                 <div id="dailySaving" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -155,7 +156,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#currentSaving"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-hand-holding-usd"></i>
                     <span>সাধারণ সঞ্চয়</span>
                 </a>
                 <div id="currentSaving" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -179,7 +180,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#fdrNav"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-hand-holding-usd"></i>
                     <span>এফ ডি আর ম্যানেজমেন্ট</span>
                 </a>
                 <div id="fdrNav" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -202,7 +203,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#loanNav"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-hand-holding-usd"></i>
                     <span>ঋণ ম্যানেজমেন্ট</span>
                 </a>
                 <div id="loanNav" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -226,7 +227,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#incomeNav"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-arrow-circle-right"></i>
                     <span>আয়</span>
                 </a>
                 <div id="incomeNav" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -241,7 +242,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#expenseNav"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-arrow-alt-circle-left"></i>
                     <span>ব্যয়</span>
                 </a>
                 <div id="expenseNav" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -261,13 +262,13 @@
 
             <li class="nav-item active">
                 <a class="nav-link" href="{{url('admin/meeting')}}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fas fa-handshake"></i>
                     <span>মিটিং</span></a>
             </li>
 
             <li class="nav-item active">
                 <a class="nav-link" href="{{url('admin/documents')}}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="far fa-file"></i>
                     <span>ডকুমেন্ট</span></a>
             </li>
 
@@ -276,7 +277,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#hrNav"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-compress-arrows-alt"></i>
                     <span>এইচআর বিভাগ</span>
                 </a>
                 <div id="hrNav" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -294,7 +295,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#reportNav"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-chart-bar"></i>
                     <span>রিপোর্ট</span>
                 </a>
                 <div id="reportNav" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">

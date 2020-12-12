@@ -26,11 +26,11 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">আয়ের খাতের তালিকা</h1>
+            <h1 class="h3 mb-0 text-gray-800">খাতের তালিকা</h1>
 
             <ul class="breadcrumb float-md-right">
                 <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0);">আয়ের খাতের তালিকা</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">খাতের তালিকা</a></li>
             </ul>
         </div>
 
@@ -48,7 +48,7 @@
                     <div class="header">
                         <div class="clearfix">
                             <div class="float-left">
-                                <h2>আয়ের খাতের তালিকা</h2>
+                                <h2>খাতের তালিকা</h2>
                             </div>
                             <div class="float-right">
                                 <a data-toggle="modal" data-target="#largeModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i>খাত যোগ করুন </a>
