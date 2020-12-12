@@ -293,7 +293,7 @@
     data: {
         labels: [
             @foreach($monthly_data??array() as $row)
-            "{{App\BanglaMonth::monthName($row->month)}}",
+            "{{App\BanglaMonth::monthName($row->month)}}, {{App\NumberConverter::en2bn($row->year)}}",
             @endforeach
         ],
         datasets: [
