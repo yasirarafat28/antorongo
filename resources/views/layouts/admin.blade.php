@@ -73,7 +73,7 @@
 
             <li class="nav-item active">
                 <a class="nav-link" href="/admin/balance">
-                    <i class="fas fa-hand-holding-usd"></i>
+                    <i class="fas fa-coins"></i>
                     <span>ব্যালেন্স সমূহ </span>
                 </a>
             </li>
@@ -227,7 +227,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#incomeNav"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-exchange"></i>
+                    <i class="fas fa-arrow-circle-right"></i>
                     <span>আয়</span>
                 </a>
                 <div id="incomeNav" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -242,7 +242,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#expenseNav"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="far fa-exchange"></i>
+                    <i class="fas fa-arrow-alt-circle-left"></i>
                     <span>ব্যয়</span>
                 </a>
                 <div id="expenseNav" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -277,7 +277,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#hrNav"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-compress-arrows-alt"></i>
                     <span>এইচআর বিভাগ</span>
                 </a>
                 <div id="hrNav" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -295,7 +295,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#reportNav"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-chart-bar"></i>
                     <span>রিপোর্ট</span>
                 </a>
                 <div id="reportNav" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
