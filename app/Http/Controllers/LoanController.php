@@ -145,6 +145,11 @@ class LoanController extends Controller
 
             }
 
+            if ($request->has('filterBy') && $request->filterBy !='all') {
+                $q->where('status', $request->filterBy);
+
+            }
+
         });
         if($request->has('dipository') && $request->dipository){
             if($request->dipository=='person'){
@@ -161,7 +166,44 @@ class LoanController extends Controller
         }else{
             $records = $records->paginate(25);
         }
-        return view('admin/loan/list',compact('records'));
+
+
+        $total = Loan::withCount(['PersonDepositors','PropertyDepositors','OrnamentDepositors'])->where(function ($q) use ($request){
+
+            if ($request->has('from') && $request->from) {
+                $from = date("Y-m-d", strtotime($request->from));
+                $q->where('start_at', '>=',  $from);
+
+            }
+            if ($request->has('to') && $request->to) {
+
+                $to = date("Y-m-d", strtotime($request->to));
+                $q->where('start_at', '<=',  $to);
+
+            }
+
+        });
+        if($request->has('dipository') && $request->dipository){
+            if($request->dipository=='person'){
+                $total = $total->having('person_depositors_count','>',0);
+            }elseif($request->dipository=='property'){
+                $total = $total->having('property_depositors_count','>',0);
+            }elseif($request->dipository=='ornament'){
+                $total = $total->having('ornament_depositors_count','>',0);
+            }
+
+        }
+
+        $total = $total->sum('approved_amount');
+
+
+
+        $active_count   = Loan::where('status','active')->count();
+        $pending_count   = Loan::where('status','pending')->count();
+        $declined_count   = Loan::where('status','declined')->count();
+        $closed_count   = Loan::where('status','closed')->count();
+
+        return view('admin/loan/list',compact('records','active_count','pending_count','declined_count','closed_count','total'));
     }
 
     public function  LoanApplication(Request $request)
