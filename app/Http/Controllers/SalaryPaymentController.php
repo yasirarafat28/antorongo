@@ -45,8 +45,9 @@ class SalaryPaymentController extends Controller
      */
     public function store(Request $request)
     {
-
-
+        $this->validate($request,[
+            'user_id'=>'required',
+        ]);
 
         $structure = new SalaryPayment();
         $structure->user_id = $request->user_id;
@@ -64,7 +65,7 @@ class SalaryPaymentController extends Controller
         $structure->payment_month = $request->month;
         $structure->payable_amount = $request->payable;
         $structure->paid_amount = $request->paid;
-        $structure->remark = $request->note;
+        $structure->note = $request->note;
         $structure->status = 'active';
         $structure->save();
 

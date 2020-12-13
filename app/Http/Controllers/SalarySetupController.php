@@ -42,7 +42,14 @@ class SalarySetupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+
+            'user_id'=>'required',
+            'basic_allowance'=>'required',
+
+        ]);
+
+        // return $request;
 
         $structure = new SalarySetup();
         $structure->user_id = $request->user_id;
@@ -93,7 +100,12 @@ class SalarySetupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+
+            'user_id'=>'required',
+            'basic_allowance'=>'required',
+
+        ]);
 
 
         $structure = SalarySetup::find($id);
@@ -111,7 +123,7 @@ class SalarySetupController extends Controller
         $structure->status = 'active';
         $structure->save();
 
-        return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
+        return back()->withSuccess('সফলভাবে আধুনিক করা হয়েছে');
 
     }
 

@@ -37,17 +37,17 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">কর্মচারীর বেতন</h1>
+            <h1 class="h3 mb-0 text-gray-800">কর্মচারীর বেতন সেট</h1>
 
             <ul class="breadcrumb float-md-right">
                 <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0);">কর্মচারীর বেতন</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">কর্মচারীর বেতন সেট</a></li>
             </ul>
         </div>
         <div class="row">
 
               <!-- Earnings (Monthly) Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
+              {{-- <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
@@ -62,10 +62,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
+            {{-- <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-success shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
@@ -80,7 +80,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
         {{-- <div class="row clearfix">
             <div class="col-lg-12">
@@ -115,16 +115,16 @@
                     <div class="header">
                         <div class="clearfix">
                             <div class="float-left">
-                                <h2>কর্মচারীর বেতন  </h2>
+                                <h2>কর্মচারীর বেতন সেট</h2>
                             </div>
                             <div class="float-right">
-                                <a data-toggle="modal" data-target="#largeModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> কর্মচারীর বেতন যোগ করুন </a>
+                                <a data-toggle="modal" data-target="#largeModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i>কর্মচারীর বেতন সেট</a>
                             </div>
                         </div>
 
                     </div>
                     <div class="body">
-                        <table class="table table-bordered table-striped table-hover dataTable js-plaintable">
+                        <table class="table table-bordered table-striped table-hover dataTable js-plaintable table-responsive">
                             <thead>
                             <tr>
                                 <th>ক্রিয়াকলাপ</th>
@@ -159,22 +159,31 @@
                                 @foreach($records as $item)
                                 <tr>
                                     <td>
-                                        <a data-toggle="modal" data-target="#largeEditModal{{$item->id}}" class="btn btn-icon btn-icon-mini" title="সম্পাদনা করুন"><i class="zmdi zmdi-edit"> </i></a>
-                                        <a class="btn btn-danger btn-icon btn-icon-mini" title="মুছে ফেলুন ">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+
+                                        <a data-toggle="modal" data-target="#largeEditModal{{$item->id}}" class="dropdown-item" title="এডিট করুন"><i class="fa fa-pencil"> </i>এডিট</a>
+
                                             {!! Form::open([
                                                'method'=>'DELETE',
                                                'url' => ['admin/hr/salary-setup', $item->id],
                                                'style' => 'display:inline'
                                             ]) !!}
-                                            {!! Form::button('<i class="fa fa-times"></i> ', array(
+                                            {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন', array(
                                                  'type' => 'submit',
-                                                 'class' => 'btn btn-danger btn-xs btnper',
+                                                 'class' => 'dropdown-item',
                                                 'title' => 'Delete user',
                                                 'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
                                                  )) !!}
                                             {!! Form::close() !!}
-                                        </a>
+
+                                        </div>
                                     </td>
+
                                     <td> {{$item->user->name}}</td>
                                     <td>+ {{\App\NumberConverter::en2bn($item->basic_allowance)}} টাকা</td>
                                     <td>+ {{\App\NumberConverter::en2bn($item->dearness_allowance)}} টাকা</td>
@@ -207,7 +216,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h2><strong> বেতন </strong> যোগ করুন</h2>
+                <h2><strong>কর্মচারীর </strong>বেতন সেট করুন</h2>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -221,7 +230,7 @@
                                     <div class="form-group">
                                         <label for=""><small> কর্মচারী </small></label>
                                         <select class="form-control ms" name="user_id">
-                                            <option>-- বাছাই করুন --</option>
+                                            <option value="">-- বাছাই করুন --</option>
                                             @foreach($members as $member)
                                                 <option value="{{$member->id}}">{{$member->name}}</option>
                                             @endforeach
