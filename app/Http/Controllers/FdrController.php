@@ -213,9 +213,9 @@ class FdrController extends Controller
 
         });
         if(isset($request->limit) && $request->limit=='-1'){
-            $records = $records->paginate($records->count());
+            $records = $records->orderBy('created_at','DESC')->paginate($records->count());
         }else{
-            $records = $records->paginate(25);
+            $records = $records->orderBy('created_at','DESC')->paginate(25);
         }
 
 
