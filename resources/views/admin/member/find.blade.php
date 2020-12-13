@@ -115,6 +115,23 @@
                                         <p>সদস্য নং: {{$member->unique_id}}</p>
 
                                     </div>
+
+                                    <div class="col-md-4">
+                                        <a href="{{url('admin/members/'.$member->id.'/edit')}}" class="btn btn-primary"><i class="fa fa-edit"> </i> এডিট </a>
+
+                                        {!! Form::open([
+                                            'method'=>'DELETE',
+                                            'url' => ['/admin/members', $member->id],
+                                            'style' => 'display:inline'
+                                        ]) !!}
+                                        {!! Form::button('<i class="fa fa-trash"></i>  মুছে ফেলুন', array(
+                                            'type' => 'submit',
+                                            'class' => 'btn btn-danger',
+                                            'title' => 'মুছে ফেলুন',
+                                            'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
+                                            )) !!}
+                                        {!! Form::close() !!}
+                                    </div>
                                 </div>
 
                             </div>

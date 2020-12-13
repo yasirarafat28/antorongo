@@ -48,7 +48,7 @@
                         <div class="row clearfix">
 
 
-                            <div class="col-lg-4 col-md-4 col-sm-12">
+                            {{-- <div class="col-lg-4 col-md-4 col-sm-12">
 
                                 <div class="form-group">
 
@@ -80,7 +80,7 @@
 
                                 </div>
 
-                            </div>
+                            </div> --}}
 
                             <div class="col-lg-4 col-md-4 col-sm-12">
 

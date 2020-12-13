@@ -1,4 +1,7 @@
-<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+
+
+    <a href="{{url('admin/members/find?q='.$item->unique_id)}}" class="btn btn-primary"><i class="fa fa-eye"> </i></a>
+{{-- <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
 </a>
@@ -20,4 +23,4 @@
             )) !!}
     {!! Form::close() !!}
     <a href="{{url('admin/barcode-test/'.$item->id)}}" target="_blank" class="dropdown-item"><i class="fa fa-barcode"> </i> বারকোড</a>
-</div>
+</div> --}}
