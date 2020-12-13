@@ -131,7 +131,7 @@ class LoanController extends Controller
 
     public  function LoanList(Request $request)
     {
-        $records = Loan::with('user')->where(function ($q) use ($request){
+        $records = Loan::with('user')->withCount(['PersonDepositors','PropertyDepositors','OrnamentDepositors'])->where(function ($q) use ($request){
 
             if ($request->has('from') && $request->from) {
                 $from = date("Y-m-d", strtotime($request->from));
@@ -146,6 +146,16 @@ class LoanController extends Controller
             }
 
         });
+        if($request->has('dipository') && $request->dipository){
+            if($request->dipository=='person'){
+                $records = $records->having('person_depositors_count','>',0);
+            }elseif($request->dipository=='property'){
+                $records = $records->having('property_depositors_count','>',0);
+            }elseif($request->dipository=='ornament'){
+                $records = $records->having('ornament_depositors_count','>',0);
+            }
+
+        }
         if(isset($request->limit) && $request->limit=='-1'){
             $records = $records->paginate($records->count());
         }else{

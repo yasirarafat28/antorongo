@@ -89,7 +89,20 @@
                         <form action="">
 
                             <div class="row clearfix">
-                                <div class="col-lg-4 col-md-4">
+                                <div class="col-lg-3 col-md-3">
+
+                                    <label for=""><small>জামানতের ধরন </small></label>
+
+                                    <div class="input-group">
+                                        <select name="dipository" id="" class="form-control">
+                                            <option value="">বাছাই করুন</option>
+                                            <option {{isset($_GET['dipository']) && $_GET['dipository']=='person'?'selected':'' }}  value="person">সদস্য </option>
+                                            <option {{isset($_GET['dipository']) && $_GET['dipository']=='property'?'selected':'' }} value="property">সম্পত্তি </option>
+                                            <option {{isset($_GET['dipository']) && $_GET['dipository']=='ornament'?'selected':'' }} value="ornament">অলঙ্কারাদি </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3">
 
                                     <label for=""><small>থেকে</small></label>
 
@@ -101,7 +114,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-4 col-md-4">
+                                <div class="col-lg-3 col-md-3">
 
                                     <label for=""><small> পর্যন্ত</small></label>
 
@@ -113,7 +126,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-2 col-md-2">
+                                <div class="col-md-1">
 
                                     <br>
 
