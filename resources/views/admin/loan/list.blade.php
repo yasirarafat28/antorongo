@@ -203,82 +203,85 @@
 
                         <br>
                         <br>
-                        <table class="table table-bordered table-striped table-hover dataTable js-full-datatable table-responsive">
-                            <thead>
-                            <tr>
-                                <th>ক্রিয়াকলাপ</th>
-                                <th>ঋণ আইডি </th>
-                                {{-- <th>পুরাতন ঋণ আইডি </th> --}}
-                                <th> সদস্য আইডি  </th>
-                                <th> সদস্য নাম  </th>
-                                <th> ঋণের পরিমান  </th>
-                                <th> মোট পরিশোধ</th>
-                                <th> মোট বকেয়া</th>
-                                <th> তারিখ </th>
-                                <th>  অবস্থা</th>
-                            </tr>
-                            </thead>
-                            <tfoot>
-                            <tr>
-                                <th>ক্রিয়াকলাপ</th>
-                                <th>ঋণ আইডি </th>
-                                {{-- <th>পুরাতন ঋণ আইডি </th> --}}
-                                <th> সদস্য আইডি  </th>
-                                <th> সদস্য নাম  </th>
-                                <th> ঋণের পরিমান  </th>
-                                <th> মোট পরিশোধ</th>
-                                <th> মোট বকেয়া</th>
-                                <th> তারিখ </th>
-                                <th>  অবস্থা</th>
-                            </tr>
-                            </tfoot>
-                            <tbody>
-                            @foreach($records ?? array() as $item)
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover dataTable ">
+                                <thead>
                                 <tr>
-                                    <td>
-
-                                        <a href="{{url('admin/loan/find?q='.$item->unique_id)}}" class="btn btn-primary"><i class="fa fa-eye"> </i> </a>
-
-                                        <!--<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-
-                                                <a href="{{url('admin/loan/find?q='.$item->unique_id)}}" class="dropdown-item"><i class="fa fa-eye"> </i> বিস্তারিত </a>
-                                                <a href="{{url('admin/loan/edit/'.$item->id)}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট করুন  </a>
-                                                @if($item->status=='active')
-                                                    <a href="{{url('admin/collection/collect?q='.$item->unique_id)}}" class="dropdown-item"><i class="fa fa-plus">কিস্তি </i></a>
-                                                @else
-                                                    <a data-toggle="modal" data-target="#ActiveModal{{$item->id}}" class="dropdown-item"><i class="fa fa-check">অনুমোদন </i></a>
-                                                    <a href="{{url('admin/loan/Remove/'.$item->id)}}" class="dropdown-item"><i class="fa fa-trash" onclick="return confirm('Are you Sure?? ');">মুছে ফেলুন </i></a>
-                                                    @if($item->status !='rejected')
-                                                        <a href="{{url('admin/loan/reject/'.$item->id)}}" class="dropdown-item text-danger"><i class="fa fa-times">প্রত্যাখ্যান</i></a>
-                                                    @endif
-                                                @endif
-
-                                        </div>-->
-                                    </td>                                    <td>{{$item->unique_id}}</td>
-                                    {{-- <td>{{$item->old_txn}}</td> --}}
-                                    <td>{{$item->user->unique_id??''}}</td>
-                                    <td>{{$item->user->name_bn??''}}</td>
-                                    <td>
-                                        @if($item->status=='active')
-                                            {{\App\NumberConverter::en2bn($item->approved_amount)}}
-                                        @else
-                                            {{\App\NumberConverter::en2bn($item->request_amount)}}
-                                        @endif
-                                    </td>
-                                    <td>{{\App\NumberConverter::en2bn($item->interests->sum('amount')   +   $item->paid_reveanues->sum('amount'))}}</td>
-                                    <td>{{\App\NumberConverter::en2bn($item->current_payable())}}</td>
-                                    <td>{{date('Y/m/d',strtotime($item->start_at))}}</td>
-                                    <td>{{$item->status}}</td>
-
+                                    <th>ক্রিয়াকলাপ</th>
+                                    <th>ঋণ আইডি </th>
+                                    {{-- <th>পুরাতন ঋণ আইডি </th> --}}
+                                    <th> সদস্য আইডি  </th>
+                                    <th> সদস্য নাম  </th>
+                                    <th> ঋণের পরিমান  </th>
+                                    <th> মোট পরিশোধ</th>
+                                    <th> মোট বকেয়া</th>
+                                    <th> তারিখ </th>
+                                    <th>  অবস্থা</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tfoot>
+                                <tr>
+                                    <th>ক্রিয়াকলাপ</th>
+                                    <th>ঋণ আইডি </th>
+                                    {{-- <th>পুরাতন ঋণ আইডি </th> --}}
+                                    <th> সদস্য আইডি  </th>
+                                    <th> সদস্য নাম  </th>
+                                    <th> ঋণের পরিমান  </th>
+                                    <th> মোট পরিশোধ</th>
+                                    <th> মোট বকেয়া</th>
+                                    <th> তারিখ </th>
+                                    <th>  অবস্থা</th>
+                                </tr>
+                                </tfoot>
+                                <tbody>
+                                @foreach($records ?? array() as $item)
+                                    <tr>
+                                        <td>
+
+                                            <a href="{{url('admin/loan/find?q='.$item->unique_id)}}" class="btn btn-primary"><i class="fa fa-eye"> </i> </a>
+
+                                            <!--<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                aria-labelledby="dropdownMenuLink">
+
+                                                    <a href="{{url('admin/loan/find?q='.$item->unique_id)}}" class="dropdown-item"><i class="fa fa-eye"> </i> বিস্তারিত </a>
+                                                    <a href="{{url('admin/loan/edit/'.$item->id)}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট করুন  </a>
+                                                    @if($item->status=='active')
+                                                        <a href="{{url('admin/collection/collect?q='.$item->unique_id)}}" class="dropdown-item"><i class="fa fa-plus">কিস্তি </i></a>
+                                                    @else
+                                                        <a data-toggle="modal" data-target="#ActiveModal{{$item->id}}" class="dropdown-item"><i class="fa fa-check">অনুমোদন </i></a>
+                                                        <a href="{{url('admin/loan/Remove/'.$item->id)}}" class="dropdown-item"><i class="fa fa-trash" onclick="return confirm('Are you Sure?? ');">মুছে ফেলুন </i></a>
+                                                        @if($item->status !='rejected')
+                                                            <a href="{{url('admin/loan/reject/'.$item->id)}}" class="dropdown-item text-danger"><i class="fa fa-times">প্রত্যাখ্যান</i></a>
+                                                        @endif
+                                                    @endif
+
+                                            </div>-->
+                                        </td>
+                                        <td>{{$item->unique_id}}</td>
+                                        {{-- <td>{{$item->old_txn}}</td> --}}
+                                        <td>{{$item->user->unique_id??''}}</td>
+                                        <td>{{$item->user->name_bn??''}}</td>
+                                        <td>
+                                            @if($item->status=='active')
+                                                {{\App\NumberConverter::en2bn($item->approved_amount)}}
+                                            @else
+                                                {{\App\NumberConverter::en2bn($item->request_amount)}}
+                                            @endif
+                                        </td>
+                                        <td>{{\App\NumberConverter::en2bn($item->interests->sum('amount')   +   $item->paid_reveanues->sum('amount'))}}</td>
+                                        <td>{{\App\NumberConverter::en2bn($item->current_payable())}}</td>
+                                        <td>{{date('Y/m/d',strtotime($item->start_at))}}</td>
+                                        <td>{{$item->status}}</td>
+
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                         <div class="pull-right">
                             {!! $records->appends(\Illuminate\Support\Facades\Request::except('page'))->links() !!}
                         </div>
