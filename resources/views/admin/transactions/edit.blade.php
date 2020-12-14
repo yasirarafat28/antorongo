@@ -14,13 +14,13 @@
 
         <div class="block-header">
             <div class="row">
-                <div class="col-lg-7 col-md-6 col-sm-12">
-                    <h3><small><strong>লেনদেন পরিবরতন </strong> করুন</small></h3>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <h3><small><strong>লেনদেন পরিবর্তন</strong> করুন</small></h3>
                 </div>
-                <div class="col-lg-5 col-md-6 col-sm-12">
+                <div class="col-lg-6 col-md-6 col-sm-12">
                     <ul class="breadcrumb float-md-right">
                         <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                        <li class="breadcrumb-item"><a href="javascript:void(0);">লেনদেন পরিবরতন করুন</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">লেনদেন পরিবর্তন করুন</a></li>
                     </ul>
                 </div>
             </div>
@@ -50,7 +50,7 @@
 
                             <div class="header">
 
-                                <h2><strong> লেনদেন পরিবরতন </strong>  করুন</h2>
+                                <h2><strong>লেনদেন পরিবর্তন</strong>  করুন</h2>
 
                             </div>
                             <form action="{{url('admin/transactions/'.$transaction->id)}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">

@@ -112,4 +112,425 @@ class TemporaryController extends Controller
         return 'success';
 
     }
+
+    public function permission_asncronas(){
+        $admin   = \Spatie\Permission\Models\Role::findByName('admin');
+
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'balance-list']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'balance-transfer-office']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'balance-transfer-cashier']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'balance-transfer-bank']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+
+
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'member-find']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'member-list']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'member-create']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'member-show']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'member-edit']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'member-delete']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+
+
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-short-application']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-short-show']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-short-edit']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-short-delete']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-short-approve']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-short-decline']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+
+
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-short-close']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-short-print']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+
+
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-transaction-list']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-transaction-edit']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-transaction-delete']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-transaction-show']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+
+
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-short-collection-report']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-short-collection-report-list']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-short-withdraw-report-list']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+
+
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-short-packages-list']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-short-packages-create']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-short-packages-edit']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-short-packages-delete']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+
+
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving/daily-application']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+
+
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'fdr-application']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'fdr-list']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'fdr-find']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'fdr-edit']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'fdr-approve']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'fdr-decline']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'fdr-print']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+
+
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'loan-application']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'loan-list']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'loan-show']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'loan-edit']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'loan-approve']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'loan-reject']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'loan-remove']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'loan-print']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'loan-depository']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+
+
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'transaction-head-income-list']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'transaction-head-income-edit']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'transaction-head-income-show']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'transaction-head-income-delete']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+
+
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'income-create']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'income-list']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'income-show']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'income-edit']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'income-delete']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+
+
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'transaction-head-expense-list']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'transaction-head-expense-edit']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'transaction-head-expense-show']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'transaction-head-expense-delete']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+
+
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'expense-create']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'expense-list']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'expense-show']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'expense-edit']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'expense-delete']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+
+
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'meeting-list']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'meeting-create']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'meeting-show']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'meeting-edit']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'meeting-delete']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+
+
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'documents-list']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'documents-create']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'documents-edit']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'documents-delete']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+
+
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'user-list']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'user-create']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'user-show']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'user-edit']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'user-delete']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'roles-list']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'roles-create']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'roles-edit']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'roles-delete']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+
+
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'hr-salary-setup-list']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'hr-salary-setup-create']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'hr-salary-setup-edit']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'hr-salary-setup-delete']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'hr-salary-setup-show']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+
+
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'hr-salary-payment-list']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'hr-salary-payment-create']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'hr-salary-payment-edit']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'hr-salary-payment-delete']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'hr-salary-payment-show']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+
+
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'statement-customize']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+
+
+    }
 }
