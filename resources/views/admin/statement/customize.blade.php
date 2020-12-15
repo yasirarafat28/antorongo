@@ -251,11 +251,11 @@
                                             </tr>
                                             <tr>
                                                 <td><a href="#">হাতে নগদ</a></td>
-                                                <td style="width: 50%;">{{NumberConverter::en2bn(App\Wallet::balance('office',$from,$to))}} টাকা</td>
+                                                <td style="width: 50%;">{{\App\NumberConverter::en2bn(App\Wallet::balance('office',$from,$to))}} টাকা</td>
                                             </tr>
                                             <tr>
                                                 <td><a href="#">ব্যাংক ব্যালেন্স</a></td>
-                                                <td style="width: 50%;">{{NumberConverter::en2bn(App\Wallet::balance('office',$from,$to))}} টাকা</td>
+                                                <td style="width: 50%;">{{\App\NumberConverter::en2bn(App\Wallet::balance('office',$from,$to))}} টাকা</td>
                                             </tr>
                                             <tr>
                                                 <td><a href="{{url('')}}">সর্বমোট</a></td>
