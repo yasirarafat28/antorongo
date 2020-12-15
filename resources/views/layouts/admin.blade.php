@@ -301,6 +301,7 @@
                 <div id="reportNav" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{url('admin/statement/customize')}}" >দৈনিক/মাসিক/ বাৎসরিক </a>
+                        <a class="collapse-item" href="{{url('admin/statement/daily-statement')}}" >দৈনিক প্রাপ্তি-প্রদান বিবরণী</a>
 
                     </div>
                 </div>

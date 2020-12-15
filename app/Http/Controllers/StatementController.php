@@ -20,4 +20,8 @@ class StatementController extends Controller
         $expense_heads = TransactionHead::with('childs')->where('parent',0)->where('type','expense')->get();
         return view('admin/statement/customize',compact('income_heads','expense_heads'));
     }
+
+    public function dailyStatement(){
+        return view('admin/statement/daily-statement');
+    }
 }

@@ -99,6 +99,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::get('member/edit', 'MemberController@MemberEdit');
     Route::get('statement/daily', 'StatementController@daily');
     Route::get('statement/customize', 'StatementController@customize');
+    Route::get('statement/daily-statement', 'StatementController@dailyStatement');
     Route::resource('users', 'UserController');
     Route::resource('roles', 'RoleController');
     Route::resource('meeting', 'MeetingController');
