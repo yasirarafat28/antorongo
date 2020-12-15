@@ -11,7 +11,12 @@ use Illuminate\Support\Facades\Auth;
 
 class WalletController extends Controller
 {
-    //
+    //  function __construct()
+    // {
+    //     $this->middleware('permission:balance-list', ['only' => ['balance']]);
+    //     $this->middleware('permission:balance-transfer-from', ['only' => ['transfer','transfer_submit']]);
+    // }
+
 
     public function balance(){
         $office = Wallet::balance('office');

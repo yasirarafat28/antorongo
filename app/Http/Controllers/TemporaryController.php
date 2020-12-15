@@ -120,15 +120,7 @@ class TemporaryController extends Controller
         if ($permission){
             $admin->givePermissionTo($permission->name);
         }
-        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'balance-transfer-office']);
-        if ($permission){
-            $admin->givePermissionTo($permission->name);
-        }
-        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'balance-transfer-cashier']);
-        if ($permission){
-            $admin->givePermissionTo($permission->name);
-        }
-        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'balance-transfer-bank']);
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'balance-transfer-from']);
         if ($permission){
             $admin->givePermissionTo($permission->name);
         }
@@ -160,11 +152,12 @@ class TemporaryController extends Controller
         }
 
 
-        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-short-application']);
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-application']);
         if ($permission){
             $admin->givePermissionTo($permission->name);
         }
-        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-short-show']);
+
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-find']);
         if ($permission){
             $admin->givePermissionTo($permission->name);
         }
@@ -214,10 +207,10 @@ class TemporaryController extends Controller
         }
 
 
-        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-short-collection-report']);
-        if ($permission){
-            $admin->givePermissionTo($permission->name);
-        }
+        // $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-short-collection-report']);
+        // if ($permission){
+        //     $admin->givePermissionTo($permission->name);
+        // }
         $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-short-collection-report-list']);
         if ($permission){
             $admin->givePermissionTo($permission->name);
@@ -247,10 +240,10 @@ class TemporaryController extends Controller
         }
 
 
-        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving/daily-application']);
-        if ($permission){
-            $admin->givePermissionTo($permission->name);
-        }
+        // $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving/daily-application']);
+        // if ($permission){
+        //     $admin->givePermissionTo($permission->name);
+        // }
 
 
         $permission = \Spatie\Permission\Models\Permission::create(['name' => 'fdr-application']);
@@ -277,7 +270,19 @@ class TemporaryController extends Controller
         if ($permission){
             $admin->givePermissionTo($permission->name);
         }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'fdr-close']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'fdr-profit-report-list']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
         $permission = \Spatie\Permission\Models\Permission::create(['name' => 'fdr-print']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'fdr-withdraw-report-list']);
         if ($permission){
             $admin->givePermissionTo($permission->name);
         }

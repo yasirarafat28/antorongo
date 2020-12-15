@@ -14,7 +14,22 @@ use Illuminate\Support\Facades\Auth;
 
 class SavingController extends Controller
 {
-    //
+
+    // function __construct()
+    // {
+    //     $this->middleware('permission:saving-application', ['only' => ['application','SavingApplication','SavingDailyApplication','SavingCurrentApplication']]);
+    //     $this->middleware('permission:saving-short-approve', ['only' => ['AdminApprove']]);
+    //     $this->middleware('permission:saving-short-decline', ['only' => ['AdminDecline']]);
+    //     $this->middleware('permission:saving-short-close', ['only' => ['SavingClose']]);
+    //     $this->middleware('permission:saving-short-edit', ['only' => ['SavingEdit','SavingUpdate']]);
+    //     $this->middleware('permission:saving-short-list', ['only' => ['getList']]);
+    //     $this->middleware('permission:saving-find', ['only' => ['find']]);
+    //     $this->middleware('permission:saving-short-collection-report-list', ['only' => ['CollectionList']]);
+    //     $this->middleware('permission:saving-short-withdraw-report-list', ['only' => ['WithdrawList']]);
+
+
+
+    // }
 
     public  function application($type)
     {

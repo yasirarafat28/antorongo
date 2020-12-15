@@ -8,6 +8,17 @@ use Illuminate\Http\Request;
 
 class SavingPackageController extends Controller
 {
+    function __construct()
+    {
+        // $this->middleware('permission:saving-short-packages-list', ['only' => ['index']]);
+        // $this->middleware('permission:saving-short-packages-create', ['only' => ['create','store']]);
+        // $this->middleware('permission:saving-short-packages-edit', ['only' => ['edit','update']]);
+        // $this->middleware('permission:saving-short-packages-show', ['only' => ['show']]);
+        // $this->middleware('permission:saving-short-packages-delete', ['only' => ['destroy']]);
+
+
+    }
+
     /**
      * Display a listing of the resource.
      *

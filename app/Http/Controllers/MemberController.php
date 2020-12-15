@@ -16,6 +16,19 @@ use Yajra\DataTables\Facades\DataTables;
 class MemberController extends Controller
 {
 
+    function __construct()
+    {
+        // $this->middleware('permission:member-find', ['only' => ['MemberFind']]);
+        // $this->middleware('permission:member-list', ['only' => ['index']]);
+        // $this->middleware('permission:member-create', ['only' => ['create','store']]);
+        // $this->middleware('permission:member-edit', ['only' => ['edit','update']]);
+        // $this->middleware('permission:member-show', ['only' => ['show']]);
+        // $this->middleware('permission:member-delete', ['only' => ['destroy']]);
+
+
+    }
+
+
     public function MemberFind(Request $request)
     {
 
