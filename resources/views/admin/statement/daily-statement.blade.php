@@ -617,16 +617,13 @@
                                             <tbody>
 
                                                 <tr>
-                                                    <td><a href="{{url('')}}">ব্যাংক ঋণ </a></td>
-                                                    <td style="width: 50%;">456৪৫ টাকা</td>
+                                                    <td>ব্যাংক ঋণ =</td>
                                                 </tr>
                                                 <tr>
-                                                    <td><a href="{{url('')}}">ব্যাংক ঋণ পরিশোধ</a></td>
-                                                    <td style="width: 50%;">০ টাকা</td>
+                                                    <td>ব্যাংক ঋণ পরিশোধ =</td>
                                                 </tr>
                                                 <tr>
-                                                    <td><a href="{{url('')}}">ব্যালেন্স</a></td>
-                                                    <td style="width: 50%;">০ টাকা</td>
+                                                    <td>ব্যালেন্স =</td>
                                                 </tr>
 
 
@@ -648,20 +645,16 @@
                                             <tbody>
 
                                                 <tr>
-                                                    <td><a href="{{url('')}}">এফ ডি আর </a></td>
-                                                    <td style="width: 50%;">০ টাকা</td>
+                                                    <td>এফ ডি আর =</td>
                                                 </tr>
                                                 <tr>
-                                                    <td><a href="#">হাতে নগদ</a></td>
-                                                    <td style="width: 50%;">টাকা</td>
+                                                    <td>হাতে নগদ =</td>
                                                 </tr>
                                                 <tr>
-                                                    <td><a href="#">ব্যাংক ব্যালেন্স</a></td>
-                                                    <td style="width: 50%;"> টাকা</td>
+                                                    <td>ব্যাংক ব্যালেন্স =</td>
                                                 </tr>
                                                 <tr>
-                                                    <td><a href="{{url('')}}">সর্বমোট</a></td>
-                                                    <td style="width: 50%;">০ টাকা</td>
+                                                    <td>সর্বমোট =</td>
                                                 </tr>
 
 
@@ -683,24 +676,25 @@
                                             <tbody>
 
                                                 <tr>
-                                                    <td><a href="{{url('')}}">ব্যাংকের নাম </a></td>
-                                                    <td style="width: 50%;">টাকা পরিমাণ</td>
+                                                    <th>ব্যাংকের নাম</th>
+                                                    <th>টাকার পরিমাণ</th>
+
                                                 </tr>
                                                 <tr>
-                                                    <td><a href="{{url('')}}">যমুনা</a></td>
-                                                    <td style="width: 50%;">০ টাকা</td>
+                                                    <td>যমুনা</td>
+                                                    <td></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><a href="{{url('')}}">শাহজালাল</a></td>
-                                                    <td style="width: 50%;">০ টাকা</td>
+                                                    <td>শাহজালাল</td>
+                                                    <td></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><a href="{{url('')}}">মার্কেন্টাইল</a></td>
-                                                    <td style="width: 50%;">০ টাকা</td>
+                                                    <td>মার্কেন্টাইল</td>
+                                                    <td></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><a href="{{url('')}}">সর্বমোট</a></td>
-                                                    <td style="width: 50%;">০ টাকা</td>
+                                                    <td>সর্বমোট =</td>
+                                                    <td></td>
                                                 </tr>
 
 
