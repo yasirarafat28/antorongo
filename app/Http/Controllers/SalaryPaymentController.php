@@ -8,6 +8,16 @@ use App\User;
 
 class SalaryPaymentController extends Controller
 {
+    // function __construct()
+    // {
+    //     $this->middleware('permission:hr-salary-payment-list', ['only' => ['index']]);
+    //     $this->middleware('permission:hr-salary-payment-create', ['only' => ['create','store']]);
+    //     $this->middleware('permission:hr-salary-payment-edit', ['only' => ['edit','update']]);
+    //     $this->middleware('permission:hr-salary-payment-show', ['only' => ['show']]);
+    //     $this->middleware('permission:hr-salary-payment-delete', ['only' => ['destroy']]);
+    // }
+
+
     /**
      * Display a listing of the resource.
      *

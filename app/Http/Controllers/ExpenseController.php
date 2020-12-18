@@ -11,7 +11,13 @@ use Illuminate\Support\Facades\Auth;
 
 class ExpenseController extends Controller
 {
-    //
+    // function __construct()
+    // {
+    //     $this->middleware('permission:expense-list', ['only' => ['index']]);
+    //     $this->middleware('permission:expense-create', ['only' => ['create','store']]);
+    //     $this->middleware('permission:expense-edit', ['only' => ['update']]);
+    //     $this->middleware('permission:expense-delete', ['only' => ['destroy']]);
+    // }
 
 
 

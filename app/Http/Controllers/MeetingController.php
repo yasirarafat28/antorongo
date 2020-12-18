@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 
 class MeetingController extends Controller
 {
+    //  function __construct()
+    // {
+    //     $this->middleware('permission:meeting-list', ['only' => ['index']]);
+    //     $this->middleware('permission:meeting-create', ['only' => ['create','store']]);
+    //     $this->middleware('permission:meeting-edit', ['only' => ['update']]);
+    //     $this->middleware('permission:meeting-delete', ['only' => ['destroy']]);
+    // }
+
+
     /**
      * Display a listing of the resource.
      *

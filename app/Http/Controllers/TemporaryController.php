@@ -114,7 +114,7 @@ class TemporaryController extends Controller
     }
 
     public function permission_asncronas(){
-        $admin   = \Spatie\Permission\Models\Role::findByName('admin');
+        $admin   = \Spatie\Permission\Models\Role::findByName('super_admin');
 
         $permission = \Spatie\Permission\Models\Permission::create(['name' => 'balance-list']);
         if ($permission){
@@ -189,19 +189,19 @@ class TemporaryController extends Controller
         }
 
 
-        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-transaction-list']);
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'transaction-list']);
         if ($permission){
             $admin->givePermissionTo($permission->name);
         }
-        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-transaction-edit']);
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'transaction-edit']);
         if ($permission){
             $admin->givePermissionTo($permission->name);
         }
-        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-transaction-delete']);
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'transaction-delete']);
         if ($permission){
             $admin->givePermissionTo($permission->name);
         }
-        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-transaction-show']);
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'transaction-show']);
         if ($permission){
             $admin->givePermissionTo($permission->name);
         }
@@ -211,6 +211,7 @@ class TemporaryController extends Controller
         // if ($permission){
         //     $admin->givePermissionTo($permission->name);
         // }
+
         $permission = \Spatie\Permission\Models\Permission::create(['name' => 'saving-short-collection-report-list']);
         if ($permission){
             $admin->givePermissionTo($permission->name);
@@ -292,6 +293,10 @@ class TemporaryController extends Controller
         if ($permission){
             $admin->givePermissionTo($permission->name);
         }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'loan-find']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
         $permission = \Spatie\Permission\Models\Permission::create(['name' => 'loan-list']);
         if ($permission){
             $admin->givePermissionTo($permission->name);
@@ -304,6 +309,10 @@ class TemporaryController extends Controller
         if ($permission){
             $admin->givePermissionTo($permission->name);
         }
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'loan-delete']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
         $permission = \Spatie\Permission\Models\Permission::create(['name' => 'loan-approve']);
         if ($permission){
             $admin->givePermissionTo($permission->name);
@@ -312,7 +321,7 @@ class TemporaryController extends Controller
         if ($permission){
             $admin->givePermissionTo($permission->name);
         }
-        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'loan-remove']);
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'loan-close']);
         if ($permission){
             $admin->givePermissionTo($permission->name);
         }
@@ -330,11 +339,11 @@ class TemporaryController extends Controller
         if ($permission){
             $admin->givePermissionTo($permission->name);
         }
-        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'transaction-head-income-edit']);
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'transaction-head-income-create']);
         if ($permission){
             $admin->givePermissionTo($permission->name);
         }
-        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'transaction-head-income-show']);
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'transaction-head-income-edit']);
         if ($permission){
             $admin->givePermissionTo($permission->name);
         }
@@ -353,10 +362,7 @@ class TemporaryController extends Controller
         if ($permission){
             $admin->givePermissionTo($permission->name);
         }
-        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'income-show']);
-        if ($permission){
-            $admin->givePermissionTo($permission->name);
-        }
+
         $permission = \Spatie\Permission\Models\Permission::create(['name' => 'income-edit']);
         if ($permission){
             $admin->givePermissionTo($permission->name);
@@ -367,22 +373,22 @@ class TemporaryController extends Controller
         }
 
 
-        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'transaction-head-expense-list']);
-        if ($permission){
-            $admin->givePermissionTo($permission->name);
-        }
-        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'transaction-head-expense-edit']);
-        if ($permission){
-            $admin->givePermissionTo($permission->name);
-        }
-        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'transaction-head-expense-show']);
-        if ($permission){
-            $admin->givePermissionTo($permission->name);
-        }
-        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'transaction-head-expense-delete']);
-        if ($permission){
-            $admin->givePermissionTo($permission->name);
-        }
+        // $permission = \Spatie\Permission\Models\Permission::create(['name' => 'transaction-head-expense-list']);
+        // if ($permission){
+        //     $admin->givePermissionTo($permission->name);
+        // }
+        // $permission = \Spatie\Permission\Models\Permission::create(['name' => 'transaction-head-expense-edit']);
+        // if ($permission){
+        //     $admin->givePermissionTo($permission->name);
+        // }
+        // $permission = \Spatie\Permission\Models\Permission::create(['name' => 'transaction-head-expense-show']);
+        // if ($permission){
+        //     $admin->givePermissionTo($permission->name);
+        // }
+        // $permission = \Spatie\Permission\Models\Permission::create(['name' => 'transaction-head-expense-delete']);
+        // if ($permission){
+        //     $admin->givePermissionTo($permission->name);
+        // }
 
 
         $permission = \Spatie\Permission\Models\Permission::create(['name' => 'expense-create']);
@@ -391,10 +397,6 @@ class TemporaryController extends Controller
         }
 
         $permission = \Spatie\Permission\Models\Permission::create(['name' => 'expense-list']);
-        if ($permission){
-            $admin->givePermissionTo($permission->name);
-        }
-        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'expense-show']);
         if ($permission){
             $admin->givePermissionTo($permission->name);
         }
@@ -531,6 +533,10 @@ class TemporaryController extends Controller
         }
 
 
+        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'statement-customize']);
+        if ($permission){
+            $admin->givePermissionTo($permission->name);
+        }
         $permission = \Spatie\Permission\Models\Permission::create(['name' => 'statement-customize']);
         if ($permission){
             $admin->givePermissionTo($permission->name);

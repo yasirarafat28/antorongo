@@ -7,7 +7,13 @@ use App\TransactionHead;
 
 class StatementController extends Controller
 {
-    //
+    // function __construct()
+    // {
+    //     $this->middleware('permission:statement-customize', ['only' => ['customize']]);
+    //     $this->middleware('permission:daily-statement', ['only' => ['dailyStatement']]);
+
+    // }
+
 
     public function daily(Request $request)
     {

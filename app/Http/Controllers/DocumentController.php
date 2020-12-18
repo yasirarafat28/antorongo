@@ -7,6 +7,16 @@ use Illuminate\Http\Request;
 
 class DocumentController extends Controller
 {
+
+    // function __construct()
+    // {
+    //     $this->middleware('permission:documents-list', ['only' => ['index']]);
+    //     $this->middleware('permission:documents-create', ['only' => ['create','store']]);
+    //     $this->middleware('permission:documents-edit', ['only' => ['update']]);
+    //     $this->middleware('permission:documents-delete', ['only' => ['destroy']]);
+    // }
+
+
     /**
      * Display a listing of the resource.
      *

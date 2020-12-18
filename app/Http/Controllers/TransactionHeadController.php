@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class TransactionHeadController extends Controller
 {
+    // function __construct()
+    // {
+    //     $this->middleware('permission:transaction-head-income-list', ['only' => ['index']]);
+    //     $this->middleware('permission:transaction-head-income-create', ['only' => ['create','store']]);
+    //     $this->middleware('permission:transaction-head-income-edit', ['only' => ['edit','update']]);
+    //     $this->middleware('permission:transaction-head-income-delete', ['only' => ['destroy']]);
+    // }
+
     /**
      * Display a listing of the resource.
      *

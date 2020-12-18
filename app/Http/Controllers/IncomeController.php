@@ -11,7 +11,13 @@ use Illuminate\Support\Facades\Auth;
 
 class IncomeController extends Controller
 {
-    //
+    //  function __construct()
+    // {
+    //     $this->middleware('permission:income-list', ['only' => ['index']]);
+    //     $this->middleware('permission:income-create', ['only' => ['create','store']]);
+    //     $this->middleware('permission:income-edit', ['only' => ['update']]);
+    //     $this->middleware('permission:income-delete', ['only' => ['destroy']]);
+    // }
 
     public function create(Request $request)
     {

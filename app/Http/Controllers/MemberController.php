@@ -25,7 +25,6 @@ class MemberController extends Controller
         // $this->middleware('permission:member-show', ['only' => ['show']]);
         // $this->middleware('permission:member-delete', ['only' => ['destroy']]);
 
-
     }
 
 

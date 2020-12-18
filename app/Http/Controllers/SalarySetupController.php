@@ -8,6 +8,16 @@ use App\SalarySetup;
 
 class SalarySetupController extends Controller
 {
+     // function __construct()
+    // {
+    //     $this->middleware('permission:hr-salary-setup-list', ['only' => ['index']]);
+    //     $this->middleware('permission:hr-salary-setup-create', ['only' => ['create','store']]);
+    //     $this->middleware('permission:hr-salary-setup-edit', ['only' => ['edit','update']]);
+    //     $this->middleware('permission:hr-salary-setup-show', ['only' => ['show']]);
+    //     $this->middleware('permission:hr-salary-setup-delete', ['only' => ['destroy']]);
+    // }
+
+
     /**
      * Display a listing of the resource.
      *
