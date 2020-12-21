@@ -70,4 +70,36 @@ class Transaction extends Model
 
         return $transactions;
     }
+
+
+    public static function total_by_slug_date($slug,$from,$to)
+    {
+
+        $from = date("Y-m-d", strtotime($from));
+        $to = date("Y-m-d", strtotime($to));
+        //return $to;
+        $transaction_head = TransactionHead::where('slug',$slug)->first();
+        if(!$transaction_head){
+            return 0;
+        }
+
+
+        $transactions = 0;
+        $transactions += Transaction::where('head_id',$transaction_head->id)
+        ->where('date', '>=',  $from)
+        ->where('date', '<=',  $to)
+        ->sum('amount');
+
+        if ($transaction_head->parent==0)
+        {
+            return $childs = TransactionHead::where('parent',$transaction_head->id)->get('id')->pluck('id')->toArray();
+            $transactions += Transaction::whereIn('head_id',$childs)
+                ->where('date', '>=',  $from)
+                ->where('date', '<=',  $to)
+                ->sum('amount');
+
+        }
+
+        return $transactions;
+    }
 }

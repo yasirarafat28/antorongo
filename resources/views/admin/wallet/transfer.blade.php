@@ -45,10 +45,12 @@
 
                     <input type="hidden" name="from" value="{{$from}}">
 
+
+
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="form-group">
                             <label for=""><small> অন্য একটি ব্যালেন্স বাছাই করুন </small></label>
-                            <select name="to" class="form-control ms">
+                            <select name="to" class="form-control ms" id="to-wallet">
                                 <option value="">বাছাই করুন </option>
                                 @if ($from=='office')
                                     <option value="cashier">ক্যাশিয়ারের ব্যালেন্স</option>
@@ -61,6 +63,19 @@
                                     <option value="office">অফিস ব্যালেন্স</option>
 
                                 @endif
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 bank-select-container" style=" @if($from != 'bank') display:none; @endif ">
+                        <div class="form-group">
+                            <label for=""><small> ব্যাংক বাছাই করুন </small></label>
+                            <select name="bank_id" class="form-control ms">
+                                <option value="">বাছাই করুন </option>
+                                @foreach (App\Bank::where('status','active')->get() as $bank)
+                                    <option value="{{$bank->id}}">{{$bank->name}}</option>
+
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -127,6 +142,21 @@
 
 
 @section('script')
+
+<script>
+    $('#to-wallet').on('change',function(event){
+        let value = $(this).val();
+        let from = "{{$from}}";
+
+        if(from !=='bank' && value !=='bank'){
+            $('.bank-select-container').hide();
+        }else{
+
+            $('.bank-select-container').show();
+
+        }
+    });
+</script>
 
 @endsection
 
