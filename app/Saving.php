@@ -45,6 +45,29 @@ class Saving extends Model
     }
 
 
+    public function deposit_balance(){
+
+        $totalCreadit  = Transaction::whereIn('flag',['deposit'])->where('transaction_for','saving')
+            ->where('status','approved')->where('transactable_id',$this->id)->sum('amount');
+        $totalDebit  = Transaction::whereIn('flag',['deposit_withdraw'])->where('transaction_for','saving')
+        ->where('status','approved')->where('transactable_id',$this->id)->sum('amount');
+
+        $balance = $totalCreadit-$totalDebit;
+        return $balance;
+    }
+
+    public function profit_balance(){
+
+        $totalCreadit  = Transaction::whereIn('flag',['profit'])->where('transaction_for','saving')
+            ->where('status','approved')->where('transactable_id',$this->id)->sum('amount');
+        $totalDebit  = Transaction::whereIn('flag',['profit_withdraw'])->where('transaction_for','saving')
+        ->where('status','approved')->where('transactable_id',$this->id)->sum('amount');
+
+        $balance = $totalCreadit-$totalDebit;
+        return $balance;
+    }
+
+
     public function histories(){
         return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','saving');
     }
@@ -55,6 +78,6 @@ class Saving extends Model
         return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','saving')->where('flag','profit');
     }
     public function withdraws(){
-        return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','saving')->where('flag','withdraw');
+        return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','saving')->whereIn('flag',['profit_withdraw','deposit_withdraw']);
     }
 }
