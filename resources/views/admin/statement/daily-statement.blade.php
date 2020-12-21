@@ -147,7 +147,7 @@
                                     <br>
                                     <br>
 
-                                    <div class="col-sm-12" style="width: 100% !important;">
+                                    <div class="col-sm-6" style="width: 45% !important;">
 
                                         <div class="body">
 
@@ -155,474 +155,596 @@
                                                     <table class="table table-bordered table-hover">
                                                         <tbody>
                                                                 <tr>
-                                                                    <td style="width: 5%;">ক্রঃ নং</td>
-                                                                    <td style="width: 25%;">প্রাপ্তি বিবরণী</td>
-                                                                    <td style="width: 10%;">টাকা</td>
-                                                                    <td style="width: 10%;">টাকা</td>
-                                                                    <td style="width: 5%;">ক্রঃ নং</td>
-                                                                    <td style="width: 25%;">প্রাদান বিবরণী</td>
-                                                                    <td style="width: 10%;">টাকা</td>
-                                                                    <td style="width: 10%;">টাকা</td>
+                                                                    <td style="width: 10%;">ক্রঃ নং</td>
+                                                                    <td style="width: 50%;">প্রাপ্তি বিবরণী</td>
+                                                                    <td style="width: 20%;">টাকা</td>
+                                                                    <td style="width: 20%;">টাকা</td>
+
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;">১</td>
-                                                                    <td style="width: 25%;">পরিচালক সভ্য খাতে প্রাপ্তি</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;">১</td>
-                                                                    <td style="width: 25%;">ক) জমি ক্রয়</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td>১</td>
+                                                                    <td>পরিচালক সভ্য খাতে প্রাপ্তি</td>
+                                                                    <td></td>
+                                                                    <td></td>
+
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ক) আমানত</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">খ) ব্যাংক জমা</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>ক) আমানত</td>
+                                                                    <td></td>
+                                                                    <td></td>
+
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">খ) ঋণের আসল আদায়</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">গ) গৃহ নির্মাণ</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>খ) ঋণের আসল আদায়</td>
+                                                                    <td></td>
+                                                                    <td></td>
+
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">গ) ঋণের লাভ আদায়</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ঘ) ব্যাংক ঋণ পঃ</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>গ) ঋণের লাভ আদায়</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;"></td>
-                                                                    <td style="width: 10%; text-align:right">মোটঃ</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ঙ) ঋণ প্রদান</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td style="text-align:right">মোটঃ</td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;">২</td>
-                                                                    <td style="width: 25%;">সঞ্চয় প্রকল্প খাতে প্রাপ্তি</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ঙ) ঋণ প্রদান(স্বর্ণ মরগেজ)</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td>২</td>
+                                                                    <td>সঞ্চয় প্রকল্প খাতে প্রাপ্তি</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ক)সঞ্চয় প্রকল্প আমানত-৫</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">চ) সাধারন সঞ্চয় ফেরত(সেভিং)</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>ক)সঞ্চয় প্রকল্প আমানত-৫</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">খ)সঞ্চয় প্রকল্প আমানত-১০</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ছ) বেতন ভাতা</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>খ)সঞ্চয় প্রকল্প আমানত-১০</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">গ) ৫ বছর ঋণের আসল আদায়</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">জ) বিদ্যুৎ</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>গ) ৫ বছর ঋণের আসল আদায়</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ঘ) ৫ বছর ঋণের লাভ আদায়</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ঝ) অফিস ভাড়া</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>ঘ) ৫ বছর ঋণের লাভ আদায়</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ঙ) ১০ বছর ঋণের আসল আদায়</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ঞ) গোডাউন ভাড়া</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>ঙ) ১০ বছর ঋণের আসল আদায়</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">চ) ১০ বছর ঋণের লাভ আদায়</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ট) আপ্যায়ন</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>চ) ১০ বছর ঋণের লাভ আদায়</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ছ) দৈনিক সঃ ঋণের আসল আদায়</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ঠ) ষ্টেশনারী</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>ছ) দৈনিক সঃ ঋণের আসল আদায়</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">জ) দৈনিক সঃ ঋণের লাভ আদায়</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ড) যাতায়াত</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>জ) দৈনিক সঃ ঋণের লাভ আদায়</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ঝ) ভর্তি ফী</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ঢ) পানির/ময়লার/ডিশ বিল</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>ঝ) ভর্তি ফী</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ঞ) ঋনের ফরম</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ণ) টেলিফোন</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>ঞ) ঋনের ফরম</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ট) জরিমানা</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ত) মোবাইল</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>ট) জরিমানা</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ঠ) ভ্যাট আদায়</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">থ) ইলেকাট্রনিক্স যন্ত্রাংশ মেরাঃ</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>ঠ) ভ্যাট আদায়</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ড) অপলাভ</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">দ) নেট বিল</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>ড) অপলাভ</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ঢ) ব্যাংক লাভ</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ধ) এফ ডি আর ব্যাংক</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>ঢ) ব্যাংক লাভ</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ণ) বিবিধ</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ন) বিবিধ খরচ</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>ণ) বিবিধ</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;"></td>
-                                                                    <td style="width: 10%; text-align:right">মোটঃ</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;"></td>
-                                                                    <td style="width: 10%; text-align:right">মোটঃ</td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td style="text-align:right">মোটঃ</td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;">৩</td>
-                                                                    <td style="width: 25%;">সাধারন সঞ্চয় (সেভিংস)</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;">২</td>
-                                                                    <td style="width: 25%;">সঞ্চয় প্রকল্প খাতে প্রদান</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td>৩</td>
+                                                                    <td>সাধারন সঞ্চয় (সেভিংস)</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;">৪</td>
-                                                                    <td style="width: 25%;">দৈনিক সঞ্চয় আদায়</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ক) সঞ্চয় প্রঃ আমানত ৫ ফেরত</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td>৪</td>
+                                                                    <td>দৈনিক সঞ্চয় আদায়</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;">৫</td>
-                                                                    <td style="width: 25%;">মেয়াদী আমানত আদায়</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">খ)সঞ্চয় প্রঃ আঃ ৫ লাভ প্রদান</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td>৫</td>
+                                                                    <td>মেয়াদী আমানত আদায়</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">গ)সঞ্চয় প্রঃ আমানত ১০ ফেরত</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td>৬</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;">৬</td>
-                                                                    <td style="width: 25%;">ব্যাংক হতে প্রাপ্তি</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ঘ)সঞ্চয় প্রঃ আঃ ১০ লাভ প্রদান</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td>৭</td>
+                                                                    <td>ব্যাংক হতে প্রাপ্তি</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ক)ব্যাংক হতে উত্তোলন</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ঙ)দৈনিক সঞ্চয় ফেরত</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>ক)ব্যাংক হতে উত্তোলন</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">খ)ব্যাংক হতে ঋণ</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">চ)দৈনিক সঃ লাভ প্রদান</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>খ)ব্যাংক হতে ঋণ</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">গ)এফ.ডি.আর আসল</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ছ)মেয়াদী আমানত ফেরত</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>গ)এফ.ডি.আর আসল</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ঘ)এফ.ডি.আর লাভ</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">জ)লাভাংশ প্রদান</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>ঘ)এফ.ডি.আর লাভ</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;"></td>
-                                                                    <td style="width: 10%; text-align:right">মোটঃ</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;"></td>
-                                                                    <td style="width: 10%; text-align:right">মোটঃ</td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td style="text-align:right">মোটঃ</td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;"></td>
-                                                                    <td style="width: 10%; text-align:right">মোট প্রাপ্তি</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;"></td>
-                                                                    <td style="width: 10%; text-align:right">মোট প্রদান</td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td style="text-align:right">মোট প্রাপ্তি</td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;">৭</td>
-                                                                    <td style="width: 25%;">সর্বমোট প্রাপ্তি</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;">৩</td>
-                                                                    <td style="width: 25%;">সর্বমোট প্রদান</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td>৮</td>
+                                                                    <td>সর্বমোট প্রাপ্তি</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ক)পূর্বের হাতে নগদ</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ক)পূর্বের প্রদান</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>ক)পূর্বের হাতে নগদ</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">খ)আজকের হাতে নগদ</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">খ)আজকের প্রদান</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>খ)আজকের হাতে নগদ</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">গ)</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">গ) আজকের আতিরিক্ত প্রদান</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>গ)</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ঘ)ক্যাশিয়ার কে প্রদান</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ঘ)</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>ঘ)ক্যাশিয়ার কে প্রদান</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;">৮</td>
-                                                                    <td style="width: 25%;">ব্যাংক ব্যালেন্সঃ</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;">৪</td>
-                                                                    <td style="width: 25%;">ব্যাংক ব্যালেন্সঃ</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td>৯</td>
+                                                                    <td>ব্যাংক ব্যালেন্সঃ</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ক) পূর্বের জমা</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">ক) পূর্বের জমা</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>ক) পূর্বের জমা</td>
+                                                                    <td></td>
+                                                                    <td></td>
+
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">খ ) (+) অদ্য জমা</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">খ ) (+) অদ্য জমা</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>খ ) (+) অদ্য জমা</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">গ) (-) উত্তোলন</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;">গ) (-) উত্তোলন</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td>গ) (-) উত্তোলন</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;"></td>
-                                                                    <td style="width: 10%; text-align:right">স্থিতিঃ</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;"></td>
-                                                                    <td style="width: 10%; text-align:right">স্থিতিঃ</td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td style="text-align:right">স্থিতিঃ</td>
+                                                                    <td></td>
+
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;">৯</td>
-                                                                    <td style="width: 25%;">প্রারম্ভিক জের</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;">৫</td>
-                                                                    <td style="width: 25%;">হাতে নগদ</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td>১০</td>
+                                                                    <td>প্রারম্ভিক জের</td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;"></td>
-                                                                    <td style="width: 10%; text-align:right">মোটঃ</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 5%;"></td>
-                                                                    <td style="width: 25%;"></td>
-                                                                    <td style="width: 10%; text-align:right">মোটঃ</td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td style="text-align:right">মোটঃ</td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="width: 3%;"></td>
-                                                                    <td style="width: 25%;"></td>
-                                                                    <td style="width: 12%; text-align:right">সর্বমোট হিসাবঃ</td>
-                                                                    <td style="width: 10%;"></td>
-                                                                    <td style="width: 3%;"></td>
-                                                                    <td style="width: 25%;"></td>
-                                                                    <td style="width: 12%; text-align:right">সর্বমোট হিসাবঃ</td>
-                                                                    <td style="width: 10%;"></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td style="text-align:right">সর্বমোট হিসাবঃ</td>
+                                                                    <td></td>
+                                                                </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </fieldset>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6" style="width: 45% !important;">
+
+                                        <div class="body">
+
+                                                <fieldset>
+                                                    <table class="table table-bordered table-hover">
+                                                        <tbody>
+                                                                <tr>
+                                                                    <td style="width: 10%;">ক্রঃ নং</td>
+                                                                    <td style="width: 50%;">প্রাপ্তি বিবরণী</td>
+                                                                    <td style="width: 20%;">টাকা</td>
+                                                                    <td style="width: 20%;">টাকা</td>
+
+                                                                </tr>
+                                                                <tr>
+
+                                                                    <td>১</td>
+                                                                    <td>ক) জমি ক্রয়</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+
+                                                                    <td></td>
+                                                                    <td>খ) ব্যাংক জমা</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>গ) গৃহ নির্মাণ</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+
+                                                                    <td></td>
+                                                                    <td>ঘ) ব্যাংক ঋণ পঃ</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>ঙ) ঋণ প্রদান</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>ঙ) ঋণ প্রদান(স্বর্ণ মরগেজ)</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+
+                                                                    <td></td>
+                                                                    <td>চ) সাধারন সঞ্চয় ফেরত(সেভিং)</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>ছ) বেতন ভাতা</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>জ) বিদ্যুৎ</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>ঝ) অফিস ভাড়া</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>ঞ) গোডাউন ভাড়া</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>ট) আপ্যায়ন</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>ঠ) ষ্টেশনারী</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+
+                                                                    <td></td>
+                                                                    <td>ড) যাতায়াত</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>ঢ) পানির/ময়লার/ডিশ বিল</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>ণ) টেলিফোন</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>ত) মোবাইল</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>থ) ইলেকাট্রনিক্স যন্ত্রাংশ মেরাঃ</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+
+                                                                    <td></td>
+                                                                    <td>দ) নেট বিল</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>ধ) এফ ডি আর ব্যাংক</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>ন) বিবিধ খরচ</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td style="text-align:right">মোটঃ</td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>২</td>
+                                                                    <td>সঞ্চয় প্রকল্প খাতে প্রদান</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>ক) সঞ্চয় প্রঃ আমানত ৫ ফেরত</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>খ)সঞ্চয় প্রঃ আঃ ৫ লাভ প্রদান</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>গ)সঞ্চয় প্রঃ আমানত ১০ ফেরত</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>ঘ)সঞ্চয় প্রঃ আঃ ১০ লাভ প্রদান</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>ঙ)দৈনিক সঞ্চয় ফেরত</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>চ)দৈনিক সঃ লাভ প্রদান</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>ছ)মেয়াদী আমানত ফেরত</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>জ)লাভাংশ প্রদান</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td style="text-align:right">মোটঃ</td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td style="text-align:right">মোট প্রদান</td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>৩</td>
+                                                                    <td>সর্বমোট প্রদান</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>ক)পূর্বের প্রদান</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>খ)আজকের প্রদান</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+
+                                                                    <td></td>
+                                                                    <td>গ) আজকের আতিরিক্ত প্রদান</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+
+                                                                    <td></td>
+                                                                    <td>ঘ)</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>৪</td>
+                                                                    <td>ব্যাংক ব্যালেন্সঃ</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>ক) পূর্বের জমা</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+
+                                                                    <td></td>
+                                                                    <td>খ ) (+) অদ্য জমা</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>গ) (-) উত্তোলন</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td style="text-align:right">স্থিতিঃ</td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>৫</td>
+                                                                    <td>হাতে নগদ</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td style="text-align:right">মোটঃ</td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td style="text-align:right">সর্বমোট হিসাবঃ</td>
+                                                                    <td></td>
                                                                 </tr>
                                                         </tbody>
                                                     </table>
