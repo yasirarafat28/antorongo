@@ -27,8 +27,6 @@ class SavingController extends Controller
     //     $this->middleware('permission:saving-short-collection-report-list', ['only' => ['CollectionList']]);
     //     $this->middleware('permission:saving-short-withdraw-report-list', ['only' => ['WithdrawList']]);
 
-
-
     // }
 
     public  function application($type)
@@ -838,6 +836,14 @@ class SavingController extends Controller
         $saving->save();
 
         return back()->withSuccess('সফলভাবে প্রত্যাখ্যান করা হয়েছে');
+    }
+
+    public function DeleteSaving($id)
+    {
+        $saving = Saving::destroy($id);
+
+        Transaction::where('transaction_for','saving')->where('transactable_id',$id)->delete();
+        return back()->withSuccess('সফলভাবে মুছে ফেলা হয়েছে');
     }
 
     public function  SavingEdit($id)
