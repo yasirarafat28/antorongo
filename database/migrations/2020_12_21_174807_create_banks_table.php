@@ -38,7 +38,7 @@ class CreateBanksTable extends Migration
         $row->save();
 
 
-        Schema::table('transaction_head', function (Blueprint $table) {
+        Schema::table('transaction', function (Blueprint $table) {
             $table->integer('bank_id')->default(0);
         });
     }

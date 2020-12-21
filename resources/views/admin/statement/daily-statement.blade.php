@@ -745,19 +745,19 @@
                                                     </tr>
                                                     <tr>
                                                         <td>যমুনা</td>
-                                                        <td></td>
+                                                        <td>{{App\Wallet::balance('bank',$from,$to,1)}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>শাহজালাল</td>
-                                                        <td></td>
+                                                        <td>{{App\Wallet::balance('bank',$from,$to,2)}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>মার্কেন্টাইল</td>
-                                                        <td></td>
+                                                        <td>{{App\Wallet::balance('bank',$from,$to,3)}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>সর্বমোট =</td>
-                                                        <td></td>
+                                                        <td>{{App\Wallet::balance('bank',$from,$to)}}</td>
                                                     </tr>
 
 
