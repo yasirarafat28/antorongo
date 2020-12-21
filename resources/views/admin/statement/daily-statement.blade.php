@@ -155,7 +155,6 @@
                                 <br>
                                 <br>
 
-
                                     <div class="col-sm-6" style="width: 45% !important;">
 
                                         <div class="body">
