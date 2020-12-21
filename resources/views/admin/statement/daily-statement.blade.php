@@ -120,7 +120,14 @@
                                     <div class="body">
                                         <h1 style="text-align: center">দি অন্তরঙ্গ বহুমুখী সমবায় সমিতি লিঃ</h1>
                                     <h5 style="text-align: center">৭৪১,মনিপুর,মিরপুর-২,ঢাকা-১২১৬ । রেজি নং-১৮৭/০১</h5>
-                                    <h3 style="text-align: center">দৈনিক প্রাপ্তি-প্রদান বিবরণী  <span style="padding-left: 15px;">তারিখঃ</span> {{$_GET['date']??''}}</h3>
+                                    <h3 style="text-align: center">দৈনিক প্রাপ্তি-প্রদান বিবরণী  <span style="padding-left: 15px;">তারিখঃ</span>
+
+                                         @if ($from != $to)
+                                            {{$from}} -  {{$to}}
+                                        @else
+                                            {{$to}}
+                                         @endif
+                                    </h3>
                                     </div>
                                 </div>
 
