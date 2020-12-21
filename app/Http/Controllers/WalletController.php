@@ -83,6 +83,9 @@ class WalletController extends Controller
         $deduct->added_by = Auth::user()->id;
         $deduct->admin_status ='approved';
         $deduct->manager_status = 'approved';
+        if($request->from=='bank')
+            $deduct->bank_id = $request->bank_id;
+
         $deduct->status = 'approved';
         $deduct->canculatable = 'yes';
         $deduct->save();
@@ -100,6 +103,8 @@ class WalletController extends Controller
         $credit->amount = NumberConverter::bn2en($request->amount);
         $credit->added_by = Auth::user()->id;
         $credit->canculatable = 'yes';
+        if($request->to=='bank')
+            $deduct->bank_id = $request->bank_id;
         $credit->admin_status ='approved';
         $credit->manager_status = 'approved';
         $credit->status = 'approved';
