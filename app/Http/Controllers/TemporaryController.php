@@ -537,11 +537,8 @@ class TemporaryController extends Controller
         if ($permission){
             $admin->givePermissionTo($permission->name);
         }
-        $permission = \Spatie\Permission\Models\Permission::create(['name' => 'statement-customize']);
-        if ($permission){
-            $admin->givePermissionTo($permission->name);
-        }
 
+        return 'success';
 
     }
 }

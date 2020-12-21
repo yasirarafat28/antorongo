@@ -483,7 +483,9 @@ class LoanController extends Controller
     public function DeleteLoan($id)
     {
         $loan = Loan::destroy($id);
-        return back()->withSuccess('সফলভাবে মুছে ফেলা হয়েছে');
+
+        Transaction::where('transaction_for','loan')->where('transactable_id',$id)->delete();
+        return redirect('admin/loan/list')->withSuccess('সফলভাবে মুছে ফেলা হয়েছে');
     }
 
 
