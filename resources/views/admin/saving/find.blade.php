@@ -238,9 +238,26 @@
                                                 <div class="row no-gutters align-items-center">
                                                     <div class="col mr-2">
                                                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                            বর্তমান ব্যালেন্স
+                                                            বর্তমান জমা ব্যালেন্স
                                                         </div>
-                                                        <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn(number_format($saving->balance(),2))}} টাকা </div>
+                                                        <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn(number_format($saving->deposit_balance(),2))}} টাকা </div>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-md-6 mb-4">
+                                        <div class="card border-left-info shadow h-100 py-2">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                            বর্তমান লাভ ব্যালেন্স
+                                                        </div>
+                                                        <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn(number_format($saving->profit_balance(),2))}} টাকা </div>
                                                     </div>
                                                     <div class="col-auto">
                                                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -463,6 +480,20 @@
                                             {{csrf_field()}}
                                             <input type="hidden" name="saving_id" value="{{$saving->id}}">
                                             <input type="hidden" name="user_id" value="{{$saving->user_id}}">
+
+
+                                            <div class="col-lg-12 col-md-12">
+
+                                                <div class="form-group">
+
+                                                    <label for=""><small> ব্যালেন্স এর ধরন </small></label>
+                                                    <select name="balance" id="" class="form-control" required>
+                                                        <option value="deposit">জমা </option>
+                                                        <option value="profit">লাভ</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
 
 
                                             <div class="col-lg-12 col-md-12">

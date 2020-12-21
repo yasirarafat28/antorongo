@@ -74,6 +74,7 @@ class SavingController extends Controller
             'user_id'=>'required',
             'amount'=>'required',
             'date'=>'required',
+            'balance'=>'required|in:profit,deposit',
         ]);
 
 
@@ -84,7 +85,21 @@ class SavingController extends Controller
             return back()->withError('Related saving didn\'t found!');
         }
 
-        if($saving->balance() < $request->amount){
+        if($request->balance=='profit'){
+
+            if($saving->profit_balance() < $request->amount){
+                return back()->withErrors('দুঃখিত ! উত্তোলন করার জন্য যথেষ্ট পরিমান ব্যালেন্স নেই!');
+            }
+
+        }elseif($request->balance=='deposit'){
+
+            if($saving->deposit_balance() < $request->amount){
+                return back()->withErrors('দুঃখিত ! উত্তোলন করার জন্য যথেষ্ট পরিমান ব্যালেন্স নেই!');
+            }
+
+        }else{
+
+        //if($saving->balance() < $request->amount){
             return back()->withErrors('দুঃখিত ! উত্তোলন করার জন্য যথেষ্ট পরিমান ব্যালেন্স নেই!');
         }
 
@@ -106,7 +121,7 @@ class SavingController extends Controller
         $transaction->txn_id = uniqid();
         $transaction->transaction_for = 'saving';
         $transaction->transactable_id = $request->saving_id;
-        $transaction->flag = 'withdraw';
+        $transaction->flag =  $request->balance=='profit'?'profit_withdraw':'deposit_withdraw';
         $transaction->type = 'expense';
         $transaction->head_id = $head->id;
         $transaction->user_id = $request->user_id;

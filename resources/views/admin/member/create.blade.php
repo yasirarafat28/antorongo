@@ -41,7 +41,7 @@
 
                     <div class="body">
                         <div class="row clearfix">
-
+{{--
                             <div class="col-lg-4 col-md-4 col-sm-12">
 
                                 <div class="form-group">
@@ -56,7 +56,7 @@
 
                                 </div>
 
-                            </div>
+                            </div> --}}
 
                             <div class="col-lg-4 col-md-4 col-sm-12">
 
@@ -69,7 +69,7 @@
                                         <option value="current"> চলতি  প্রকল্প </option>
                                         <option value="saving"> সঞ্চয়ী </option>
                                         <option value="short_term"> সল্প মেয়াদী(৫ বছর মেয়াদী) </option>
-                                        <option value="long_term"> দীর্ঘ মেয়াদী(১০ বছর মেয়াদী) </option>ে
+                                        <option value="long_term"> দীর্ঘ মেয়াদী(১০ বছর মেয়াদী) </option>
                                     </select>
 
                                 </div>
