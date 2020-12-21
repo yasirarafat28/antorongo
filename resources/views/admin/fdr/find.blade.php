@@ -242,6 +242,7 @@
                             @if($fdr->status=='pending')
                                 <a href="{{url('admin/fdr-approve/'.$fdr->id)}}" class="btn btn-primary"><i class="fa fa-check"> </i> অনুমোদন করুন</a>
                                 <a href="{{url('admin/fdr-decline/'.$fdr->id)}}" class="btn btn-primary"><i class="fa fa-times"> প্রত্যাখ্যান করুন</i></a>
+                                <a href="{{url('admin/fdr/Remove/'.$fdr->id)}}" class="btn btn-danger"><i class="fa fa-trash" onclick="return confirm('Are you Sure?? ');"> মুছে ফেলুন </i></a>
                             @elseif($fdr->status=='approved')
                             <a data-toggle="modal" data-target="#addProfiteModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> লাভ যোগ করুন </a>
                             <a data-toggle="modal" data-target="#withDrawModal" class="btn btn-primary"> <i class="fa fa-upload"></i> উত্তোলন করুন </a>

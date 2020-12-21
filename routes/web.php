@@ -129,6 +129,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::get('saving/{type}/withdraw-report', 'SavingController@WithdrawList');
     Route::get('saving-approve/{id}', 'SavingController@AdminApprove');
     Route::get('saving-decline/{id}', 'SavingController@AdminDecline');
+    Route::get('saving/Remove/{id}', 'SavingController@DeleteSaving');
     Route::get('saving/{type}/application', 'SavingController@application');
     Route::post('saving/application', 'SavingController@SavingApplication')->name('SavingApplication');
     Route::post('saving/daily-application', 'SavingController@SavingDailyApplication')->name('SavingDailyApplication');
@@ -172,6 +173,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::post('fdr/edit/{id}', 'FdrController@FdrUpdate')->name('FdrUpdate');
 
     Route::post('fdr/close/{id}', 'FdrController@close')->name('fdrClose');
+    Route::get('fdr/Remove/{id}', 'FdrController@Deletefdr');
 
     //Printing
     Route::get('print/saving/{txn_id}', 'PrintController@saving')->name('print.saving');

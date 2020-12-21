@@ -16,20 +16,20 @@ use Illuminate\Support\Facades\Auth;
 
 class LoanController extends Controller
 {
-    // function __construct()
-    // {
-    //     $this->middleware('permission:loan-find', ['only' => ['LoanFind']]);
-    //     $this->middleware('permission:loan-list', ['only' => ['LoanList']]);
-    //     $this->middleware('permission:loan-edit', ['only' => ['LoanEdit','LoanUpdate']]);
-    //     $this->middleware('permission:loan-show', ['only' => ['show']]);
-    //     $this->middleware('permission:loan-delete', ['only' => ['DeleteLoan']]);
-    //     $this->middleware('permission:loan-approve', ['only' => ['ApproveLoan']]);
-    //     $this->middleware('permission:loan-reject', ['only' => ['RejectLoan']]);
-    //     $this->middleware('permission:loan-close', ['only' => ['close']]);
-    //     $this->middleware('permission:laon-depository', ['only' => ['depository']]);
-    //     $this->middleware('permission:loan-application', ['only' => ['LoanApplication','LoanApplicationSubmit']]);
+    function __construct()
+    {
+        $this->middleware('permission:loan-find', ['only' => ['LoanFind']]);
+        $this->middleware('permission:loan-list', ['only' => ['LoanList']]);
+        $this->middleware('permission:loan-edit', ['only' => ['LoanEdit','LoanUpdate']]);
+        $this->middleware('permission:loan-show', ['only' => ['show']]);
+        $this->middleware('permission:loan-delete', ['only' => ['DeleteLoan']]);
+        $this->middleware('permission:loan-approve', ['only' => ['ApproveLoan']]);
+        $this->middleware('permission:loan-reject', ['only' => ['RejectLoan']]);
+        $this->middleware('permission:loan-close', ['only' => ['close']]);
+        $this->middleware('permission:laon-depository', ['only' => ['depository']]);
+        $this->middleware('permission:loan-application', ['only' => ['LoanApplication','LoanApplicationSubmit']]);
 
-    // }
+    }
 
     public function  LoanFind(Request $request)
     {

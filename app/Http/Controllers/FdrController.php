@@ -13,21 +13,21 @@ use App\TransactionHead;
 
 class FdrController extends Controller
 {
-    // function __construct()
-    // {
-    //     $this->middleware('permission:fdr-application', ['only' => ['application','ApplicationSubmit']]);
-    //     $this->middleware('permission:fdr-approve', ['only' => ['AdminApprove']]);
-    //     $this->middleware('permission:fdr-close', ['only' => ['close']]);
-    //     $this->middleware('permission:fdr-decline', ['only' => ['AdminDecline']]);
-    //     $this->middleware('permission:saving-short-edit', ['only' => ['FdrEdit','FdrUpdate']]);
-    //     $this->middleware('permission:fdr-list', ['only' => ['FdrList']]);
-    //     $this->middleware('permission:fdr-find', ['only' => ['find']]);
-    //     $this->middleware('permission:fdr-profit-report-list', ['only' => ['profitReport']]);
-    //     $this->middleware('permission:fdr-withdraw-report-list', ['only' => ['withdrawReport']]);
+    function __construct()
+    {
+        $this->middleware('permission:fdr-application', ['only' => ['application','ApplicationSubmit']]);
+        $this->middleware('permission:fdr-approve', ['only' => ['AdminApprove']]);
+        $this->middleware('permission:fdr-close', ['only' => ['close']]);
+        $this->middleware('permission:fdr-decline', ['only' => ['AdminDecline']]);
+        $this->middleware('permission:saving-short-edit', ['only' => ['FdrEdit','FdrUpdate']]);
+        $this->middleware('permission:fdr-list', ['only' => ['FdrList']]);
+        $this->middleware('permission:fdr-find', ['only' => ['find']]);
+        $this->middleware('permission:fdr-profit-report-list', ['only' => ['profitReport']]);
+        $this->middleware('permission:fdr-withdraw-report-list', ['only' => ['withdrawReport']]);
 
 
 
-    // }
+    }
 
 
     public  function Application()
@@ -573,5 +573,12 @@ class FdrController extends Controller
         return back()->withSuccess('সফলভাবে সদস্য পদ প্রত্যাহার করা হয়েছে!');
     }
 
+    public function Deletefdr($id)
+    {
+        $fdr = Fdr::destroy($id);
+
+        Transaction::where('transaction_for','fdr')->where('transactable_id',$id)->delete();
+        return redirect('admin/fdr/list')->withSuccess('সফলভাবে মুছে ফেলা হয়েছে');
+    }
 
 }

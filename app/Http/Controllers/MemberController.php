@@ -7,6 +7,7 @@ use App\Thana;
 use App\Loan;
 use App\Saving;
 use App\Fdr;
+use App\Transaction;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -18,12 +19,12 @@ class MemberController extends Controller
 
     function __construct()
     {
-        // $this->middleware('permission:member-find', ['only' => ['MemberFind']]);
-        // $this->middleware('permission:member-list', ['only' => ['index']]);
-        // $this->middleware('permission:member-create', ['only' => ['create','store']]);
-        // $this->middleware('permission:member-edit', ['only' => ['edit','update']]);
-        // $this->middleware('permission:member-show', ['only' => ['show']]);
-        // $this->middleware('permission:member-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:member-find', ['only' => ['MemberFind']]);
+        $this->middleware('permission:member-list', ['only' => ['index']]);
+        $this->middleware('permission:member-create', ['only' => ['create','store']]);
+        $this->middleware('permission:member-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:member-show', ['only' => ['show']]);
+        $this->middleware('permission:member-delete', ['only' => ['destroy']]);
 
     }
 
@@ -394,7 +395,8 @@ class MemberController extends Controller
     {
         //
         User::destroy($id);
-        return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
+        Transaction::where('transactable_id',$id)->delete();
+        return redirect('/admin/members')->withSuccess('সফলভাবে সেভ করা হয়েছে');
     }
 
 
