@@ -2,7 +2,7 @@
 @section('style')
 <style>
 
-    @media all {
+    @media print {
 
 
         .table td, .table th {
@@ -16,10 +16,7 @@
             border-collapse: collapse;
             border: 1px solid black;
             }
-    }
 
-    @media print
-    {
         @page { margin: 0; }
         body { margin: 0.6cm; }
     }
@@ -147,7 +144,7 @@
                                     <br>
                                     <br>
 
-                                    <div class="col-sm-12" style="width: 100% !important;">
+                                    <div class="col-sm-12" style="width: 100% !important; margin-top:2rem">
 
                                         <div class="body">
 
