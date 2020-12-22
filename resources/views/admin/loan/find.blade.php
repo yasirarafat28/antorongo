@@ -80,7 +80,7 @@
                                     <tbody>
                                         <tr>
                                             <td class="text-right">নাম :</td>
-                                            <td class="text-left">{{$loan->user->name}}</td>
+                                            <td class="text-left">{{$loan->user->name_bn}}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">সভ্য আইডি : </td>

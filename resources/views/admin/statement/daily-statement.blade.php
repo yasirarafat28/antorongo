@@ -425,7 +425,7 @@
                                                                     <td>ণ) বিবিধ</td>
                                                                     <td>
                                                                         @php
-                                                                        $amount = App\Transaction::total_by_slug_date('loan_profit_collect_income',$from,$to);
+                                                                        $amount = App\Transaction::total_by_slug_date('other_income',$from,$to);
 
                                                                         $saving_field_income +=$amount;
                                                                         @endphp
@@ -442,13 +442,29 @@
                                                                 <tr>
                                                                     <td>৩</td>
                                                                     <td>সাধারন সঞ্চয় (সেভিংস)</td>
-                                                                    <td></td>
+
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('other_income',$from,$to);
+
+                                                                        $saving_field_income +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>৪</td>
                                                                     <td>দৈনিক সঞ্চয় আদায়</td>
-                                                                    <td></td>
+
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('other_income',$from,$to);
+
+                                                                        $saving_field_income +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
