@@ -673,7 +673,7 @@
                                                         <tbody>
                                                                 <tr>
                                                                     <td style="width: 10%;">ক্রঃ নং</td>
-                                                                    <td style="width: 50%;">প্রাপ্তি বিবরণী</td>
+                                                                    <td style="width: 50%;">প্রদান বিবরণী</td>
                                                                     <td style="width: 20%;">টাকা</td>
                                                                     <td style="width: 20%;">টাকা</td>
 
@@ -1272,17 +1272,26 @@
                                             <table class="table table-bordered table-hover">
                                                 <tbody>
 
+                                                    @php
+                                                        $cashier_balance = App\Wallet::balance('cashier',null,$to);
+                                                        $office_balance = App\Wallet::balance('cashier',null,$to);
+                                                        $fdr_balance = 0;
+                                                        $hand_balance = $cashier_balance + $office_balance;
+                                                        $bank_balance = App\Wallet::balance('bank',null,$to);
+                                                        $total_balance = $fdr_balance + $hand_balance + $bank_balance;
+                                                    @endphp
+
                                                     <tr>
-                                                        <td>এফ ডি আর =</td>
+                                                        <td>এফ ডি আর = {{NumberConverter::en2bn($fdr_balance)}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>হাতে নগদ =</td>
+                                                        <td>হাতে নগদ = {{NumberConverter::en2bn($hand_balance)}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>ব্যাংক ব্যালেন্স =</td>
+                                                        <td>ব্যাংক ব্যালেন্স = {{NumberConverter::en2bn($bank_balance)}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>সর্বমোট =</td>
+                                                        <td>সর্বমোট = {{NumberConverter::en2bn($total_balance)}}</td>
                                                     </tr>
 
 
