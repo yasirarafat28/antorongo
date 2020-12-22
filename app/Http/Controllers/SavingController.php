@@ -185,7 +185,7 @@ class SavingController extends Controller
 
         if($saving->type=='long'){
             $flag = 'saving_project_10_income';
-        }elseif($saving->type=='long'){
+        }elseif($saving->type=='short'){
             $flag = 'saving_project_5_income';
         }elseif($saving->type=='current'){
             $flag = 'general_saving_income';
