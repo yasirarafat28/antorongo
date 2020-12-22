@@ -56,7 +56,7 @@
                                         <label for=""><small> সদস্য বাছাই করুন</small></label>
 
                                         <select name="user_id" id="user_id" onchange="getUser(this.value)" class="form-control z-index show-tick selectpicker"  data-live-search="true">
-                                            <option value="no">সদস্য বাছাই করুন</option>
+                                            <option value="">সদস্য বাছাই করুন</option>
                                             @foreach($members??array() as $member)
                                                 <option value="{{$member->id}}">{{$member->name}} - {{$member->unique_id}} </option>
                                             @endforeach
@@ -120,6 +120,16 @@
 
                                     </div>
 
+                                </div>
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="col-md-12">
+                                        <div class="checkbox">
+                                            <input id="remember_me_2" name="invoice" type="checkbox">
+                                            <label for="remember_me_2">
+                                                টাকা জমার রশিদ
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="col-md-12 text-center">

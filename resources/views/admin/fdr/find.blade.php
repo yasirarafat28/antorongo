@@ -204,7 +204,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-6 col-md-6 mb-4">
+                                <div class="col-xl-4 col-md-4 mb-4">
                                     <div class="card border-left-info shadow h-100 py-2">
                                         <div class="card-body">
                                             <div class="row no-gutters align-items-center">
@@ -220,15 +220,32 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-6 col-md-6 mb-4">
+                                <div class="col-xl-4 col-md-4 mb-4">
                                     <div class="card border-left-info shadow h-100 py-2">
                                         <div class="card-body">
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                        বর্তমান ব্যালেন্স
+                                                        বর্তমান মূলধন  ব্যালেন্স
                                                     </div>
-                                                    <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn(number_format($fdr->balance(),2))}} টাকা </div>
+                                                    <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn(number_format($fdr->revenue_balance(),2))}} টাকা </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-4 col-md-4 mb-4">
+                                    <div class="card border-left-info shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                        বর্তমান লাভ  ব্যালেন্স
+                                                    </div>
+                                                    <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn(number_format($fdr->profit_balance(),2))}} টাকা </div>
                                                 </div>
                                                 <div class="col-auto">
                                                     <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>                                                </div>
@@ -351,6 +368,17 @@
                                                 </div>
 
                                             </div>
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="col-md-12">
+                                                    <div class="checkbox">
+                                                        <input id="remember_me_2" name="invoice" type="checkbox">
+                                                        <label for="remember_me_2">
+                                                            টাকা জমার রশিদ
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
 
                                             <div class="col-md-12 text-center">
 

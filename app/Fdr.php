@@ -40,10 +40,24 @@ class Fdr extends Model
     }
 
 
+    public function revenue_balance(){
+        $totalCreadit  = Transaction::whereIn('flag',['deposit'])->where('transaction_for','fdr')
+            ->where('status','approved')->where('transactable_id',$this->id)->sum('amount');
+        $totalDebit  = Transaction::whereHas('head',function($q){
+            $q->where('slug','fdr_refund_expense');
+        })->whereIn('flag',['withdraw'])->where('transaction_for','fdr')
+        ->where('status','approved')->where('transactable_id',$this->id)->sum('amount');
+        $balance = $totalCreadit-$totalDebit;
+        return $balance;
+    }
+
+
     public function profit_balance(){
         $totalCreadit  = Transaction::whereIn('flag',['profit'])->where('transaction_for','fdr')
             ->where('status','approved')->where('transactable_id',$this->id)->sum('amount');
-        $totalDebit  = Transaction::whereIn('flag',['withdraw'])->where('transaction_for','fdr')
+        $totalDebit  = Transaction::whereIn('flag',['withdraw'])->whereHas('head',function($q){
+            $q->where('slug','fdr_profit_expense');
+        })->where('transaction_for','fdr')
         ->where('status','approved')->where('transactable_id',$this->id)->sum('amount');
         $balance = $totalCreadit-$totalDebit;
         return $balance;
