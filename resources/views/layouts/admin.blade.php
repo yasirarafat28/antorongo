@@ -88,6 +88,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{url('admin/members/find')}}">সদস্য খুঁজুন </a>
                         <a class="collapse-item" href="{{url('admin/members')}}" >সদস্য তালিকা  </a>
+                        <a class="collapse-item" href="{{url('admin/members?project=founding_member')}}" > পরিচালক সদস্য তালিকা  </a>
                     </div>
                 </div>
             </li>
