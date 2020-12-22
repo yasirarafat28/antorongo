@@ -65,9 +65,10 @@
                                     <label for=""><small> প্রকল্প</small></label>
 
                                     <select name="project" id="" class="form-control ms">
-                                        <option value="saving_project"> সঞ্চয়ী প্রকল্প </option>
-                                        <option value="current"> চলতি  প্রকল্প </option>
-                                        <option value="saving"> সঞ্চয়ী </option>
+                                        <option value="founding_member"> পরিচালক সদস্য   </option>
+                                        <option value="daily_saving"> দৈনিক  সঞ্চয়ী প্রকল্প </option>
+                                        <option value="current_saving"> চলতি  প্রকল্প </option>
+                                        <option value="fdr_member"> সঞ্চয়ী আমানত </option>
                                         <option value="short_term"> সল্প মেয়াদী(৫ বছর মেয়াদী) </option>
                                         <option value="long_term"> দীর্ঘ মেয়াদী(১০ বছর মেয়াদী) </option>
                                     </select>

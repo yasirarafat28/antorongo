@@ -335,8 +335,16 @@ class MemberController extends Controller
         if ($request->has('account_type')){ $member->account_type = $request->account_type;}
         if ($request->has('project')){ $member->project = $request->project;}
 
-        if ($request->has('email')){ $member->email = $request->email;}else{$member->email = $random_email;}
-        if ($request->has('unique_id')){ $member->unique_id = $request->unique_id;}else{$member->unique_id = $random_account;}
+        if ($request->has('email'))
+        {
+            $member->email = $request->email;
+        }
+        if ($request->has('unique_id')){
+            $this->validate($request,[
+                'unique_id'=>'unique:users,unique_id,'.$member->id
+            ]);
+            $member->unique_id = $request->unique_id;
+        }
         if ($request->has('password')){ $member->password = $request->password;}else{$member->password = $random_password;}
 
         //All Image file

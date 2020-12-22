@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9d47b858-e235-4dd5-a6c2-e607f0abc8c9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FdrController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FdrController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SavingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SavingController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WalletController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WalletController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Transaction.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Transaction.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/statement/daily-statement.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/statement/daily-statement.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MemberController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MemberController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TemporaryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TemporaryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/member/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/member/create.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,11 +26,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/FdrController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="350" column="82" selection-start-line="350" selection-start-column="51" selection-end-line="350" selection-end-column="82" />
+            <state relative-caret-position="375">
+              <caret line="353" selection-start-line="353" selection-end-line="353" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MemberController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="354" column="57" lean-forward="true" selection-start-line="354" selection-start-column="57" selection-end-line="354" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -75,6 +81,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/WalletController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SavingController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/FdrController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/MemberController.php" />
       </list>
     </option>
   </component>
@@ -266,12 +273,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1608614333379</updated>
-      <workItem from="1608614339201" duration="3057000" />
+      <workItem from="1608614339201" duration="3827000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3057000" />
+    <option name="totallyTimeSpent" value="3827000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1649" height="993" extended-state="6" />
@@ -326,8 +333,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/FdrController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="350" column="82" selection-start-line="350" selection-start-column="51" selection-end-line="350" selection-end-column="82" />
+        <state relative-caret-position="375">
+          <caret line="353" selection-start-line="353" selection-end-line="353" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MemberController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="354" column="57" lean-forward="true" selection-start-line="354" selection-start-column="57" selection-end-line="354" selection-end-column="57" />
         </state>
       </provider>
     </entry>
