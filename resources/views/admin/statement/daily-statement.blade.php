@@ -722,7 +722,7 @@
                                                                 <tr>
 
                                                                     <td></td>
-                                                                    <td>ঘ) ব্যাংক ঋণ পঃ</td>
+                                                                    <td>ঘ) ব্যাংক ঋণ পরিশোধ</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_date('bank_loan_payment_expense',$from,$to);
@@ -751,9 +751,11 @@
                                                                     <td>ঙ) ঋণ প্রদান(স্বর্ণ মরগেজ)</td>
                                                                     <td>
                                                                         @php
-                                                                        $amount = App\Transaction::total_by_slug_date('saving_project_5_income',$from,$to);
+                                                                        $gold_loan_ids =App\Loan::withCount('OrnamentDepositors')->having('ornament_depositors_count','>',0)->get('id')->pluck('id')->toArray();
+                                                                        $amount = App\Transaction::whereHas('head',function($q){
+                                                                            $q->where('slug','loan_giving_expense');
 
-                                                                        $general_expense +=$amount;
+                                                                        })->whereIn('transactable_id',$gold_loan_ids)->sum('amount');
                                                                         @endphp
                                                                         {{NumberConverter::en2bn($amount)}}
                                                                     </td>

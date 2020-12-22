@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Loan;
+use App\Transaction;
 use Illuminate\Http\Request;
 use App\TransactionHead;
 
@@ -28,6 +30,7 @@ class StatementController extends Controller
     }
 
     public function dailyStatement(){
+
         return view('admin/statement/daily-statement');
     }
 }
