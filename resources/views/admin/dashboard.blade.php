@@ -63,7 +63,7 @@
                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                     ৫ বছর মেয়াদী সঞ্চয়
                                 </div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($short_saving_transactions->sum('amount'))}} টাকা</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($short_saving_transactions)}} টাকা</div>
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">{{\App\NumberConverter::en2bn($short_savings->count())}} জন</div>
                             </div>
                             <div class="col-auto">
@@ -82,7 +82,7 @@
                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                     ১০ বছর মেয়াদী সঞ্চয়
                                 </div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($long_saving_transactions->sum('amount'))}} টাকা</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($long_saving_transactions)}} টাকা</div>
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">{{\App\NumberConverter::en2bn($long_savings->count())}} জন</div>
                             </div>
                             <div class="col-auto">
@@ -101,7 +101,7 @@
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     দৈনিক সঞ্চয়
                                 </div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($daily_saving_transactions->sum('amount'))}} টাকা</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($daily_saving_transactions)}} টাকা</div>
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">{{\App\NumberConverter::en2bn($daily_savings->count())}} জন</div>
                             </div>
                             <div class="col-auto">
@@ -120,7 +120,7 @@
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                     সাধারণ সঞ্চয়
                                 </div>
-                                <!--<div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($current_savings->sum('amount'))}} টাকা</div>-->
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($current_saving_transactions)}} টাকা</div>
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">{{\App\NumberConverter::en2bn($current_savings->count())}} জন</div>
                             </div>
                             <div class="col-auto">
@@ -139,7 +139,7 @@
                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                     এফ ডি আর
                                 </div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($fdr_transactions->sum('amount'))}} টাকা</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($fdr_transactions)}} টাকা</div>
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">{{\App\NumberConverter::en2bn($fdr_list->count())}} জন</div>
                             </div>
                             <div class="col-auto">
