@@ -345,7 +345,13 @@ class FdrController extends Controller
             return back()->withErrors('দুঃখিত ! উত্তোলন করার জন্য যথেষ্ট পরিমান ব্যালেন্স নেই!');
         }
 
-        $head = TransactionHead::where('slug','fdr_expense')->first();
+        if($request->withdraw_source=='profit'){
+            $head = TransactionHead::where('slug','fdr_refund_expense')->first();
+        }else{
+            $head = TransactionHead::where('slug','duration_deposit_profit_expense')->first();
+
+        }
+
 
         if(!$head){
             return back()->withErrors('Related head didn\'t found!');

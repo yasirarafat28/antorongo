@@ -49,7 +49,7 @@ class WalletController extends Controller
 
         if($request->from=='office'){
             if($request->to=='bank'){
-                $from_head = TransactionHead::where('slug','Bank _ expense')->first();
+                $from_head = TransactionHead::where('slug','bank_deposit_expense')->first();
             }else{
                 $from_head = TransactionHead::where('slug','Ajker_prodan')->first();
             }

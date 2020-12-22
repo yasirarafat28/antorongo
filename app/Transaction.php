@@ -75,6 +75,7 @@ class Transaction extends Model
     public static function total_by_slug_date($slug,$from,$to)
     {
 
+
         $from = date("Y-m-d", strtotime($from));
         $to = date("Y-m-d", strtotime($to));
         //return $to;
@@ -92,7 +93,7 @@ class Transaction extends Model
 
         if ($transaction_head->parent==0)
         {
-            return $childs = TransactionHead::where('parent',$transaction_head->id)->get('id')->pluck('id')->toArray();
+            $childs = TransactionHead::where('parent',$transaction_head->id)->get('id')->pluck('id')->toArray();
             $transactions += Transaction::whereIn('head_id',$childs)
                 ->where('date', '>=',  $from)
                 ->where('date', '<=',  $to)

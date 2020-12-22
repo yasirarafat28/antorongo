@@ -18,7 +18,7 @@
             }
 
         @page { margin: 0; }
-        body { margin: 0.6cm; }
+        body { margin: 0.6cm 2cm; }
     }
 
 
@@ -158,6 +158,10 @@
                                 @php
                                     $director_income = 0;
                                     $saving_field_income = 0;
+                                    $general_field_income = 0;
+                                    $daily_field_income = 0;
+                                    $fdr_field_income = 0;
+                                    $bank_field_income = 0;
                                 @endphp
 
                                     <div class="col-sm-6" style="width: 45% !important;">
@@ -360,7 +364,7 @@
                                                                     <td>ঞ) ঋনের ফরম</td>
                                                                     <td>
                                                                         @php
-                                                                        $amount = App\Transaction::total_by_slug_date('loan_profit_collect_income',$from,$to);
+                                                                        $amount = App\Transaction::total_by_slug_date('loan_form',$from,$to);
 
                                                                         $saving_field_income +=$amount;
                                                                         @endphp
@@ -386,7 +390,7 @@
                                                                     <td>ঠ) ভ্যাট আদায়</td>
                                                                     <td>
                                                                         @php
-                                                                        $amount = App\Transaction::total_by_slug_date('loan_profit_collect_income',$from,$to);
+                                                                        $amount = App\Transaction::total_by_slug_date('vat_income',$from,$to);
 
                                                                         $saving_field_income +=$amount;
                                                                         @endphp
@@ -399,7 +403,7 @@
                                                                     <td>ড) অপলাভ</td>
                                                                     <td>
                                                                         @php
-                                                                        $amount = App\Transaction::total_by_slug_date('loan_profit_collect_income',$from,$to);
+                                                                        $amount = App\Transaction::total_by_slug_date('suppression_income',$from,$to);
 
                                                                         $saving_field_income +=$amount;
                                                                         @endphp
@@ -412,7 +416,7 @@
                                                                     <td>ঢ) ব্যাংক লাভ</td>
                                                                     <td>
                                                                         @php
-                                                                        $amount = App\Transaction::total_by_slug_date('loan_profit_collect_income',$from,$to);
+                                                                        $amount = App\Transaction::total_by_slug_date('bank_profit_income',$from,$to);
 
                                                                         $saving_field_income +=$amount;
                                                                         @endphp
@@ -445,9 +449,9 @@
 
                                                                     <td>
                                                                         @php
-                                                                        $amount = App\Transaction::total_by_slug_date('other_income',$from,$to);
+                                                                        $amount = App\Transaction::total_by_slug_date('general_saving_income',$from,$to);
 
-                                                                        $saving_field_income +=$amount;
+                                                                        $general_field_income +=$amount;
                                                                         @endphp
                                                                         {{NumberConverter::en2bn($amount)}}
                                                                     </td>
@@ -459,9 +463,9 @@
 
                                                                     <td>
                                                                         @php
-                                                                        $amount = App\Transaction::total_by_slug_date('other_income',$from,$to);
+                                                                        $amount = App\Transaction::total_by_slug_date('daily_saving_collection_income',$from,$to);
 
-                                                                        $saving_field_income +=$amount;
+                                                                        $daily_field_income +=$amount;
                                                                         @endphp
                                                                         {{NumberConverter::en2bn($amount)}}
                                                                     </td>
@@ -470,7 +474,16 @@
                                                                 <tr>
                                                                     <td>৫</td>
                                                                     <td>মেয়াদী আমানত আদায়</td>
-                                                                    <td></td>
+
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('fdr_revenue_income',$from,$to);
+
+                                                                        $fdr_field_income += $amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
@@ -482,44 +495,84 @@
                                                                 <tr>
                                                                     <td>৭</td>
                                                                     <td>ব্যাংক হতে প্রাপ্তি</td>
-                                                                    <td></td>
+                                                                    <td>
+
+
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>ক)ব্যাংক হতে উত্তোলন</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('bank_withdraw_income',$from,$to);
+
+                                                                        $bank_field_income += $amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>খ)ব্যাংক হতে ঋণ</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('bank_loan_income',$from,$to);
+
+                                                                        $bank_field_income += $amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>গ)এফ.ডি.আর আসল</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('bank_fdr_revenue_income',$from,$to);
+
+                                                                        $bank_field_income += $amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>ঘ)এফ.ডি.আর লাভ</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('bank_fdr_profit_income',$from,$to);
+
+                                                                        $bank_field_income += $amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td></td>
                                                                     <td style="text-align:right">মোটঃ</td>
-                                                                    <td></td>
+                                                                    <td>{{NumberConverter::en2bn($bank_field_income)}}</td>
                                                                 </tr>
+
+                                                                @php
+                                                                    $grand_total_income = $fdr_field_income +  $daily_field_income +  $bank_field_income
+                                                                     +  $saving_field_income +  $general_field_income + $director_income;
+                                                                @endphp
                                                                 <tr>
                                                                     <td></td>
                                                                     <td></td>
                                                                     <td style="text-align:right">মোট প্রাপ্তি</td>
-                                                                    <td></td>
+                                                                    <td>{{NumberConverter::en2bn($grand_total_income)}}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>৮</td>
@@ -530,13 +583,13 @@
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>ক)পূর্বের হাতে নগদ</td>
-                                                                    <td></td>
+                                                                    <td>{{App\NumberConverter::en2bn(App\Wallet::balance('office',$from,$to))}}</td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>খ)আজকের হাতে নগদ</td>
-                                                                    <td></td>
+                                                                    <td>{{App\NumberConverter::en2bn(App\Wallet::balance('office',$from,$to))}}</td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
@@ -608,6 +661,11 @@
                                     </div>
                                     <div class="col-sm-6" style="width: 45% !important;">
 
+
+                                        @php
+                                            $general_expense = 0;
+                                            $saving_field_expense = 0;
+                                        @endphp
                                         <div class="body">
 
                                                 <fieldset>
@@ -624,205 +682,429 @@
 
                                                                     <td>১</td>
                                                                     <td>ক) জমি ক্রয়</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('land_buy_expense',$from,$to);
+
+                                                                        $general_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
 
                                                                     <td></td>
                                                                     <td>খ) ব্যাংক জমা</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('bank_deposit_expense',$from,$to);
+
+                                                                        $general_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>গ) গৃহ নির্মাণ</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('house_construction_expense',$from,$to);
+
+                                                                        $general_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
 
                                                                     <td></td>
                                                                     <td>ঘ) ব্যাংক ঋণ পঃ</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('bank_loan_payment_expense',$from,$to);
+
+                                                                        $general_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>ঙ) ঋণ প্রদান</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('loan_giving_expense',$from,$to);
+
+                                                                        $general_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>ঙ) ঋণ প্রদান(স্বর্ণ মরগেজ)</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('saving_project_5_income',$from,$to);
+
+                                                                        $general_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
 
                                                                     <td></td>
                                                                     <td>চ) সাধারন সঞ্চয় ফেরত(সেভিং)</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('general_saving_refund_expense',$from,$to);
+
+                                                                        $general_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>ছ) বেতন ভাতা</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('salary_expense',$from,$to);
+
+                                                                        $general_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>জ) বিদ্যুৎ</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('electricity_bill_expense',$from,$to);
+
+                                                                        $general_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>ঝ) অফিস ভাড়া</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('office_rent_expense',$from,$to);
+
+                                                                        $general_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>ঞ) গোডাউন ভাড়া</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('warehouse_rent',$from,$to);
+
+                                                                        $general_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>ট) আপ্যায়ন</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('appayon_expense',$from,$to);
+
+                                                                        $general_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>ঠ) ষ্টেশনারী</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('stationary_expense',$from,$to);
+
+                                                                        $general_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
 
                                                                     <td></td>
                                                                     <td>ড) যাতায়াত</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('travell_expense',$from,$to);
+
+                                                                        $general_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td>ঢ) পানির/ময়লার/ডিশ বিল</td>
+                                                                    <td>ঢ) পানির বিল</td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('water_bill_expense',$from,$to);
+
+                                                                        $general_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>ঢ) ময়লার বিল</td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('dirty_bill_expense',$from,$to);
+
+                                                                        $general_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>ণ) টেলিফোন</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('Teliphone_bill_expense',$from,$to);
+
+                                                                        $general_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>ত) মোবাইল</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('Mobile_bill_expense',$from,$to);
+
+                                                                        $general_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>থ) ইলেকাট্রনিক্স যন্ত্রাংশ মেরাঃ</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('Electronic_Tools expense',$from,$to);
+
+                                                                        $general_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
 
                                                                     <td></td>
                                                                     <td>দ) নেট বিল</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('Net_ bill',$from,$to);
+
+                                                                        $general_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>ধ) এফ ডি আর ব্যাংক</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('bank_fdr_expense',$from,$to);
+
+                                                                        $general_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>ন) বিবিধ খরচ</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('other_expense',$from,$to);
+
+                                                                        $general_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td></td>
                                                                     <td style="text-align:right">মোটঃ</td>
-                                                                    <td></td>
+                                                                    <td>{{NumberConverter::en2bn($general_expense)}}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>২</td>
                                                                     <td>সঞ্চয় প্রকল্প খাতে প্রদান</td>
-                                                                    <td></td>
+
+                                                                    <td>
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>ক) সঞ্চয় প্রঃ আমানত ৫ ফেরত</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('saving_project_5_expense',$from,$to);
+
+                                                                        $saving_field_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>খ)সঞ্চয় প্রঃ আঃ ৫ লাভ প্রদান</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('saving_project_5_profit_expense',$from,$to);
+
+                                                                        $saving_field_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>গ)সঞ্চয় প্রঃ আমানত ১০ ফেরত</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('saving_project_10_expense',$from,$to);
+
+                                                                        $saving_field_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>ঘ)সঞ্চয় প্রঃ আঃ ১০ লাভ প্রদান</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('saving_project_10_profit_expense',$from,$to);
+
+                                                                        $saving_field_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>ঙ)দৈনিক সঞ্চয় ফেরত</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('daily_saving_expense',$from,$to);
+
+                                                                        $saving_field_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>চ)দৈনিক সঃ লাভ প্রদান</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('saving_daily_profit_expense',$from,$to);
+
+                                                                        $saving_field_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>ছ)মেয়াদী আমানত ফেরত</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('fdr_refund_expense',$from,$to);
+
+                                                                        $saving_field_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>জ)লাভাংশ প্রদান</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('duration_deposit_profit_expense',$from,$to);
+
+                                                                        $saving_field_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
                                                                     <td></td>
                                                                     <td style="text-align:right">মোটঃ</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        {{NumberConverter::en2bn($saving_field_expense)}}</td>
                                                                 </tr>
+
+                                                                @php
+                                                                    $grand_expense_total = $saving_field_expense + $general_expense;
+                                                                @endphp
                                                                 <tr>
                                                                     <td></td>
                                                                     <td></td>
                                                                     <td style="text-align:right">মোট প্রদান</td>
-                                                                    <td></td>
+                                                                    <td>{{NumberConverter::en2bn($grand_expense_total)}}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>৩</td>

@@ -104,13 +104,33 @@ class SavingController extends Controller
         }
 
         if($saving->type=='long'){
-            $flag = 'saving_project_10_expense';
+            if($request->balance=='profit'){
+                $flag = 'saving_project_10_profit_expense';
+
+            }else{
+                $flag = 'saving_project_10_expense';
+            }
         }elseif($saving->type=='long'){
-            $flag = 'saving_project_5_expense';
+            if($request->balance=='profit'){
+                $flag = 'saving_project_5_profit_expense';
+
+            }else{
+                $flag = 'saving_project_5_expense';
+            }
         }elseif($saving->type=='current'){
-            $flag = 'general_saving_refund_expense';
+            if($request->balance=='profit'){
+                $flag = 'saving_general_profit_expense';
+
+            }else{
+                $flag = 'general_saving_refund_expense';
+            }
         }else{
-            $flag = 'daily_saving_expense';
+            if($request->balance=='profit'){
+                $flag = 'saving_daily_profit_expense';
+
+            }else{
+                $flag = 'daily_saving_expense';
+            }
         }
         $head = TransactionHead::where('slug',$flag)->first();
 
