@@ -53,7 +53,7 @@ class Fdr extends Model
 
 
     public function histories(){
-        return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','fdr');
+        return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','fdr')->orderBy('date','DESC');
     }
     public function deposits(){
         return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','fdr')->where('flag','deposit');

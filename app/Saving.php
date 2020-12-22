@@ -69,7 +69,7 @@ class Saving extends Model
 
 
     public function histories(){
-        return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','saving');
+        return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','saving')->orderBy('date','DESC');
     }
     public function deposits(){
         return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','saving')->where('flag','deposit');
