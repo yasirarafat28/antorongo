@@ -51,7 +51,7 @@
                                 <h2>খাতের তালিকা</h2>
                             </div>
                             <div class="float-right">
-                                <a data-toggle="modal" data-target="#largeModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i>খাত যোগ করুন </a>
+                                {{-- <a data-toggle="modal" data-target="#largeModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i>খাত যোগ করুন </a> --}}
                             </div>
                         </div>
 
@@ -60,7 +60,7 @@
                         <table class="table table-bordered table-striped table-hover dataTable js-plaintable">
                             <thead>
                             <tr>
-                                <th>ক্রিয়াকলাপ</th>
+                                <th class="d-none">ক্রিয়াকলাপ</th>
                                 <th> নাম </th>
                                 <th> মুল খাত </th>
                                 <th>স্লাগ </th>
@@ -68,7 +68,7 @@
                             </thead>
                             <tfoot>
                             <tr>
-                                <th>ক্রিয়াকলাপ</th>
+                                <th class="d-none">ক্রিয়াকলাপ</th>
                                 <th> নাম </th>
                                 <th> মুল খাত </th>
                                 <th>স্লাগ </th>
@@ -77,8 +77,8 @@
                             <tbody>
                             @foreach($records as $item)
                                 <tr>
-                                    <td>
-                                        @if ($item->system_managable=='no')
+                                    <td class="d-none">
+                                        @if ($item->system_managable=='no' && false)
                                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>

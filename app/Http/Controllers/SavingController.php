@@ -126,7 +126,7 @@ class SavingController extends Controller
             }
         }else{
             if($request->balance=='profit'){
-                $flag = 'saving_daily_profit_expense';
+                $flag = 'daily_saving_profit_expense';
 
             }else{
                 $flag = 'daily_saving_expense';

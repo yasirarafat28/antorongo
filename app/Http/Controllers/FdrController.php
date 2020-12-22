@@ -348,7 +348,7 @@ class FdrController extends Controller
         if($request->withdraw_source=='profit'){
             $head = TransactionHead::where('slug','fdr_refund_expense')->first();
         }else{
-            $head = TransactionHead::where('slug','duration_deposit_profit_expense')->first();
+            $head = TransactionHead::where('slug','fdr_profit_expense')->first();
 
         }
 

@@ -142,7 +142,7 @@
                 </a>
                 <div id="dailySaving" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{url('admin/saving/current/application')}}">আবেদন  </a>
+                        <a class="collapse-item" href="{{url('admin/saving/daily/application')}}">আবেদন  </a>
                         <a class="collapse-item" href="{{url('admin/saving/daily/list')}}">সঞ্চয় তালিকা</a>
                         <!--<a class="collapse-item" href="{{url('admin/saving/daily/withdraw')}}">সঞ্চয় উত্তোলন</a>
                         <a class="collapse-item" href="{{url('admin/saving/find')}}" > <span>আদায়/ কালেকশন </span></a>-->

@@ -1057,7 +1057,7 @@
                                                                     <td>চ)দৈনিক সঃ লাভ প্রদান</td>
                                                                     <td>
                                                                         @php
-                                                                        $amount = App\Transaction::total_by_slug_date('saving_daily_profit_expense',$from,$to);
+                                                                        $amount = App\Transaction::total_by_slug_date('daily_saving_profit_expense',$from,$to);
 
                                                                         $saving_field_expense +=$amount;
                                                                         @endphp
@@ -1083,7 +1083,7 @@
                                                                     <td>জ)লাভাংশ প্রদান</td>
                                                                     <td>
                                                                         @php
-                                                                        $amount = App\Transaction::total_by_slug_date('duration_deposit_profit_expense',$from,$to);
+                                                                        $amount = App\Transaction::total_by_slug_date('fdr_profit_expense',$from,$to);
 
                                                                         $saving_field_expense +=$amount;
                                                                         @endphp
