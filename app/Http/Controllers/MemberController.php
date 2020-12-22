@@ -109,9 +109,16 @@ class MemberController extends Controller
         return view('admin/member/find',compact('query','member','loan_records','saving_records','FDR_records'));
     }
 
-    public function getData(){
+    public function getData(Request $request){
+        //return $request;
 
-        return DataTables::of(User::query())
+        return DataTables::of(User::query()->where(function($q) use($request){
+            if(isset($request->project) && $request->project){
+                $q->where('project',$request->project);
+
+            }
+
+        }))
         ->addColumn('action', function ($item) {
             return view( 'admin.member.action', compact('item'));
         })

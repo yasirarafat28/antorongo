@@ -35,6 +35,25 @@
                         </div>
                     </div>
                     <div class="body table-responsive">
+                        <form class="row clearfix">
+                            <div class="col-lg-6 col-md-12">
+
+                                <div class="form-group">
+                                    <label for="">প্রকল্প</label>
+
+                                    <select name="project" onchange="this.form.submit()" id="project" class="form-control ms">
+                                        <option value=""> সবগুলো   </option>
+                                        <option {{isset($_GET['project']) && $_GET['project']=='founding_member'?'selected':''}} value="founding_member"> পরিচালক সদস্য   </option>
+                                        <option {{isset($_GET['project']) && $_GET['project']=='daily_saving'?'selected':''}} value="daily_saving"> দৈনিক  সঞ্চয়ী প্রকল্প </option>
+                                        <option {{isset($_GET['project']) && $_GET['project']=='current_saving'?'selected':''}} value="current_saving"> চলতি  প্রকল্প </option>
+                                        <option {{isset($_GET['project']) && $_GET['project']=='fdr_member'?'selected':''}} value="fdr_member"> সঞ্চয়ী আমানত </option>
+                                        <option {{isset($_GET['project']) && $_GET['project']=='short_term'?'selected':''}} value="short_term"> সল্প মেয়াদী(৫ বছর মেয়াদী) </option>
+                                        <option {{isset($_GET['project']) && $_GET['project']=='long_term'?'selected':''}} value="long_term"> দীর্ঘ মেয়াদী(১০ বছর মেয়াদী) </option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </form>
                         <table class="table table-bordered table-striped table-hover js-full-datatable" id="data-table">
                             <thead>
                             <tr>
@@ -69,7 +88,7 @@
 @section('script')
 <script>
     $(function() {
-        $('#data-table').DataTable({
+        var oTable = $('#data-table').DataTable({
             dom: 'lBfrtip',
             bFilter:true,
 
@@ -79,7 +98,16 @@
             ],
             processing: true,
             serverSide: true,
-            ajax: '{!! route('members.datatables.data') !!}',
+            // ajax: '{!! route('members.datatables.data') !!}',
+            // data: function (d) {
+            //     d.project = $('#project').val(),
+            // },
+            ajax: {
+                url: '{!! route('members.datatables.data') !!}',
+                data: {
+                    "project":$('#project').val(),
+                },
+            },
             columns: [
                 { data: 'action', name: 'action' },
                 { data: 'unique_id', name: 'unique_id' },
@@ -90,7 +118,21 @@
             order:[],
             paging: true,
         });
+
+
+
+        $('#project').on('change',function(event){
+            oTable.draw();
+            event.preventDefault();
+        });
+
+
     });
+
+
+
+
+
     </script>
 
 @endsection
