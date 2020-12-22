@@ -50,7 +50,7 @@ class Loan extends Model
         return $total_payable;
     }
     public function histories(){
-        return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','loan');
+        return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','loan')->orderBy('date','DESC');
     }
 
     public function loan_give_away(){
