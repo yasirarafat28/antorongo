@@ -1,5 +1,6 @@
 <?php
 
+use App\Transaction;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,16 @@ Route::get('/', function () {
 
     return view('front.index');
     return redirect('/login');
+});
+
+Route::get('/testing', function () {
+
+    $from = '2015-12-22';
+    $to = '2020-12-22';
+    $slug = 'loan_revenue_collect_income';
+    $project = 'daily_saving';
+    //$project = 'fdr_member';
+    return Transaction::total_by_slug_account_project_date($slug,$project,$from,$to);
 });
 Auth::routes();
 

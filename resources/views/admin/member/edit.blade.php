@@ -71,11 +71,12 @@
                                     <label for=""><small> প্রকল্প</small></label>
 
                                     <select name="project" id="" class="form-control ms">
-                                        <option value="saving_project" {{$member->project=='saving_project'?'selected' :''}} > সঞ্চয়ী প্রকল্প </option>
-                                        <option value="current" {{$member->project=='current'?'selected' :''}} > চলতি  প্রকল্প </option>
-                                        <option value="saving" {{$member->project=='saving'?'selected' :''}} > সঞ্চয়ী </option>
-                                        <option value="short_term" {{$member->project=='short_term'?'selected' :''}} > সল্প মেয়াদী </option>
-                                        <option value="long_term" {{$member->project=='long_term'?'selected' :''}} > দীর্ঘ মেয়াদী </option>
+                                        <option {{$member->project=='founding_member'?'selected' :''}} value="founding_member"> পরিচালক সদস্য   </option>
+                                        <option {{$member->project=='daily_saving'?'selected' :''}} value="daily_saving"> দৈনিক  সঞ্চয়ী প্রকল্প </option>
+                                        <option {{$member->project=='current_saving'?'selected' :''}} value="current_saving"> চলতি  প্রকল্প </option>
+                                        <option {{$member->project=='fdr_member'?'selected' :''}} value="fdr_member"> সঞ্চয়ী আমানত </option>
+                                        <option {{$member->project=='short_term'?'selected' :''}} value="short_term"> সল্প মেয়াদী(৫ বছর মেয়াদী) </option>
+                                        <option {{$member->project=='long_term'?'selected' :''}} value="long_term"> দীর্ঘ মেয়াদী(১০ বছর মেয়াদী) </option>
                                     </select>
 
                                 </div>

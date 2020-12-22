@@ -8,7 +8,7 @@
         .table td, .table th {
             padding: .01rem 0.25rem;
             vertical-align: top;
-            border-top: 1px solid #e3e6f0 !important;
+            border-top: 1px solid #000 !important;
             font-size: 12px !important;
         }
         .tableboder {
@@ -190,7 +190,7 @@
                                                                     <td>ক) আমানত</td>
                                                                     <td>
                                                                         @php
-                                                                        $amount = App\Transaction::total_by_slug_date('fdr_revenue_income',$from,$to);
+                                                                        $amount = App\Transaction::total_by_slug_account_project_date('fdr_revenue_income',['founding_member'],$from,$to);
 
                                                                         $director_income +=$amount;
                                                                         @endphp
@@ -204,7 +204,7 @@
                                                                     <td>খ) ঋণের আসল আদায়</td>
                                                                     <td>
                                                                         @php
-                                                                        $amount = App\Transaction::total_by_slug_date('loan_revenue_collect_income',$from,$to);
+                                                                        $amount = App\Transaction::total_by_slug_account_project_date('loan_revenue_collect_income',['founding_member'],$from,$to);
 
                                                                         $director_income +=$amount;
                                                                         @endphp
@@ -218,7 +218,7 @@
                                                                     <td>গ) ঋণের লাভ আদায়</td>
                                                                     <td>
                                                                         @php
-                                                                        $amount = App\Transaction::total_by_slug_date('loan_profit_collect_income',$from,$to);
+                                                                        $amount = App\Transaction::total_by_slug_account_project_date('loan_profit_collect_income',['founding_member'],$from,$to);
 
                                                                         $director_income +=$amount;
                                                                         @endphp
@@ -271,7 +271,7 @@
 
                                                                     <td>
                                                                         @php
-                                                                        $amount = App\Transaction::total_by_slug_date('loan_profit_collect_income',$from,$to);
+                                                                        $amount = App\Transaction::total_by_slug_account_project_date('loan_revenue_collect_income',['short_term'],$from,$to);
 
                                                                         //$saving_field_income +=$amount;
                                                                         @endphp
@@ -285,7 +285,7 @@
 
                                                                     <td>
                                                                         @php
-                                                                        $amount = App\Transaction::total_by_slug_date('loan_profit_collect_income',$from,$to);
+                                                                        $amount = App\Transaction::total_by_slug_account_project_date('loan_profit_collect_income',['short_term'],$from,$to);
 
                                                                         //$saving_field_income +=$amount;
                                                                         @endphp
@@ -299,7 +299,7 @@
 
                                                                     <td>
                                                                         @php
-                                                                        $amount = App\Transaction::total_by_slug_date('loan_profit_collect_income',$from,$to);
+                                                                        $amount = App\Transaction::total_by_slug_account_project_date('loan_revenue_collect_income',['long_term'],$from,$to);
 
                                                                         //$saving_field_income +=$amount;
                                                                         @endphp
@@ -312,7 +312,7 @@
                                                                     <td>চ) ১০ বছর ঋণের লাভ আদায়</td>
                                                                     <td>
                                                                         @php
-                                                                        $amount = App\Transaction::total_by_slug_date('loan_profit_collect_income',$from,$to);
+                                                                        $amount = App\Transaction::total_by_slug_account_project_date('loan_profit_collect_income',['long_term'],$from,$to);
 
                                                                         //$saving_field_income +=$amount;
                                                                         @endphp
@@ -325,7 +325,7 @@
                                                                     <td>ছ) দৈনিক সঃ ঋণের আসল আদায়</td>
                                                                     <td>
                                                                         @php
-                                                                        $amount = App\Transaction::total_by_slug_date('loan_profit_collect_income',$from,$to);
+                                                                        $amount = App\Transaction::total_by_slug_account_project_date('loan_revenue_collect_income',['daily_saving'],$from,$to);
 
                                                                         //$saving_field_income +=$amount;
                                                                         @endphp
@@ -338,7 +338,7 @@
                                                                     <td>জ) দৈনিক সঃ ঋণের লাভ আদায়</td>
                                                                     <td>
                                                                         @php
-                                                                        $amount = App\Transaction::total_by_slug_date('loan_profit_collect_income',$from,$to);
+                                                                        $amount = App\Transaction::total_by_slug_account_project_date('loan_profit_collect_income',['daily_saving'],$from,$to);
 
                                                                         //$saving_field_income +=$amount;
                                                                         @endphp
