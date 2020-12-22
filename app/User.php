@@ -58,5 +58,9 @@ class User extends Authenticatable
 
     }
 
+    public function sub_members(){
+        return $this->hasMany('App\User','parent_id');
+    }
+
 
 }

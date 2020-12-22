@@ -105,6 +105,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::post('loan/collect_interest', 'LoanController@collect_interest')->name('loan.collect_interest');
 
 
+    Route::post('members/assign-share-holder', 'MemberController@assign_share_holder');
     Route::get('members/find', 'MemberController@MemberFind');
     Route::resource('members', 'MemberController');
     Route::get('get-member-data', 'MemberController@getData')->name('members.datatables.data');

@@ -119,6 +119,56 @@
                                     <div class="col-md-4">
                                         <a href="{{url('admin/members/'.$member->id.'/edit')}}" class="btn btn-primary"><i class="fa fa-edit"> </i> এডিট </a>
 
+                                        @if ($member->project=='founding_member')
+                                            <button
+                                                data-toggle="modal" data-target="#ShareHolderModal" class="btn btn-primary"><i class="fa fa-upload"></i> শেয়ার হোল্ডার যোগ  করুন
+                                            </button>
+
+                                            <div class="modal fade" id="ShareHolderModal" tabindex="-1" role="dialog">
+                                                <div class="modal-dialog modal-lg" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title"><strong>উত্তোলন</strong> করুন</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                              <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="{{url('admin/members/assign-share-holder')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
+                                                                {{csrf_field()}}
+                                                                <input type="hidden" name="parent_id" value="{{$member->id}}">
+
+                                                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                                                    <div class="form-group">
+
+                                                                        @php
+                                                                            $all_members = App\User::where('role','member')->orderBy('name','ASC')->get();
+                                                                        @endphp
+                                                                        <label for=""><small> সদস্য বাছাই করুন</small></label>
+
+                                                                        <select name="user_id" class="form-control z-index show-tick selectpicker"  data-live-search="true">
+                                                                            <option value="">সদস্য বাছাই করুন</option>
+                                                                            @foreach($all_members??array() as $m)
+                                                                                <option value="{{$m->id}}">{{$m->name_bn}} - {{$m->unique_id}} </option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-12 text-center">
+
+                                                                    <button class="btn btn-primary btn-round"> সেভ করুন</button>
+
+                                                                </div>
+                                                            </form>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        @endif
+
                                         {!! Form::open([
                                             'method'=>'DELETE',
                                             'url' => ['/admin/members', $member->id],
@@ -392,6 +442,50 @@
                 </div>
             </div>
 
+            @if($member->project=='founding_member')
+
+                <!-- Exportable Table -->
+                <div class="row clearfix">
+                    <div class="col-lg-12">
+                        <div class="card shadow">
+                            <div class="header">
+                                <h2><strong>শেয়ার হোল্ডারের </strong> তালিকা </h2>
+                            </div>
+                            <div class="body">
+                                <table class="table table-bordered table-striped table-hover dataTable js-plaintable">
+                                    <thead>
+                                    <tr>
+                                        <th>ক্রিয়াকলাপ</th>
+                                        <th> সদস্য আইডি  </th>
+                                        <th> সদস্য নাম  </th>
+                                        <th> পিতার নাম   </th>
+                                        <th> ফোন </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach( $member->sub_members?? array() as $sub_member)
+                                    <tr>
+                                        <td>
+
+                                            <a href="{{url('/admin/members/find?q='.$sub_member->unique_id)}}" class="btn btn-primary"><i class="fa fa-eye"> </i> </a>
+
+                                        </td>
+                                        <td>{{$sub_member->unique_id}}</td>
+                                        <td>{{$sub_member->name_bn??''}}</td>
+                                        <td>{{$sub_member->father_name??''}}</td>
+                                        <td>{{$sub_member->phone??''}}</td>
+
+
+                                    </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- #END# Exportable Table -->
+            @endif
             @if(sizeof($loan_records))
 
                 <!-- Exportable Table -->

@@ -430,6 +430,20 @@ class MemberController extends Controller
 
     }
 
+    public function assign_share_holder(Request $request){
+        $this->validate($request,[
+            'user_id'=>'required',
+            'parent_id'=>'required',
+
+        ]);
+
+        $member = User::where('id',$request->user_id)->update([
+            'parent_id'=>$request->parent_id,
+        ]);
+
+        return back()->withSuccess('Share holdre successfully assigned');
+    }
+
 
 
 }
