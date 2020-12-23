@@ -123,9 +123,9 @@
                                     <h3 style="text-align: center">দৈনিক প্রাপ্তি-প্রদান বিবরণী  <span style="padding-left: 15px;">তারিখঃ</span>
 
                                          @if ($from != $to)
-                                            {{$from}} -  {{$to}}
+                                            {{NumberConverter::en2bn($from)}} -  {{NumberConverter::en2bn($to)}}
                                         @else
-                                            {{$to}}
+                                            {{NumberConverter::en2bn($to)}}
                                          @endif
                                     </h3>
                                     </div>
@@ -273,7 +273,7 @@
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_account_project_date('loan_revenue_collect_income',['short_term'],$from,$to);
 
-                                                                        //$saving_field_income +=$amount;
+                                                                        $saving_field_income +=$amount;
                                                                         @endphp
                                                                         {{NumberConverter::en2bn($amount)}}
                                                                     </td>
@@ -287,7 +287,7 @@
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_account_project_date('loan_profit_collect_income',['short_term'],$from,$to);
 
-                                                                        //$saving_field_income +=$amount;
+                                                                        $saving_field_income +=$amount;
                                                                         @endphp
                                                                         {{NumberConverter::en2bn($amount)}}
                                                                     </td>
@@ -301,7 +301,7 @@
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_account_project_date('loan_revenue_collect_income',['long_term'],$from,$to);
 
-                                                                        //$saving_field_income +=$amount;
+                                                                        $saving_field_income +=$amount;
                                                                         @endphp
                                                                         {{NumberConverter::en2bn($amount)}}
                                                                     </td>
@@ -314,7 +314,7 @@
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_account_project_date('loan_profit_collect_income',['long_term'],$from,$to);
 
-                                                                        //$saving_field_income +=$amount;
+                                                                        $saving_field_income +=$amount;
                                                                         @endphp
                                                                         {{NumberConverter::en2bn($amount)}}
                                                                     </td>
@@ -327,7 +327,7 @@
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_account_project_date('loan_revenue_collect_income',['daily_saving'],$from,$to);
 
-                                                                        //$saving_field_income +=$amount;
+                                                                        $saving_field_income +=$amount;
                                                                         @endphp
                                                                         {{NumberConverter::en2bn($amount)}}
                                                                     </td>
@@ -340,7 +340,33 @@
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_account_project_date('loan_profit_collect_income',['daily_saving'],$from,$to);
 
-                                                                        //$saving_field_income +=$amount;
+                                                                        $saving_field_income +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>ছ) মেয়াদী আমানত ঋণের আসল আদায়</td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_account_project_date('loan_revenue_collect_income',['fdr_member'],$from,$to);
+
+                                                                        $saving_field_income +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>জ) মেয়াদী আমানত ঋণের লাভ আদায়</td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_account_project_date('loan_profit_collect_income',['fdr_member'],$from,$to);
+
+                                                                        $saving_field_income +=$amount;
                                                                         @endphp
                                                                         {{NumberConverter::en2bn($amount)}}
                                                                     </td>
