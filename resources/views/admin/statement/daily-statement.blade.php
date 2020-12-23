@@ -615,7 +615,13 @@
                                                                 <tr>
                                                                     <td></td>
                                                                     <td>খ)আজকের হাতে নগদ</td>
-                                                                    <td>{{App\NumberConverter::en2bn(App\Wallet::balance('office',$from,$to))}}</td>
+                                                                    <td>
+
+                                                                        @php
+                                                                            $today_income_balance = $grand_expense_total < $grand_income_total ? $grand_income_total - $grand_expense_total:0;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($today_income_balance)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
@@ -1156,7 +1162,12 @@
 
                                                                     <td></td>
                                                                     <td>গ) আজকের আতিরিক্ত প্রদান</td>
-                                                                    <td></td>
+                                                                    <td>
+                                                                        @php
+                                                                            $extra_paid = $grand_expense_total > $today_income_balance ? $grand_expense_total - $today_income_balance:0;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($extra_paid)}}
+                                                                    </td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>

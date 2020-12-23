@@ -26,7 +26,7 @@ class LoanController extends Controller
         $this->middleware('permission:loan-approve', ['only' => ['ApproveLoan']]);
         $this->middleware('permission:loan-reject', ['only' => ['RejectLoan']]);
         $this->middleware('permission:loan-close', ['only' => ['close']]);
-        $this->middleware('permission:laon-depository', ['only' => ['depository']]);
+        //$this->middleware('permission:laon-depository', ['only' => ['depository']]);
         $this->middleware('permission:loan-application', ['only' => ['LoanApplication','LoanApplicationSubmit']]);
 
     }

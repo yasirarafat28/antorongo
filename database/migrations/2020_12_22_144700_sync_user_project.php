@@ -24,6 +24,8 @@ class SyncUserProject extends Migration
 
 
 
+
+
         User::where('unique_id','like','%DS%')
         ->update(['project'=>'daily_saving']);
 
