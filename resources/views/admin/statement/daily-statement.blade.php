@@ -371,6 +371,31 @@
                                                                         {{NumberConverter::en2bn($amount)}}
                                                                     </td>
                                                                     <td></td>
+                                                                </tr><tr>
+                                                                    <td></td>
+                                                                    <td>ছ) অন্যান্য সঃ ঋণের আসল আদায়</td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_except_project_date('loan_revenue_collect_income',['fdr_member','founding_member','daily_saving','short_term','long_term'],$from,$to);
+
+                                                                        $saving_field_income +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>জ) অন্যান্য সঃ ঋণের লাভ আদায়</td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_except_project_date('loan_profit_collect_income',['fdr_member','founding_member','daily_saving','short_term','long_term'],$from,$to);
+
+                                                                        $saving_field_income +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
+                                                                    <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>

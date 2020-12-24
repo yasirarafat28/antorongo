@@ -186,4 +186,54 @@ class Transaction extends Model
 
         return $transactions;
     }
+
+    public static function total_by_slug_except_project_date($slug,$project,$from,$to)
+    {
+
+
+        $from = date("Y-m-d", strtotime($from));
+        $to = date("Y-m-d", strtotime($to));
+        //return $to;
+        $transaction_head = TransactionHead::where('slug',$slug)->first();
+        if(!$transaction_head){
+            return 0;
+        }
+
+
+        $transactions = 0;
+        $transactions += Transaction::with('user')->whereHas('user',function($q) use($project){
+
+            $q->whereNotIn('project',$project);
+        })->where('head_id',$transaction_head->id)
+        ->where(function($q) use($from,$to){
+            if($from){
+                $q->where(DB::raw('DATE(date)'),'>=',$from);
+            }
+            if($to){
+                $q->where(DB::raw('DATE(date)'),'<=',$to);
+            }
+        })
+        ->sum('amount');
+
+        if ($transaction_head->parent==0)
+        {
+            $childs = TransactionHead::with('user')->whereHas('user',function($q) use($project){
+
+                $q->where('project',$project);
+            })->where('parent',$transaction_head->id)->get('id')->pluck('id')->toArray();
+            $transactions += Transaction::whereNotIn('head_id',$childs)
+            ->where(function($q) use($from,$to){
+                if($from){
+                    $q->where(DB::raw('DATE(date)'),'>=',$from);
+                }
+                if($to){
+                    $q->where(DB::raw('DATE(date)'),'<=',$to);
+                }
+            })
+                ->sum('amount');
+
+        }
+
+        return $transactions;
+    }
 }
