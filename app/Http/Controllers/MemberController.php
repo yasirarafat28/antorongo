@@ -40,32 +40,32 @@ class MemberController extends Controller
 
             $releted_query = array();
 
-            if (strpos($query, 'L') !== false) {
-                $releted_query[0] = str_replace('L', 'FD', $query);
-                $releted_query[1] = str_replace('L', 'G', $query);
-                $releted_query[2] = str_replace('L', 'C', $query);
-                $releted_query[3] = str_replace('L', 'FM', $query);
-            }elseif (strpos($query, 'FD') !== false) {
-                $releted_query[0] = str_replace('FD', 'L', $query);
-                $releted_query[1] = str_replace('FD', 'G', $query);
-                $releted_query[2] = str_replace('FD', 'C', $query);
-                $releted_query[3] = str_replace('FD', 'FM', $query);
-            }elseif (strpos($query, 'G') !== false) {
-                $releted_query[0] = str_replace('G', 'L', $query);
-                $releted_query[1] = str_replace('G', 'FD', $query);
-                $releted_query[2] = str_replace('G', 'C', $query);
-                $releted_query[3] = str_replace('G', 'FM', $query);
-            }elseif (strpos($query, 'C') !== false) {
-                $releted_query[0] = str_replace('C', 'L', $query);
-                $releted_query[1] = str_replace('C', 'FD', $query);
-                $releted_query[2] = str_replace('C', 'G', $query);
-                $releted_query[3] = str_replace('C', 'FM', $query);
-            }elseif (strpos($query, 'FM') !== false) {
-                $releted_query[0] = str_replace('FM', 'L', $query);
-                $releted_query[1] = str_replace('FM', 'FD', $query);
-                $releted_query[2] = str_replace('FM', 'G', $query);
-                $releted_query[3] = str_replace('FM', 'C', $query);
-            }
+            // if (strpos($query, 'L') !== false) {
+            //     $releted_query[0] = str_replace('L', 'FD', $query);
+            //     $releted_query[1] = str_replace('L', 'G', $query);
+            //     $releted_query[2] = str_replace('L', 'C', $query);
+            //     $releted_query[3] = str_replace('L', 'FM', $query);
+            // }elseif (strpos($query, 'FD') !== false) {
+            //     $releted_query[0] = str_replace('FD', 'L', $query);
+            //     $releted_query[1] = str_replace('FD', 'G', $query);
+            //     $releted_query[2] = str_replace('FD', 'C', $query);
+            //     $releted_query[3] = str_replace('FD', 'FM', $query);
+            // }elseif (strpos($query, 'G') !== false) {
+            //     $releted_query[0] = str_replace('G', 'L', $query);
+            //     $releted_query[1] = str_replace('G', 'FD', $query);
+            //     $releted_query[2] = str_replace('G', 'C', $query);
+            //     $releted_query[3] = str_replace('G', 'FM', $query);
+            // }elseif (strpos($query, 'C') !== false) {
+            //     $releted_query[0] = str_replace('C', 'L', $query);
+            //     $releted_query[1] = str_replace('C', 'FD', $query);
+            //     $releted_query[2] = str_replace('C', 'G', $query);
+            //     $releted_query[3] = str_replace('C', 'FM', $query);
+            // }elseif (strpos($query, 'FM') !== false) {
+            //     $releted_query[0] = str_replace('FM', 'L', $query);
+            //     $releted_query[1] = str_replace('FM', 'FD', $query);
+            //     $releted_query[2] = str_replace('FM', 'G', $query);
+            //     $releted_query[3] = str_replace('FM', 'C', $query);
+            // }
 
             if (sizeof($releted_query)<1) {
                 $releted_user_ids = array();
