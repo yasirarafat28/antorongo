@@ -53,7 +53,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2><strong>লাভ যোগ </strong>  করুন</h2>
+                    <h2><strong>লাভ বকেয়া যোগ </strong>  করুন</h2>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -154,7 +154,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2><strong>আসল যোগ </strong>  করুন</h2>
+                    <h2><strong>আসল বকেয়া যোগ </strong>  করুন</h2>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
