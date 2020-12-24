@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class Transaction extends Model
 {
@@ -58,15 +58,36 @@ class Transaction extends Model
         if ($transaction_head->parent==0)
         {
             $transactions = 0;
-            $transactions += Transaction::where('head_id',$id)->where('date', '>=',  $from)->where('date', '<=',  $to)->sum('amount');
+            $transactions += Transaction::where('head_id',$id)->where(function($q) use($from,$to){
+                if($from){
+                    $q->where(DB::raw('DATE(date)'),'>=',$from);
+                }
+                if($to){
+                    $q->where(DB::raw('DATE(date)'),'<=',$to);
+                }
+            })->sum('amount');
             $childs = TransactionHead::where('parent',$transaction_head->id)->get();
             foreach ($childs as $item)
             {
-                $transactions += Transaction::where('head_id',$item->id)->where('date', '>=',  $from)->where('date', '<=',  $to)->sum('amount');
+                $transactions += Transaction::where('head_id',$item->id)->where(function($q) use($from,$to){
+                    if($from){
+                        $q->where(DB::raw('DATE(date)'),'>=',$from);
+                    }
+                    if($to){
+                        $q->where(DB::raw('DATE(date)'),'<=',$to);
+                    }
+                })->sum('amount');
             }
 
         }else
-            $transactions = Transaction::where('head_id',$id)->where('date', '>=',  $from)->where('date', '<=',  $to)->get();
+            $transactions = Transaction::where('head_id',$id)->where(function($q) use($from,$to){
+                if($from){
+                    $q->where(DB::raw('DATE(date)'),'>=',$from);
+                }
+                if($to){
+                    $q->where(DB::raw('DATE(date)'),'<=',$to);
+                }
+            })->get();
 
         return $transactions;
     }
@@ -87,16 +108,28 @@ class Transaction extends Model
 
         $transactions = 0;
         $transactions += Transaction::where('head_id',$transaction_head->id)
-        ->where('date', '>=',  $from)
-        ->where('date', '<=',  $to)
+        ->where(function($q) use($from,$to){
+            if($from){
+                $q->where(DB::raw('DATE(date)'),'>=',$from);
+            }
+            if($to){
+                $q->where(DB::raw('DATE(date)'),'<=',$to);
+            }
+        })
         ->sum('amount');
 
         if ($transaction_head->parent==0)
         {
             $childs = TransactionHead::where('parent',$transaction_head->id)->get('id')->pluck('id')->toArray();
             $transactions += Transaction::whereIn('head_id',$childs)
-                ->where('date', '>=',  $from)
-                ->where('date', '<=',  $to)
+            ->where(function($q) use($from,$to){
+                if($from){
+                    $q->where(DB::raw('DATE(date)'),'>=',$from);
+                }
+                if($to){
+                    $q->where(DB::raw('DATE(date)'),'<=',$to);
+                }
+            })
                 ->sum('amount');
 
         }
@@ -122,8 +155,14 @@ class Transaction extends Model
 
             $q->whereIn('project',$project);
         })->where('head_id',$transaction_head->id)
-        ->where('date', '>=',  $from)
-        ->where('date', '<=',  $to)
+        ->where(function($q) use($from,$to){
+            if($from){
+                $q->where(DB::raw('DATE(date)'),'>=',$from);
+            }
+            if($to){
+                $q->where(DB::raw('DATE(date)'),'<=',$to);
+            }
+        })
         ->sum('amount');
 
         if ($transaction_head->parent==0)
@@ -133,8 +172,14 @@ class Transaction extends Model
                 $q->where('project',$project);
             })->where('parent',$transaction_head->id)->get('id')->pluck('id')->toArray();
             $transactions += Transaction::whereIn('head_id',$childs)
-                ->where('date', '>=',  $from)
-                ->where('date', '<=',  $to)
+            ->where(function($q) use($from,$to){
+                if($from){
+                    $q->where(DB::raw('DATE(date)'),'>=',$from);
+                }
+                if($to){
+                    $q->where(DB::raw('DATE(date)'),'<=',$to);
+                }
+            })
                 ->sum('amount');
 
         }

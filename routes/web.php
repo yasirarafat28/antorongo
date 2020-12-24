@@ -1,6 +1,7 @@
 <?php
 
 use App\Transaction;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,8 @@ Route::get('/testing', function () {
 
     $from = '2015-12-22';
     $to = '2020-12-22';
+
+    return Carbon::parse($to)->subDay('1')->format('Y-m-d');
     $slug = 'loan_revenue_collect_income';
     $project = 'daily_saving';
     //$project = 'fdr_member';

@@ -135,7 +135,7 @@
                                     <div class="body">
 
                                         <fieldset>
-                                            <table class="tableboder">
+                                            {{-- <table class="tableboder">
                                                 <tbody>
 
                                                     <tr>
@@ -148,7 +148,7 @@
                                                         <td style="text-align: center;">সর্বমোট =</td>
                                                     </tr>
                                                 </tbody>
-                                            </table>
+                                            </table> --}}
                                         </fieldset>
                                     </div>
                                 </div>
@@ -600,92 +600,6 @@
                                                                     <td style="text-align:right">মোট প্রাপ্তি</td>
                                                                     <td>{{NumberConverter::en2bn($grand_total_income)}}</td>
                                                                 </tr>
-                                                                <tr>
-                                                                    <td>৮</td>
-                                                                    <td>সর্বমোট প্রাপ্তি</td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td></td>
-                                                                    <td>ক)পূর্বের হাতে নগদ</td>
-                                                                    <td>{{App\NumberConverter::en2bn(App\Wallet::balance('office',$from,$to))}}</td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td></td>
-                                                                    <td>খ)আজকের হাতে নগদ</td>
-                                                                    <td>
-
-                                                                        @php
-                                                                            $today_income_balance = $grand_expense_total < $grand_income_total ? $grand_income_total - $grand_expense_total:0;
-                                                                        @endphp
-                                                                        {{NumberConverter::en2bn($today_income_balance)}}
-                                                                    </td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td></td>
-                                                                    <td>গ)</td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td></td>
-                                                                    <td>ঘ)ক্যাশিয়ার কে প্রদান</td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>৯</td>
-                                                                    <td>ব্যাংক ব্যালেন্সঃ</td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td></td>
-                                                                    <td>ক) পূর্বের জমা</td>
-                                                                    <td></td>
-                                                                    <td></td>
-
-                                                                </tr>
-                                                                <tr>
-                                                                    <td></td>
-                                                                    <td>খ ) (+) অদ্য জমা</td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td></td>
-                                                                    <td>গ) (-) উত্তোলন</td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td style="text-align:right">স্থিতিঃ</td>
-                                                                    <td></td>
-
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>১০</td>
-                                                                    <td>প্রারম্ভিক জের</td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td style="text-align:right">মোটঃ</td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td style="text-align:right">সর্বমোট হিসাবঃ</td>
-                                                                    <td></td>
-                                                                </tr>
                                                         </tbody>
                                                     </table>
                                                 </fieldset>
@@ -993,6 +907,13 @@
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
+                                                                    <td>.</td>
+                                                                    <td></td>
+                                                                    <td>
+                                                                    </td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
                                                                     <td></td>
                                                                     <td>ন) বিবিধ খরচ</td>
                                                                     <td>
@@ -1140,11 +1061,164 @@
                                                                     <td style="text-align:right">মোট প্রদান</td>
                                                                     <td>{{NumberConverter::en2bn($grand_expense_total)}}</td>
                                                                 </tr>
+
+                                                        </tbody>
+                                                    </table>
+                                                </fieldset>
+                                        </div>
+                                    </div>
+
+
+                            </div>
+
+
+
+                            @php
+                                $cashier_balance = App\Wallet::balance('cashier',null,$to);
+                                $office_balance = App\Wallet::balance('office',null,$to);
+                                $bank_fdr = App\Transaction::total_by_slug_date('bank_fdr_expense',null,$to);
+                                $bank_fdr_withdraw = App\Transaction::total_by_slug_date('bank_fdr_revenue_income',null,$to);
+                                $fdr_balance = $bank_fdr - $bank_fdr_withdraw;
+                                $hand_balance = $cashier_balance + $office_balance;
+                                $bank_balance = App\Wallet::balance('bank',null,$to);
+                                $total_balance = $fdr_balance + $hand_balance + $bank_balance;
+
+
+                                $previous_date = Carbon\Carbon::parse($from)->subDay('1')->format('Y-m-d');
+
+                                $previous_cashier_balance = App\Wallet::balance('cashier',null,$previous_date);
+                                $previous_office_balance = App\Wallet::balance('office',null,$previous_date);
+                                $previous_hand_balance = $previous_cashier_balance + $previous_office_balance;
+                            @endphp
+
+
+                            <div class="row" >
+
+                                    <div class="col-sm-6" style="width: 45% !important;">
+
+                                        <div class="body">
+
+                                                <fieldset>
+                                                    <table class="table table-bordered table-hover">
+                                                        <tbody>
                                                                 <tr>
-                                                                    <td>৩</td>
-                                                                    <td>সর্বমোট প্রদান</td>
+                                                                    <td style="width: 10%;">৮</td>
+                                                                    <td style="width: 50%;">সর্বমোট প্রাপ্তি</td>
+                                                                    <td style="width: 20%;"></td>
+                                                                    <td style="width: 20%;"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>ক)পূর্বের হাতে নগদ</td>
+                                                                    {{-- <td>{{App\NumberConverter::en2bn(App\Wallet::balance('office',$from,$to))}}</td> --}}
+                                                                    <td>
+                                                                        @php
+                                                                            $today_from_cashier = App\Transaction::total_by_slug_date('today_from_cashier_income',$from,$to);
+
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($today_from_cashier)}}
+                                                                    </td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>খ)আজকের হাতে নগদ</td>
+                                                                    <td>
+
+                                                                        @php
+                                                                            $today_income_balance = $grand_expense_total < $grand_total_income ? $grand_total_income - $grand_expense_total:0;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($today_income_balance)}}
+                                                                    </td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>গ)</td>
                                                                     <td></td>
                                                                     <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>ঘ)ক্যাশিয়ার কে প্রদান</td>
+                                                                    <td>
+
+                                                                        @php
+                                                                            $today_to_cashier = App\Transaction::total_by_slug_date('today_to_cashier_expense',$from,$to);
+
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($today_to_cashier)}}
+
+                                                                    </td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>৯</td>
+                                                                    <td>ব্যাংক ব্যালেন্সঃ</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>ক) পূর্বের জমা</td>
+                                                                    <td></td>
+                                                                    <td></td>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>খ ) (+) অদ্য জমা</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>গ) (-) উত্তোলন</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td style="text-align:right">স্থিতিঃ</td>
+                                                                    <td>{{NumberConverter::en2bn($bank_balance)}}</td>
+                                                                    <td></td>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>১০</td>
+                                                                    <td style="text-align: right">প্রারম্ভিক জের</td>
+                                                                    <td>{{NumberConverter::en2bn($previous_hand_balance)}}</td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td style="text-align:right">মোটঃ</td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td style="text-align:right">সর্বমোট হিসাবঃ</td>
+                                                                    <td></td>
+                                                                </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </fieldset>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6" style="width: 45% !important;">
+
+                                        <div class="body">
+
+                                                <fieldset>
+                                                    <table class="table table-bordered table-hover">
+                                                        <tbody>
+                                                                <tr>
+                                                                    <td style="width: 10%;">৩</td>
+                                                                    <td style="width: 50%;">সর্বমোট প্রদান</td>
+                                                                    <td style="width: 20%;"></td>
+                                                                    <td style="width: 20%;"></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
@@ -1204,8 +1278,8 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td></td>
                                                                     <td style="text-align:right">স্থিতিঃ</td>
+                                                                    <td>{{NumberConverter::en2bn($bank_balance)}}</td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
@@ -1281,14 +1355,19 @@
                                             <table class="table table-bordered table-hover">
                                                 <tbody>
 
+                                                    @php
+                                                        $bank_loan_total = App\Transaction::total_by_slug_date('bank_loan_income',null,$to);
+                                                        $bank_loan_paid = App\Transaction::total_by_slug_date('bank_loan_payment_expense',null,$to);
+                                                    @endphp
+
                                                     <tr>
-                                                        <td>ব্যাংক ঋণ =</td>
+                                                        <td>ব্যাংক ঋণ = {{NumberConverter::en2bn($bank_loan_total)}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>ব্যাংক ঋণ পরিশোধ =</td>
+                                                        <td>ব্যাংক ঋণ পরিশোধ ={{NumberConverter::en2bn($bank_loan_paid)}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>ব্যালেন্স =</td>
+                                                        <td>ব্যালেন্স ={{NumberConverter::en2bn($bank_loan_total - $bank_loan_paid)}}</td>
                                                     </tr>
 
 
@@ -1308,16 +1387,6 @@
 
                                             <table class="table table-bordered table-hover">
                                                 <tbody>
-
-                                                    @php
-                                                        $cashier_balance = App\Wallet::balance('cashier',null,$to);
-                                                        $office_balance = App\Wallet::balance('cashier',null,$to);
-                                                        $fdr_balance = 0;
-                                                        $hand_balance = $cashier_balance + $office_balance;
-                                                        $bank_balance = App\Wallet::balance('bank',null,$to);
-                                                        $total_balance = $fdr_balance + $hand_balance + $bank_balance;
-                                                    @endphp
-
                                                     <tr>
                                                         <td>এফ ডি আর = {{NumberConverter::en2bn($fdr_balance)}}</td>
                                                     </tr>

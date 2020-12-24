@@ -51,7 +51,7 @@ class WalletController extends Controller
             if($request->to=='bank'){
                 $from_head = TransactionHead::where('slug','bank_deposit_expense')->first();
             }else{
-                $from_head = TransactionHead::where('slug','Ajker_prodan')->first();
+                $from_head = TransactionHead::where('slug','today_to_cashier_expense')->first();
             }
 
             if(!$from_head){
@@ -62,7 +62,7 @@ class WalletController extends Controller
             if($request->from=='bank'){
                 $to_head = TransactionHead::where('slug','bank_withdraw_income')->first();
             }else{
-                $to_head = TransactionHead::where('slug','Ajker_hate nagod')->first();
+                $to_head = TransactionHead::where('slug','today_from_cashier_income')->first();
             }
 
             if(!$to_head){
