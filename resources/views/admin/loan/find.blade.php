@@ -354,13 +354,13 @@
                                         @if($item->flag=='give_away')
                                              ঋণ প্রদান
                                         @elseif($item->flag=='revenue_add')
-                                            আসল যোগ
+                                            আসল বকেয়া যোগ
                                         @elseif($item->flag=='revenue_deduct')
                                              আসল প্রদান
                                         @elseif($item->flag=='interest')
-                                            সুদ আদায়
+                                            লাভ আদায়
                                         @elseif($item->flag=='add_interest')
-                                            সুদ যোগ
+                                            লাভ বকেয়া যোগ
 
                                         @endif
                                     </td>
