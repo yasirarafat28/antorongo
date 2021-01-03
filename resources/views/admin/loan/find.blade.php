@@ -221,12 +221,13 @@
 
                         <a href="{{url('admin/loan/edit/'.$loan->id)}}" class="btn btn-primary"><i class="fa fa-edit"> </i> এডিট করুন  </a>
                         @if($loan->status=='active')
-                            <a data-toggle="modal" data-target="#loanGiveAwawModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> ঋণ প্রদান করুণ
+                            <a data-toggle="modal" data-target="#loanGiveAwawModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> ঋণ প্রদান করুন
                              </a>
                             <a data-toggle="modal" data-target="#LoanInterestCollectModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> লাভ আদায় করুন </a>
                             <a data-toggle="modal" data-target="#LoanDeductRevenueModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> আসল আদায় করুন </a>
                             <a data-toggle="modal" data-target="#LoanAddRevenueModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> আসল বকেয়া </a>
                             <a data-toggle="modal" data-target="#LoanInterestAddModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> লাভ  বকেয়া </a>
+                            <a data-toggle="modal" data-target="#LoanFineIncomeModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> জরিমানা করুন</a>
 
                             {!! Form::open([
                                 'method'=>'POST',
@@ -361,6 +362,8 @@
                                              আসল প্রদান
                                         @elseif($item->flag=='interest')
                                             লাভ আদায়
+                                        @elseif($item->flag=='fine')
+                                            জরিমানা
                                         @elseif($item->flag=='add_interest')
                                             লাভ বকেয়া যোগ
 
