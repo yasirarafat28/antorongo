@@ -863,7 +863,7 @@ class SavingController extends Controller
         $saving = Saving::destroy($id);
 
         Transaction::where('transaction_for','saving')->where('transactable_id',$id)->delete();
-        return back()->withSuccess('সফলভাবে মুছে ফেলা হয়েছে');
+        return redirect('admin/dashboard')->withSuccess('সফলভাবে মুছে ফেলা হয়েছে');
     }
 
     public function  SavingEdit($id)
