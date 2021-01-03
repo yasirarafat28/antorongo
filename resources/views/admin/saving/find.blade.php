@@ -632,6 +632,8 @@
                                             জমা
                                         @elseif($item->flag=='profit')
                                             লাভ
+                                        @elseif($item->flag=='fine')
+                                            জরিমানা
                                         @else
                                             উত্তোলন
                                         @endif

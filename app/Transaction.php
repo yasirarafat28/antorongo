@@ -208,6 +208,7 @@ class Transaction extends Model
         ->where(function($q) use($from,$to){
             if($from){
                 $q->where(DB::raw('DATE(date)'),'>=',$from);
+                
             }
             if($to){
                 $q->where(DB::raw('DATE(date)'),'<=',$to);
