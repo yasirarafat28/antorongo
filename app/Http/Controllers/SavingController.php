@@ -317,7 +317,9 @@ class SavingController extends Controller
     {
         $saving_ids = Saving::where('type',$type)->get('id')->pluck('id');
         $transactions = Transaction::with('user','receiver','savings')->where('transaction_for','saving')
-        ->whereIn('flag',['profit_withdraw','deposit_withdraw'])
+        //->whereIn('flag',['profit_withdraw','deposit_withdraw'])
+
+        ->where('type','expense')
         ->whereIn('transactable_id',$saving_ids)
         ->where(function ($q) use ($request,$saving_ids){
             if ($request->has('from') && $request->from) {
@@ -344,7 +346,7 @@ class SavingController extends Controller
 
 
         $total = Transaction::where('transaction_for','saving')
-        ->where('flag','withdraw')
+        ->where('type','expense')
         ->whereIn('transactable_id',$saving_ids)
         ->where(function ($q) use ($request,$saving_ids){
             if ($request->has('from') && $request->from) {
