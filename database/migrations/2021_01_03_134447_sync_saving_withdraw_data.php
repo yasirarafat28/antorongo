@@ -20,7 +20,7 @@ class SyncSavingWithdrawData extends Migration
         $tranasctions = SavingTransaction::where('outgoing','>',0)->get();
         foreach($tranasctions as $tranasction){
 
-            $row = Transaction::where('txn_id','txn_id')->first();
+            $row = Transaction::where('txn_id',$tranasction->txn_id)->first();
             if($row){
                 $row->amount = $tranasction->outgoing;
                 $row->save();
