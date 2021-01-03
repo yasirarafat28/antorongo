@@ -221,6 +221,8 @@
 
                         <a href="{{url('admin/loan/edit/'.$loan->id)}}" class="btn btn-primary"><i class="fa fa-edit"> </i> এডিট করুন  </a>
                         @if($loan->status=='active')
+                            <a data-toggle="modal" data-target="#loanGiveAwawModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> ঋণ প্রদান করুণ
+                             </a>
                             <a data-toggle="modal" data-target="#LoanInterestCollectModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> লাভ আদায় করুন </a>
                             <a data-toggle="modal" data-target="#LoanDeductRevenueModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> আসল আদায় করুন </a>
                             <a data-toggle="modal" data-target="#LoanAddRevenueModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> আসল বকেয়া </a>

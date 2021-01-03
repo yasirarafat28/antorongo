@@ -148,6 +148,54 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="loanGiveAwawModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2><strong>ঋণ প্রদান </strong>  করুন</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <form action="{{route('loan.give_away')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
+                        {{csrf_field()}}
+                        <input type="hidden" name="loan_id" value="{{$loan->id}}">
+                        <input type="hidden" name="user_id" value="{{$loan->user_id}}">
+
+                        <div class="form-group">
+
+                            <label for=""><small> পরিমান</small></label>
+
+                            <input type="number" step="any" class="form-control" name="amount" placeholder="পরিমান" id="amount">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for=""><small> তারিখ </small></label>
+
+                            <input type="date" class="form-control" name="date" placeholder=" তারিখ">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for=""><small> মতামত </small></label>
+
+                            <textarea name="note" class="form-control" placeholder="মতামত"></textarea>
+
+                        </div>
+                        <div class="col-md-12 text-center">
+
+                            <button class="btn btn-primary btn-round"> সেভ করুন</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <div class="modal fade" id="LoanAddRevenueModal" tabindex="-1" role="dialog">

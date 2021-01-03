@@ -106,6 +106,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::post('loan/add_interest', 'LoanController@add_interest')->name('loan.add_interest');
     Route::post('loan/collect_reveanue', 'LoanController@collect_reveanue')->name('loan.collect_reveanue');
     Route::post('loan/collect_interest', 'LoanController@collect_interest')->name('loan.collect_interest');
+    Route::post('loan/give_away', 'LoanController@give_away')->name('loan.give_away');
 
 
     Route::post('members/assign-share-holder', 'MemberController@assign_share_holder');

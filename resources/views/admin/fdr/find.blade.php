@@ -100,7 +100,7 @@
                                     <tbody>
                                         <tr>
                                             <td class="text-right">নাম :</td>
-                                            <td class="text-left">{{$fdr->user->name_bn}}</td>
+                                            <td class="text-left">{{$fdr->user->name_bn??''}}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">সভ্য আইডি : </td>

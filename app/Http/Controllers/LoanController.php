@@ -434,39 +434,6 @@ class LoanController extends Controller
 
 
 
-        $head = TransactionHead::where('slug','loan_giving_expense')->first();
-
-        if(!$head){
-            return back()->withError('Related head didn\'t found!');
-        }
-
-        $transaction = Transaction::where('transaction_for','loan')
-        ->where('transactable_id',$loan->id)
-        ->where('flag','give_away')->first();
-
-        if(!$transaction){
-            $transaction = new Transaction();
-        }
-
-
-        $transaction = new Transaction();
-        $transaction->txn_id = uniqid();
-        $transaction->transaction_for = 'loan';
-        $transaction->transactable_id = $loan->id;
-        $transaction->flag = 'give_away';
-        $transaction->type = 'expense';
-        $transaction->head_id = $head->id;
-        $transaction->user_id = $loan->user_id;
-        $transaction->note = $request->note;
-        $transaction->date = date('Y-m-d H:i:s');
-        $transaction->amount = NumberConverter::bn2en($request->approved_amount);
-        $transaction->added_by = Auth::user()->id;
-        $transaction->received_by = Auth::user()->id;
-        $transaction->admin_status ='approved';
-        $transaction->manager_status = 'approved';
-        $transaction->status = 'approved';
-        $transaction->canculatable='yes';
-        $transaction->save();
 
 
         return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
@@ -727,6 +694,62 @@ class LoanController extends Controller
         ->sum('amount');
 
         return view('admin/loan/collection-report',compact('transactions','total'));
+
+
+    }
+
+
+    public function give_away(Request $request){
+
+        $this->validate($request,[
+            'loan_id'=>'required',
+            'amount'=>'required',
+            'date'=>'required',
+        ]);
+
+        $loan = Loan::find($request->loan_id);
+
+        $head = TransactionHead::where('slug','loan_giving_expense')->first();
+
+        if(!$head){
+            return back()->withError('Related head didn\'t found!');
+        }
+
+        $transaction = Transaction::where('transaction_for','loan')
+        ->where('transactable_id',$loan->id)
+        ->where('flag','give_away')->first();
+
+        if(!$transaction){
+            $transaction = new Transaction();
+        }
+
+
+        $transaction = new Transaction();
+        $transaction->txn_id = uniqid();
+        $transaction->transaction_for = 'loan';
+        $transaction->transactable_id = $loan->id;
+        $transaction->flag = 'give_away';
+        $transaction->type = 'expense';
+        $transaction->head_id = $head->id;
+        $transaction->user_id = $loan->user_id;
+        $transaction->note = $request->note;
+        $transaction->date = date('Y-m-d H:i:s');
+        $transaction->amount = NumberConverter::bn2en($request->amount);
+        $transaction->added_by = Auth::user()->id;
+        $transaction->received_by = Auth::user()->id;
+        $transaction->admin_status ='approved';
+        $transaction->manager_status = 'approved';
+        $transaction->status = 'approved';
+        $transaction->canculatable='yes';
+        $transaction->save();
+
+
+        if ($request->invoice)
+        {
+            return redirect('transaction-invoice/'.$transaction->txn_id);
+        }
+
+        return back()->withSuccess('ঋণ প্রদান সফলভাবে সেভ করা হয়েছে!');
 
 
     }
