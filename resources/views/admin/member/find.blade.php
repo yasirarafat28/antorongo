@@ -128,7 +128,7 @@
                                                 <div class="modal-dialog modal-lg" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title"><strong>উত্তোলন</strong> করুন</h5>
+                                                            <h5 class="modal-title"><strong>শেয়ার হোল্ডার যোগ</strong> করুন</h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                               <span aria-hidden="true">&times;</span>
                                                             </button>
@@ -167,6 +167,121 @@
                                                 </div>
                                             </div>
 
+                                        @endif
+
+                                        @php
+                                            $check_releted_user_exist = App\MemberRelation::where('releted_user_id',$member->id)->count();
+                                        @endphp
+                                        @if (!$check_releted_user_exist)
+
+                                            <a href="#"  data-toggle="modal" data-target="#UserGroupModal" class="btn btn-primary"><i class="fa fa-user-plus"> </i> গ্রুপ এ যোগ করুন </a>
+                                            <div class="modal fade" id="UserGroupModal" tabindex="-1" role="dialog">
+                                                <div class="modal-dialog modal-lg" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title"><strong>গ্রুপ এ যোগ</strong> করুন</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                              <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="{{url('admin/members/add-to-group')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
+                                                                {{csrf_field()}}
+                                                                <input type="hidden" name="parent_id" value="{{$member->id}}">
+
+                                                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                                                    <div class="form-group">
+
+                                                                        @php
+                                                                            $except_user_ids = App\MemberRelation::get(['releted_user_id'])->pluck('releted_user_id');
+                                                                            $all_members = App\User::where('role','member')->whereNotIn('id',$except_user_ids)->orderBy('name','ASC')->get();
+                                                                        @endphp
+                                                                        <label for=""><small> সদস্য বাছাই করুন</small></label>
+
+                                                                        <select name="user_id" class="form-control z-index show-tick selectpicker"  data-live-search="true">
+                                                                            <option value="">সদস্য বাছাই করুন</option>
+                                                                            @foreach($all_members??array() as $m)
+                                                                                <option value="{{$m->id}}">{{$m->name_bn}} - {{$m->unique_id}} </option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-12 text-center">
+
+                                                                    <button class="btn btn-primary btn-round"> সেভ করুন</button>
+
+                                                                </div>
+                                                            </form>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <a href="#"  data-toggle="modal" data-target="#UserGroupViewModal" class="btn btn-primary"><i class="fa fa-bars"> </i> গ্রুপ দেখুন </a>
+                                            <div class="modal fade" id="UserGroupViewModal" tabindex="-1" role="dialog">
+                                                <div class="modal-dialog modal-lg" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title"><strong>গ্রুপ </strong> দেখুন</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                              <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                            @php
+                                                                $member_ids =  App\MemberRelation::where('user_id',$member->id)->get(['releted_user_id'])->pluck('releted_user_id');
+                                                                $releted_members = App\User::whereIn('id',$member_ids)->get();
+                                                            @endphp
+                                                            <table class="table table-bordered table-striped table-hover dataTable js-plaintable">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th>ক্রিয়াকলাপ</th>
+                                                                    <th> সদস্য আইডি  </th>
+                                                                    <th> সদস্য নাম  </th>
+                                                                    <th> পিতার নাম   </th>
+                                                                    <th> ফোন </th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                @foreach( $releted_members?? array() as $sub_member)
+                                                                <tr>
+                                                                    <td>
+
+                                                                        <a href="{{url('/admin/members/find?q='.$sub_member->unique_id)}}" class="btn btn-primary"><i class="fa fa-eye"> </i> </a>
+
+
+                                                                        {!! Form::open([
+                                                                            'method'=>'DELETE',
+                                                                            'url' => ['/admin/members/remove-from-group', $sub_member->id],
+                                                                            'style' => 'display:inline'
+                                                                        ]) !!}
+                                                                        {!! Form::button('<i class="fa fa-trash"></i>  মুছে ফেলুন', array(
+                                                                            'type' => 'submit',
+                                                                            'class' => 'btn btn-danger',
+                                                                            'title' => 'মুছে ফেলুন',
+                                                                            'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
+                                                                            )) !!}
+                                                                        {!! Form::close() !!}
+                                                                    </td>
+                                                                    <td>{{$sub_member->unique_id}}</td>
+                                                                    <td>{{$sub_member->name_bn??''}}</td>
+                                                                    <td>{{$sub_member->father_name??''}}</td>
+                                                                    <td>{{$sub_member->phone??''}}</td>
+
+
+                                                                </tr>
+                                                                @endforeach
+                                                                </tbody>
+                                                            </table>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @endif
 
                                         {!! Form::open([

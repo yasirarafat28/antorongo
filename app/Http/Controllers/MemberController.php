@@ -7,6 +7,7 @@ use App\Thana;
 use App\Loan;
 use App\Saving;
 use App\Fdr;
+use App\MemberRelation;
 use App\Transaction;
 use App\User;
 use Illuminate\Http\Request;
@@ -441,9 +442,32 @@ class MemberController extends Controller
             'parent_id'=>$request->parent_id,
         ]);
 
-        return back()->withSuccess('Share holdre successfully assigned');
+        return back()->withSuccess('Share holder successfully assigned');
     }
 
+
+    public function add_to_group(Request $request){
+
+        $this->validate($request,[
+            'parent_id'=>'required',
+            'user_id'=>'required',
+        ]);
+
+        $row=  new MemberRelation();
+        $row->user_id = $request->parent_id;
+        $row->releted_user_id = $request->user_id;
+        $row->save();
+
+
+        return back()->withSuccess('সফলভাবে সেভ করা হয়েছে!');
+
+    }
+
+    public function remove_from_group($id){
+        //return $id;
+        MemberRelation::where('releted_user_id',$id)->delete();
+        return back()->withSuccess('সফলভাবে মুছে ফেলা হয়েছে!');
+    }
 
 
 }

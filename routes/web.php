@@ -114,6 +114,10 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::resource('members', 'MemberController');
     Route::get('get-member-data', 'MemberController@getData')->name('members.datatables.data');
     Route::get('member/edit', 'MemberController@MemberEdit');
+
+
+    Route::any('members/add-to-group', 'MemberController@add_to_group');
+    Route::delete('members/remove-from-group/{id}', 'MemberController@remove_from_group');
     Route::get('statement/daily', 'StatementController@daily');
     Route::get('statement/customize', 'StatementController@customize');
     Route::get('statement/daily-statement', 'StatementController@dailyStatement');
