@@ -158,7 +158,7 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#currentSaving"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-hand-holding-usd"></i>
-                    <span>সাধারণ সঞ্চয়</span>
+                    <span>সাধারণ সঞ্চয়(সেভিংস )</span>
                 </a>
                 <div id="currentSaving" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
