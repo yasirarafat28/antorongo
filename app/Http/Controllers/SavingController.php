@@ -11,6 +11,7 @@ use App\TransactionHead;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SavingController extends Controller
 {
@@ -324,13 +325,13 @@ class SavingController extends Controller
         ->where(function ($q) use ($request,$saving_ids){
             if ($request->has('from') && $request->from) {
                 $from = date("Y-m-d", strtotime($request->from));
-                $q->where('date', '>=',  $from);
+                $q->where(DB::raw('DATE(date)'),'>=',$from);
 
             }
             if ($request->has('to') && $request->to) {
 
                 $to = date("Y-m-d", strtotime($request->to));
-                $q->where('date', '<=',  $to);
+                $q->where(DB::raw('DATE(date)'),'<=',$to);
 
             }
 

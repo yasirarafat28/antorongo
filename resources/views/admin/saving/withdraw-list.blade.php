@@ -114,7 +114,7 @@
                                 <th> আদায়কারীর নাম  </th>
                                 <th> লেনদেনের ধরন </th>
                                 <th>পরিমান</th>
-                                <th> অবস্থা</th>
+                                {{-- <th> অবস্থা</th> --}}
                                 <th> পরিশোধের সময়</th>
                             </tr>
                             </thead>
@@ -127,7 +127,7 @@
                                 <th> আদায়কারীর নাম  </th>
                                 <th> লেনদেনের ধরন </th>
                                 <th>পরিমান</th>
-                                <th> অবস্থা</th>
+                                {{-- <th> অবস্থা</th> --}}
                                 <th> পরিশোধের সময়</th>
                             </tr>
                             </tfoot>
@@ -160,7 +160,7 @@
                                                     {!! Form::close() !!}
                                             </div>
                                         </td>
-                                        <td>{{$item->user->name??''}}( {{$item->user->unique_id??''}})</td>
+                                        <td>{{$item->user->name_bn??''}}( {{$item->user->unique_id??''}})</td>
                                         <td>{{$item->savings->txn_id??''}}</td>
                                         <td>{{$item->txn_id??''}}</td>
                                         <td>{{$item->receiver->name??''}}</td>
@@ -183,7 +183,7 @@
                                             {{\App\NumberConverter::en2bn($item->amount)}} টাকা
 
                                         </td>
-                                        <td>নিশ্চিত </td>
+                                        {{-- <td>নিশ্চিত </td> --}}
                                         <td>{{\App\NumberConverter::en2bn($item->date)}}</td>
 
                                     </tr>
