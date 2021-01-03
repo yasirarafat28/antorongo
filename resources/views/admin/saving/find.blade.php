@@ -597,7 +597,99 @@
                             @php
                                 $total =0;
                             @endphp
-                            @forelse($saving->histories as $item)
+
+                            @if ($saving->type=='short' )
+                                @forelse ($saving->groupped_histories() as $key=>$y_month)
+
+                                    <tr>
+                                        <td colspan="5" class="text-left text-primary" ><h3>{{$key}}</h3></td>
+                                        <td colspan="4" class="text-left text-primary" >
+                                            <p><strong>জমাঃ </strong> {{App\Saving::yearly_total_deposit($saving->id,$key)}} </p>
+                                            <p><strong>লাভঃ </strong> {{App\Saving::yearly_total_profit($saving->id,$key)}} </p>
+
+                                        </td>
+                                    </tr>
+                                    @foreach ($y_month as $m_key=>$m_transaction)
+
+                                        <tr>
+                                            <td colspan="6" class="text-left pl-4 text-success" ><h4 class="ml-5">{{App\BanglaMonth::MonthName($m_key)}} - {{$key}}</h4></td>
+                                            <td colspan="3" class="text-left pl-4 text-success" >
+                                                <h4 class="ml-5">
+
+                                                    <p><strong>জমাঃ </strong> {{App\Saving::yearly_total_deposit($saving->id,$key)}} </p>
+                                                    <p><strong>লাভঃ </strong> {{App\Saving::yearly_total_profit($saving->id,$key)}} </p>
+                                                </h4></td>
+
+                                        </tr>
+
+                                        @foreach ($m_transaction as $item)
+                                            <tr>
+
+                                                <td>
+                                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                    aria-labelledby="dropdownMenuLink">
+                                                        <a href="{{url('admin/transactions/'.$item->id.'/edit')}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট</a>
+                                                            {!! Form::open([
+                                                            'method'=>'DELETE',
+                                                            'url' => ['/admin/transactions', $item->id],
+                                                            'style' => 'display:inline'
+                                                            ]) !!}
+                                                            {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন ', array(
+                                                                'type' => 'submit',
+                                                                'class' => 'dropdown-item',
+                                                                'title' => 'মুছে ফেলুন',
+                                                                'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
+                                                                )) !!}
+                                                            {!! Form::close() !!}
+                                                    </div>
+                                                </td>                                    <td>{{\App\NumberConverter::en2bn($item->date)}}</td>
+                                                <td>{{ \App\BanglaMonth::MonthName(date('m',strtotime($item->date)))}}</td>
+
+                                                <td>{{$item->txn_id??''}}</td>
+                                                <td>
+                                                    @if($item->flag=='deposit')
+                                                        জমা
+                                                    @elseif($item->flag=='profit')
+                                                        লাভ
+                                                    @elseif($item->flag=='fine')
+                                                        জরিমানা
+                                                    @else
+                                                        উত্তোলন
+                                                    @endif
+                                                </td>
+
+                                                <td style="color: green;font-weight: 700;">
+
+                                                    @if($item->flag=='deposit' || $item->flag=='profit')
+                                                        + {{\App\NumberConverter::en2bn($item->amount)}} টাকা
+                                                    @else
+                                                        - {{\App\NumberConverter::en2bn($item->amount)}} টাকা
+                                                    @endif
+
+                                                </td>
+                                                <!--<td>{{\App\NumberConverter::en2bn($total??'')}}</td>-->
+                                                <td>{{$item->note}}</td>
+                                                <td>{{$item->receiver->name??''}}</td>
+
+                                            </tr>
+
+                                        @endforeach
+
+                                    @endforeach
+
+                                @empty
+
+                                    <tr>
+                                        <td colspan="9" class="text-center" >No Entry found!</td>
+                                    </tr>
+
+                                @endforelse
+                            @else
+                                @forelse($saving->histories as $item)
 
 
                                 <tr>
@@ -611,16 +703,16 @@
                                         aria-labelledby="dropdownMenuLink">
                                             <a href="{{url('admin/transactions/'.$item->id.'/edit')}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট</a>
                                                 {!! Form::open([
-                                                   'method'=>'DELETE',
-                                                   'url' => ['/admin/transactions', $item->id],
-                                                   'style' => 'display:inline'
+                                                'method'=>'DELETE',
+                                                'url' => ['/admin/transactions', $item->id],
+                                                'style' => 'display:inline'
                                                 ]) !!}
                                                 {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন ', array(
-                                                     'type' => 'submit',
-                                                     'class' => 'dropdown-item',
+                                                    'type' => 'submit',
+                                                    'class' => 'dropdown-item',
                                                     'title' => 'মুছে ফেলুন',
                                                     'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
-                                                     )) !!}
+                                                    )) !!}
                                                 {!! Form::close() !!}
                                         </div>
                                     </td>                                    <td>{{\App\NumberConverter::en2bn($item->date)}}</td>
@@ -658,6 +750,8 @@
                                         <td colspan="9" class="text-center" >No Entry found!</td>
                                     </tr>
                                 @endforelse
+
+                            @endif
 
                             </tbody>
                         </table>

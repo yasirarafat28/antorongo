@@ -68,13 +68,15 @@ class MemberController extends Controller
             //     $releted_query[3] = str_replace('FM', 'C', $query);
             // }
 
-            if (sizeof($releted_query)<1) {
-                $releted_user_ids = array();
-            }else{
+            // if (sizeof($releted_query)<1) {
+            //     $releted_user_ids = array();
+            // }else{
 
-                $releted_user_ids = User::where('unique_id','like','%'.$releted_query[0].'%')->orWhere('unique_id','like','%'.$releted_query[1].'%')->orWhere('unique_id','like','%'.$releted_query[2].'%')->orWhere('unique_id','like','%'.$releted_query[3].'%')->orWhere('unique_id','like','%'.$query.'%')
-                ->get('id')->pluck('id')->toArray();
-            }
+            //     $releted_user_ids = User::where('unique_id','like','%'.$releted_query[0].'%')->orWhere('unique_id','like','%'.$releted_query[1].'%')->orWhere('unique_id','like','%'.$releted_query[2].'%')->orWhere('unique_id','like','%'.$releted_query[3].'%')->orWhere('unique_id','like','%'.$query.'%')
+            //     ->get('id')->pluck('id')->toArray();
+            // }
+
+            $releted_user_ids = MemberRelation::releted_user_ids($member->id);
 
 
             if($member)
@@ -95,10 +97,17 @@ class MemberController extends Controller
             $query = $request->id;
             $member = User::where('id',$request->id)->first();
 
-            $loan_records = Loan::with('user')->where('user_id',$member->id)->get();
 
-            $saving_records = Saving::with('user')->where('user_id',$member->id)->get();
-            $FDR_records = Fdr::with('user')->where('user_id',$member->id)->get();
+            $releted_user_ids = MemberRelation::releted_user_ids($member->id);
+
+
+            if($member)
+                array_push($releted_user_ids,$member->id);
+
+            $loan_records = Loan::with('user')->whereIn('user_id',$releted_user_ids)->get();
+
+            $saving_records = Saving::with('user')->whereIn('user_id',$releted_user_ids)->get();
+            $FDR_records = Fdr::with('user')->whereIn('user_id',$releted_user_ids)->get();
         }
         else{
             $member ='';
