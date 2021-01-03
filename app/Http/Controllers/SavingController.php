@@ -315,7 +315,7 @@ class SavingController extends Controller
 
     public function WithdrawList(Request $request,$type)
     {
-        $saving_ids = Saving::where('type',$type)->get('id');
+        $saving_ids = Saving::where('type',$type)->get('id')->pluck('id');
         $transactions = Transaction::with('user','receiver','savings')->where('transaction_for','saving')
         ->where('flag','withdraw')
         ->whereIn('transactable_id',$saving_ids)
@@ -339,6 +339,8 @@ class SavingController extends Controller
         }else{
             $transactions = $transactions->paginate(25);
         }
+
+        //return $transactions;
 
 
         $total = Transaction::where('transaction_for','saving')

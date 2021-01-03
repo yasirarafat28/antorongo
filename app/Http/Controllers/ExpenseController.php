@@ -8,6 +8,7 @@ use App\Transaction;
 use App\NumberConverter;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ExpenseController extends Controller
 {
@@ -102,19 +103,19 @@ class ExpenseController extends Controller
             $q->where('type','expense');
             if ($request->has('from') && $request->from) {
                 $from = date("Y-m-d", strtotime($request->from));
-                $q->where('date', '>=',  $from);
+                $q->where(DB::raw('DATE(date)'),'>=',$from);
 
             }
             if ($request->has('to') && $request->to) {
 
                 $to = date("Y-m-d", strtotime($request->to));
-                $q->where('date', '<=',  $to);
+                $q->where(DB::raw('DATE(date)'),'<=',$to);
 
             }
 
         });
         if(isset($request->limit) && $request->limit=='-1'){
-            $transactions = $transactions->paginate($recortransactionsds->count());
+            $transactions = $transactions->paginate($transactions->count());
         }else{
             $transactions = $transactions->paginate(25);
         }
