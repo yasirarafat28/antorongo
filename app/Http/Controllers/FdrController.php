@@ -343,12 +343,12 @@ class FdrController extends Controller
 
         if( $request->withdraw_source=='profit'){
             if($fdr->profit_balance() < $request->amount){
-                return back()->withErrors('দুঃখিত ! উত্তোলন করার জন্য যথেষ্ট পরিমান ব্যালেন্স নেই!');
+                //return back()->withErrors('দুঃখিত ! উত্তোলন করার জন্য যথেষ্ট পরিমান ব্যালেন্স নেই!');
             }
             $head = TransactionHead::where('slug','fdr_profit_expense')->first();
         }elseif( $request->withdraw_source=='revenue'){
             if($fdr->revenue_balance() < $request->amount){
-                return back()->withErrors('দুঃখিত ! উত্তোলন করার জন্য যথেষ্ট পরিমান ব্যালেন্স নেই!');
+                //return back()->withErrors('দুঃখিত ! উত্তোলন করার জন্য যথেষ্ট পরিমান ব্যালেন্স নেই!');
             }
             $head = TransactionHead::where('slug','fdr_refund_expense')->first();
         }else{

@@ -85,23 +85,23 @@ class SavingController extends Controller
             return back()->withError('Related saving didn\'t found!');
         }
 
-        if($request->balance=='profit'){
+        // if($request->balance=='profit'){
 
-            if($saving->profit_balance() < $request->amount){
-                return back()->withErrors('দুঃখিত ! উত্তোলন করার জন্য যথেষ্ট পরিমান ব্যালেন্স নেই!');
-            }
+        //     if($saving->profit_balance() < $request->amount){
+        //         return back()->withErrors('দুঃখিত ! উত্তোলন করার জন্য যথেষ্ট পরিমান ব্যালেন্স নেই!');
+        //     }
 
-        }elseif($request->balance=='deposit'){
+        // }elseif($request->balance=='deposit'){
 
-            if($saving->deposit_balance() < $request->amount){
-                return back()->withErrors('দুঃখিত ! উত্তোলন করার জন্য যথেষ্ট পরিমান ব্যালেন্স নেই!');
-            }
+        //     if($saving->deposit_balance() < $request->amount){
+        //         return back()->withErrors('দুঃখিত ! উত্তোলন করার জন্য যথেষ্ট পরিমান ব্যালেন্স নেই!');
+        //     }
 
-        }else{
+        // }else{
 
-        //if($saving->balance() < $request->amount){
-            return back()->withErrors('দুঃখিত ! উত্তোলন করার জন্য যথেষ্ট পরিমান ব্যালেন্স নেই!');
-        }
+        // //if($saving->balance() < $request->amount){
+        //     return back()->withErrors('দুঃখিত ! উত্তোলন করার জন্য যথেষ্ট পরিমান ব্যালেন্স নেই!');
+        // }
 
         if($saving->type=='long'){
             if($request->balance=='profit'){
