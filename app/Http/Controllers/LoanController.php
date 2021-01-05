@@ -733,7 +733,7 @@ class LoanController extends Controller
         $transaction->head_id = $head->id;
         $transaction->user_id = $loan->user_id;
         $transaction->note = $request->note;
-        $transaction->date = date('Y-m-d H:i:s');
+        $transaction->date = $request->date;
         $transaction->amount = NumberConverter::bn2en($request->amount);
         $transaction->added_by = Auth::user()->id;
         $transaction->received_by = Auth::user()->id;
