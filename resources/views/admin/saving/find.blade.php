@@ -290,6 +290,9 @@
                                         <button
                                             data-toggle="modal" data-target="#withdrawModal" class="btn btn-primary"><i class="fa fa-upload"></i> উত্তোলন  করুন
                                         </button>
+                                        <button
+                                            data-toggle="modal" data-target="#SavingFineModal" class="btn btn-primary"><i class="fa fa-upload"></i> জরিমানা  করুন
+                                        </button>
                                         {!! Form::open([
                                             'method'=>'POST',
                                             'url' => ['/admin/saving/close', $saving->id],
@@ -390,6 +393,82 @@
                                             <div class="col-md-12 text-center">
 
                                                 <button class="btn btn-primary btn-round"> জমা করুন</button>
+
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Add Modal End-->
+
+                        <!--  Modal Start -->
+                        <div class="modal fade" id="SavingFineModal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h2><strong>জরিমানা </strong>করুন</h2>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{url('admin/saving/fine-income')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
+                                            {{csrf_field()}}
+                                            <input type="hidden" name="saving_id" value="{{$saving->id}}">
+                                            <input type="hidden" name="user_id" value="{{$saving->user_id}}">
+
+
+                                            <div class="col-lg-12 col-md-12">
+
+                                                <div class="form-group">
+
+                                                    <label for=""><small> জরিমানার পরিমান</small></label>
+
+                                                    <input type="number" step="any" class="form-control" name="amount" placeholder="জরিমানার পরিমান" id="amount">
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-lg-12 col-md-12">
+
+                                                <div class="form-group">
+
+                                                    <label for=""><small> জরিমানার তারিখ </small></label>
+
+                                                    <input type="date" class="form-control" name="date" placeholder="জরিমানার তারিখ">
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-lg-12 col-md-12">
+
+                                                <div class="form-group">
+
+                                                    <label for=""><small> মতামত </small></label>
+
+                                                    <textarea name="note" class="form-control" placeholder="মতামত"></textarea>
+
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="col-md-12">
+                                                    <div class="checkbox">
+                                                        <input id="remember_me_2" name="invoice" type="checkbox">
+                                                        <label for="remember_me_2">
+                                                            টাকা জমার রশিদ
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12 text-center">
+
+                                                <button class="btn btn-primary btn-round"> সেভ করুন</button>
 
                                             </div>
                                         </form>
@@ -715,7 +794,8 @@
                                                     )) !!}
                                                 {!! Form::close() !!}
                                         </div>
-                                    </td>                                    <td>{{\App\NumberConverter::en2bn($item->date)}}</td>
+                                    </td>
+                                    <td>{{\App\NumberConverter::en2bn($item->date)}}</td>
                                     <td>{{ \App\BanglaMonth::MonthName(date('m',strtotime($item->date)))}}</td>
 
                                     <td>{{$item->txn_id??''}}</td>

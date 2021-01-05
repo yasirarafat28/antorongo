@@ -104,6 +104,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 
     Route::post('loan/add_reveanue', 'LoanController@add_reveanue')->name('loan.add_reveanue');
     Route::post('loan/add_interest', 'LoanController@add_interest')->name('loan.add_interest');
+    Route::post('loan/fine_income', 'LoanController@fine_income')->name('loan.FineIncome');
     Route::post('loan/collect_reveanue', 'LoanController@collect_reveanue')->name('loan.collect_reveanue');
     Route::post('loan/collect_interest', 'LoanController@collect_interest')->name('loan.collect_interest');
     Route::post('loan/give_away', 'LoanController@give_away')->name('loan.give_away');
@@ -141,6 +142,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::get('saving/edit/{id}', 'SavingController@SavingEdit')->name('SavingEdit');
     Route::post('saving/edit/{id}', 'SavingController@SavingUpdate')->name('SavingUpdate');
     Route::post('saving/deposit', 'SavingController@Deposit')->name('SavingDeposit');
+    Route::post('saving/fine-income', 'SavingController@fine_income')->name('FineIncome');
     Route::get('saving/{type}/collection', 'SavingController@depositView');
     Route::get('saving/{type}/withdraw', 'SavingController@WithdrawView');
     Route::post('saving/withdraw', 'SavingController@Withdraw');
@@ -187,6 +189,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::get('fdr/withdraw-report', 'FdrController@withdrawReport')->name('withdrawReport');
     Route::get('fdr/profit-report', 'FdrController@profitReport')->name('profitReport');
     Route::post('fdr/add-profit-manually', 'FdrController@ManualProfit')->name('ManualProfit');
+    Route::post('fdr/fine_income', 'FdrController@fine_income')->name('fdr.FineIncome');
     Route::post('fdr/getFdrsByUser', 'FdrController@getFdrsByUser')->name('getFdrsByUser');
     Route::post('fdr/getFdrDetails', 'FdrController@getFdrDetails')->name('getFdrDetails');
     Route::get('fdr/edit/{id}', 'FdrController@FdrEdit')->name('FdrEdit');

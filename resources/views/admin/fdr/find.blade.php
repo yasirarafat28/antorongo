@@ -263,6 +263,7 @@
                             @elseif($fdr->status=='approved')
                             <a data-toggle="modal" data-target="#addProfiteModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> লাভ যোগ করুন </a>
                             <a data-toggle="modal" data-target="#withDrawModal" class="btn btn-primary"> <i class="fa fa-upload"></i> উত্তোলন করুন </a>
+                            <a data-toggle="modal" data-target="#FdrFineIncomeModal" class="btn btn-primary"> <i class="fa fa-upload"></i> জরিমানা করুন </a>
                                 {!! Form::open([
                                     'method'=>'POST',
                                     'url' => ['/admin/fdr/close', $fdr->id],
@@ -303,7 +304,7 @@
                         </div>
 
 
-                             <!--  Modal Start -->
+                        <!--  Modal Start -->
                         <div class="modal fade" id="withDrawModal" tabindex="-1" role="dialog">
                             <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
@@ -458,6 +459,80 @@
                                 </div>
                             </div>
                         </div>
+                        <!--  Modal Start -->
+                        <div class="modal fade" id="FdrFineIncomeModal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h2><strong> জরিমানা</strong> করুন</h2>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{url('admin/fdr/fine_income')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
+                                            {{csrf_field()}}
+
+                                            <input type="hidden" name="fdr_id" value="{{$fdr->id}}">
+                                            <input type="hidden" name="user_id" value="{{$fdr->user_id}}">
+
+                                            <div class="col-lg-12 col-md-12">
+
+                                                <div class="form-group">
+
+                                                    <label for=""><small>জরিমানার পরিমান</small></label>
+
+                                                    <input type="number" step="any" class="form-control" name="amount" placeholder="লাভের পরিমান" id="amount">
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-lg-12 col-md-12">
+
+                                                <div class="form-group">
+
+                                                    <label for=""><small> জরিমানার তারিখ </small></label>
+
+                                                    <input type="date" class="form-control" name="date" placeholder="উত্তলনের তারিখ">
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-lg-12 col-md-12">
+
+                                                <div class="form-group">
+
+                                                    <label for=""><small> মতামত </small></label>
+
+                                                    <textarea name="note" class="form-control" placeholder="মতামত"></textarea>
+
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="col-md-12">
+                                                    <div class="checkbox">
+                                                        <input id="remember_me_2" name="invoice" type="checkbox">
+                                                        <label for="remember_me_2">
+                                                            টাকা জমার রশিদ
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12 text-center">
+
+                                                <button class="btn btn-primary btn-round"> লাভ যোগ  করুন</button>
+
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                     @endif
@@ -553,6 +628,8 @@
                                             জমা
                                         @elseif($item->flag=='profit')
                                             লাভ
+                                        @elseif($item->flag=='fine')
+                                            জরিমানা
                                         @else
                                             উত্তোলন
                                         @endif
