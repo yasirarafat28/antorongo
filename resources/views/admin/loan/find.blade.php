@@ -80,11 +80,11 @@
                                     <tbody>
                                         <tr>
                                             <td class="text-right">নাম :</td>
-                                            <td class="text-left">{{$loan->user->name_bn}}</td>
+                                            <td class="text-left">{{$loan->user->name_bn??''}}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-right">সভ্য আইডি : </td>
-                                            <td class="text-left">{{$loan->user->unique_id}}</td>
+                                            <td class="text-left">{{$loan->user->unique_id??''}}</td>
                                         </tr>
 
                                         <tr>
@@ -189,7 +189,7 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                    মত লাভ আদায়
+                                                    মোট লাভ আদায়
                                                 </div>
                                                 <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn(number_format($total_interest,2))}} টাকা </div>
                                             </div>
