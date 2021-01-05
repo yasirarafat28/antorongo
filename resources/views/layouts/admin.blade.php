@@ -33,6 +33,7 @@
 
     @yield('style')
 
+
 </head>
 
 <body id="page-top">

@@ -30,8 +30,11 @@
         @page { margin: 0; }
         body { margin: 1.6cm; }
 
-        img{
-            height: 80px;
+
+
+        .barcode{
+            height: 60px !important;
+            width: 100% !important;
         }
     </style>
 
