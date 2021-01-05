@@ -6,6 +6,7 @@ use App\NumberConverter;
 use Illuminate\Http\Request;
 use App\Transaction;
 use App\TransactionHead;
+use Illuminate\Support\Facades\DB;
 
 class TransactionController extends Controller
 {
@@ -24,7 +25,7 @@ class TransactionController extends Controller
         $transactions = Transaction::where(function ($q) use ($request){
             if ($request->has('from') && $request->from) {
                 $from = date("Y-m-d", strtotime($request->from));
-                $q->where('date', '>=',  $from);
+                $q->where(DB::raw('DATE(date)'),'<=',$from);
 
             }
             if ($request->has('head_id') && $request->head_id) {
@@ -38,7 +39,7 @@ class TransactionController extends Controller
             if ($request->has('to') && $request->to) {
 
                 $to = date("Y-m-d", strtotime($request->to));
-                $q->where('date', '<=',  $to);
+                $q->where(DB::raw('DATE(date)'),'<=',$to);
 
             }
 
