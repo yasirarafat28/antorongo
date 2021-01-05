@@ -16,6 +16,7 @@
 
         <!-- Content Row -->
         <div class="row col-md-12">
+            <h6 class="m-0 mb-3 font-weight-bold text-primary col-md-12">আয় ব্যয় গ্রাফ</h6>
 
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
@@ -92,6 +93,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row col-md-12">
+            <h6 class="m-0 mb-3 font-weight-bold text-primary col-md-12">আয় ব্যয় গ্রাফ</h6>
             <!-- Pending Requests Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-primary shadow h-100 py-2">
