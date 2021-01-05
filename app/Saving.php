@@ -109,7 +109,7 @@ class Saving extends Model
         return Transaction::whereIn('flag',['deposit'])
         ->where('transaction_for','saving')
         ->where(DB::raw("YEAR(date)",$year))
-            ->where('statuss','approved')->where('transactable_id',$id)->sum('amount');
+            ->where('status','approved')->where('transactable_id',$id)->sum('amount');
 
     }
 
