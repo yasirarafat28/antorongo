@@ -746,7 +746,7 @@
                                 $total =0;
                             @endphp
 
-                            @if ($saving->type=='short' )
+                            @if (false )
                                 @forelse ($saving->groupped_histories() as $key=>$y_month)
 
                                     <tr>
