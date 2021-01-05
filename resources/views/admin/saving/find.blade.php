@@ -561,7 +561,7 @@
                                             <input type="hidden" name="user_id" value="{{$saving->user_id}}">
 
 
-                                            @if (env('PREVIOUS_DATA_ENTRY')=='yes')
+                                            @if (env('PREVIOUS_DATA_ENTRY','no')=='yes')
 
 
                                                 <div class="col-lg-12 col-md-12">

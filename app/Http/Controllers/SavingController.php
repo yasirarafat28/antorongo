@@ -156,6 +156,10 @@ class SavingController extends Controller
         $transaction->admin_status ='approved';
         $transaction->manager_status = 'approved';
         $transaction->status = 'approved';
+        if (env('PREVIOUS_DATA_ENTRY','no')=='yes'){
+
+            $transaction->canculatable = $request->canculatable;
+        }
         $transaction->save();
 
         if ($request->invoice)
