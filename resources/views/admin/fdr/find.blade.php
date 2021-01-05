@@ -320,6 +320,25 @@
 
                                             <input type="hidden" name="fdr_id" value="{{$fdr->id}}">
                                             <input type="hidden" name="user_id" value="{{$fdr->user_id}}">
+
+                                            @if (env('PREVIOUS_DATA_ENTRY','no')=='yes')
+
+
+                                                <div class="col-lg-12 col-md-12">
+
+                                                    <div class="form-group">
+
+                                                        <label for=""><small> ব্যালেন্স কে অ্যাডজাস্ট করবে? </small></label>
+                                                        <select name="canculatable" id="" class="form-control" required>
+                                                            <option value="yes">হা  </option>
+                                                            <option value="no">না</option>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+
+                                            @endif
+
                                             <div class="col-lg-12 col-md-12">
 
                                                 <div class="form-group">
@@ -412,6 +431,22 @@
                                             <input type="hidden" name="fdr_id" value="{{$fdr->id}}">
                                             <input type="hidden" name="user_id" value="{{$fdr->user_id}}">
 
+                                            @if (env('PREVIOUS_DATA_ENTRY','no')=='yes')
+
+                                            <div class="col-lg-12 col-md-12">
+
+                                                <div class="form-group">
+
+                                                    <label for=""><small> ব্যালেন্স কে অ্যাডজাস্ট করবে? </small></label>
+                                                    <select name="canculatable" id="" class="form-control" required>
+                                                        <option value="yes">হা  </option>
+                                                        <option value="no">না</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+
+                                            @endif
                                             <div class="col-lg-12 col-md-12">
 
                                                 <div class="form-group">
@@ -448,6 +483,17 @@
 
                                             </div>
 
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="col-md-12">
+                                                    <div class="checkbox">
+                                                        <input id="remember_me_2" name="invoice" type="checkbox">
+                                                        <label for="remember_me_2">
+                                                            টাকা জমার রশিদ
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <div class="col-md-12 text-center">
 
                                                 <button class="btn btn-primary btn-round"> লাভ যোগ  করুন</button>
@@ -476,6 +522,22 @@
                                             <input type="hidden" name="fdr_id" value="{{$fdr->id}}">
                                             <input type="hidden" name="user_id" value="{{$fdr->user_id}}">
 
+                                            @if (env('PREVIOUS_DATA_ENTRY','no')=='yes')
+
+                                            <div class="col-lg-12 col-md-12">
+
+                                                <div class="form-group">
+
+                                                    <label for=""><small> ব্যালেন্স কে অ্যাডজাস্ট করবে? </small></label>
+                                                    <select name="canculatable" id="" class="form-control" required>
+                                                        <option value="yes">হা  </option>
+                                                        <option value="no">না</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+
+                                            @endif
                                             <div class="col-lg-12 col-md-12">
 
                                                 <div class="form-group">

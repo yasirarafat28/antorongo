@@ -527,7 +527,10 @@ class LoanController extends Controller
         $transaction->admin_status ='approved';
         $transaction->manager_status = 'approved';
         $transaction->status = 'approved';
-        $transaction->canculatable='no';
+        if (env('PREVIOUS_DATA_ENTRY','no')=='yes'){
+
+            $transaction->canculatable = $request->canculatable;
+        }
         $transaction->save();
         return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
     }
@@ -557,7 +560,10 @@ class LoanController extends Controller
         $transaction->admin_status ='approved';
         $transaction->manager_status = 'approved';
         $transaction->status = 'approved';
-        $transaction->canculatable='no';
+        if (env('PREVIOUS_DATA_ENTRY','no')=='yes'){
+
+            $transaction->canculatable = $request->canculatable;
+        }
         $transaction->save();
         return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
     }
@@ -594,7 +600,10 @@ class LoanController extends Controller
         $transaction->admin_status ='approved';
         $transaction->manager_status = 'approved';
         $transaction->status = 'approved';
-        $transaction->canculatable='yes';
+        if (env('PREVIOUS_DATA_ENTRY','no')=='yes'){
+
+            $transaction->canculatable = $request->canculatable;
+        }
         $transaction->save();
 
 
@@ -638,7 +647,10 @@ class LoanController extends Controller
         $transaction->admin_status ='approved';
         $transaction->manager_status = 'approved';
         $transaction->status = 'approved';
-        $transaction->canculatable='yes';
+        if (env('PREVIOUS_DATA_ENTRY','no')=='yes'){
+
+            $transaction->canculatable = $request->canculatable;
+        }
         $transaction->save();
 
 
@@ -682,7 +694,9 @@ class LoanController extends Controller
         $transaction->admin_status ='approved';
         $transaction->manager_status = 'approved';
         $transaction->status = 'approved';
-        $transaction->canculatable='yes';
+        if (env('PREVIOUS_DATA_ENTRY','no')=='yes'){
+            $transaction->canculatable = $request->canculatable;
+        }
         $transaction->save();
 
 
@@ -785,7 +799,11 @@ class LoanController extends Controller
         $transaction->admin_status ='approved';
         $transaction->manager_status = 'approved';
         $transaction->status = 'approved';
-        $transaction->canculatable='yes';
+        if (env('PREVIOUS_DATA_ENTRY','no')=='yes'){
+
+            $transaction->canculatable = $request->canculatable;
+        }
+
         $transaction->save();
 
 

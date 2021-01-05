@@ -343,6 +343,22 @@
                                             <input type="hidden" name="saving_id" value="{{$saving->id}}">
                                             <input type="hidden" name="user_id" value="{{$saving->user_id}}">
 
+                                            @if (env('PREVIOUS_DATA_ENTRY','no')=='yes')
+
+                                            <div class="col-lg-12 col-md-12">
+
+                                                <div class="form-group">
+
+                                                    <label for=""><small> ব্যালেন্স কে অ্যাডজাস্ট করবে? </small></label>
+                                                    <select name="canculatable" id="" class="form-control" required>
+                                                        <option value="yes">হা  </option>
+                                                        <option value="no">না</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+
+                                            @endif
 
                                             <div class="col-lg-12 col-md-12">
 
@@ -419,6 +435,22 @@
                                             <input type="hidden" name="saving_id" value="{{$saving->id}}">
                                             <input type="hidden" name="user_id" value="{{$saving->user_id}}">
 
+                                            @if (env('PREVIOUS_DATA_ENTRY','no')=='yes')
+
+                                            <div class="col-lg-12 col-md-12">
+
+                                                <div class="form-group">
+
+                                                    <label for=""><small> ব্যালেন্স কে অ্যাডজাস্ট করবে? </small></label>
+                                                    <select name="canculatable" id="" class="form-control" required>
+                                                        <option value="yes">হা  </option>
+                                                        <option value="no">না</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+
+                                            @endif
 
                                             <div class="col-lg-12 col-md-12">
 
@@ -496,6 +528,24 @@
                                             <input type="hidden" name="saving_id" value="{{$saving->id}}">
                                             <input type="hidden" name="user_id" value="{{$saving->user_id}}">
 
+
+                                            @if (env('PREVIOUS_DATA_ENTRY','no')=='yes')
+
+
+                                                <div class="col-lg-12 col-md-12">
+
+                                                    <div class="form-group">
+
+                                                        <label for=""><small> ব্যালেন্স কে অ্যাডজাস্ট করবে? </small></label>
+                                                        <select name="canculatable" id="" class="form-control" required>
+                                                            <option value="yes">হা  </option>
+                                                            <option value="no">না</option>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+
+                                            @endif
                                             <div class="col-lg-12 col-md-12">
 
                                                 <div class="form-group">
