@@ -746,31 +746,40 @@
                                 $total =0;
                             @endphp
 
-                            @if (false )
+                            @if ($saving->type=='daily' )
                                 @forelse ($saving->groupped_histories() as $key=>$y_month)
 
-                                    <tr>
+                                    {{-- <tr>
                                         <td colspan="5" class="text-left text-primary" ><h3>{{$key}}</h3></td>
                                         <td colspan="4" class="text-left text-primary" >
                                             <p><strong>জমাঃ </strong> {{App\Saving::yearly_total_deposit($saving->id,$key)}} </p>
                                             <p><strong>লাভঃ </strong> {{App\Saving::yearly_total_profit($saving->id,$key)}} </p>
 
                                         </td>
-                                    </tr>
+                                    </tr> --}}
                                     @foreach ($y_month as $m_key=>$m_transaction)
 
-                                        <tr>
-                                            <td colspan="6" class="text-left pl-4 text-success" ><h4 class="ml-5">{{App\BanglaMonth::MonthName($m_key)}} - {{$key}}</h4></td>
-                                            <td colspan="3" class="text-left pl-4 text-success" >
-                                                <h4 class="ml-5">
-
-                                                    <p><strong>জমাঃ </strong> {{App\Saving::yearly_total_deposit($saving->id,$key)}} </p>
-                                                    <p><strong>লাভঃ </strong> {{App\Saving::yearly_total_profit($saving->id,$key)}} </p>
-                                                </h4></td>
-
-                                        </tr>
+                                        @php
+                                            $monthly_total_deposit = 0;
+                                            $monthly_total_profit = 0;
+                                            $monthly_total_withdraw = 0;
+                                        @endphp
 
                                         @foreach ($m_transaction as $item)
+                                            @if ($item->flag=='deposit')
+                                                @php
+                                                    $monthly_total_deposit+=$item->amount;
+                                                @endphp
+                                            @elseif ($item->flag=='profit')
+                                                @php
+                                                    $monthly_total_profit+=$item->amount;
+                                                @endphp
+                                            @elseif ($item->flag=='profit_withdraw' || $item->flag=='profit_withdraw')
+                                                @php
+                                                    $monthly_total_withdraw+=$item->amount;
+                                                @endphp
+
+                                            @endif
                                             <tr>
 
                                                 <td>
@@ -826,6 +835,20 @@
                                             </tr>
 
                                         @endforeach
+
+
+                                        <tr>
+                                            <td colspan="6" class="text-left pl-4 text-success" ><h4 class="ml-5">{{App\BanglaMonth::MonthName($m_key)}} - {{$key}}</h4></td>
+                                            <td colspan="3" class="text-left pl-4 text-success" >
+                                                <div class="ml-5 d-flex">
+
+                                                    <p class="ml-2 mr-2"><strong>জমাঃ </strong> {{App\NumberConverter::en2bn($monthly_total_deposit)}} </p> |
+                                                    <p class="ml-2 mr-2"><strong>লাভঃ </strong> {{App\NumberConverter::en2bn($monthly_total_profit)}} </p> |
+                                                    <p class="ml-2 mr-2"><strong>উত্তোলন </strong> {{App\NumberConverter::en2bn($monthly_total_withdraw)}} </p>
+                                                </h4></td>
+
+                                        </tr>
+
 
                                     @endforeach
 

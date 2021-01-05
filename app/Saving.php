@@ -113,11 +113,4 @@ class Saving extends Model
 
     }
 
-    public static function yearly_total_withdraw($id,$year=0){
-        return Transaction::whereIn('flag',['deposit_withdraw','profit_withdraw'])
-        ->where('transaction_for','saving')
-        ->where(DB::raw("YEAR(date)",$year))
-            ->where('status','approved')->where('transactable_id',$id)->sum('amount');
-
-    }
 }
