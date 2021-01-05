@@ -1,5 +1,6 @@
 <?php
 
+use App\MemberRelation;
 use App\Transaction;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,8 @@ Route::get('/', function () {
 });
 
 Route::get('/testing', function () {
+
+    return MemberRelation::releted_user_ids('6145');
 
     $from = '2015-12-22';
     $to = '2020-12-22';
