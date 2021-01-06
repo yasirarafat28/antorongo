@@ -16,8 +16,26 @@
 
         <!-- Content Row -->
         <div class="row col-md-12">
-            <h6 class="m-0 mb-3 font-weight-bold text-primary col-md-12">আয় ব্যয় গ্রাফ</h6>
-
+            <h6 class="m-0 mb-3 font-weight-bold text-primary col-md-12">স্বল্প মেয়াদী সঞ্চয়</h6>
+            <!-- Pending Requests Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    স্বল্প মেয়াদী সঞ্চয়
+                                </div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($short_saving_transactions)}} টাকা</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">{{\App\NumberConverter::en2bn($short_savings->count())}} জন</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-primary shadow h-100 py-2">
@@ -35,26 +53,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-success shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                    মোট ঋণ</div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($loan->sum('approved_amount'))}} টাকা</div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">{{\App\NumberConverter::en2bn($loan->count())}} জন</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
 
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-warning shadow h-100 py-2">
@@ -95,7 +93,31 @@
             </div>
         </div>
         <div class="row col-md-12">
-            <h6 class="m-0 mb-3 font-weight-bold text-primary col-md-12">আয় ব্যয় গ্রাফ</h6>
+            <h6 class="m-0 mb-3 font-weight-bold text-primary col-md-12">দীর্ঘ মেয়াদী সঞ্চয়</h6>
+
+            <!-- Pending Requests Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                    দীর্ঘ মেয়াদী সঞ্চয়
+                                </div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($long_saving_transactions)}} টাকা</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">{{\App\NumberConverter::en2bn($long_savings->count())}} জন</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row col-md-12">
+            <h6 class="m-0 mb-3 font-weight-bold text-primary col-md-12">দৈনিক সঞ্চয়</h6>
             <!-- Pending Requests Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-primary shadow h-100 py-2">
@@ -115,6 +137,11 @@
                     </div>
                 </div>
             </div>
+
+        </div>
+        <div class="row col-md-12">
+            <h6 class="m-0 mb-3 font-weight-bold text-primary col-md-12">সাধারণ সঞ্চয়(সেভিংস )</h6>
+
             <!-- Pending Requests Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-success shadow h-100 py-2">
@@ -135,6 +162,12 @@
                 </div>
             </div>
             <!-- Pending Requests Card Example -->
+
+        </div>
+        <div class="row col-md-12">
+            <h6 class="m-0 mb-3 font-weight-bold text-primary col-md-12">এফ ডি আর ম্যানেজমেন্ট</h6>
+
+            <!-- Pending Requests Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-info shadow h-100 py-2">
                     <div class="card-body">
@@ -154,7 +187,81 @@
                 </div>
             </div>
         </div>
+        <div class="row col-md-12">
+            <h6 class="m-0 mb-3 font-weight-bold text-primary col-md-12">ঋণ ম্যানেজমেন্ট</h6>
+            <!-- Pending Requests Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                    মোট ঋণ</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($loan->sum('approved_amount'))}} টাকা</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">{{\App\NumberConverter::en2bn($loan->count())}} জন</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    বর্তমান  ঋণ</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($active_count)}}</div>
 
+
+                                <a href="/admin/loan/list?filterBy=active" class="text-link">তালিকা দেখুন</a>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    অনিষ্পাদিত ঋণ</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($pending_count)}}</div>
+                                <a href="/admin/loan/list?filterBy=pending" class="text-link">তালিকা দেখুন</a>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    ঋণ প্রত্যাহার</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($closed_count)}}</div>
+                                <a href="/admin/loan/list?filterBy=closed" class="text-link">তালিকা দেখুন</a>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <br>
         <!-- Content Row -->
 
         <div class="row">

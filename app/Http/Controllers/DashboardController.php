@@ -51,6 +51,10 @@ class DashboardController extends Controller
         })->where('flag','deposit')->sum('amount');
 
         $loan = Loan::whereIn('status',['active','closed'])->get();
+        $active_count   = Loan::where('status','active')->count();
+        $pending_count   = Loan::where('status','pending')->count();
+        $declined_count   = Loan::where('status','declined')->count();
+        $closed_count   = Loan::where('status','closed')->count();
 
         $monthly_data = DB::table('transaction')
         ->select(DB::raw("sum(case when `type`='income' then amount*1 else amount*0 end) as `income`"),DB::raw("sum(case when `type`='expense' then amount*1 else amount*0 end) as `expense`"), DB::raw('MONTH(created_at) as month'), DB::raw('YEAR(created_at) as year'))
@@ -68,7 +72,7 @@ class DashboardController extends Controller
 
         return view('admin/dashboard',compact('members','daily_saving_transactions','daily_savings','short_savings',
         'short_saving_transactions','long_savings','long_saving_transactions','fdr_list','fdr_transactions',
-        'loan','monthly_data','pie_chart_data','current_savings','current_saving_transactions'));
+        'loan','active_count','pending_count','declined_count','closed_count','monthly_data','pie_chart_data','current_savings','current_saving_transactions'));
     }
 
 }
