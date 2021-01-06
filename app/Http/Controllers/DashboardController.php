@@ -50,11 +50,38 @@ class DashboardController extends Controller
             $q->whereIn('transactable_id',$fdr_list);
         })->where('flag','deposit')->sum('amount');
 
+        $short_active_count   = Saving::where('type','short')->where('status','approved')->count();
+        $short_pending_count   = Saving::where('type','short')->where('status','pending')->count();
+        $short_declined_count   = Saving::where('type','short')->where('status','declined')->count();
+        $short_closed_count   = Saving::where('type','short')->where('status','closed')->count();
+
+        $long_active_count   = Saving::where('type','long')->where('status','approved')->count();
+        $long_pending_count   = Saving::where('type','long')->where('status','pending')->count();
+        $long_declined_count   = Saving::where('type','long')->where('status','declined')->count();
+        $long_closed_count   = Saving::where('type','long')->where('status','closed')->count();
+
+        $daily_active_count   = Saving::where('type','daily')->where('status','approved')->count();
+        $daily_pending_count   = Saving::where('type','daily')->where('status','pending')->count();
+        $daily_declined_count   = Saving::where('type','daily')->where('status','declined')->count();
+        $daily_closed_count   = Saving::where('type','daily')->where('status','closed')->count();
+
+        $current_active_count   = Saving::where('type','current')->where('status','approved')->count();
+        $current_pending_count   = Saving::where('type','current')->where('status','pending')->count();
+        $current_declined_count   = Saving::where('type','current')->where('status','declined')->count();
+        $current_closed_count   = Saving::where('type','current')->where('status','closed')->count();
+
         $loan = Loan::whereIn('status',['active','closed'])->get();
         $active_count   = Loan::where('status','active')->count();
         $pending_count   = Loan::where('status','pending')->count();
         $declined_count   = Loan::where('status','declined')->count();
         $closed_count   = Loan::where('status','closed')->count();
+
+        $fdr_active_count   = Fdr::where('status','approved')->count();
+        $fdr_pending_count   = Fdr::where('status','pending')->count();
+        $fdr_declined_count   = Fdr::where('status','declined')->count();
+        $fdr_closed_count   = Fdr::where('status','closed')->count();
+
+
 
         $monthly_data = DB::table('transaction')
         ->select(DB::raw("sum(case when `type`='income' then amount*1 else amount*0 end) as `income`"),DB::raw("sum(case when `type`='expense' then amount*1 else amount*0 end) as `expense`"), DB::raw('MONTH(created_at) as month'), DB::raw('YEAR(created_at) as year'))
@@ -72,7 +99,11 @@ class DashboardController extends Controller
 
         return view('admin/dashboard',compact('members','daily_saving_transactions','daily_savings','short_savings',
         'short_saving_transactions','long_savings','long_saving_transactions','fdr_list','fdr_transactions',
-        'loan','active_count','pending_count','declined_count','closed_count','monthly_data','pie_chart_data','current_savings','current_saving_transactions'));
+        'loan','active_count','pending_count','declined_count','closed_count','fdr_active_count','fdr_pending_count',
+        'fdr_declined_count','fdr_closed_count','monthly_data','pie_chart_data','current_savings','current_saving_transactions',
+        'current_active_count','current_pending_count','current_closed_count','daily_active_count','daily_pending_count',
+        'daily_closed_count','long_active_count','long_pending_count','long_closed_count','short_active_count','short_pending_count',
+        'short_closed_count'));
     }
 
 }
