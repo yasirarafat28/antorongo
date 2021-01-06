@@ -18,18 +18,10 @@
                         <div>
                             @php
                             $unique_id  = $saving->user->unique_id??'';
-                                $bar = App::make('BarCode');
-                                $barcontent = $bar->barcodeFactory()->renderBarcode(
-                                        $text=$unique_id,
-                                        $size=50,
-                                        $orientation='horizontal',
-                                        $code_type='code128', // code_type : code128,code39,code128b,code128a,code25,codabar
-                                        $print=true,
-                                        $sizefactor=1.5,
-                                        $filename = $unique_id.'.jpeg'
-                                )->filename($unique_id.'.jpeg');
+
                             @endphp
-                            <img src="{{url($barcontent)}}" alt="">
+                            {!!barcode($unique_id)!!}
+
                         </div>
                         <br>
                         <table class="table">
@@ -65,18 +57,8 @@
                     <div>
                         @php
                             $unique_id  = $saving->txn_id??'';
-                            $bar = App::make('BarCode');
-                            $barcontent = $bar->barcodeFactory()->renderBarcode(
-                                    $text=$unique_id,
-                                    $size=50,
-                                    $orientation='horizontal',
-                                    $code_type='code128', // code_type : code128,code39,code128b,code128a,code25,codabar
-                                    $print=true,
-                                    $sizefactor=1.5,
-                                    $filename = $unique_id.'.jpeg'
-                            )->filename($unique_id.'.jpeg');
                         @endphp
-                        <img src="{{url($barcontent)}}" alt="">
+                            {!!barcode($unique_id)!!}
                     </div>
 
                     <br>

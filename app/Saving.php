@@ -95,29 +95,5 @@ class Saving extends Model
             return $grouped = $collection->groupBy(['year','month']);
     }
 
-    public static function yearly_total_profit($id,$year=0){
-        return Transaction::whereIn('flag',['profit'])
-        ->where('transaction_for','saving')
-        ->where(DB::raw("YEAR(date)",$year))
-            ->where('status','approved')->where('transactable_id',$id)->sum('amount');
 
-    }
-
-
-    public static function yearly_total_deposit($id,$year=0){
-        // return $year;
-        return Transaction::whereIn('flag',['deposit'])
-        ->where('transaction_for','saving')
-        ->where(DB::raw("YEAR(date)",$year))
-            ->where('status','approved')->where('transactable_id',$id)->sum('amount');
-
-    }
-
-    public static function yearly_total_withdraw($id,$year=0){
-        return Transaction::whereIn('flag',['deposit_withdraw','profit_withdraw'])
-        ->where('transaction_for','saving')
-        ->where(DB::raw("YEAR(date)",$year))
-            ->where('status','approved')->where('transactable_id',$id)->sum('amount');
-
-    }
 }

@@ -177,6 +177,7 @@ return [
 
 
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Milon\Barcode\BarcodeServiceProvider::class,
 
     ],
 
@@ -233,6 +234,8 @@ return [
 
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'NumberConverter' => App\NumberConverter::class,
+        'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
+        'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
 
     ],
 
