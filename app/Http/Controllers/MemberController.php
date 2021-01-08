@@ -127,7 +127,7 @@ class MemberController extends Controller
     public function getData(Request $request){
         //return $request;
 
-        return DataTables::of(User::query()->where(function($q) use($request){
+        return DataTables::of(User::query()->where('role','member')->where(function($q) use($request){
             if(isset($request->project) && $request->project){
                 $q->where('project',$request->project);
 
