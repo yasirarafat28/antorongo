@@ -70,6 +70,16 @@ class FdrController extends Controller
             $random_email = uniqid().'temporaryemail@ontorongo.com';
             $random_password = bcrypt('12345678');
 
+            if($request->unique_id){
+
+                $this->validate($request,
+                    [
+                        'unique_id' => 'required|unique:users',
+                    ]
+                );
+
+            }
+
             $member = new User();
             $member->role = 'member';
 
@@ -166,6 +176,18 @@ class FdrController extends Controller
 
         $started_at = date('Y-m-d H:i:s',strtotime($request->date));
         $end_at = date('Y-m-d H:i:s', strtotime($started_at . "+".$request->duration." months"));
+
+
+
+        if($request->fdr_unique_id){
+
+            $this->validate($request,
+                [
+                    'fdr_unique_id' => 'required|unique:fdr,txn_id',
+                ]
+            );
+
+        }
 
 
 
