@@ -389,7 +389,6 @@ class SavingController extends Controller
         $this->validate($request,
             [
                 'user_id' => 'required',
-                //'identifier_id' => 'required',
                 'package_id' => 'required',
             ]
         );
@@ -409,6 +408,16 @@ class SavingController extends Controller
                     'phone.required' => 'অবশ্যই মোবাইল নাম্বার বসাতে হবে!',
                 ]
             );
+
+            if($request->unique_id){
+
+                $this->validate($request,
+                    [
+                        'unique_id' => 'required|unique:users',
+                    ]
+                );
+
+            }
             $random_account = uniqid();
             $random_email = uniqid().'temporaryemail@ontorongo.com';
             $random_password = bcrypt('12345678');
@@ -554,6 +563,17 @@ class SavingController extends Controller
         );
 
         if ($request->user_id=='no'){
+
+
+            if($request->unique_id){
+
+                $this->validate($request,
+                    [
+                        'unique_id' => 'required|unique:users',
+                    ]
+                );
+
+            }
             $random_account = uniqid();
             $random_email = uniqid().'temporaryemail@ontorongo.com';
             $random_password = bcrypt('12345678');
@@ -689,6 +709,15 @@ class SavingController extends Controller
             $random_email = uniqid().'temporaryemail@ontorongo.com';
             $random_password = bcrypt('12345678');
 
+            if($request->unique_id){
+
+                $this->validate($request,
+                    [
+                        'unique_id' => 'required|unique:users',
+                    ]
+                );
+
+            }
             $member = new User();
             $member->role = 'member';
 
