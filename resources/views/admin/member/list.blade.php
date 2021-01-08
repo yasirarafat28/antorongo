@@ -94,12 +94,12 @@
 
             "lengthMenu": [[10, 25, 50,100, -1], [10, 25, 50,100, "All"]],
             buttons: [
-                {
-                    extend: 'copy',
-                    exportOptions: {
-                        columns: ':gt(0)'
-                    }
-                },
+                // {
+                //     extend: 'copy',
+                //     exportOptions: {
+                //         columns: ':gt(0)'
+                //     }
+                // },
                 // {
                 //     extend: 'csv',
                 //     exportOptions: {
