@@ -144,7 +144,7 @@
                                         {{-- <a href="{{url('admin/users/'.$item->id)}}" class="dropdown-item"  title="বিস্তারিত"><i class="fa fa-eye"> </i> বিস্তারিত </i></a> --}}
                                         <a data-toggle="modal" data-target="#largeShowModal{{$item->id}}" class="dropdown-item" title="বিস্তারিত"><i class="fa fa-eye"> </i> বিস্তারিত</a>
 
-                                        @if ($role!='super_admin' && $role!='developer')
+                                        @if ($role !='super_admin' && $role !='developer')
                                             <a data-toggle="modal" data-target="#largeEditModal{{$item->id}}" class="dropdown-item" title="সম্পাদনা করুন"><i class="fa fa-edit"> </i> এডিট</a>
                                             {!! Form::open([
                                                'method'=>'DELETE',
@@ -163,7 +163,7 @@
 
                                         </div>
                                     </td>
-                                    <td>{{$item->name}}</td>
+                                    <td>{{$item->name}} {{$role}}</td>
                                     <td>{{$item->phone}}</td>
                                     <td>{{$item->email}}</td>
                                     <td>{{$item->role}}</td>
