@@ -627,6 +627,7 @@
     <script src="/admin/plugins/datatable/buttons/buttons.colVis.min.js"></script>
     <script src="/admin/plugins/datatable/buttons/buttons.html5.min.js"></script>
     <script src="/admin/plugins/datatable/buttons/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js" type="text/javascript"></script>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
@@ -652,12 +653,12 @@
                         columns: ':gt(0)'
                     }
                 },
-                {
-                    extend: 'csv',
-                    exportOptions: {
-                        columns: ':gt(0)'
-                    }
-                },
+                // {
+                //     extend: 'csv',
+                //     exportOptions: {
+                //         columns: ':gt(0)'
+                //     }
+                // },
                 {
                     extend: 'excel',
                     exportOptions: {
