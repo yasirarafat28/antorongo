@@ -464,7 +464,7 @@ class LoanController extends Controller
         $loan->interest_rate = NumberConverter::bn2en($request->interest_rate??0);
         $loan->start_at = $request->date;
         $loan->installment_type = $request->installment_type;
-        $loan->status = 'pending';
+        $loan->status = 'approved';
         $loan->save();
 
 
