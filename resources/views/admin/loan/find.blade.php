@@ -114,6 +114,15 @@
 
                                         <tr>
                                             <td class="text-right">
+                                                মোট ঋণ প্রদান :
+                                            </td>
+                                            <td class="text-left">
+                                                {{\App\NumberConverter::en2bn($total_give_away)}} টাকা
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="text-right">
                                                 মোট পরিশোধ :
                                             </td>
                                             <td class="text-left">
