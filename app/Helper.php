@@ -9,7 +9,7 @@ function getRelatedKeyword($query){
 
 
 function barcode($text=''){
-    $barcontent = '<img class="barcode" src="data:image/png;base64,' . DNS1D::getBarcodePNG($text, 'C39+') . '" alt="barcode"   />';
+    $barcontent = '<img class="barcode" src="data:image/png;base64,' . DNS1D::getBarcodePNG($text, 'C128') . '" alt="barcode"   />';
 
         return $barcontent;
 }
