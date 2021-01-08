@@ -88,7 +88,8 @@ class DashboardController extends Controller
         ->groupby('month','year')
         ->where('status','approved')
         ->where('canculatable','yes')
-        ->orderBy('date','ASC')
+        ->orderBy('date','DESC')
+        ->limit(12)
         ->get();
 
         $pie_chart_data = DB::table('transaction')
