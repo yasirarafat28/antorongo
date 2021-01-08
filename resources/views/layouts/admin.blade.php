@@ -649,31 +649,31 @@
                 {
                     extend: 'copy',
                     exportOptions: {
-                        columns: [1,2,3,4]
+                        columns: ':gt(0)'
                     }
                 },
                 {
                     extend: 'csv',
                     exportOptions: {
-                        columns: [1,2,3,4]
+                        columns: ':gt(0)'
                     }
                 },
                 {
                     extend: 'excel',
                     exportOptions: {
-                        columns: [1,2,3,4]
+                        columns: ':gt(0)'
                     }
                 },
                 {
                     extend: 'pdf',
                     exportOptions: {
-                        columns: [1,2,3,4]
+                        columns: ':gt(0)'
                     }
                 },
                 {
                     extend: 'print',
                     exportOptions: {
-                        columns: [1,2,3,4]
+                        columns: ':gt(0)'
                     }
                 },
             ],
