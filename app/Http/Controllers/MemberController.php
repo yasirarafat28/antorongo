@@ -426,9 +426,9 @@ class MemberController extends Controller
         //
         User::destroy($id);
         Transaction::where('user_id',$id)->delete();
-        Saving::whare('user_id',$id)->delete();
-        Fdr::whare('user_id',$id)->delete();
-        Loan::whare('user_id',$id)->delete();
+        Saving::where('user_id',$id)->delete();
+        Fdr::where('user_id',$id)->delete();
+        Loan::where('user_id',$id)->delete();
         return redirect('/admin/members')->withSuccess('সফলভাবে সেভ করা হয়েছে');
     }
 
