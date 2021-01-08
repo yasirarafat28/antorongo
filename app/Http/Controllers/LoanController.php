@@ -266,16 +266,8 @@ class LoanController extends Controller
 
                 $this->validate($request,
                     [
-                        'name' => 'required',
-                        'name_bn' => 'required',
-                        'phone' => 'required',
-                        'present_address' => 'required',
+                        'unique_id' => 'required|unique:loan',
                     ],
-                    [
-                        'name_bn.required' => 'অবশ্যই বাংলায় নাম বসাতে হবে!',
-                        'name.required' => 'অবশ্যই  ইংরেজীতে নাম বসাতে হবে!',
-                        'phone.required' => 'অবশ্যই মোবাইল নাম্বার বসাতে হবে!',
-                    ]
                 );
 
             }
@@ -433,6 +425,43 @@ class LoanController extends Controller
                 $property_depository->save();
             }
         }
+
+        return back()->withSuccess('সফলভাবে অ্যাপ্লিকেশনটি সেভ করা হয়েছে');
+    }
+
+    public function  LoanApplicationUpdate(Request $request,$id)
+    {
+
+
+        //return $request;
+        $this->validate($request,
+            [
+                'user_id' => 'required',
+            ]
+        );
+
+
+        //Create Loan
+        if ($request->has('unique_id'))
+        {
+            $loan_code = $request->unique_id;
+        }else
+            $loan_code = uniqid();
+        $loan = Loan::find($id);
+        $loan->unique_id = $loan_code;
+        $loan->user_id = $request->user_id;
+        $loan->reason = $request->reason;
+        $loan->request_amount = NumberConverter::bn2en($request->request_amount??0);
+        $loan->approved_amount = NumberConverter::bn2en($request->approved_amount??0);
+        $loan->installment_amount = NumberConverter::bn2en($request->installment_amount??0);
+        $loan->duration = NumberConverter::bn2en($request->duration??0);
+        $loan->interest_rate = NumberConverter::bn2en($request->interest_rate??0);
+        $loan->start_at = $request->date;
+        $loan->installment_type = $request->installment_type;
+        $loan->status = 'pending';
+        $loan->save();
+
+
 
         return back()->withSuccess('সফলভাবে অ্যাপ্লিকেশনটি সেভ করা হয়েছে');
     }

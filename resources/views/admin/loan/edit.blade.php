@@ -41,7 +41,7 @@
                 </div>
             @endif
         </div>
-        <form method="POST" action="{{route('LoanApplication')}}" enctype="multipart/form-data">
+        <form method="POST" action="{{route('LoanApplicationUpdate',$loan->id)}}" enctype="multipart/form-data">
             {{csrf_field()}}
 
             <div class="row clearfix">
@@ -143,7 +143,7 @@
 
                                     <label for=""><small> ঋণ নাম্বার (ফাকা রাখলে স্বয়ংক্রিয় ভাবে তৈরি হবে)</small></label>
 
-                                    <input type="text" class="form-control" placeholder="ঋণ নাম্বার" name="loan_code" value="{{$loan->loan_code}}" id="loan_code">
+                                    <input type="text" class="form-control" placeholder="ঋণ নাম্বার" name="loan_code" value="{{$loan->unique_id}}" id="loan_code">
 
                                 </div>
 
@@ -355,6 +355,8 @@
 
                         </div>
 
+
+
                     </div>
 
                 </div>
@@ -445,6 +447,12 @@
 
                             </div>
 
+                        <hr>
+                        <div class="body col-md-12 text-center">
+
+                            <button type="submit" class="btn btn-info btn-round"> সেভ করুন</button>
+                        </div>
+
 
                         </div>
                     </div>
@@ -452,7 +460,7 @@
                 </div>
             </div>
 
-            <div class="row clearfix">
+            <div class="row clearfix d-none">
                 <div class="col-lg-12">
                     <div class="card shadow">
                         <div class="header">

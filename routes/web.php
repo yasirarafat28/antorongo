@@ -96,6 +96,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::post('loan/edit/{id}', 'LoanController@LoanUpdate');
     Route::get('loan/application', 'LoanController@LoanApplication');
     Route::post('loan/application', 'LoanController@LoanApplicationSubmit')->name('LoanApplication');
+    Route::post('loan/application/update/{id}', 'LoanController@LoanApplicationUpdate')->name('LoanApplicationUpdate');
     Route::get('collection/collect', 'CollectionController@Collect');
     Route::post('collection/collect', 'CollectionController@CollectSubmit')->name('LoanDepositSubmit');
     Route::get('collection/report', 'LoanController@collections');
