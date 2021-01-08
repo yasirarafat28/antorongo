@@ -123,7 +123,7 @@
                             @foreach($records as $item)
                                 <tr>
                                     <td>
-                                        @if ($item->name!='super_admin')
+                                        @if ($item->name!='super_admin' && $item->name!='developer')
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>

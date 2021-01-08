@@ -130,6 +130,10 @@
                             @foreach($users as $item)
                                 <tr>
                                     <td>
+
+                                        @php
+                                            $role = $item->roles->first()->name??'';
+                                        @endphp
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
@@ -139,7 +143,9 @@
 
                                         {{-- <a href="{{url('admin/users/'.$item->id)}}" class="dropdown-item"  title="বিস্তারিত"><i class="fa fa-eye"> </i> বিস্তারিত </i></a> --}}
                                         <a data-toggle="modal" data-target="#largeShowModal{{$item->id}}" class="dropdown-item" title="বিস্তারিত"><i class="fa fa-eye"> </i> বিস্তারিত</a>
-                                        <a data-toggle="modal" data-target="#largeEditModal{{$item->id}}" class="dropdown-item" title="সম্পাদনা করুন"><i class="fa fa-edit"> </i> এডিট</a>
+
+                                        @if ($role!='super_admin' && $role!='developer')
+                                            <a data-toggle="modal" data-target="#largeEditModal{{$item->id}}" class="dropdown-item" title="সম্পাদনা করুন"><i class="fa fa-edit"> </i> এডিট</a>
                                             {!! Form::open([
                                                'method'=>'DELETE',
                                                'url' => ['/admin/users', $item->id],
@@ -152,6 +158,9 @@
                                                 'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
                                                  )) !!}
                                             {!! Form::close() !!}
+
+                                        @endif
+
                                         </div>
                                     </td>
                                     <td>{{$item->name}}</td>
