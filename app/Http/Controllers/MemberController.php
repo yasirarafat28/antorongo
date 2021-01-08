@@ -97,12 +97,14 @@ class MemberController extends Controller
             $query = $request->id;
             $member = User::where('id',$request->id)->first();
 
+            $releted_user_ids = array();
 
-            $releted_user_ids = MemberRelation::releted_user_ids($member->id);
 
+            if($member){
 
-            if($member)
+                $releted_user_ids = MemberRelation::releted_user_ids($member->id);
                 array_push($releted_user_ids,$member->id);
+            }
 
             $loan_records = Loan::with('user')->whereIn('user_id',$releted_user_ids)->get();
 

@@ -262,6 +262,24 @@ class LoanController extends Controller
             $member = new User();
             $member->role = 'member';
 
+            if($request->unique_id){
+
+                $this->validate($request,
+                    [
+                        'name' => 'required',
+                        'name_bn' => 'required',
+                        'phone' => 'required',
+                        'present_address' => 'required',
+                    ],
+                    [
+                        'name_bn.required' => 'অবশ্যই বাংলায় নাম বসাতে হবে!',
+                        'name.required' => 'অবশ্যই  ইংরেজীতে নাম বসাতে হবে!',
+                        'phone.required' => 'অবশ্যই মোবাইল নাম্বার বসাতে হবে!',
+                    ]
+                );
+
+            }
+
             if ($request->has('name')){ $member->name = $request->name;}
             if ($request->has('name_bn')){ $member->name_bn = $request->name_bn;}
             if ($request->has('share_holder_name')){ $member->share_holder_name = $request->share_holder_name;}
