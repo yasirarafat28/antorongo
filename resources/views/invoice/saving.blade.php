@@ -58,7 +58,7 @@
                         @php
                             $unique_id  = $saving->txn_id??'';
                         @endphp
-                            {!!barcode($unique_id)!!}
+                            {!!barcode($unique_id)!!}-rr
                     </div>
 
                     <br>
