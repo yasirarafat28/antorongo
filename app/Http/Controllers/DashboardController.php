@@ -84,11 +84,11 @@ class DashboardController extends Controller
 
 
         $monthly_data = DB::table('transaction')
-        ->select(DB::raw("sum(case when `type`='income' then amount*1 else amount*0 end) as `income`"),DB::raw("sum(case when `type`='expense' then amount*1 else amount*0 end) as `expense`"), DB::raw('MONTH(created_at) as month'), DB::raw('YEAR(created_at) as year'))
+        ->select(DB::raw("sum(case when `type`='income' then amount*1 else amount*0 end) as `income`"),DB::raw("sum(case when `type`='expense' then amount*1 else amount*0 end) as `expense`"), DB::raw('MONTH(date) as month'), DB::raw('YEAR(date) as year'))
         ->groupby('month','year')
         ->where('status','approved')
         ->where('canculatable','yes')
-        ->orderBy('created_at','ASC')
+        ->orderBy('date','ASC')
         ->get();
 
         $pie_chart_data = DB::table('transaction')
