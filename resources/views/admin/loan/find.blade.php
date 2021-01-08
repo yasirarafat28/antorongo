@@ -223,7 +223,7 @@
                                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                                     আসল বকেয়া
                                                 </div>
-                                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn(number_format($total_reveanue_added-$total_reveanue_paid,2))}} টাকা </div>
+                                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn(number_format($total_give_away + $total_reveanue_added-$total_reveanue_paid,2))}} টাকা </div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
