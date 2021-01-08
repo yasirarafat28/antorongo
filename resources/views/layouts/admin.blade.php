@@ -641,9 +641,43 @@
             dom: 'lBfrtp',
             bFilter:true,
             //"lengthMenu": [[ 25, -1], [25, "All"]],
+            // buttons: [
+            //     'copy', 'csv', 'excel', 'pdf', 'print'
+            // ],
+
             buttons: [
-                'copy', 'csv', 'excel', 'pdf', 'print'
+                {
+                    extend: 'copy',
+                    exportOptions: {
+                        columns: [1,2,3,4]
+                    }
+                },
+                {
+                    extend: 'csv',
+                    exportOptions: {
+                        columns: [1,2,3,4]
+                    }
+                },
+                {
+                    extend: 'excel',
+                    exportOptions: {
+                        columns: [1,2,3,4]
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: [1,2,3,4]
+                    }
+                },
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: [1,2,3,4]
+                    }
+                },
             ],
+
             order:[],
             paging: false,
         });
