@@ -76,11 +76,14 @@ class MemberController extends Controller
             //     ->get('id')->pluck('id')->toArray();
             // }
 
-            $releted_user_ids = MemberRelation::releted_user_ids($member->id);
 
+            $releted_user_ids = array();
 
-            if($member)
+            if($member){
+                $releted_user_ids = MemberRelation::releted_user_ids($member->id);
                 array_push($releted_user_ids,$member->id);
+
+            }
 
 
 
