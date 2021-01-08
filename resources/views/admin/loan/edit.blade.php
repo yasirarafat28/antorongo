@@ -419,7 +419,7 @@
 
                                     <label for=""><small> বিস্তারিত </small></label>
 
-                                    <textarea class="form-control" placeholder="বিস্তারিত " name="note"  id="note">{{$fdr->note}}</textarea>
+                                    <textarea class="form-control" placeholder="বিস্তারিত " name="note"  id="note">{{$loan->note}}</textarea>
 
                                 </div>
 
@@ -434,10 +434,10 @@
 
                                     <select name="stat" id="stat" class="form-control ms">
                                         <option value="">বাছাই করুন</option>
-                                        <option value="active" {{$fdr->status=='active'?'selected':''}} >Active</option>
-                                        <option value="pending" {{$fdr->status=='pending'?'selected':''}} > Pending</option>
-                                        <option value="declined" {{$fdr->status=='declined'?'selected':''}} > Declined </option>
-                                        <option value="closed" {{$fdr->status=='closed'?'selected':''}} > Closed </option>
+                                        <option value="active" {{$loan->status=='active'?'selected':''}} >Active</option>
+                                        <option value="pending" {{$loan->status=='pending'?'selected':''}} > Pending</option>
+                                        <option value="declined" {{$loan->status=='declined'?'selected':''}} > Declined </option>
+                                        <option value="closed" {{$loan->status=='closed'?'selected':''}} > Closed </option>
 
                                     </select>
 
@@ -472,7 +472,7 @@
                                 </thead>
                                 <tbody>
 
-                                    @foreach($i=1;$i<=sizeof($loan->PersonDepositors);$i++)
+                                    @for($i=1;$i<=sizeof($loan->PersonDepositors);$i++)
 
                                     <input type="hidden" name="depository_id[]" value="{{$loan->PersonDepositors[$i]->id??0}}">
 
