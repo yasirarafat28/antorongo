@@ -266,7 +266,7 @@ class LoanController extends Controller
 
                 $this->validate($request,
                     [
-                        'unique_id' => 'required|unique:loan',
+                        'unique_id' => 'required|unique:users',
                     ],
                 );
 
@@ -355,8 +355,14 @@ class LoanController extends Controller
         //User Fetch End
 
         //Create Loan
-        if ($request->has('loan_code'))
+        if ($request->loan_code)
         {
+
+            $this->validate($request,
+                [
+                    'loan_code' => 'required|unique:loan,unique_id',
+                ],
+            );
             $loan_code = $request->loan_code;
         }else
             $loan_code = uniqid();
