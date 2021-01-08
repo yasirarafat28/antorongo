@@ -238,7 +238,7 @@
                                     <tr>
                                         <td>
 
-                                            <a href="{{url('admin/loan/find?q='.$item->unique_id)}}" class="btn btn-primary"><i class="fa fa-eye"> </i> </a>
+                                            <a href="{{url('admin/loan/find?id='.$item->id)}}" class="btn btn-primary"><i class="fa fa-eye"> </i> </a>
 
                                             <!--<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

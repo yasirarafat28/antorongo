@@ -631,7 +631,7 @@
                                     <tr>
                                         <td>
 
-                                            <a href="{{url('admin/loan/find?q='.$item->unique_id)}}" class="btn btn-primary"><i class="fa fa-eye"> </i> </a>
+                                            <a href="{{url('admin/loan/find?id='.$item->id)}}" class="btn btn-primary"><i class="fa fa-eye"> </i> </a>
 
                                         </td>                                    <td>{{$item->unique_id}}</td>
                                         <td>{{$item->old_txn}}</td>
