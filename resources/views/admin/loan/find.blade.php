@@ -61,10 +61,15 @@
                     @if($loan)
 
                     @php
+
+                        $total_give_away = $loan->loan_give_away->sum('amount');
                         $total_interest = $loan->interests->sum('amount');
                         $total_reveanue_paid = $loan->paid_reveanues->sum('amount');
                         $total_reveanue_added = $loan->added_reveanues->sum('amount');
-                        $total_payable = $total_reveanue_added - $total_reveanue_paid;
+
+
+                        $total_interest_added = $loan->added_interests->sum('amount');
+                        $all_paid = $total_interest+ $total_reveanue_paid;
                     @endphp
 
                     <div class="row mb-3">
@@ -112,7 +117,7 @@
                                                 মোট পরিশোধ :
                                             </td>
                                             <td class="text-left">
-                                                {{\App\NumberConverter::en2bn($total_interest)}} টাকা
+                                                {{\App\NumberConverter::en2bn($all_paid)}} টাকা
                                             </td>
                                         </tr>
                                         <tr>
@@ -200,15 +205,16 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-xl-4 col-md-6 mb-4">
                                 <div class="card border-left-info shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                    লাভ বকেয়া
+                                                    আসল বকেয়া
                                                 </div>
-                                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn(number_format($loan->current_payable(),2))}} টাকা </div>
+                                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn(number_format($total_reveanue_added-$total_reveanue_paid,2))}} টাকা </div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -223,9 +229,9 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                    আসল বকেয়া
+                                                    লাভ বকেয়া
                                                 </div>
-                                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn(number_format($loan->current_payable(),2))}} টাকা </div>
+                                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn(number_format($total_interest_added - $total_interest,2))}} টাকা </div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

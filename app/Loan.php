@@ -59,14 +59,14 @@ class Loan extends Model
     public function added_reveanues(){
         return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','loan')->where('flag','revenue_add');
     }
+    public function paid_reveanues(){
+        return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','loan')->where('flag','revenue_deduct');
+    }
     public function added_interests(){
         return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','loan')->where('flag','add_interest');
     }
     public function interests(){
         return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','loan')->where('flag','interest');
-    }
-    public function paid_reveanues(){
-        return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','loan')->where('flag','revenue_deduct');
     }
 
 }
