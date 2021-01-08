@@ -94,7 +94,36 @@
 
             "lengthMenu": [[10, 25, 50,100, -1], [10, 25, 50,100, "All"]],
             buttons: [
-                'copy', 'csv', 'excel', 'pdf', 'print'
+                {
+                    extend: 'copy',
+                    exportOptions: {
+                        columns: ':gt(0)'
+                    }
+                },
+                // {
+                //     extend: 'csv',
+                //     exportOptions: {
+                //         columns: ':gt(0)'
+                //     }
+                // },
+                {
+                    extend: 'excel',
+                    exportOptions: {
+                        columns: ':gt(0)'
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: ':gt(0)'
+                    }
+                },
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: ':gt(0)'
+                    }
+                },
             ],
             processing: true,
             serverSide: true,
