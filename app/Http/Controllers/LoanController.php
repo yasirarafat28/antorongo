@@ -69,7 +69,7 @@ class LoanController extends Controller
         $this->validate($request,
             [
                 'user_id' => 'required',
-                'loan_code' => 'required',
+                'loan_code' => 'required|unique:loan,unique_id,'.$id,
             ]
         );
 
@@ -89,6 +89,7 @@ class LoanController extends Controller
         $loan->interest_rate = NumberConverter::bn2en($request->interest_rate??0);
         $loan->start_at = $request->date;
         $loan->installment_type = $request->installment_type;
+        $loan->status = $request->status;
         $loan->save();
 
 
