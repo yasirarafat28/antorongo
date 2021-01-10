@@ -96,7 +96,7 @@
                                     <br>
                                     @if (count($_GET))
 
-                                        <a href="{{$_SERVER['QUERY_STRING']}}&limit=-1" class="btn btn-success">সবগুলো দেখুন </a>
+                                        <a href="?{{$_SERVER['QUERY_STRING']}}&limit=-1" class="btn btn-success">সবগুলো দেখুন </a>
                                     @else
 
                                         <a href="?limit=-1" class="btn btn-success">সবগুলো দেখুন </a>
