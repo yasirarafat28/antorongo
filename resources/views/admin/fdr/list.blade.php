@@ -157,7 +157,7 @@
                                 <th>ক্রিয়াকলাপ</th>
                                 <th>সভ্য আইডি </th>
                                 <th>এফ ডি আর আইডি </th>
-                                <th>পুরাতন  এফ ডি আর আইডি </th>
+                                {{-- <th>পুরাতন  এফ ডি আর আইডি </th> --}}
                                 <th> সদস্য নাম  </th>
                                 <th> পরিমান  </th>
                                 <th> সময়কাল (মাস)  </th>
@@ -172,7 +172,7 @@
                                 <th>ক্রিয়াকলাপ</th>
                                 <th>সভ্য আইডি </th>
                                 <th>এফ ডি আর আইডি </th>
-                                <th>পুরাতন  এফ ডি আর আইডি </th>
+                                {{-- <th>পুরাতন  এফ ডি আর আইডি </th> --}}
                                 <th> সদস্য নাম  </th>
                                 <th> পরিমান  </th>
                                 <th> সময়কাল (মাস)  </th>
@@ -209,7 +209,7 @@
                                     </td>
                                     <td>{{$item->user->unique_id??''}}</td>
                                     <td>{{$item->txn_id}}</td>
-                                    <td>{{$item->old_txn}}</td>
+                                    {{-- <td>{{$item->old_txn}}</td> --}}
                                     <td>{{$item->user->name_bn??''}}</td>
                                     <td>{{\App\NumberConverter::en2bn($item->deposits->sum('amount'))}} টাকা  </td>
                                     <td>{{\App\NumberConverter::en2bn($item->duration)}} মাস </td>
