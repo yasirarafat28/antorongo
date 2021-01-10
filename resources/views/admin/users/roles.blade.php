@@ -98,7 +98,14 @@
                                         <button class="btn btn-primary btn-round">খুজুন</button>
                                     </div>
                                     <div class="col-lg-3 col-md-12">
-                                        <a href="?limit=-1" class="btn btn-success">সবগুলো দেখুন</a>
+                                        @if (count($_GET))
+
+                                        <a href="{{$_SERVER['QUERY_STRING']}}&limit=-1" class="btn btn-success">সবগুলো দেখুন </a>
+                                    @else
+
+                                        <a href="?limit=-1" class="btn btn-success">সবগুলো দেখুন </a>
+
+                                    @endif
                                     </div>
                                 </div>
                             </form>

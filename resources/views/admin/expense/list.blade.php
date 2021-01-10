@@ -88,8 +88,14 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-md-2">
-                                    <br>
-                                    <a href="?limit=-1" class="btn btn-success">সবগুলো দেখুন</a>
+                                    <br>@if (count($_GET))
+
+                                    <a href="{{$_SERVER['QUERY_STRING']}}&limit=-1" class="btn btn-success">সবগুলো দেখুন </a>
+                                @else
+
+                                    <a href="?limit=-1" class="btn btn-success">সবগুলো দেখুন </a>
+
+                                @endif
                                 </div>
 
                                 <div class="col-lg-2 col-md-2 text-right">
