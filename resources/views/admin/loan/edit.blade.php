@@ -434,7 +434,7 @@
 
                                     <label for=""><small> অবস্থা  </small></label>
 
-                                    <select name="stat" id="stat" class="form-control ms">
+                                    <select name="status" id="stat" class="form-control ms">
                                         <option value="">বাছাই করুন</option>
                                         <option value="active" {{$loan->status=='active'?'selected':''}} >Active</option>
                                         <option value="pending" {{$loan->status=='pending'?'selected':''}} > Pending</option>
