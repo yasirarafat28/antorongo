@@ -73,7 +73,6 @@ class LoanController extends Controller
             ]
         );
 
-
         $member = User::find($request->user_id);
 
         //Update Loan
