@@ -63,7 +63,7 @@
 
                                         <label for=""><small> টাকার পরিমান </small></label>
 
-                                        <input type="number" step="any" value="{{App\NumberConverter::en2bn($transaction->amount)}}" class="form-control" name="amount" placeholder="টাকার পরিমান">
+                                        <input type="number" step="any" value="{{$transaction->amount}}" class="form-control" name="amount" placeholder="টাকার পরিমান">
 
                                     </div>
                                 </div>
