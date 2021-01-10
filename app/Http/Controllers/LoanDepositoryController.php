@@ -46,9 +46,9 @@ class LoanDepositoryController extends Controller
                 $person_depository->loan_id = $loan->id;
                 $person_depository->description = $request->o_depository_description;
                 $person_depository->unique_id = $request->o_depository_unique_id;
-                $person_depository->qty = $request->o_depository_qty;
-                $person_depository->unit_price = $request->o_depository_unit_price;
-                $person_depository->total_amount = $request->o_depository_total_price;
+                // $person_depository->qty = $request->o_depository_qty;
+                // $person_depository->unit_price = $request->o_depository_unit_price;
+                // $person_depository->total_amount = $request->o_depository_total_price;
                 $person_depository->status = 'active';
                 $person_depository->save();
 

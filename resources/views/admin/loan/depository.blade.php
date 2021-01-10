@@ -189,7 +189,18 @@
                                             @csrf
                                             <input type="hidden" name="loan_id" value="{{$loan->id}}">
                                             <input type="hidden" name="type" value="ornament">
-                                            <table class="table table-bordered table-striped">
+
+
+                                            <div class="form-group">
+                                                <label for="" class="form-label">সভ্য নং</label>
+                                                <input type="text" class="form-control" name="o_depository_unique_id" placeholder="সভ্য নং">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="" class="form-label">বিবরন</label>
+                                                <textarea name="o_depository_description"  class="form-control" placeholder="বিবরন"></textarea>
+                                            </div>
+                                            {{-- <table class="table table-bordered table-striped">
                                                 <thead>
                                                     <tr>
                                                         <th>সভ্য নং </th>
@@ -225,7 +236,7 @@
                                                         </tr>
 
                                                     </tbody>
-                                            </table>
+                                            </table> --}}
 
                                             <div class="body col-md-12 text-center">
 
@@ -247,10 +258,10 @@
                                 <th>সিরিয়াল </th>
                                 <th>সভ্য নং </th>
                                 <th> নাম/বিবরন   </th>
-                                <th> পরিমান   </th>
+                                {{-- <th> পরিমান   </th>
                                 <th> প্রতি ভরীর মূল্য</th>
                                 <th> মোট  মূল্য</th>
-                                <th> স্বাক্ষর</th>
+                                <th> স্বাক্ষর</th> --}}
                                 <th>#</th>
                             </tr>
                             </thead>
@@ -261,10 +272,11 @@
                                     <td>{{\App\NumberConverter::en2bn($loop->iteration)}}</td>
                                     <td>{{$item->unique_id}}</td>
                                     <td>{{$item->description}}</td>
-                                    <td>{{$item->qty}}</td>
+                                    {{-- <td>{{$item->qty}}</td>
                                     <td>{{$item->unit_price}}</td>
                                     <td>{{$item->total_amount}}</td>
                                     <td><img src="{{url($item->signature??'')}}" style="height: 40px;width: auto;"  onerror="this.onerror=null;this.src='{{asset('/front/images/no_img_avaliable.jpg')}}';"></td>
+                                     --}}
                                     <td>
 
                                         {!! Form::open([
