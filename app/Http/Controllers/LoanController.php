@@ -484,6 +484,8 @@ class LoanController extends Controller
         $loan->duration = $request->duration;
         $loan->interest_rate = $request->interest_rate;
         $loan->status = 'active';
+
+        $loan->approved_at=date("Y-m-d H:i:s");
         $loan->save();
 
 
@@ -497,6 +499,8 @@ class LoanController extends Controller
     {
         $loan = Loan::find($id);
         $loan->status = 'rejected';
+
+        $loan->declined_at=date("Y-m-d H:i:s");
         $loan->save();
         return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
     }
@@ -551,6 +555,8 @@ class LoanController extends Controller
         }
 
         $loan->status='closed';
+
+        $loan->closed_at=date("Y-m-d H:i:s");
         $loan->save();
 
         return back()->withSuccess('সফলভাবে সদস্য পদ প্রত্যাহার করা হয়েছে!');

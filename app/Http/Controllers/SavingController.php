@@ -890,6 +890,7 @@ class SavingController extends Controller
         $saving->admin_status = 'approved';
         $saving->manager_status = 'approved';
         $saving->status = 'approved';
+        $saving->approved_at=date("Y-m-d H:i:s");
         $saving->save();
 
         return back()->withSuccess('সফলভাবে আনুমদন করা হয়েছে');
@@ -901,6 +902,8 @@ class SavingController extends Controller
         $saving->admin_status = 'declined';
         $saving->manager_status = 'declined';
         $saving->status = 'declined';
+
+        $saving->declined_at=date("Y-m-d H:i:s");
         $saving->save();
 
         return back()->withSuccess('সফলভাবে প্রত্যাখ্যান করা হয়েছে');
@@ -964,6 +967,7 @@ class SavingController extends Controller
         }
 
         $saving->status='closed';
+        $saving->closed_at=date("Y-m-d H:i:s");
         $saving->save();
 
         return back()->withSuccess('সফলভাবে সদস্য পদ প্রত্যাহার করা হয়েছে!');
