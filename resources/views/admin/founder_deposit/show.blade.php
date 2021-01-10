@@ -60,7 +60,7 @@
                             <div class="row clearfix">
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="পরিচালক আমানত নাম্বার" name="q" value="{{$query}}">
+                                        <input type="text" class="form-control" placeholder="পরিচালক আমানত নাম্বার" name="q" value="{{$query??''}}">
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-12">
@@ -75,12 +75,12 @@
 
 
                     <hr>
-                    @if($founder_deposit)
+                    @if($row)
 
                         @php
-                            $total_deposited = $founder_deposit->deposits->sum('amount');
-                            $total_profit = $founder_deposit->profits->sum('amount');
-                            $total_withdraw = $founder_deposit->withdraws->sum('amount');
+                            $total_deposited = $row->deposits->sum('amount');
+                            $total_profit = $row->profits->sum('amount');
+                            $total_withdraw = $row->withdraws->sum('amount');
 
                         @endphp
 
@@ -100,16 +100,16 @@
                                         <tbody>
                                             <tr>
                                                 <td class="text-right">নাম :</td>
-                                                <td class="text-left">{{$founder_deposit->user->name_bn??''}}</td>
+                                                <td class="text-left">{{$row->user->name_bn??''}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="text-right">সভ্য আইডি : </td>
-                                                <td class="text-left">{{$founder_deposit->user->unique_id??''}}</td>
+                                                <td class="text-left">{{$row->user->unique_id??''}}</td>
                                             </tr>
 
                                             <tr>
                                                 <td class="text-right">পরিচালক আমানত আইডি : </td>
-                                                <td class="text-left">{{$founder_deposit->txn_id??''}}</td>
+                                                <td class="text-left">{{$row->txn_id??''}}</td>
                                             </tr>
 
                                             <tr>
@@ -134,7 +134,7 @@
                                                     অবস্থা :
                                                 </td>
                                                 <td class="text-left">
-                                                    {{$founder_deposit->status}}
+                                                    {{$row->status}}
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -214,7 +214,7 @@
                                                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                                             বর্তমান লাভ  ব্যালেন্স
                                                         </div>
-                                                        <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn(number_format($founder_deposit->balance(),2))}} টাকা </div>
+                                                        <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn(number_format($row->balance(),2))}} টাকা </div>
                                                     </div>
                                                     <div class="col-auto">
                                                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>                                                </div>
@@ -224,15 +224,28 @@
                                     </div>
                                 </div>
 
-                                <a href="{{url('admin/founder-deposit/edit/'.$founder_deposit->id)}}" class="btn btn-primary"><i class="fa fa-edit"> </i> এডিট</a>
+                                <a href="{{url('admin/founder-deposit/'.$row->id.'/edit')}}" class="btn btn-primary"><i class="fa fa-edit"> </i> এডিট</a>
 
 
-                                <a href="{{url('admin/founder-deposit/Remove/'.$founder_deposit->id)}}" class="btn btn-danger"><i class="fa fa-trash" onclick="return confirm('Are you Sure?? ');"> মুছে ফেলুন </i></a>
                                 <a data-toggle="modal" data-target="#addProfiteModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> লাভ প্রদান করুন </a>
                                 <a data-toggle="modal" data-target="#withDrawModal" class="btn btn-primary"> <i class="fa fa-upload"></i> উত্তোলন করুন </a>
+
+                                {!! Form::open([
+                                    'method'=>'DELETE',
+                                    'url' => ['/admin/founder-deposit', $row->id],
+                                    'style' => 'display:inline'
+                                ]) !!}
+                                {!! Form::button('<i class="fa fa-trash"></i>  মুছে ফেলুন', array(
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-danger',
+                                    'title' => 'সদস্য পদ প্রত্যাহার',
+                                    'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
+                                    )) !!}
+                                {!! Form::close() !!}
+
                                 {!! Form::open([
                                     'method'=>'POST',
-                                    'url' => ['/admin/founder-deposit/close', $founder_deposit->id],
+                                    'url' => ['/admin/founder-deposit/close', $row->id],
                                     'style' => 'display:inline'
                                 ]) !!}
                                 {!! Form::button('<i class="fa fa-trash"></i>  সদস্য পদ প্রত্যাহার', array(
@@ -243,7 +256,7 @@
                                     )) !!}
                                 {!! Form::close() !!}
 
-                                @if ($founder_deposit->status=='closed')
+                                @if ($row->status=='closed')
                                     <br>
 
                                     <br>
@@ -276,8 +289,8 @@
                                             <form action="{{url('admin/founder-deposit/withdraw')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
                                                 {{csrf_field()}}
 
-                                                <input type="hidden" name="fdr_id" value="{{$founder_deposit->id}}">
-                                                <input type="hidden" name="user_id" value="{{$founder_deposit->user_id}}">
+                                                <input type="hidden" name="fdr_id" value="{{$row->id}}">
+                                                <input type="hidden" name="user_id" value="{{$row->user_id}}">
 
                                                 @if (env('PREVIOUS_DATA_ENTRY','no')=='yes')
 
@@ -362,7 +375,7 @@
                                         <div class="modal-body">
                                             <form action="{{url('admin/founder-deposit/add-profit-manually')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
                                                 {{csrf_field()}}
-                                                <input type="hidden" name="user_id" value="{{$founder_deposit->user_id}}">
+                                                <input type="hidden" name="user_id" value="{{$row->user_id}}">
 
                                                 @if (env('PREVIOUS_DATA_ENTRY','no')=='yes')
 
@@ -448,7 +461,7 @@
 
         </div>
 
-        @if( isset($founder_deposit->histories) &&  $founder_deposit->histories)
+        @if( isset($row->histories) &&  $row->histories)
 
             <div class="row clearfix">
 
@@ -497,7 +510,7 @@
                                 @php
                                     $total =0;
                                 @endphp
-                                @forelse($founder_deposit->histories as $item)
+                                @forelse($row->histories as $item)
 
 
                                     <tr>

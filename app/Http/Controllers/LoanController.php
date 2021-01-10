@@ -69,6 +69,7 @@ class LoanController extends Controller
         $this->validate($request,
             [
                 'user_id' => 'required',
+                'loan_code' => 'required',
             ]
         );
 
