@@ -289,7 +289,7 @@ class SavingController extends Controller
         ->where(function ($q) use ($request,$saving_ids){
             if ($request->has('from') && $request->from) {
                 $from = date("Y-m-d", strtotime($request->from));
-                $q->where(DB::raw('DATE(date)'),'<=',$from);
+                $q->where(DB::raw('DATE(date)'),'>=',$from);
 
             }
             if ($request->has('to') && $request->to) {
@@ -313,7 +313,7 @@ class SavingController extends Controller
         ->where(function ($q) use ($request,$saving_ids){
             if ($request->has('from') && $request->from) {
                 $from = date("Y-m-d", strtotime($request->from));
-                $q->where(DB::raw('DATE(date)'),'<=',$from);
+                $q->where(DB::raw('DATE(date)'),'>=',$from);
 
             }
             if ($request->has('to') && $request->to) {
@@ -366,7 +366,7 @@ class SavingController extends Controller
         ->where(function ($q) use ($request,$saving_ids){
             if ($request->has('from') && $request->from) {
                 $from = date("Y-m-d", strtotime($request->from));
-                $q->where(DB::raw('DATE(date)'),'<=',$from);
+                $q->where(DB::raw('DATE(date)'),'>=',$from);
 
             }
             if ($request->has('to') && $request->to) {

@@ -771,7 +771,7 @@ class LoanController extends Controller
 
             if ($request->has('from') && $request->from) {
                 $from = date("Y-m-d", strtotime($request->from));
-                $q->where(DB::raw('DATE(date)'),'<=',$from);
+                $q->where(DB::raw('DATE(date)'),'>=',$from);
 
             }
             if ($request->has('to') && $request->to) {
@@ -793,7 +793,7 @@ class LoanController extends Controller
         ->where(function ($q) use ($request){
             if ($request->has('from') && $request->from) {
                 $from = date("Y-m-d", strtotime($request->from));
-                $q->where(DB::raw('DATE(date)'),'<=',$from);
+                $q->where(DB::raw('DATE(date)'),'>=',$from);
 
             }
             if ($request->has('to') && $request->to) {

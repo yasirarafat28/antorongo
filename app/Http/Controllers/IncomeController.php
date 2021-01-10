@@ -107,7 +107,7 @@ class IncomeController extends Controller
             if ($request->has('from') && $request->from) {
                 $from = date("Y-m-d", strtotime($request->from));
 
-                $q->where(DB::raw('DATE(date)'),'<=',$from);
+                $q->where(DB::raw('DATE(date)'),'>=',$from);
 
             }
             if ($request->has('to') && $request->to) {
@@ -129,7 +129,7 @@ class IncomeController extends Controller
             $q->where('type','income');
             if ($request->has('from') && $request->from) {
                 $from = date("Y-m-d", strtotime($request->from));
-                $q->where(DB::raw('DATE(date)'),'<=',$from);
+                $q->where(DB::raw('DATE(date)'),'>=',$from);
 
             }
             if ($request->has('to') && $request->to) {

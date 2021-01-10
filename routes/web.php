@@ -81,6 +81,10 @@ Route::group(['middleware' => ['auth']], function () {
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::get('dashboard', 'DashboardController@admin');
 
+    //Report
+
+    Route::get('report', 'ReportController@report')->name('report.statistics');
+
     //wallet
     Route::get('balance', 'WalletController@balance');
     Route::get('balance/transfer/{from}', 'WalletController@transfer');

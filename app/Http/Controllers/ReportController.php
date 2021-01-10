@@ -2,40 +2,106 @@
 
 namespace App\Http\Controllers;
 
-use App\Points;
-use Illuminate\Http\Request;
-use Auth;
 
+use App\Fdr;
+use App\FdrTransaction;
+use App\Loan;
+use App\Saving;
+use App\SavingTransaction;
+use App\Transaction;
+use Auth;
+use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 class ReportController extends Controller
 {
     //
 
-    public function accountant(Request $request)
-    {
+
+    public function report(){
+
+        $members = User::where('role','member')->orderBy('id','DESC')->get();
+        $daily_savings = Saving::where('type','daily')->get('id');
+        $daily_saving_transactions = Transaction::with('user','receiver')->where('transaction_for','saving')->where(function ($q) use ($daily_savings){
+            $q->whereIn('transactable_id',$daily_savings);
+        })->where('flag','deposit')->sum('amount');
+
+
+        $short_savings = Saving::where('type','short')->get('id');
+        $short_saving_transactions = Transaction::with('user','receiver')->where('transaction_for','saving')->where(function ($q) use ($short_savings){
+            $q->whereIn('transactable_id',$short_savings);
+        })->where('flag','deposit')->sum('amount');
+
+
+        $long_savings = Saving::where('type','long')->get('id');
+        $long_saving_transactions = Transaction::with('user','receiver')->where('transaction_for','saving')->where(function ($q) use ($long_savings){
+            $q->whereIn('transactable_id',$long_savings);
+        })->where('flag','deposit')->sum('amount');
+
+        $current_savings = Saving::where('type','current')->get('id');
+        $current_saving_transactions = Transaction::with('user','receiver')->where('transaction_for','saving')->where(function ($q) use ($current_savings){
+            $q->whereIn('transactable_id',$current_savings);
+        })->where('flag','deposit')->sum('amount');
+
+        $fdr_list = Fdr::get('id');
+        $fdr_transactions = Transaction::with('user','receiver')->where('transaction_for','fdr')->where(function ($q) use ($fdr_list){
+            $q->whereIn('transactable_id',$fdr_list);
+        })->where('flag','deposit')->sum('amount');
+
+        $short_active_count   = Saving::where('type','short')->where('status','approved')->count();
+        $short_pending_count   = Saving::where('type','short')->where('status','pending')->count();
+        $short_declined_count   = Saving::where('type','short')->where('status','declined')->count();
+        $short_closed_count   = Saving::where('type','short')->where('status','closed')->count();
+
+        $long_active_count   = Saving::where('type','long')->where('status','approved')->count();
+        $long_pending_count   = Saving::where('type','long')->where('status','pending')->count();
+        $long_declined_count   = Saving::where('type','long')->where('status','declined')->count();
+        $long_closed_count   = Saving::where('type','long')->where('status','closed')->count();
+
+        $daily_active_count   = Saving::where('type','daily')->where('status','approved')->count();
+        $daily_pending_count   = Saving::where('type','daily')->where('status','pending')->count();
+        $daily_declined_count   = Saving::where('type','daily')->where('status','declined')->count();
+        $daily_closed_count   = Saving::where('type','daily')->where('status','closed')->count();
+
+        $current_active_count   = Saving::where('type','current')->where('status','approved')->count();
+        $current_pending_count   = Saving::where('type','current')->where('status','pending')->count();
+        $current_declined_count   = Saving::where('type','current')->where('status','declined')->count();
+        $current_closed_count   = Saving::where('type','current')->where('status','closed')->count();
+
+        $loan = Loan::whereIn('status',['active','closed'])->get();
+        $active_count   = Loan::where('status','active')->count();
+        $pending_count   = Loan::where('status','pending')->count();
+        $declined_count   = Loan::where('status','declined')->count();
+        $closed_count   = Loan::where('status','closed')->count();
+
+        $fdr_active_count   = Fdr::where('status','approved')->count();
+        $fdr_pending_count   = Fdr::where('status','pending')->count();
+        $fdr_declined_count   = Fdr::where('status','declined')->count();
+        $fdr_closed_count   = Fdr::where('status','closed')->count();
 
 
 
-        $records = Points::with('user','product','processor')->where('processing_by',Auth::user()->id)->where(function ($q) use ($request){
-            $q->where('transaction_type','sent');
-            $q->where('point_type','withdraw');
+        $monthly_data = DB::table('transaction')
+        ->select(DB::raw("sum(case when `type`='income' then amount*1 else amount*0 end) as `income`"),DB::raw("sum(case when `type`='expense' then amount*1 else amount*0 end) as `expense`"), DB::raw('MONTH(date) as month'), DB::raw('YEAR(date) as year'))
+        ->groupby('month','year')
+        ->where('status','approved')
+        ->where('canculatable','yes')
+        ->orderBy('date','DESC')
+        ->limit(12)
+        ->get();
 
-            if ($request->has('from') && $request->from) {
-                $from = date("Y-m-d", strtotime($request->from));
-                $q->where('expected_approved_date', '>=',  $from);
+        $pie_chart_data = DB::table('transaction')
+        ->select(DB::raw("sum(case when `type`='income' then amount*1 else amount*0 end) as `income`"),DB::raw("sum(case when `type`='expense' then amount*1 else amount*0 end) as `expense`"))
+        ->where('status','approved')
+        ->where('canculatable','yes')
+        ->first();
 
-            }
-            if ($request->has('to') && $request->to) {
-
-                $to = date("Y-m-d", strtotime($request->to));
-                $q->where('expected_approved_date', '<=',  $to);
-
-            }
-
-
-        })->orderBy('processing_date','DESC')->get();
-
-        $total = $records->sum('amount');
-
-        return view('account-officer/reports',compact('records','total'));
+        return view('admin/report',compact('members','daily_saving_transactions','daily_savings','short_savings',
+        'short_saving_transactions','long_savings','long_saving_transactions','fdr_list','fdr_transactions',
+        'loan','active_count','pending_count','declined_count','closed_count','fdr_active_count','fdr_pending_count',
+        'fdr_declined_count','fdr_closed_count','monthly_data','pie_chart_data','current_savings','current_saving_transactions',
+        'current_active_count','current_pending_count','current_closed_count','daily_active_count','daily_pending_count',
+        'daily_closed_count','long_active_count','long_pending_count','long_closed_count','short_active_count','short_pending_count',
+        'short_closed_count'));
     }
 }
