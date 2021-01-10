@@ -25,15 +25,15 @@
         @endif
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">এফ ডি আর তালিকা</h1>
+                <h1 class="h3 mb-0 text-gray-800">পরিচালক আমানত তালিকা</h1>
 
                 <ul class="breadcrumb float-md-right">
                     <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0);">এফ ডি আর তালিকা</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">পরিচালক আমানত তালিকা</a></li>
                 </ul>
             </div>
 
-            {{-- <div class="row">
+            <div class="row">
 
                 <!-- Earnings (Monthly) Card Example -->
                 <div class="col-xl-3 col-md-6 mb-4">
@@ -42,7 +42,7 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                       মোট এফ ডি আর</div>
+                                       মোট পরিচালক আমানত</div>
                                     <div class="h6 mb-0 font-weight-bold text-gray-800">৪৫৩ টি</div>
                                 </div>
                                 <div class="col-auto">
@@ -63,7 +63,7 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                        মোট লাভ</div>
+                                        মোট জমা</div>
                                     <div class="h6 mb-0 font-weight-bold text-gray-800">৳ ৩৪৫৩৪ টাকা</div>
                                 </div>
                                 <div class="col-auto">
@@ -72,22 +72,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                        মোট উত্তোলন</div>
-                                    <div class="h6 mb-0 font-weight-bold text-gray-800">৳ ৩৪৫৩৪ টাকা</div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
+            </div>
 
 
         <!-- Exportable Table -->
@@ -95,7 +80,7 @@
             <div class="col-lg-12">
                 <div class="card shadow">
                     <div class="header">
-                        <h2><strong>এফ ডি আর  </strong> তালিকা </h2>
+                        <h2><strong>পরিচালক আমানত  </strong> তালিকা </h2>
                     </div>
                     <div class="body table-responsive">
 
@@ -156,13 +141,10 @@
                             <tr>
                                 <th>ক্রিয়াকলাপ</th>
                                 <th>সভ্য আইডি </th>
-                                <th>এফ ডি আর আইডি </th>
-                                <th>পুরাতন  এফ ডি আর আইডি </th>
+                                <th>পরিচালক আমানত আইডি </th>
                                 <th> সদস্য নাম  </th>
                                 <th> পরিমান  </th>
-                                <th> সময়কাল (মাস)  </th>
-                                <th> লাভের হার</th>
-                                <th> প্রাপ্ত লাভ  </th>
+                                <th> লাভ প্রদান  </th>
                                 <th>  অবস্থা</th>
                                 <th>  তারিখ</th>
                             </tr>
@@ -171,14 +153,10 @@
                             <tr>
                                 <th>ক্রিয়াকলাপ</th>
                                 <th>সভ্য আইডি </th>
-                                <th>এফ ডি আর আইডি </th>
-                                <th>পুরাতন  এফ ডি আর আইডি </th>
+                                <th>পরিচালক আমানত আইডি </th>
                                 <th> সদস্য নাম  </th>
                                 <th> পরিমান  </th>
-                                <th> সময়কাল (মাস)  </th>
-                                <th> লাভের হার</th>
-
-                                <th> প্রাপ্ত লাভ  </th>
+                                <th> লাভ প্রদান  </th>
                                 <th>  অবস্থা</th>
                                 <th>  তারিখ</th>
                             </tr>
@@ -187,7 +165,7 @@
                             @foreach($records ?? array() as $item)
                                 <tr>
                                     <td style="width: 12%">
-                                        <a href="/admin/fdr/find?q={{$item->txn_id}}"><i class="fa fa-eye"></i></a>
+                                        <a href="/admin/founder-deposit/{{$item->id}}"><i class="fa fa-eye"></i></a>
 
                                         <!--<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -196,24 +174,21 @@
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                         aria-labelledby="dropdownMenuLink">
 
-                                        <a href="{{url('admin/fdr/edit/'.$item->id)}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট</a>
+                                        <a href="{{url('admin/founder-deposit/edit/'.$item->id)}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট</a>
                                         @if($item->status=='pending')
                                             <a href="{{url('admin/fdr-approve/'.$item->id)}}" class="dropdown-item"><i class="fa fa-check"> </i> অনুমোদন করুন</a>
                                             <a href="{{url('admin/fdr-decline/'.$item->id)}}" class="dropdown-item"><i class="fa fa-times"> প্রত্যাখ্যান করুন</i></a>
                                         @elseif($item->status=='approved')
-                                            <a href="{{url('admin/fdr/find?q='.$item->txn_id)}}" class="dropdown-item"><i class="fa fa-money-bill-alt"> </i> বিস্তারিত</a>
-                                            <a href="{{url('admin/fdr/withdraw?q='.$item->txn_id)}}" class="dropdown-item"><i class="fa fa-money-bill-alt"> </i> উত্তোলন করুন</a>
+                                            <a href="{{url('admin/founder-deposit/find?q='.$item->txn_id)}}" class="dropdown-item"><i class="fa fa-money-bill-alt"> </i> বিস্তারিত</a>
+                                            <a href="{{url('admin/founder-deposit/withdraw?q='.$item->txn_id)}}" class="dropdown-item"><i class="fa fa-money-bill-alt"> </i> উত্তোলন করুন</a>
 
                                         @endif
                                         </div>-->
                                     </td>
                                     <td>{{$item->user->unique_id??''}}</td>
                                     <td>{{$item->txn_id}}</td>
-                                    <td>{{$item->old_txn}}</td>
                                     <td>{{$item->user->name_bn??''}}</td>
                                     <td>{{\App\NumberConverter::en2bn($item->deposits->sum('amount'))}} টাকা  </td>
-                                    <td>{{\App\NumberConverter::en2bn($item->duration)}} মাস </td>
-                                    <td>{{\App\NumberConverter::en2bn($item->interest_rate)}} % </td>
                                     <td>{{\App\NumberConverter::en2bn($item->profits->sum('amount'))}} টাকা  </td>
                                     <td>{{ucfirst($item->status)}}</td>
                                     <td>{{$item->started_at}}</td>

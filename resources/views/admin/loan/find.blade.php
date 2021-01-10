@@ -293,14 +293,14 @@
                             {!! Form::close() !!}
                         @elseif($loan->status=='pending')
                             <a data-toggle="modal" data-target="#ActiveModal{{$loan->id}}" class="btn btn-primary"><i class="fa fa-check"> অনুমোদন </i></a>
-                            <a href="{{url('admin/loan/Remove/'.$loan->id)}}" class="btn btn-primary"><i class="fa fa-trash" onclick="return confirm('Are you Sure?? ');"> মুছে ফেলুন </i></a>
-                            @if($loan->status !='rejected')
+                             @if($loan->status !='rejected')
                                 <a href="{{url('admin/loan/reject/'.$loan->id)}}" class="btn btn-danger"><i class="fa fa-times"> প্রত্যাখ্যান</i></a>
                             @endif
                         @endif
 
                         <a href="{{url('admin/print/loan/'.$loan->unique_id)}}" class="btn btn-primary"><i class="fa fa-print"> </i> প্রিন্ট </a>
                         <a href="{{url('admin/loan/depository/'.$loan->id)}}" class="btn btn-primary"><i class="fa fa-list"> </i> জামানত </a>
+                        <a href="{{url('admin/loan/Remove/'.$loan->id)}}" class="btn btn-primary"><i class="fa fa-trash" onclick="return confirm('Are you Sure?? ');"> মুছে ফেলুন </i></a>
 
 
                         @if ($loan->status=='closed')

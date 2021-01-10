@@ -223,6 +223,11 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::post('documents-upload', 'UploadController@upload')->name('upload');
     Route::get('documents-remove/', 'UploadController@remove')->name('document-remove');
 
+    //Founder Deposit
+
+
+    Route::resource('founder-deposit', 'FounderDepositController');
+
 
 });
 
