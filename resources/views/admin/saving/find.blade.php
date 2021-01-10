@@ -274,7 +274,7 @@
                                     @if($saving->status=='pending')
                                         <a href="{{url('admin/saving-approve/'.$saving->id)}}" class="btn btn-primary"><i class="fa fa-check"> </i> অনুমোদন করুন</a>
                                         <a href="{{url('admin/saving-decline/'.$saving->id)}}" class="btn btn-danger"><i class="fa fa-times"> প্রত্যাখ্যান করুন</i></a>
-                                        <a href="{{url('admin/saving/Remove/'.$saving->id)}}" class="btn btn-danger"><i class="fa fa-trash" onclick="return confirm('Are you Sure?? ');"> মুছে ফেলুন </i></a>
+
                                     @elseif($saving->status=='approved')
 
                                         @if ($saving->type !='current')
