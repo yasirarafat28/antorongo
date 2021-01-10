@@ -238,6 +238,8 @@
 
                         list.append(new Option(item.name+' | জমার পরিমান: '+item.installment_amount+' | মোট জমা:  '+item.target_amount+' | মোট ফেরত:'+item.return_amount, item.id));
 	                });
+
+                    $('#package_id').selectpicker('refresh');
 	            },
 
 	            error: function (error) {
