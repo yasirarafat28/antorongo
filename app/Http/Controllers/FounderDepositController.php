@@ -9,6 +9,7 @@ use App\TransactionHead;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class FounderDepositController extends Controller
 {
@@ -17,12 +18,39 @@ class FounderDepositController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
 
-        $records = FounderDeposit::paginate(20);
-        return view('admin.founder_deposit.index',compact('records'));
+        $records = FounderDeposit::where(function ($q) use ($request){
+            if ($request->has('from') && $request->from) {
+                $from = date("Y-m-d", strtotime($request->from));
+                $q->where(DB::raw('DATE(started_at)'),'>=',$from);
+
+            }
+            if ($request->has('to') && $request->to) {
+
+                $to = date("Y-m-d", strtotime($request->to));
+                $q->where(DB::raw('DATE(started_at)'),'<=',$to);
+
+            }
+
+        })
+        ->orderBy('created_at','DESC');
+        if(isset($request->limit) && $request->limit=='-1'){
+            $records = $records->paginate($records->count());
+        }else{
+            $records = $records->paginate(25);
+        }
+
+        $count = FounderDeposit::where('status','active')->count();
+        $total_deposit = Transaction::whereIn('flag',['deposit'])->where('transaction_for','founder_deposit')
+        ->where('status','approved')->sum('amount');
+
+        $total_withdraw  = Transaction::whereIn('flag',['withdraw'])->where('transaction_for','founder_deposit')
+        ->where('status','approved')->sum('amount');
+
+        return view('admin.founder_deposit.index',compact('records','count','total_deposit','total_withdraw'));
     }
 
     /**
@@ -35,7 +63,9 @@ class FounderDepositController extends Controller
         //
 
 
-        $members = User::where('role','member')->orderBy('name','ASC')->get();
+        $members = User::where('role','member')
+        //->where('project','founding_member')
+        ->orderBy('name','ASC')->get();
 
         return view('admin.founder_deposit.create',compact('members'));
     }
@@ -165,5 +195,82 @@ class FounderDepositController extends Controller
         $row =FounderDeposit::destroy($id);
         Transaction::where('transaction_for','founder_deposit')->where('transactable_id',$id)->delete();
         return redirect('admin/dashboard')->withSuccess('সফলভাবে মুছে ফেলা হয়েছে');
+    }
+
+
+    public function withdraw(Request $request,$id)
+    {
+        //
+        $this->validate($request,[
+            'amount'=>'required',
+            'date'=>'required',
+        ]);
+
+        $row = FounderDeposit::find($id);
+
+
+        $head = TransactionHead::where('slug','founder_withdraw_expense')->first();
+
+        if(!$head){
+            return back()->withError('Related head didn\'t found!');
+        }
+        $deposit = new Transaction();
+        $deposit->txn_id = uniqid();
+        $deposit->transaction_for = 'founder_deposit';
+        $deposit->transactable_id = $id;
+        $deposit->flag = 'withdraw';
+        $deposit->type = 'expense';
+        $deposit->head_id = $head->id;
+        $deposit->user_id = $row->user_id;
+        $deposit->note = $row->note;
+        $deposit->date = $request->date;
+        $deposit->amount = NumberConverter::bn2en($request->amount);
+        $deposit->added_by = Auth::user()->id;
+        $deposit->received_by = Auth::user()->id;
+        $deposit->admin_status ='approved';
+        $deposit->manager_status = 'approved';
+        $deposit->status = 'approved';
+        $deposit->save();
+
+
+        return back()->withSuccess('সফলভাবে সেভ করা হয়েছে!');
+    }
+
+
+    public function profit(Request $request,$id)
+    {
+        $this->validate($request,[
+        'amount'=>'required',
+        'date'=>'required',
+    ]);
+
+        $row = FounderDeposit::find($id);
+
+
+        $head = TransactionHead::where('slug','founder_profit_expense')->first();
+
+        if(!$head){
+            return back()->withError('Related head didn\'t found!');
+        }
+        $deposit = new Transaction();
+        $deposit->txn_id = uniqid();
+        $deposit->transaction_for = 'founder_deposit';
+        $deposit->transactable_id = $id;
+        $deposit->flag = 'profit';
+        $deposit->type = 'expense';
+        $deposit->head_id = $head->id;
+        $deposit->user_id = $row->user_id;
+        $deposit->note = $row->note;
+        $deposit->date = $request->date;
+        $deposit->amount = NumberConverter::bn2en($request->amount);
+        $deposit->added_by = Auth::user()->id;
+        $deposit->received_by = Auth::user()->id;
+        $deposit->admin_status ='approved';
+        $deposit->manager_status = 'approved';
+        $deposit->status = 'approved';
+        $deposit->save();
+
+
+        return back()->withSuccess('সফলভাবে সেভ করা হয়েছে!');
     }
 }

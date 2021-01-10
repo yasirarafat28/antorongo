@@ -43,7 +43,7 @@
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                        মোট পরিচালক আমানত</div>
-                                    <div class="h6 mb-0 font-weight-bold text-gray-800">৪৫৩ টি</div>
+                                    <div class="h6 mb-0 font-weight-bold text-gray-800">{{\App\NumberConverter::en2bn($count)}}  টি</div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-hand-holding-usd fa-2x text-gray-300"></i>
@@ -64,7 +64,24 @@
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                         মোট জমা</div>
-                                    <div class="h6 mb-0 font-weight-bold text-gray-800">৳ ৩৪৫৩৪ টাকা</div>
+                                    <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($total_deposit)}}  টাকা</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pending Requests Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-warning shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                        বর্তমান জমা</div>
+                                    <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($total_deposit - $total_withdraw)}}  টাকা</div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>                                </div>
@@ -87,7 +104,7 @@
                         <form action="">
 
                             <div class="row clearfix">
-                                <div class="col-lg-4 col-md-4">
+                                <div class="col-lg-3 col-md-3">
 
                                     <label for=""><small>থেকে</small></label>
 
@@ -99,7 +116,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-4 col-md-4">
+                                <div class="col-lg-3 col-md-3">
 
                                     <label for=""><small> পর্যন্ত</small></label>
 
@@ -125,12 +142,9 @@
                                 </div>
 
                                 <div class="col-lg-2 col-md-2 text-right">
-                                    <button type="button" class="btn btn-neutral hidden-sm-down" onclick="$('.buttons-csv')[0].click();">
-                                        <i class="zmdi zmdi-archive"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-neutral hidden-sm-down" onclick="$('.buttons-print')[0].click();">
-                                        <i class="zmdi zmdi-print"></i>
-                                    </button>
+
+                                    <br>
+                                    <a href="/admin/founder-deposit/create" class="btn btn-primary"> <i class="fa fa-plus"></i> যোগ করুন</a>
                                 </div>
                             </div>
                         </form>

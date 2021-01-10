@@ -225,6 +225,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 
     //Founder Deposit
 
+    Route::post('founder-deposit/withdraw/{id}', 'FounderDepositController@withdraw');
+    Route::post('founder-deposit/profit/{id}', 'FounderDepositController@profit');
 
     Route::resource('founder-deposit', 'FounderDepositController');
 

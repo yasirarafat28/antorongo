@@ -15,7 +15,7 @@ class FounderDeposit extends Model
     }
 
     public function balance(){
-        $totalCreadit  = Transaction::whereIn('flag',['deposit','profit'])->where('transaction_for','founder_deposit')
+        $totalCreadit  = Transaction::whereIn('flag',['deposit'])->where('transaction_for','founder_deposit')
             ->where('status','approved')->where('transactable_id',$this->id)->sum('amount');
         $totalDebit  = Transaction::whereIn('flag',['withdraw'])->where('transaction_for','founder_deposit')
         ->where('status','approved')->where('transactable_id',$this->id)->sum('amount');

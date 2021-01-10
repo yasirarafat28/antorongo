@@ -212,7 +212,7 @@
                                                 <div class="row no-gutters align-items-center">
                                                     <div class="col mr-2">
                                                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                            বর্তমান লাভ  ব্যালেন্স
+                                                            বর্তমান  ব্যালেন্স
                                                         </div>
                                                         <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn(number_format($row->balance(),2))}} টাকা </div>
                                                     </div>
@@ -286,7 +286,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="{{url('admin/founder-deposit/withdraw')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
+                                            <form action="{{url('admin/founder-deposit/withdraw/'.$row->id)}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
                                                 {{csrf_field()}}
 
                                                 <input type="hidden" name="fdr_id" value="{{$row->id}}">
@@ -373,7 +373,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="{{url('admin/founder-deposit/add-profit-manually')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
+                                            <form action="{{url('admin/founder-deposit/profit/'.$row->id)}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
                                                 {{csrf_field()}}
                                                 <input type="hidden" name="user_id" value="{{$row->user_id}}">
 
@@ -545,7 +545,7 @@
                                             @if($item->flag=='deposit')
                                                 জমা
                                             @elseif($item->flag=='profit')
-                                                লাভ
+                                                লাভ প্রদান
                                             @elseif($item->flag=='fine')
                                                 জরিমানা
                                             @else
@@ -555,7 +555,7 @@
 
                                         <td style="color: green;font-weight: 700;">
 
-                                            @if($item->flag=='deposit' || $item->flag=='profit')
+                                            @if($item->flag=='deposit')
                                                 + {{\App\NumberConverter::en2bn($item->amount)}} টাকা
                                             @else
                                                 - {{\App\NumberConverter::en2bn($item->amount)}} টাকা

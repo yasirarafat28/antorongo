@@ -173,6 +173,15 @@
             </li>
 
 
+            <div class="sidebar-heading">
+                আমানত
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/founder-deposit">
+                    <i class="fas fa-fw fa-hand-holding-usd"></i>
+                    <span>পরিচালকের আমানত</span></a>
+            </li>
 
             <div class="sidebar-heading">
                 এফ ডি আর
