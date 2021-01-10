@@ -15,7 +15,7 @@
         margin-top: 20px;
     }
     body .container{
-        height: 400px;
+        height: 350px;
     }
 
 
@@ -25,10 +25,14 @@
             {
                 display: none !important;
             }
+
+            #printContainer{
+                float: left !important;
+            }
         }
 
         @page { margin: 0; }
-        body { margin: 1.6cm; }
+        body { margin: 1cm; }
 
 
 
@@ -40,7 +44,7 @@
 
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="printContainer" style="width: 350px">
         @yield('content')
     </div>
 

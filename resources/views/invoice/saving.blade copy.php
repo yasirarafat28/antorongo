@@ -9,7 +9,7 @@
                     <p style="line-height: 0.6em;font-size: 14px;"> রেজি নং-১৮৭/০১, ফোনঃ ৯০০৫০৫২</p>
                     <p style="line-height: 0.6em;font-size: 14px;">৭৪১, মনিপুর, মিরপুর, ঢাকা-১২১৬।</p>
                 </div>
-                <div class="col-md-12">
+                <div class="col-xs-6 col-sm-6 col-md-6">
                     <address>
                         <h4>
                             <strong>সদস্য </strong>
@@ -23,20 +23,27 @@
                             {!!barcode($unique_id)!!}
 
                         </div>
-
-                        <h4>
-                            <strong>সঞ্চয়</strong>
-                        </h4>
-                        <p>
-                            <em>Date: {{date('d M, Y',strtotime($saving->started_at))}}</em>
-                        </p>
-                        <div>
-                            @php
-                                $unique_id  = $saving->txn_id??'';
-                            @endphp
-                                {!!barcode($unique_id)!!}
-                        </div>
-
+                        <br>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 40%">নামঃ</td>
+                                    <td class="text-left">{{$saving->user->name_bn}}</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 40%">পিতার নামঃ</td>
+                                    <td class="text-left">{{$saving->user->father_name}}</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 40%">ফোনঃ</td>
+                                    <td class="text-left">{{$saving->user->phone??''}}</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 40%">বর্তমান ঠিকানাঃ</td>
+                                    <td class="text-left">{{$saving->user->present_address??''}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </address>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 text-right">
