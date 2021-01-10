@@ -63,86 +63,86 @@ class LoanController extends Controller
         return view('admin/loan/edit',compact('loan','members'));
     }
 
-    public function  LoanUpdate(Request $request,$id)
-    {
-        //return $request;
-        $this->validate($request,
-            [
-                'user_id' => 'required',
-                'loan_code' => 'required|unique:loan,unique_id,'.$id,
-            ]
-        );
+    // public function  LoanUpdate(Request $request,$id)
+    // {
+    //     return $request;
+    //     $this->validate($request,
+    //         [
+    //             'user_id' => 'required',
+    //             'loan_code' => 'required|unique:loan,unique_id,'.$id,
+    //         ]
+    //     );
 
-        $member = User::find($request->user_id);
+    //     $member = User::find($request->user_id);
 
-        //Update Loan
+    //     //Update Loan
 
-        $loan = Loan::find($id);
-        $loan->unique_id = $request->loan_code;
-        $loan->user_id = $member->id;
-        $loan->reason = $request->reason;
-        $loan->request_amount = NumberConverter::bn2en($request->request_amount??0);
-        $loan->approved_amount = NumberConverter::bn2en($request->approved_amount??0);
-        $loan->installment_amount = NumberConverter::bn2en($request->installment_amount??0);
-        $loan->duration = NumberConverter::bn2en($request->duration??0);
-        $loan->interest_rate = NumberConverter::bn2en($request->interest_rate??0);
-        $loan->start_at = $request->date;
-        $loan->installment_type = $request->installment_type;
-        $loan->status = $request->status;
-        $loan->save();
-
-
-
-        //Person Depository
-        for ($i=0;$i<sizeof($request->depository_unique_id);$i++)
-        {
-            if (!empty($request->depository_unique_id[$i]) && !empty($request->depository_description[$i]) && !empty($request->depository_total_amount[$i])){
-                $person_depository = DepositoryMember::find($request->depository_id[$i]);
-                $person_depository->loan_id = $loan->id;
-                $person_depository->description = $request->depository_description[$i];
-                $person_depository->unique_id = $request->depository_unique_id[$i];
-                $person_depository->policy_amount = $request->depository_total_amount[$i];
-                $person_depository->save();
-            }
-        }
-
-        //Ornament Depository
-        for ($i=0;$i<sizeof($request->o_depository_unique_id);$i++)
-        {
-            if (!empty($request->o_depository_unique_id[$i]) && !empty($request->o_depository_qty[$i]) && !empty($request->o_depository_total_price[$i])){
-                $person_depository = DepositoryOrnament::find($request->o_id[$i]);
-                $person_depository->loan_id = $loan->id;
-                $person_depository->description = $request->o_depository_description[$i];
-                $person_depository->unique_id = $request->o_depository_unique_id[$i];
-                $person_depository->qty = $request->o_depository_qty[$i];
-                $person_depository->unit_price = $request->o_depository_unit_price[$i];
-                $person_depository->total_amount = $request->o_depository_total_price[$i];
-                $person_depository->status = 'active';
-                $person_depository->save();
-            }
-        }
+    //     $loan = Loan::find($id);
+    //     $loan->unique_id = $request->loan_code;
+    //     $loan->user_id = $member->id;
+    //     $loan->reason = $request->reason;
+    //     $loan->request_amount = NumberConverter::bn2en($request->request_amount??0);
+    //     $loan->approved_amount = NumberConverter::bn2en($request->approved_amount??0);
+    //     $loan->installment_amount = NumberConverter::bn2en($request->installment_amount??0);
+    //     $loan->duration = NumberConverter::bn2en($request->duration??0);
+    //     $loan->interest_rate = NumberConverter::bn2en($request->interest_rate??0);
+    //     $loan->start_at = $request->date;
+    //     $loan->installment_type = $request->installment_type;
+    //     $loan->status = $request->status;
+    //     $loan->save();
 
 
-        //Property Depository
-        for ($i=0;$i<sizeof($request->p_position);$i++)
-        {
-            if (!empty($request->p_position[$i]) && !empty($request->p_total_amount[$i]) && !empty($request->p_qty[$i])){
-                $property_depository = DepositoryProperty::find($request->p_id[$i]);
-                $property_depository->loan_id = $loan->id;
-                $property_depository->position = $request->p_position[$i];
-                $property_depository->mouja = $request->p_mouja[$i];
-                $property_depository->dag = $request->p_dag[$i];
-                $property_depository->khotiyan = $request->p_khotiyan[$i];
-                $property_depository->holding = $request->p_holding[$i];
-                $property_depository->description = $request->description[$i];
-                $property_depository->qty = $request->p_qty[$i];
-                $property_depository->total_amount = $request->p_total_amount[$i];
-                $property_depository->save();
-            }
-        }
 
-        return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
-    }
+    //     //Person Depository
+    //     for ($i=0;$i<sizeof($request->depository_unique_id);$i++)
+    //     {
+    //         if (!empty($request->depository_unique_id[$i]) && !empty($request->depository_description[$i]) && !empty($request->depository_total_amount[$i])){
+    //             $person_depository = DepositoryMember::find($request->depository_id[$i]);
+    //             $person_depository->loan_id = $loan->id;
+    //             $person_depository->description = $request->depository_description[$i];
+    //             $person_depository->unique_id = $request->depository_unique_id[$i];
+    //             $person_depository->policy_amount = $request->depository_total_amount[$i];
+    //             $person_depository->save();
+    //         }
+    //     }
+
+    //     //Ornament Depository
+    //     for ($i=0;$i<sizeof($request->o_depository_unique_id);$i++)
+    //     {
+    //         if (!empty($request->o_depository_unique_id[$i]) && !empty($request->o_depository_qty[$i]) && !empty($request->o_depository_total_price[$i])){
+    //             $person_depository = DepositoryOrnament::find($request->o_id[$i]);
+    //             $person_depository->loan_id = $loan->id;
+    //             $person_depository->description = $request->o_depository_description[$i];
+    //             $person_depository->unique_id = $request->o_depository_unique_id[$i];
+    //             $person_depository->qty = $request->o_depository_qty[$i];
+    //             $person_depository->unit_price = $request->o_depository_unit_price[$i];
+    //             $person_depository->total_amount = $request->o_depository_total_price[$i];
+    //             $person_depository->status = 'active';
+    //             $person_depository->save();
+    //         }
+    //     }
+
+
+    //     //Property Depository
+    //     for ($i=0;$i<sizeof($request->p_position);$i++)
+    //     {
+    //         if (!empty($request->p_position[$i]) && !empty($request->p_total_amount[$i]) && !empty($request->p_qty[$i])){
+    //             $property_depository = DepositoryProperty::find($request->p_id[$i]);
+    //             $property_depository->loan_id = $loan->id;
+    //             $property_depository->position = $request->p_position[$i];
+    //             $property_depository->mouja = $request->p_mouja[$i];
+    //             $property_depository->dag = $request->p_dag[$i];
+    //             $property_depository->khotiyan = $request->p_khotiyan[$i];
+    //             $property_depository->holding = $request->p_holding[$i];
+    //             $property_depository->description = $request->description[$i];
+    //             $property_depository->qty = $request->p_qty[$i];
+    //             $property_depository->total_amount = $request->p_total_amount[$i];
+    //             $property_depository->save();
+    //         }
+    //     }
+
+    //     return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
+    // }
 
     public  function LoanList(Request $request)
     {
@@ -439,19 +439,18 @@ class LoanController extends Controller
     public function  LoanApplicationUpdate(Request $request,$id)
     {
 
-
-        //return $request;
         $this->validate($request,
             [
                 'user_id' => 'required',
+                'loan_code' => 'required|unique:loan,unique_id,'.$id,
             ]
         );
 
 
         //Create Loan
-        if ($request->has('unique_id'))
+        if ($request->has('loan_code'))
         {
-            $loan_code = $request->unique_id;
+            $loan_code = $request->loan_code;
         }else
             $loan_code = uniqid();
         $loan = Loan::find($id);
