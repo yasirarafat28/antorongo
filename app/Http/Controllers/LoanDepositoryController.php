@@ -20,11 +20,11 @@ class LoanDepositoryController extends Controller
         $loan = Loan::find($request->loan_id);
 
         if($request->type=='person'){
-            $this->validate($request,[
-                'depository_unique_id'=>'required',
-                'depository_description'=>'required',
-                'depository_total_amount'=>'required',
-            ]);
+            // $this->validate($request,[
+            //     'depository_unique_id'=>'required',
+            //     'depository_description'=>'required',
+            //     'depository_total_amount'=>'required',
+            // ]);
 
             $person_depository = new DepositoryMember();
             $person_depository->loan_id = $loan->id;
@@ -36,11 +36,11 @@ class LoanDepositoryController extends Controller
         }
         elseif($request->type=='ornament'){
 
-            $this->validate($request,[
-                'o_depository_total_price'=>'required',
-                'o_depository_qty'=>'required',
-                'o_depository_unique_id'=>'required',
-            ]);
+            // $this->validate($request,[
+            //     'o_depository_total_price'=>'required',
+            //     'o_depository_qty'=>'required',
+            //     'o_depository_unique_id'=>'required',
+            // ]);
 
             $person_depository = new DepositoryOrnament();
                 $person_depository->loan_id = $loan->id;
@@ -54,11 +54,11 @@ class LoanDepositoryController extends Controller
 
         }elseif($request->type=='property'){
 
-            $this->validate($request,[
-                'p_position'=>'required',
-                'p_total_amount'=>'required',
-                'p_qty'=>'required',
-            ]);
+            // $this->validate($request,[
+            //     'p_position'=>'required',
+            //     'p_total_amount'=>'required',
+            //     'p_qty'=>'required',
+            // ]);
 
             $property_depository = new DepositoryProperty();
             $property_depository->loan_id = $loan->id;
