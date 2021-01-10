@@ -75,9 +75,9 @@
 
                         <div class="row mb-3">
 
-                                <div class="col-md-12 text-center mb-3">
-                                    <h2><strong> সঞ্চয় </strong> বিস্তারিত</h2>
-                                </div>
+                            <div class="col-md-12 text-center mb-3">
+                                <h2><strong> সঞ্চয় </strong> বিস্তারিত</h2>
+                            </div>
 
                             <div class="col-md-4">
                                 <div class="body">
@@ -309,6 +309,7 @@
                                     @endif
 
                                     <a href="{{url('admin/print/saving/'.$saving->txn_id)}}" class="btn btn-primary"><i class="fa fa-print"> </i> প্রিন্ট </a>
+                                    <a href="{{url('admin/saving/Remove/'.$saving->id)}}" class="btn btn-danger"><i class="fa fa-print"> </i> মুছে ফেলুন </a>
 
                                 </div>
 
