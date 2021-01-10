@@ -30,7 +30,64 @@
             <div class="col-lg-12">
                 <div class="card shadow">
                     <div class="header">
-                        <h2><strong>জামানতের   </strong> বর্ণনা </h2>
+                        <div class="col-md-12 clearfix">
+                            <h2 class="float-left"><strong>জামানতের   </strong> বর্ণনা </h2>
+
+                            <div class="float-right">
+                                <a href="#AddperSonDepository" data-toggle="modal" class="btn btn-primary"><i class="fa fa-plus"></i> যোগ করেন</a>
+                            </h2>
+
+                            <div class="modal fade" id="AddperSonDepository" tabindex="-1" role="dialog">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h2><strong>জামানতের   </strong> বর্ণনা </h2>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <table class="table table-bordered table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>সভ্য নং </th>
+                                                    <th> নাম/বিবরন   </th>
+                                                    <th> পলিসির টাকা   </th>
+                                                    <th> স্বাক্ষর</th>
+                                                    <th>যাচাইকারীর স্বাক্ষর</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+
+
+                                                    <tr>
+                                                        <td>
+                                                            <input type="text" class="form-control" name="depository_unique_id">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control" name="depository_description">
+                                                        </td>
+                                                        <td>
+                                                            <input type="number" class="form-control" name="depository_total_amount">
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" class="form-control" name="depository_signature">
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" class="form-control" name="depository_identifier_signature">
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="body">
                         <table class="table table-bordered table-striped">
@@ -65,7 +122,15 @@
                     <hr>
 
                     <div class="body">
-                        <h4>সম্পদ জামানত (স্বর্ণালংকার)</h4>
+                        <div class="col-md-12 clearfix">
+                            <h2 class="float-left">সম্পদ জামানত (স্বর্ণালংকার)</h2>
+
+                            <div class="float-right">
+                                <a href="#" class="btn btn-primary"><i class="fa fa-plus"></i> যোগ করেন</a>
+                            </h2>
+                        </div>
+                        <br>
+
                         <table class="table table-bordered table-striped">
                             <thead>
                             <tr>
@@ -99,7 +164,15 @@
                     <hr>
 
                     <div class="body">
-                        <h4>সম্পদ জামানত (জমি/বাড়ী)</h4>
+
+                        <div class="col-md-12 clearfix">
+                            <h2 class="float-left">সম্পদ জামানত (জমি/বাড়ী)</h2>
+
+                            <div class="float-right">
+                                <a href="#" class="btn btn-primary"><i class="fa fa-plus"></i> যোগ করেন</a>
+                            </h2>
+                        </div>
+                        <br>
                         <table class="table table-bordered table-striped">
                             <thead>
                             <tr>

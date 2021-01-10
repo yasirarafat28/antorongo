@@ -118,6 +118,11 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::post('loan/give_away', 'LoanController@give_away')->name('loan.give_away');
 
 
+    Route::post('loan/add_depository', 'LoanDepositoryController@add_depository')->name('loan.add_depository');
+    Route::post('loan/edit_depository/{id}', 'LoanDepositoryController@update_depository')->name('loan.update_depository');
+    Route::delete('loan/edit_depository/{id}', 'LoanDepositoryController@delete_depository')->name('loan.delete_depository');
+
+
     Route::post('members/assign-share-holder', 'MemberController@assign_share_holder');
     Route::get('members/find', 'MemberController@MemberFind');
     Route::resource('members', 'MemberController');

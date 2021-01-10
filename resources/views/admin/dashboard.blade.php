@@ -411,7 +411,7 @@
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($fdr_active_count)}}</div>
 
 
-                                <a href="/admin/fdr/list?filterBy=active" class="text-link">তালিকা দেখুন</a>
+                                <a href="/admin/fdr/list?filterBy=approved" class="text-link">তালিকা দেখুন</a>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>

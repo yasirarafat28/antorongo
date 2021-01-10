@@ -243,7 +243,7 @@
                                     )) !!}
                                 {!! Form::close() !!}
 
-                                {!! Form::open([
+                                {{-- {!! Form::open([
                                     'method'=>'POST',
                                     'url' => ['/admin/founder-deposit/close', $row->id],
                                     'style' => 'display:inline'
@@ -254,7 +254,7 @@
                                     'title' => 'সদস্য পদ প্রত্যাহার',
                                     'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
                                     )) !!}
-                                {!! Form::close() !!}
+                                {!! Form::close() !!} --}}
 
                                 @if ($row->status=='closed')
                                     <br>
