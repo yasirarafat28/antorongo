@@ -930,6 +930,10 @@ class SavingController extends Controller
 
     public function SavingUpdate(Request $request,$id)
     {
+
+        $this->validate($request,[
+            'package_id'=>'required',
+        ]);
        $saving = Saving::find($id);
         $saving->user_id = $request->user_id;
         $saving->identifier_id = $request->identifier_id??0;
