@@ -238,7 +238,7 @@
                                 {!! Form::button('<i class="fa fa-trash"></i>  মুছে ফেলুন', array(
                                     'type' => 'submit',
                                     'class' => 'btn btn-danger',
-                                    'title' => 'সদস্য পদ প্রত্যাহার',
+                                    'title' => 'মুছে ফেলুন',
                                     'onclick'=>'return confirm("আপনি কি নিশ্চিত?")'
                                     )) !!}
                                 {!! Form::close() !!}

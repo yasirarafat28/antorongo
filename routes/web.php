@@ -120,7 +120,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 
     Route::post('loan/add_depository', 'LoanDepositoryController@add_depository')->name('loan.add_depository');
     Route::post('loan/edit_depository/{id}', 'LoanDepositoryController@update_depository')->name('loan.update_depository');
-    Route::delete('loan/edit_depository/{id}', 'LoanDepositoryController@delete_depository')->name('loan.delete_depository');
+    Route::delete('loan/delete_depository/{type}/{id}', 'LoanDepositoryController@delete_depository')->name('loan.delete_depository');
 
 
     Route::post('members/assign-share-holder', 'MemberController@assign_share_holder');

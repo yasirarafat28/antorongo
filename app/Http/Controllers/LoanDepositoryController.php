@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 class LoanDepositoryController extends Controller
 {
     public function add_depository(Request $request){
+
         $this->validate($request,[
             'loan_id'=>'required',
             'type'=>'required|in:person,ornament,property'
@@ -76,6 +77,27 @@ class LoanDepositoryController extends Controller
 
         return back()->withSuccess('সফলভাবে সেভ করা হয়েছে!');
 
+
+
+    }
+
+    public function delete_depository ($type,$id){
+
+        if($type=='person'){
+            DepositoryMember::destroy($id);
+
+        }
+        elseif($type=='ornament'){
+            DepositoryOrnament::destroy($id);
+
+        }
+        elseif($type=='property'){
+            DepositoryProperty::destroy($id);
+
+        }
+
+
+        return back()->withSuccess('সফলভাবে মুছে ফেলা হয়েছে!');
 
 
     }
