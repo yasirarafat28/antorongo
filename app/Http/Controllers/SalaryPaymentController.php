@@ -31,7 +31,10 @@ class SalaryPaymentController extends Controller
     {
         //
 
-        $members = User::where('role','admin')->orderBy('name','ASC')->get();
+        $members = User::whereHas('roles',function($q){
+            $q->whereNotIn('name',['member']);
+
+        })->orderBy('name','ASC')->get();
         $records = SalaryPayment::with('user')->orderBy('id','DESC');
         if(isset($request->limit) && $request->limit=='-1'){
             $records = $records->paginate($records->count());
@@ -91,7 +94,7 @@ class SalaryPaymentController extends Controller
         }
         $deposit = new Transaction();
         $deposit->txn_id = uniqid();
-        $deposit->transaction_for = 'founder_deposit';
+        $deposit->transaction_for = 'salary';
         $deposit->transactable_id = $structure->id;
         $deposit->flag = 'salary';
         $deposit->type = 'expense';
@@ -99,7 +102,7 @@ class SalaryPaymentController extends Controller
         $deposit->user_id = $structure->user_id;
         $deposit->note = $structure->note;
         $deposit->date = date("Y-m-d H:i:s");
-        $deposit->amount = NumberConverter::bn2en($request->amount);
+        $deposit->amount = NumberConverter::bn2en($request->paid);
         $deposit->added_by = Auth::user()->id;
         $deposit->received_by = Auth::user()->id;
         $deposit->admin_status ='approved';

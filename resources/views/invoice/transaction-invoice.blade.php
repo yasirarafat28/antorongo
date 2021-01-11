@@ -94,7 +94,7 @@
                                 <p style="line-height: 0.6em">সভ্য নংঃ   {{$user->unique_id??''}}</p>
                             </div>
                             <div class="col-sm-4">
-                                <p  style="line-height: 0.6em">তারিখঃ  {{App\NumberConverter::en2bn(date("Y-m-d",strtotime($transaction->date)))}}</p>
+                                <p  style="line-height: 0.6em">তারিখঃ  {{App\NumberConverter::en2bn(date("d-m-Y",strtotime($transaction->date)))}}</p>
                             </div>
                         </div>
                     </div>
