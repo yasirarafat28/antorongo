@@ -733,7 +733,17 @@
                                                                         $amount = App\Transaction::whereHas('head',function($q){
                                                                             $q->where('slug','loan_giving_expense');
 
-                                                                        })->whereIn('transactable_id',$gold_loan_ids)->sum('amount');
+                                                                        })
+                                                                        ->where(function($q) use($from,$to){
+                                                                            if($from){
+                                                                                $q->where(DB::raw('DATE(date)'),'>=',$from);
+                                                                            }
+                                                                            if($to){
+                                                                                $q->where(DB::raw('DATE(date)'),'<=',$to);
+                                                                            }
+
+                                                                        })
+                                                                        ->whereIn('transactable_id',$gold_loan_ids)->sum('amount');
                                                                         @endphp
                                                                         {{NumberConverter::en2bn($amount)}}
                                                                     </td>
