@@ -55,7 +55,31 @@
                         <form action="">
 
                             <div class="row clearfix">
-                                <div class="col-lg-4 col-md-4">
+
+                                <div class="col-lg-2 col-md-2">
+
+                                    <label for=""><small>খাত</small></label>
+
+                                    <div class="from-group">
+                                        <select name="" id="" class="form-control">
+                                            <option value="">বাছাই করুন</option>
+                                            @foreach($parents??array() as $parent)
+                                                @if(sizeof($parent->childs))
+                                                    <optgroup label="{{$parent->name}}">
+                                                        @foreach($parent->childs??array() as $item)
+                                                            <option value="{{$item->id}}">{{$item->name}}</option>
+                                                        @endforeach
+
+                                                    </optgroup>
+                                                @else
+                                                    <option value="{{$parent->id}}">{{$parent->name}}</option>
+                                                @endif
+
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3">
 
                                     <label for=""><small>থেকে</small></label>
 
@@ -67,7 +91,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-4 col-md-4">
+                                <div class="col-lg-3 col-md-3">
 
                                     <label for=""><small> পর্যন্ত</small></label>
 
@@ -96,15 +120,6 @@
                                     <a href="?limit=-1" class="btn btn-success">সবগুলো দেখুন </a>
 
                                 @endif
-                                </div>
-
-                                <div class="col-lg-2 col-md-2 text-right">
-                                    <button type="button" class="btn btn-neutral hidden-sm-down" onclick="$('.buttons-csv')[0].click();">
-                                        <i class="zmdi zmdi-archive"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-neutral hidden-sm-down" onclick="$('.buttons-print')[0].click();">
-                                        <i class="zmdi zmdi-print"></i>
-                                    </button>
                                 </div>
                             </div>
                         </form>
