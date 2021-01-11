@@ -104,6 +104,11 @@ class IncomeController extends Controller
 
         $transactions = Transaction::with('head')->where('canculatable','yes')->where(function ($q) use ($request){
             $q->where('type','income');
+            if ($request->has('head_id') && $request->head_id) {
+
+                $q->where('head_id',$request->head_id);
+
+            }
             if ($request->has('from') && $request->from) {
                 $from = date("Y-m-d", strtotime($request->from));
 
@@ -127,6 +132,11 @@ class IncomeController extends Controller
 
         $total = Transaction::where('canculatable','yes')->where(function ($q) use ($request){
             $q->where('type','income');
+            if ($request->has('head_id') && $request->head_id) {
+
+                $q->where('head_id',$request->head_id);
+
+            }
             if ($request->has('from') && $request->from) {
                 $from = date("Y-m-d", strtotime($request->from));
                 $q->where(DB::raw('DATE(date)'),'>=',$from);

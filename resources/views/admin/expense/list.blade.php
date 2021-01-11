@@ -61,7 +61,7 @@
                                     <label for=""><small>খাত</small></label>
 
                                     <div class="from-group">
-                                        <select name="" id="" class="form-control">
+                                        <select name="head_id" id="" class="form-control">
                                             <option value="">বাছাই করুন</option>
                                             @foreach($parents??array() as $parent)
                                                 @if(sizeof($parent->childs))
