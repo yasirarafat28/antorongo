@@ -208,7 +208,7 @@ class Transaction extends Model
         ->where(function($q) use($from,$to){
             if($from){
                 $q->where(DB::raw('DATE(date)'),'>=',$from);
-                
+
             }
             if($to){
                 $q->where(DB::raw('DATE(date)'),'<=',$to);
@@ -220,7 +220,7 @@ class Transaction extends Model
         {
             $childs = TransactionHead::with('user')->whereHas('user',function($q) use($project){
 
-                $q->where('project',$project);
+                $q->whereNotIn('project',$project);
             })->where('parent',$transaction_head->id)->get('id')->pluck('id')->toArray();
             $transactions += Transaction::whereNotIn('head_id',$childs)
             ->where(function($q) use($from,$to){
