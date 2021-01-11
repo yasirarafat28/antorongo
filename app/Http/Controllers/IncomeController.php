@@ -119,9 +119,9 @@ class IncomeController extends Controller
 
         });
         if(isset($request->limit) && $request->limit=='-1'){
-            $transactions = $transactions->paginate($transactions->count());
+            $transactions = $transactions->orderBy('date','DESC')->paginate($transactions->count());
         }else{
-            $transactions = $transactions->paginate(25);
+            $transactions = $transactions->orderBy('date','DESC')->paginate(25);
         }
 
 
