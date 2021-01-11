@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\NumberConverter;
 use App\SalaryPayment;
+use App\Transaction;
+use App\TransactionHead;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class SalaryPaymentController extends Controller
 {
@@ -78,6 +82,30 @@ class SalaryPaymentController extends Controller
         $structure->note = $request->note;
         $structure->status = 'active';
         $structure->save();
+
+
+        $head = TransactionHead::where('slug','salary_expense')->first();
+
+        if(!$head){
+            return back()->withError('Related head didn\'t found!');
+        }
+        $deposit = new Transaction();
+        $deposit->txn_id = uniqid();
+        $deposit->transaction_for = 'founder_deposit';
+        $deposit->transactable_id = $structure->id;
+        $deposit->flag = 'salary';
+        $deposit->type = 'expense';
+        $deposit->head_id = $head->id;
+        $deposit->user_id = $structure->user_id;
+        $deposit->note = $structure->note;
+        $deposit->date = date("Y-m-d H:i:s");
+        $deposit->amount = NumberConverter::bn2en($request->amount);
+        $deposit->added_by = Auth::user()->id;
+        $deposit->received_by = Auth::user()->id;
+        $deposit->admin_status ='approved';
+        $deposit->manager_status = 'approved';
+        $deposit->status = 'approved';
+        $deposit->save();
 
         return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
     }
