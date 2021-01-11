@@ -858,6 +858,19 @@
                                                                     </td>
                                                                     <td></td>
                                                                 </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>ঢ) ডিশ বিল</td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('dish_bill_expense',$from,$to);
+
+                                                                        $general_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
+                                                                    <td></td>
+                                                                </tr>
 
                                                                 <tr>
                                                                     <td></td>

@@ -500,6 +500,19 @@
 
                             <div class="body">
 
+                                <small class="text-muted"> ছবি : </small>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <img src="{{url($member->nominee_photo??'')}}" alt="" height="80" width="80" class="img" onerror="this.onerror=null;this.src='/front/images/no_img_avaliable.jpg';">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img src="{{url($member->nominee_signature??'')}}" alt="" height="40" width="40" class="img" onerror="this.onerror=null;this.src='/front/images/no_img_avaliable.jpg';">
+                                    </div>
+                                </div>
+
+                                <hr>
+
 
 
                                 <small class="text-muted">নাম: </small>
