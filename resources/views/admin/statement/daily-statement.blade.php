@@ -1472,7 +1472,7 @@
                                                         <td>এফ ডি আর = {{NumberConverter::en2bn($fdr_balance)}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>হাতে নগদ = {{NumberConverter::en2bn($hand_balance)}} {{$cashier_balance}} {{ $office_balance}}</td>
+                                                        <td>হাতে নগদ = {{NumberConverter::en2bn($hand_balance)}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>ব্যাংক ব্যালেন্স = {{NumberConverter::en2bn($bank_balance)}}</td>
