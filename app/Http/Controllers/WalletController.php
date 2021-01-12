@@ -83,7 +83,7 @@ class WalletController extends Controller
         $deduct->added_by = Auth::user()->id;
         $deduct->admin_status ='approved';
         $deduct->manager_status = 'approved';
-        if($request->from=='bank')
+        if($request->from=='bank' || $request->to=='bank')
             $deduct->bank_id = $request->bank_id;
 
         $deduct->status = 'approved';
