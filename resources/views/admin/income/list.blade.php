@@ -133,6 +133,7 @@
                             <tr>
                                 <th>ক্রিয়াকলাপ</th>
                                 <th>কোড   </th>
+                                <th>সদস্য   </th>
                                 <th>খাত  </th>
                                 <th> টাকার পরিমান  </th>
                                 <th>  তারিখ</th>
@@ -143,6 +144,7 @@
                             <tr>
                                 <th>ক্রিয়াকলাপ</th>
                                 <th>কোড   </th>
+                                <th>সদস্য   </th>
                                 <th>খাত  </th>
                                 <th> টাকার পরিমান  </th>
                                 <th>  তারিখ</th>
@@ -178,6 +180,12 @@
                                         </div>
                                     </td>
                                     <td>{{$item->txn_id}}</td>
+                                    <td>
+                                        @if (isset($item->user->txn_id))
+                                            {{$item->user->name_bn}} {{$item->user->unique_id}}
+
+                                        @endif
+                                    </td>
                                     <td>{{$item->head->name??''}}</td>
                                     <td>{{\App\NumberConverter::en2bn($item->amount)}}</td>
                                     <td>{{$item->date}}</td>
