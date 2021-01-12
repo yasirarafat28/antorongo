@@ -24,6 +24,8 @@ Route::get('/', function () {
 
 Route::get('/testing', function () {
 
+    return Transaction::total_by_slug_except_project_date('loan_profit_collect_income',['fdr_member','founding_member','daily_saving','short_term','long_term'],"2021-01-11","2021-01-11");
+
     return MemberRelation::releted_user_ids('6145');
 
     $from = '2015-12-22';

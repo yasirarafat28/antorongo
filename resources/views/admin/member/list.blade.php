@@ -60,6 +60,7 @@
                                 <th>#</th>
                                 <th>সদস্য নাম্বার </th>
                                 <th>নাম </th>
+                                <th>প্রকল্প </th>
                                 <th>পিতার নাম </th>
                                 <th>ফোন </th>
                             </tr>
@@ -69,6 +70,7 @@
                                 <th>#</th>
                                 <th>সদস্য নাম্বার </th>
                                 <th>নাম </th>
+                                <th>প্রকল্প </th>
                                 <th>পিতার নাম </th>
                                 <th>ফোন </th>
                             </tr>
@@ -141,6 +143,7 @@
                 { data: 'action', name: 'action' },
                 { data: 'unique_id', name: 'unique_id' },
                 { data: 'name_bn', name: 'name_bn' },
+                { data: 'project', name: 'project' },
                 { data: 'father_name', name: 'father_name' },
                 { data: 'phone', name: 'phone' }
             ],
