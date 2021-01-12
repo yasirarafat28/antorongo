@@ -88,6 +88,7 @@ class Saving extends Model
             ->where('t.transaction_for','saving')
             ->where('t.transactable_id',$this->id)
             ->select("t.*",DB::raw("MONTH(date) as `month` "),DB::raw("YEAR(date) as `year` "))
+            ->orderBy('date')
             ->get()->toArray();
 
             $collection = collect($data);
