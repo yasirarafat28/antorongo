@@ -39,8 +39,13 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-6 col-xl-5">
-                        <h1 class="mb-0 site-logo"><a href="{{url('/')}}" class="h2 mb-0">{{\App\Setting::setting()->app_name}}<span
-                                    class="text-primary">.</span> </a></h1>
+                        <h1 class="mb-0 site-logo">
+                            <img src="{{url('antaranga.png')}}" alt="" style="width:300px;">
+{{--
+                            <a href="{{url('/')}}" class="h2 mb-0">{{\App\Setting::setting()->app_name}}<span
+                                    class="text-primary">.</span> </a> --}}
+
+                                </h1>
                     </div>
                     <div class="col-12 col-md-7 d-none d-xl-block">
                         <nav class="site-navigation position-relative text-right" role="navigation">
