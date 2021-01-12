@@ -41,6 +41,7 @@
 
                         <div class="form-group">
 
+
                             <label for=""><small> তারিখ </small></label>
 
                             <input type="text" class="form-control datepicker" name="date" placeholder=" তারিখ">
