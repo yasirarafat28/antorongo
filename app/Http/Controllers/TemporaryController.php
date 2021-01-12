@@ -549,6 +549,7 @@ class TemporaryController extends Controller
         ->update(
             [
                 'project'=>'daily_saving'
+
             ]
         );
 
