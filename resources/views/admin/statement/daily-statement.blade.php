@@ -1506,15 +1506,15 @@
                                                     </tr>
                                                     <tr>
                                                         <td>যমুনা</td>
-                                                        <td>{{NumberConverter::en2bn(App\Wallet::balance('bank',$from,$to,1))}}</td>
+                                                        <td>{{NumberConverter::en2bn(App\Wallet::balance('bank',null,$to,1))}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>শাহজালাল</td>
-                                                        <td>{{NumberConverter::en2bn(App\Wallet::balance('bank',$from,$to,2))}}</td>
+                                                        <td>{{NumberConverter::en2bn(App\Wallet::balance('bank',null,$to,2))}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>মার্কেন্টাইল</td>
-                                                        <td>{{NumberConverter::en2bn(App\Wallet::balance('bank',$from,$to,3))}}</td>
+                                                        <td>{{NumberConverter::en2bn(App\Wallet::balance('bank',null,$to,3))}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>সর্বমোট =</td>
