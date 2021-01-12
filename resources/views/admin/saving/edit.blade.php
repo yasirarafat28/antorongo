@@ -153,7 +153,7 @@
 
                                     <label for=""><small>তারিখ </small></label>
 
-                                    <input type="date" class="form-control" placeholder="তারিখ " name="date" value="{{date('Y-m-d',strtotime($saving->started_at))}}" id="date">
+                                    <input type="text" class="form-control datepicker" placeholder="তারিখ " name="date" value="{{date('Y-m-d',strtotime($saving->started_at))}}" id="date">
 
                                 </div>
 

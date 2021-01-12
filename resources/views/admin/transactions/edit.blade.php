@@ -75,7 +75,7 @@
 
                                         <label for=""><small> তারিখ </small></label>
 
-                                        <input type="date" value="{{date('Y-m-d',strtotime($transaction->date))}}" class="form-control" name="date" placeholder="উত্তলনের তারিখ">
+                                        <input type="text" value="{{date('Y-m-d',strtotime($transaction->date))}}" class="form-control" name="date" placeholder="উত্তলনের তারিখ">
 
                                     </div>
                                 </div>

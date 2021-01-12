@@ -107,7 +107,7 @@
 
                                     <label for=""><small>তারিখ </small></label>
 
-                                    <input type="date" class="form-control" placeholder="তারিখ " name="date" value="{{old('date')}}" id="date">
+                                    <input type="text" class="form-control datepicker" placeholder="তারিখ " name="date" value="{{old('date')}}" id="date">
 
                                 </div>
 

@@ -325,7 +325,7 @@
 
                                             <label for=""><small> তারিখ </small></label>
 
-                                            <input type="date" class="form-control" name="date" placeholder=" তারিখ" value="{{old('date')}}">
+                                            <input type="text" class="form-control datepicker" name="date" placeholder=" তারিখ" value="{{old('date')}}">
 
                                         </div>
                                     </div>
@@ -387,7 +387,7 @@
 
                                                     <label for=""><small> তারিখ </small></label>
 
-                                                    <input type="date" class="form-control" name="date" placeholder=" তারিখ" value="{{old('date')}}">
+                                                    <input type="text" class="form-control datepicker" name="date" placeholder=" তারিখ" value="{{old('date')}}">
 
                                                 </div>
                                             </div>

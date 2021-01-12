@@ -115,7 +115,7 @@
 
                                     <label for=""><small> জমার তারিখ </small></label>
 
-                                    <input type="date" class="form-control" name="date" placeholder="জমার তারিখ" value="{{date('Y-m-d',strtotime($loan_transaction->date))}}">
+                                    <input type="text" class="form-control datepicker" name="date" placeholder="জমার তারিখ" value="{{date('Y-m-d',strtotime($loan_transaction->date))}}">
 
                                 </div>
 

@@ -43,7 +43,7 @@
 
                             <label for=""><small> তারিখ </small></label>
 
-                            <input type="date" class="form-control" name="date" placeholder=" তারিখ">
+                            <input type="text" class="form-control datepicker" name="date" placeholder=" তারিখ">
 
                         </div>
 
@@ -109,7 +109,7 @@
 
                             <label for=""><small> তারিখ </small></label>
 
-                            <input type="date" class="form-control" name="date" placeholder=" তারিখ">
+                            <input type="text" class="form-control datepicker" name="date" placeholder=" তারিখ">
 
                         </div>
 
@@ -175,7 +175,7 @@
 
                             <label for=""><small> তারিখ </small></label>
 
-                            <input type="date" class="form-control" name="date" placeholder=" তারিখ">
+                            <input type="text" class="form-control datepicker" name="date" placeholder=" তারিখ">
 
                         </div>
 
@@ -239,7 +239,7 @@
                         <div class="form-group">
                             <label for=""><small> তারিখ </small></label>
 
-                            <input type="date" class="form-control" name="date" placeholder=" তারিখ">
+                            <input type="text" class="form-control datepicker" name="date" placeholder=" তারিখ">
 
                         </div>
 
@@ -306,7 +306,7 @@
 
                             <label for=""><small> তারিখ </small></label>
 
-                            <input type="date" class="form-control" name="date" placeholder=" তারিখ">
+                            <input type="text" class="form-control datepicker" name="date" placeholder=" তারিখ">
 
                         </div>
 
@@ -372,7 +372,7 @@
 
                             <label for=""><small>জরিমানার তারিখ </small></label>
 
-                            <input type="date" class="form-control" name="date" placeholder="জরিমানার তারিখ">
+                            <input type="text" class="form-control datepicker" name="date" placeholder="জরিমানার তারিখ">
 
                         </div>
 

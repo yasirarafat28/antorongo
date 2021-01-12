@@ -80,7 +80,7 @@
 
                                     <label for=""><small>তারিখ </small></label>
 
-                                    <input type="date" class="form-control" placeholder="তারিখ " name="date" value="{{$loan->date}}" id="date">
+                                    <input type="text" class="form-control datepicker" placeholder="তারিখ " name="date" value="{{$loan->date}}" id="date">
 
                                 </div>
 
@@ -489,13 +489,13 @@
                                 <tr>
                                     <td>১</td>
                                     <td>
-                                        <input type="date" class="form-control" name="ploan_date[]">
+                                        <input type="text" class="form-control datepicker" name="ploan_date[]">
                                     </td>
                                     <td>
                                         <input type="text" class="form-control" name="ploan_amount[]">
                                     </td>
                                     <td>
-                                        <input type="date" class="form-control" name="ploan_paid_date[]">
+                                        <input type="text" class="form-control datepicker" name="ploan_paid_date[]">
                                     </td>
                                     <td>
                                         <input type="number" class="form-control" name="ploan_full_paid[]">
@@ -515,13 +515,13 @@
                                 <tr>
                                     <td>২</td>
                                     <td>
-                                        <input type="date" class="form-control" name="ploan_date[]">
+                                        <input type="text" class="form-control datepicker" name="ploan_date[]">
                                     </td>
                                     <td>
                                         <input type="text" class="form-control" name="ploan_amount[]">
                                     </td>
                                     <td>
-                                        <input type="date" class="form-control" name="ploan_paid_date[]">
+                                        <input type="text" class="form-control datepicker" name="ploan_paid_date[]">
                                     </td>
                                     <td>
                                         <input type="number" class="form-control" name="ploan_full_paid[]">
@@ -541,13 +541,13 @@
                                 <tr>
                                     <td>৩</td>
                                     <td>
-                                        <input type="date" class="form-control" name="ploan_date[]">
+                                        <input type="text" class="form-control datepicker" name="ploan_date[]">
                                     </td>
                                     <td>
                                         <input type="text" class="form-control" name="ploan_amount[]">
                                     </td>
                                     <td>
-                                        <input type="date" class="form-control" name="ploan_paid_date[]">
+                                        <input type="text" class="form-control datepicker" name="ploan_paid_date[]">
                                     </td>
                                     <td>
                                         <input type="number" class="form-control" name="ploan_full_paid[]">
@@ -567,13 +567,13 @@
                                 <tr>
                                     <td>৪</td>
                                     <td>
-                                        <input type="date" class="form-control" name="ploan_date[]">
+                                        <input type="text" class="form-control datepicker" name="ploan_date[]">
                                     </td>
                                     <td>
                                         <input type="text" class="form-control" name="ploan_amount[]">
                                     </td>
                                     <td>
-                                        <input type="date" class="form-control" name="ploan_paid_date[]">
+                                        <input type="text" class="form-control datepicker" name="ploan_paid_date[]">
                                     </td>
                                     <td>
                                         <input type="number" class="form-control" name="ploan_full_paid[]">
@@ -593,13 +593,13 @@
                                 <tr>
                                     <td>৫</td>
                                     <td>
-                                        <input type="date" class="form-control" name="ploan_date[]">
+                                        <input type="text" class="form-control datepicker" name="ploan_date[]">
                                     </td>
                                     <td>
                                         <input type="text" class="form-control" name="ploan_amount[]">
                                     </td>
                                     <td>
-                                        <input type="date" class="form-control" name="ploan_paid_date[]">
+                                        <input type="text" class="form-control datepicker" name="ploan_paid_date[]">
                                     </td>
                                     <td>
                                         <input type="number" class="form-control" name="ploan_full_paid[]">

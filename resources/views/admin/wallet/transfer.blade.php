@@ -98,7 +98,7 @@
 
                             <label for=""><small> তারিখ </small></label>
 
-                            <input type="date" class="form-control" name="date" placeholder="তারিখ">
+                            <input type="text" class="form-control datepicker" name="date" placeholder="তারিখ">
 
                         </div>
                     </div>

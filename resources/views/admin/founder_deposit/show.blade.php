@@ -336,7 +336,7 @@
 
                                                         <label for=""><small> উত্তলনের তারিখ </small></label>
 
-                                                        <input type="date" class="form-control" name="date" placeholder="উত্তলনের তারিখ">
+                                                        <input type="text" class="form-control datepicker" name="date" placeholder="উত্তলনের তারিখ">
 
                                                     </div>
                                                 </div>
@@ -418,7 +418,7 @@
 
                                                         <label for=""><small> লাভের তারিখ </small></label>
 
-                                                        <input type="date" class="form-control" name="date" placeholder="উত্তলনের তারিখ">
+                                                        <input type="text" class="form-control datepicker" name="date" placeholder="উত্তলনের তারিখ">
 
                                                     </div>
                                                 </div>

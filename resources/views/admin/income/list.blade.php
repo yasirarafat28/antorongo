@@ -314,7 +314,7 @@
 
                                         <label for=""><small> তারিখ </small></label>
 
-                                        <input type="date" class="form-control" name="date" placeholder="উত্তলনের তারিখ" value="{{date('d-m-Y',strtotime($item->date))}}">
+                                        <input type="text" class="form-control datepicker" name="date" placeholder="উত্তলনের তারিখ" value="{{date('d-m-Y',strtotime($item->date))}}">
 
                                     </div>
                                 </div>
