@@ -188,7 +188,7 @@
                                     </td>
                                     <td>{{$item->head->name??''}}</td>
                                     <td>{{\App\NumberConverter::en2bn($item->amount)}}</td>
-                                    <td>{{$item->date}}</td>
+                                    <td>{{date("d-m-Y",strtotime($item->date))}}</td>
                                     <td>{{ucfirst($item->status)}}</td>
 
                                 </tr>
@@ -239,7 +239,7 @@
                             </tr>
                             <tr>
                                 <td>তারিখ </td>
-                                <td>{{$item->date}}</td>
+                                <td>{{date("d-m-Y",strtotime($item->date))}}</td>
                             </tr>
                             <tr>
                                 <td>বিস্তারিত</td>

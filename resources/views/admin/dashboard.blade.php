@@ -644,7 +644,7 @@
                                         @endif
                                     </td>
                                     <td>{{\App\NumberConverter::en2bn($item->amount)}}</td>
-                                    <td>{{\App\NumberConverter::en2bn($item->date)}}</td>
+                                    <td>{{\App\NumberConverter::en2bn(date("d-m-Y",strtotime($item->date)))}}</td>
                                     <td>{{ucfirst($item->status)}}</td>
                                 </tr>
                             @endforeach

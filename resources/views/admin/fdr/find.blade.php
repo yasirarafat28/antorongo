@@ -688,7 +688,7 @@
                                                 {!! Form::close() !!}
                                         </div>
                                     </td>
-                                    <td>{{\App\NumberConverter::en2bn($item->date)}}</td>
+                                    <td>{{\App\NumberConverter::en2bn(date("d-m-Y",strtotime($item->date)))}}</td>
                                     <td>{{ \App\BanglaMonth::MonthName(date('m',strtotime($item->date)))}}</td>
 
                                     <td>{{$item->txn_id??''}}</td>

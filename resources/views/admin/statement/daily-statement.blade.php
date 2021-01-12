@@ -130,9 +130,9 @@
                                     <h3 style="text-align: center">দৈনিক প্রাপ্তি-প্রদান বিবরণী  <span style="padding-left: 15px;">তারিখঃ</span>
 
                                          @if ($from != $to)
-                                            {{NumberConverter::en2bn($from)}} -  {{NumberConverter::en2bn($to)}}
+                                            {{NumberConverter::en2bn(date("d-m-Y",strtotime($from)))}} -  {{NumberConverter::en2bn(date("d-m-Y",strtotime($to)))}}
                                         @else
-                                            {{NumberConverter::en2bn($to)}}
+                                            {{NumberConverter::en2bn(date("d-m-Y",strtotime($to)))}}
                                          @endif
                                     </h3>
                                     </div>
@@ -1092,6 +1092,32 @@
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_date('fdr_profit_expense',$from,$to);
+
+                                                                        $saving_field_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>ঝ)পরিচালকের আমানত উত্তোলন</td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('founder_withdraw_expense',$from,$to);
+
+                                                                        $saving_field_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>ঞ)পরিচালকের আমানত লাভ প্রদান</td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('founder_profit_expense',$from,$to);
 
                                                                         $saving_field_expense +=$amount;
                                                                         @endphp

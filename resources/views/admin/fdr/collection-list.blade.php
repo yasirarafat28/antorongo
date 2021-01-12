@@ -148,7 +148,7 @@
 
                                         </td>
                                         <td>নিশ্চিত </td>
-                                        <td>{{\App\NumberConverter::en2bn($item->date)}}</td>
+                                        <td>{{\App\NumberConverter::en2bn(date("d-m-Y",strtotime($item->date)))}}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
