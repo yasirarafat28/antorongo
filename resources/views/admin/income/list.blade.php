@@ -181,7 +181,7 @@
                                     </td>
                                     <td>{{$item->txn_id}}</td>
                                     <td>
-                                        @if (isset($item->user->txn_id))
+                                        @if (isset($item->user->name_bn))
                                             {{$item->user->name_bn}} {{$item->user->unique_id}}
 
                                         @endif
