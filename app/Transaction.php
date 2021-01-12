@@ -193,17 +193,16 @@ class Transaction extends Model
 
         $from = date("Y-m-d", strtotime($from));
         $to = date("Y-m-d", strtotime($to));
-        //return $to;
         $transaction_head = TransactionHead::where('slug',$slug)->first();
         if(!$transaction_head){
             return 0;
         }
 
-
         $transactions = 0;
         $transactions += Transaction::with('user')->whereHas('user',function($q) use($project){
 
             $q->whereNotIn('project',$project);
+            $q->OrWhereNull('project');
         })->where('head_id',$transaction_head->id)
         ->where(function($q) use($from,$to){
             if($from){
