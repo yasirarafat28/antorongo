@@ -44,6 +44,7 @@ Auth::routes();
 Route::get('/member-search', 'FrontController@member_search');
 Route::get('/fdr_transaction_sync', 'TemporaryController@fdr_transaction_sync');
 Route::get('/permission-synchronise', 'TemporaryController@permission_asncronas');
+Route::get('/sync_user_project', 'TemporaryController@sync_user_project');
 
 
 Route::post('/get-district-list-by-division', 'DistrictController@getDistrict')->name('getDistrict');

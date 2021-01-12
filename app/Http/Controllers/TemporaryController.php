@@ -545,11 +545,15 @@ class TemporaryController extends Controller
 
     public function sync_user_project(){
 
-        User::where('unique_id','like','%FD%')
-        ->update('project','fdr_member');
+        User::where('unique_id','like','%DS%')
+        ->update('project','daily_saving');
 
 
-        User::where('unique_id','like','%FM%')
-        ->update('project','founding_member');
+        // User::where('unique_id','like','%FD%')
+        // ->update('project','fdr_member');
+
+
+        // User::where('unique_id','like','%FM%')
+        // ->update('project','founding_member');
     }
 }
