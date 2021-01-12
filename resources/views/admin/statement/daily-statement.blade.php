@@ -1281,7 +1281,7 @@
                                                                     <td></td>
                                                                     <td></td>
                                                                     <td style="text-align:right">সর্বমোট হিসাবঃ</td>
-                                                                    <td></td>
+                                                                    <td>{{NumberConverter::en2bn($previous_hand_balance +$bank_balance+$grand_total_income)}}</td>
                                                                 </tr>
                                                         </tbody>
                                                     </table>
