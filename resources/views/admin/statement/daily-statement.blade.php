@@ -1518,7 +1518,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>সর্বমোট =</td>
-                                                        <td>{{NumberConverter::en2bn(App\Wallet::balance('bank',$from,$to))}}</td>
+                                                        <td>{{NumberConverter::en2bn(App\Wallet::balance('bank',null,$to))}}</td>
                                                     </tr>
 
 
