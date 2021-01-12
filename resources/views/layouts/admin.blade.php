@@ -708,6 +708,7 @@
             format: 'YYYY-MM-DD',
             clearButton: true,
             weekStart: 1,
+            maxDate: moment(),
             time: false
         });
     </script>
