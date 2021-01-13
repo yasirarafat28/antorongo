@@ -33,6 +33,12 @@
 
     @yield('style')
 
+    <style>
+        .btn{
+            margin: 3px !important;
+        }
+    </style>
+
 
 </head>
 
