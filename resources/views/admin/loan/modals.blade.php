@@ -47,6 +47,16 @@
                             <input type="text" class="form-control datepicker" name="date" placeholder=" তারিখ">
 
                         </div>
+                        <div class="col-lg-12 col-md-12">
+                            <div class="col-md-12">
+                                <div class="checkbox">
+                                    <input id="remember_me_2" name="invoice" type="checkbox">
+                                    <label for="remember_me_2">
+                                        টাকা জমার রশিদ
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="form-group">
 
@@ -187,6 +197,16 @@
                             <textarea name="note" class="form-control" placeholder="মতামত"></textarea>
 
                         </div>
+                        <div class="col-lg-12 col-md-12">
+                            <div class="col-md-12">
+                                <div class="checkbox">
+                                    <input id="remember_me_2" name="invoice" type="checkbox">
+                                    <label for="remember_me_2">
+                                        টাকা জমার রশিদ
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-12 text-center">
 
                             <button class="btn btn-primary btn-round"> জমা করুন</button>
@@ -250,6 +270,18 @@
 
                             <textarea name="note" class="form-control" placeholder="মতামত"></textarea>
 
+                        </div>
+
+
+                        <div class="col-lg-12 col-md-12">
+                            <div class="col-md-12">
+                                <div class="checkbox">
+                                    <input id="remember_me_2" name="invoice" type="checkbox">
+                                    <label for="remember_me_2">
+                                        টাকা জমার রশিদ
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md-12 text-center">
 
