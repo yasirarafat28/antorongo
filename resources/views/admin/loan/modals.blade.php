@@ -47,6 +47,14 @@
                             <input type="text" class="form-control datepicker" name="date" placeholder=" তারিখ">
 
                         </div>
+
+                        <div class="form-group">
+
+                            <label for=""><small> মতামত </small></label>
+
+                            <textarea name="note" class="form-control" placeholder="মতামত"></textarea>
+
+                        </div>
                         <div class="col-lg-12 col-md-12">
                             <div class="col-md-12">
                                 <div class="checkbox">
@@ -56,14 +64,6 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            <label for=""><small> মতামত </small></label>
-
-                            <textarea name="note" class="form-control" placeholder="মতামত"></textarea>
-
                         </div>
                         <div class="col-md-12 text-center">
 
