@@ -355,7 +355,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td>ছ) মেয়াদী আমানত ঋণের আসল আদায়</td>
+                                                                    <td>ঝ) মেয়াদী আমানত ঋণের আসল আদায়</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_account_project_date('loan_revenue_collect_income',['fdr_member'],$from,$to);
@@ -368,7 +368,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td>জ) মেয়াদী আমানত ঋণের লাভ আদায়</td>
+                                                                    <td>ঞ) মেয়াদী আমানত ঋণের লাভ আদায়</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_account_project_date('loan_profit_collect_income',['fdr_member'],$from,$to);
@@ -380,7 +380,7 @@
                                                                     <td></td>
                                                                 </tr><tr>
                                                                     <td></td>
-                                                                    <td>ছ) অন্যান্য সঃ ঋণের আসল আদায়</td>
+                                                                    <td>ট) অন্যান্য সঃ ঋণের আসল আদায়</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_except_project_date('loan_revenue_collect_income',['fdr_member','founding_member','daily_saving','short_term','long_term'],$from,$to);
@@ -393,7 +393,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td>জ) অন্যান্য সঃ ঋণের লাভ আদায়</td>
+                                                                    <td>ঠ) অন্যান্য সঃ ঋণের লাভ আদায়</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_except_project_date('loan_profit_collect_income',['fdr_member','founding_member','daily_saving','short_term','long_term'],$from,$to);
@@ -406,7 +406,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td>ঝ) ভর্তি ফী</td>
+                                                                    <td>ড) ভর্তি ফী</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_date('addmission_fee_income',$from,$to);
@@ -419,7 +419,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td>ঞ) ঋনের ফরম</td>
+                                                                    <td>ঢ) ঋনের ফরম</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_date('loan_form',$from,$to);
@@ -432,7 +432,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td>ট) জরিমানা</td>
+                                                                    <td>ণ) জরিমানা</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_date('fine_income',$from,$to);
@@ -445,7 +445,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td>ঠ) ভ্যাট আদায়</td>
+                                                                    <td>ত) ভ্যাট আদায়</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_date('vat_income',$from,$to);
@@ -458,7 +458,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td>ড) অপলাভ</td>
+                                                                    <td>থ) অপলাভ</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_date('suppression_income',$from,$to);
@@ -471,7 +471,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td>ঢ) ব্যাংক লাভ</td>
+                                                                    <td>দ) ব্যাংক লাভ</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_date('bank_profit_income',$from,$to);
@@ -484,7 +484,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td>ণ) বিবিধ</td>
+                                                                    <td>ধ) বিবিধ</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_date('other_income',$from,$to);
@@ -726,7 +726,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td>ঙ) ঋণ প্রদান(স্বর্ণ মরগেজ)</td>
+                                                                    <td>চ) ঋণ প্রদান(স্বর্ণ মরগেজ)</td>
                                                                     <td>
                                                                         @php
                                                                         $gold_loan_ids =App\Loan::withCount('OrnamentDepositors')->having('ornament_depositors_count','>',0)->get('id')->pluck('id')->toArray();
@@ -752,7 +752,7 @@
                                                                 <tr>
 
                                                                     <td></td>
-                                                                    <td>চ) সাধারন সঞ্চয় ফেরত(সেভিং)</td>
+                                                                    <td>ছ) সাধারন সঞ্চয় ফেরত(সেভিং)</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_date('general_saving_refund_expense',$from,$to);
@@ -765,7 +765,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td>ছ) বেতন ভাতা</td>
+                                                                    <td>জ) বেতন ভাতা</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_date('salary_expense',$from,$to);
@@ -779,7 +779,7 @@
 
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td>ছ) সম্মানী ভাতা</td>
+                                                                    <td>ঝ) সম্মানী ভাতা</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_date('honor_payment_expense',$from,$to);
@@ -792,7 +792,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td>জ) বিদ্যুৎ</td>
+                                                                    <td>ঞ) বিদ্যুৎ</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_date('electricity_bill_expense',$from,$to);
@@ -805,7 +805,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td>ঝ) অফিস ভাড়া</td>
+                                                                    <td>ট) অফিস ভাড়া</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_date('office_rent_expense',$from,$to);
@@ -818,7 +818,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td>ঞ) গোডাউন ভাড়া</td>
+                                                                    <td>ঠ) গোডাউন ভাড়া</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_date('warehouse_rent',$from,$to);
@@ -831,7 +831,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td>ট) আপ্যায়ন</td>
+                                                                    <td>ড) আপ্যায়ন</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_date('appayon_expense',$from,$to);
@@ -844,7 +844,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td>ঠ) ষ্টেশনারী</td>
+                                                                    <td>ঢ) ষ্টেশনারী</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_date('stationary_expense',$from,$to);
@@ -858,7 +858,7 @@
                                                                 <tr>
 
                                                                     <td></td>
-                                                                    <td>ড) যাতায়াত</td>
+                                                                    <td>ণ) যাতায়াত</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_date('travell_expense',$from,$to);
@@ -871,7 +871,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td>ঢ) পানির বিল</td>
+                                                                    <td>ত) পানির বিল</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_date('water_bill_expense',$from,$to);
@@ -884,7 +884,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td>ঢ) ডিশ বিল</td>
+                                                                    <td>থ) ডিশ বিল</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_date('dish_bill_expense',$from,$to);
@@ -898,7 +898,7 @@
 
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td>ঢ) ময়লার বিল</td>
+                                                                    <td>দ) ময়লার বিল</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_date('dirty_bill_expense',$from,$to);
@@ -911,7 +911,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td>ণ) টেলিফোন</td>
+                                                                    <td>ধ) টেলিফোন</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_date('Teliphone_bill_expense',$from,$to);
@@ -924,7 +924,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td>ত) মোবাইল</td>
+                                                                    <td>ন) মোবাইল</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_date('Mobile_bill_expense',$from,$to);
@@ -937,7 +937,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td>থ) ইলেকাট্রনিক্স যন্ত্রাংশ মেরাঃ</td>
+                                                                    <td>প) ইলেকাট্রনিক্স যন্ত্রাংশ মেরাঃ</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_date('Electronic_Tools expense',$from,$to);
@@ -951,7 +951,7 @@
                                                                 <tr>
 
                                                                     <td></td>
-                                                                    <td>দ) নেট বিল</td>
+                                                                    <td> ফ) নেট বিল</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_date('Net_ bill',$from,$to);
@@ -964,7 +964,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td>ধ) এফ ডি আর ব্যাংক</td>
+                                                                    <td>ব) এফ ডি আর ব্যাংক</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_date('bank_fdr_expense',$from,$to);
@@ -984,7 +984,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td>ন) বিবিধ খরচ</td>
+                                                                    <td>ভ) বিবিধ খরচ</td>
                                                                     <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_date('other_expense',$from,$to);
