@@ -1326,7 +1326,7 @@
                                                                     <td>গ) আজকের আতিরিক্ত প্রদান</td>
                                                                     <td>
                                                                         @php
-                                                                            $extra_paid = $grand_expense_total > $today_income_balance ? $grand_expense_total - $today_income_balance:0;
+                                                                            $extra_paid = $grand_expense_total > $grand_total_income ? $grand_expense_total - $grand_total_income:0;
                                                                         @endphp
                                                                         {{NumberConverter::en2bn($extra_paid)}}
                                                                     </td>
