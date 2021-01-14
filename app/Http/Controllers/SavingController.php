@@ -113,7 +113,7 @@ class SavingController extends Controller
             }else{
                 $flag = 'saving_project_10_expense';
             }
-        }elseif($saving->type=='long'){
+        }elseif($saving->type=='short'){
             if($request->balance=='profit'){
                 $flag = 'saving_project_5_profit_expense';
 
