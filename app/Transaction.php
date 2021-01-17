@@ -58,7 +58,7 @@ class Transaction extends Model
         if ($transaction_head->parent==0)
         {
             $transactions = 0;
-            $transactions += Transaction::where('head_id',$id)->where(function($q) use($from,$to){
+            $transactions += Transaction::where('head_id',$id)->where('canculatable','yes')->where(function($q) use($from,$to){
                 if($from){
                     $q->where(DB::raw('DATE(date)'),'>=',$from);
                 }
@@ -107,7 +107,7 @@ class Transaction extends Model
 
 
         $transactions = 0;
-        $transactions += Transaction::where('head_id',$transaction_head->id)
+        $transactions += Transaction::where('head_id',$transaction_head->id)->where('canculatable','yes')
         ->where(function($q) use($from,$to){
             if($from){
                 $q->where(DB::raw('DATE(date)'),'>=',$from);
@@ -154,7 +154,7 @@ class Transaction extends Model
         $transactions += Transaction::with('user')->whereHas('user',function($q) use($project){
 
             $q->whereIn('project',$project);
-        })->where('head_id',$transaction_head->id)
+        })->where('head_id',$transaction_head->id)->where('canculatable','yes')
         ->where(function($q) use($from,$to){
             if($from){
                 $q->where(DB::raw('DATE(date)'),'>=',$from);
@@ -203,7 +203,7 @@ class Transaction extends Model
 
             $q->whereNotIn('project',$project);
             $q->OrWhereNull('project');
-        })->where('head_id',$transaction_head->id)
+        })->where('head_id',$transaction_head->id)->where('canculatable','yes')
         ->where(function($q) use($from,$to){
             if($from){
                 $q->where(DB::raw('DATE(date)'),'>=',$from);

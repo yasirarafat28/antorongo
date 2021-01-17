@@ -1179,7 +1179,7 @@
                                 $previous_hand_balance = $previous_cashier_balance + $previous_office_balance;
                             @endphp
 
-                            {{$to}}
+                            {{-- {{$to}}
                             {{$cashier_balance}}
                             {{$office_balance}}
                             {{$hand_balance}}
@@ -1187,7 +1187,7 @@
                             {{$previous_date}}
                             {{$previous_cashier_balance}}
                             {{$previous_office_balance}}
-                            {{$previous_hand_balance}}
+                            {{$previous_hand_balance}} --}}
 
 
                             <div class="row" >
