@@ -42,7 +42,7 @@ class WalletController extends Controller
 
         $balance = Wallet::balance($request->from);
         if($balance < $amount){
-            return back()->withErrors('  আপনার এই ব্যালেন্স এ যথেষ্ট পরিমান টাকা নেই!');
+            //return back()->withErrors('  আপনার এই ব্যালেন্স এ যথেষ্ট পরিমান টাকা নেই!');
         }
 
 
