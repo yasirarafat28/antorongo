@@ -870,6 +870,34 @@
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
+
+                                                                    <td></td>
+                                                                    <td>ণ) অডিট বিষয়ক</td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('audit_purpose_expense',$from,$to);
+
+                                                                        $general_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
+                                                                    <td></td>
+                                                                </tr>
+
+                                                                <tr>
+
+                                                                    <td></td>
+                                                                    <td>ণ) সফটওয়্যার বাবদ </td>
+                                                                    <td>
+                                                                        @php
+                                                                        $amount = App\Transaction::total_by_slug_date('software_purpose_expense',$from,$to);
+
+                                                                        $general_expense +=$amount;
+                                                                        @endphp
+                                                                        {{NumberConverter::en2bn($amount)}}
+                                                                    </td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
                                                                     <td></td>
                                                                     <td>ত) পানির বিল</td>
                                                                     <td>
