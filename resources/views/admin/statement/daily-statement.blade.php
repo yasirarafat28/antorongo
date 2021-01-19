@@ -873,6 +873,7 @@
 
                                                                     <td></td>
                                                                     <td>ণ) অডিট বিষয়ক</td>
+                                                                    <td>
                                                                         @php
                                                                         $amount = App\Transaction::total_by_slug_date('audit_purpose_expense',$from,$to);
 
