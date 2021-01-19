@@ -204,14 +204,14 @@ class LoanController extends Controller
         });
         if($request->has('dipository') && $request->dipository){
             if($request->dipository=='person'){
-                //$records = $records->having('person_depositors_count','>',0);
-                $records = $records->has('PersonDepositors','>',0);
+                //$total = $total->having('person_depositors_count','>',0);
+                $total = $total->has('PersonDepositors','>',0);
             }elseif($request->dipository=='property'){
-                //$records = $records->having('property_depositors_count','>',0);
-                $records = $records->has('PropertyDepositors','>',0);
+                //$total = $total->having('property_depositors_count','>',0);
+                $total = $total->has('PropertyDepositors','>',0);
             }elseif($request->dipository=='ornament'){
-                //$records = $records->having('ornament_depositors_count','>',0);
-                $records = $records->has('OrnamentDepositors','>',0);
+                //$total = $total->having('ornament_depositors_count','>',0);
+                $total = $total->has('OrnamentDepositors','>',0);
             }
 
         }
