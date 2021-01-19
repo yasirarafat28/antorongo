@@ -169,18 +169,21 @@ class LoanController extends Controller
 
         if($request->has('dipository') && $request->dipository){
             if($request->dipository=='person'){
-                $records = $records->having('person_depositors_count','>',0);
+                //$records = $records->having('person_depositors_count','>',0);
+                $records = $records->has('PersonDepositors','>',0);
             }elseif($request->dipository=='property'){
-                $records = $records->having('property_depositors_count','>',0);
+                //$records = $records->having('property_depositors_count','>',0);
+                $records = $records->has('PropertyDepositors','>',0);
             }elseif($request->dipository=='ornament'){
-                $records = $records->having('ornament_depositors_count','>',0);
+                //$records = $records->having('ornament_depositors_count','>',0);
+                $records = $records->has('OrnamentDepositors','>',0);
             }
 
         }
         if(isset($request->limit) && $request->limit=='-1'){
             $records = $records->orderBy('created_at','DESC')->paginate($records->count());
         }else{
-            return $records = $records->orderBy('created_at','DESC')->paginate(25);
+            $records = $records->orderBy('created_at','DESC')->paginate(25);
         }
 
 
@@ -201,11 +204,14 @@ class LoanController extends Controller
         });
         if($request->has('dipository') && $request->dipository){
             if($request->dipository=='person'){
-                $total = $total->having('person_depositors_count','>',0);
+                //$records = $records->having('person_depositors_count','>',0);
+                $records = $records->has('PersonDepositors','>',0);
             }elseif($request->dipository=='property'){
-                $total = $total->having('property_depositors_count','>',0);
+                //$records = $records->having('property_depositors_count','>',0);
+                $records = $records->has('PropertyDepositors','>',0);
             }elseif($request->dipository=='ornament'){
-                $total = $total->having('ornament_depositors_count','>',0);
+                //$records = $records->having('ornament_depositors_count','>',0);
+                $records = $records->has('OrnamentDepositors','>',0);
             }
 
         }
