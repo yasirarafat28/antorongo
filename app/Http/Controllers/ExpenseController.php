@@ -99,6 +99,10 @@ class ExpenseController extends Controller
     public function index(Request $request)
     {
 
+
+
+        $parents = TransactionHead::with('childs')->where('parent',0)->where('type','expense')->get();
+
         $transactions = Transaction::with('head')->where(function ($q) use ($request){
             $q->where('type','expense');
 
@@ -150,7 +154,7 @@ class ExpenseController extends Controller
             }
 
         })->sum('amount');
-        return view('admin/expense/list',compact('transactions','total'));
+        return view('admin/expense/list',compact('transactions','total','parents'));
 
     }
 }
