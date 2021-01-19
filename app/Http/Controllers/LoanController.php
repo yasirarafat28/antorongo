@@ -179,7 +179,7 @@ class LoanController extends Controller
         if(isset($request->limit) && $request->limit=='-1'){
             $records = $records->orderBy('created_at','DESC')->paginate($records->count());
         }else{
-            $records = $records->orderBy('created_at','DESC')->paginate(25);
+            return $records = $records->orderBy('created_at','DESC')->paginate(25);
         }
 
 
