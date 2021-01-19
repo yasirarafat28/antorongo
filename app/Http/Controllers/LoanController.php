@@ -166,6 +166,7 @@ class LoanController extends Controller
             }
 
         });
+
         if($request->has('dipository') && $request->dipository){
             if($request->dipository=='person'){
                 $records = $records->having('person_depositors_count','>',0);
