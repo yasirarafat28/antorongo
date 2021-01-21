@@ -275,7 +275,7 @@ class LoanController extends Controller
                 $this->validate($request,
                     [
                         'unique_id' => 'required|unique:users',
-                    ],
+                    ]
                 );
 
             }
