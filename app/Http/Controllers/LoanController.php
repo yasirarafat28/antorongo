@@ -369,7 +369,7 @@ class LoanController extends Controller
             $this->validate($request,
                 [
                     'loan_code' => 'required|unique:loan,unique_id',
-                ],
+                ]
             );
             $loan_code = $request->loan_code;
         }else
