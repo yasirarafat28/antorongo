@@ -104,7 +104,7 @@ class WalletController extends Controller
         $credit->added_by = Auth::user()->id;
         $credit->canculatable = 'yes';
         if($request->to=='bank')
-            $deduct->bank_id = $request->bank_id;
+            $credit->bank_id = $request->bank_id;
         $credit->admin_status ='approved';
         $credit->manager_status = 'approved';
         $credit->status = 'approved';
