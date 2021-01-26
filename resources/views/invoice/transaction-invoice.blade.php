@@ -134,7 +134,7 @@
                     <table style="font-size: 12px;margin-top: 4px;border: 1px solid #0c0c0c; width:100%">
                         <thead>
                         <tr>
-                            <th  style="width: 70%;text-align: center;border-bottom: 1px solid #0c0c0c;border-collapse: collapse;">বিবিধ</th>
+                            <th  style="width: 70%;text-align: center;border-bottom: 1px solid #0c0c0c;border-collapse: collapse;">বিবরণ</th>
                             <th style="width:30%;text-align: center;border-bottom: 1px solid #0c0c0c;border-collapse: collapse;">টাকা </th>
                         </tr>
                         </thead>
