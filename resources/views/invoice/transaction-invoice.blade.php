@@ -14,17 +14,35 @@
         body {
             margin-top: 20px;
         }
-        @media print
-            {
-                .no-print
-                {
-                    display: none !important;
-                }
+        .content.inbox{
+            width: 100% !important;
+        }
+        .content.inbox .container-full{
+            width: 50%;
+            margin-left: 25%;
+        }
+
+        body { margin: 0.6cm;
             }
 
-            @page { margin: 0; }
-            body { margin: 1.6cm; }
+        @media print
+        {
+            .no-print
+            {
+                display: none !important;
+            }
 
+            .content.inbox .container-full{
+                width: 100% !important;
+                margin-left: 0px !important;
+            }
+
+            body { margin: 0px !important;
+            }
+
+        }
+
+            @page { margin: 0; }
             img{
                 height: 80px;
             }
@@ -56,17 +74,31 @@
             border: 1px solid #0c0c0c;
         }
 
+        #signing {
+            margin-top: 0px;
+            width: 100%;
+            float: center;
+            border: none !important;
+
+        }
+        .noBorder td{
+            border: none !important;
+        }
+        .noBorder hr{
+            border-top: 1px solid #000;
+        }
+
     </style>
     <section class="content inbox">
         <div class="container-full">
             @for ($i = 0; $i < 2; $i++)
-                <div class="" style="width: 48%;float: left;margin-top:10px; @if($i==0) margin-right:  2%; @else  margin-left:  2%; @endif " >
-                    <div style="height: 130px;" >
+                <div class="" style="margin-top:10px;" >
+                    <div >
                         <div class="row">
 
                             <div class="col-sm-10" style="text-align: center;">
-                                <h2 style="line-height: 0.6em;font-size: 24px;">দি-অন্তরঙ্গ সঞ্চয় প্রকল্প</h2>
-                                <p style="line-height: 0.6em;font-size: 14px;"> পরিচালনায়ঃ <b>{{\App\Setting::setting()->app_name}}</b></p>
+                                {{-- <h2 style="line-height: 0.6em;font-size: 16px;">দি-অন্তরঙ্গ সঞ্চয় প্রকল্প</h2> --}}
+                                <p style="line-height: 0.6em;font-size: 14px;"><b> {{\App\Setting::setting()->app_name}}</b></p>
                                 <p style="line-height: 0.6em;font-size: 14px;"> রেজি নং-১৮৭/০১, ফোনঃ ৯০০৫০৫২</p>
                                 <p style="line-height: 0.6em;font-size: 14px;">৭৪১, মনিপুর, মিরপুর, ঢাকা-১২১৬।</p>
                             </div>
@@ -89,17 +121,17 @@
 
                         <div class="row">
                             <div class="col-sm-8">
-                                <p style="line-height: 0.6em">নামঃ {{$user->name_bn??''}}</p>
+                                <p style="line-height: 0.6em;font-size:12px">নামঃ {{$user->name_bn??''}}</p>
 
-                                <p style="line-height: 0.6em">সভ্য নংঃ   {{$user->unique_id??''}}</p>
+                                <p style="line-height: 0.6em;font-size:12px">সভ্য নংঃ   {{$user->unique_id??''}}</p>
                             </div>
                             <div class="col-sm-4">
-                                <p  style="line-height: 0.6em">তারিখঃ  {{App\NumberConverter::en2bn(date("d-m-Y",strtotime($transaction->date)))}}</p>
+                                <p  style="line-height: 0.6em;font-size:12px">তারিখঃ  {{App\NumberConverter::en2bn(date("d-m-Y",strtotime($transaction->date)))}}</p>
                             </div>
                         </div>
                     </div>
 
-                    <table style="font-size: 16px;margin-top: 4px;border: 1px solid #0c0c0c; width:100%">
+                    <table style="font-size: 12px;margin-top: 4px;border: 1px solid #0c0c0c; width:100%">
                         <thead>
                         <tr>
                             <th  style="width: 70%;text-align: center;border-bottom: 1px solid #0c0c0c;border-collapse: collapse;">বিবিধ</th>
@@ -112,10 +144,10 @@
                                 <td style="border-bottom: 1px solid #0c0c0c;border-collapse: collapse;">{{$transaction->head->name??''}}</td>
                                 <td style="text-align: right;border-bottom: 1px solid #0c0c0c;border-collapse: collapse;"> ৳ {{App\NumberConverter::en2bn($transaction->amount)}}</td>
                             </tr>
-                            <tr>
+                            {{-- <tr>
                                 <td style="border-bottom: 1px solid #0c0c0c;border-collapse: collapse;">বিবিধ</td>
                                 <td style="text-align: right;border-bottom: 1px solid #0c0c0c;border-collapse: collapse;">৳ {{App\NumberConverter::en2bn(0)}}</td>
-                            </tr>
+                            </tr> --}}
                             <tr>
                                 <td class="text-right" style="border-bottom: 1px solid #0c0c0c;border-collapse: collapse;"> মোট</td>
                                 <td style="text-align: right;border-bottom: 1px solid #0c0c0c;border-collapse: collapse;">৳ {{App\NumberConverter::en2bn($total)}}</td>
@@ -125,11 +157,31 @@
                     </table>
 
                     <address>
-                        <br>
-                        <br>
                         <strong>তথ্যঃ</strong> {{$transaction->note}}
                     </address>
+
+
+                    <table id="signing">
+                        <tbody>
+                        <tr class="noBorder">
+                            <td align="center">
+                                <hr>
+                                Company
+                            </td>
+                            <td align="center">
+                                <hr>
+                                Customer
+                            </td>
+                        </tr>
+                    </tbody></table>
                 </div>
+
+                @if ($i==0)
+                <br>
+                <hr style="border: 1px dotted #000">
+                <br>
+
+                @endif
 
             @endfor
 
