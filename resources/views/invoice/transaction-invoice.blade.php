@@ -142,7 +142,7 @@
 
                             <tr>
                                 <td style="border-bottom: 1px solid #0c0c0c;border-collapse: collapse;">{{$transaction->head->name??''}}</td>
-                                <td style="text-align: right;border-bottom: 1px solid #0c0c0c;border-collapse: collapse;"> ৳ {{App\NumberConverter::en2bn($transaction->amount)}}</td>
+                                <td style="text-align: right;border-bottom: 1px solid #0c0c0c;border-collapse: collapse;"> ৳ {{App\NumberConverter::en2bn($transaction->amount??'')}}</td>
                             </tr>
                             {{-- <tr>
                                 <td style="border-bottom: 1px solid #0c0c0c;border-collapse: collapse;">বিবিধ</td>
