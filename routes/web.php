@@ -206,6 +206,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::get('fdr/profit-report', 'FdrController@profitReport')->name('profitReport');
     Route::post('fdr/add-profit-manually', 'FdrController@ManualProfit')->name('ManualProfit');
     Route::post('fdr/fine_income', 'FdrController@fine_income')->name('fdr.FineIncome');
+    Route::post('fdr/deposit', 'FdrController@Deposit')->name('FdrDeposit');
     Route::post('fdr/getFdrsByUser', 'FdrController@getFdrsByUser')->name('getFdrsByUser');
     Route::post('fdr/getFdrDetails', 'FdrController@getFdrDetails')->name('getFdrDetails');
     Route::get('fdr/edit/{id}', 'FdrController@FdrEdit')->name('FdrEdit');

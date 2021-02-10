@@ -653,6 +653,56 @@ class FdrController extends Controller
         return back()->withSuccess('সফলভাবে  সেভ করা হয়েছে');
     }
 
+    public function Deposit(Request $request)
+    {
+
+        $this->validate($request,[
+            'fdr_id'=>'required',
+            'user_id'=>'required',
+            'amount'=>'required',
+            'date'=>'required',
+        ]);
+
+        $fdr = Fdr::find($request->fdr_id);
+
+        if(!$fdr){
+            return back()->withError('Related fdr didn\'t found!');
+        }
+        $head = TransactionHead::where('slug','fdr_revenue_income')->first();
+
+        if(!$head){
+            return back()->withError('Related head didn\'t found!');
+        }
+        $transaction = new Transaction();
+        $transaction->txn_id = uniqid();
+        $transaction->transaction_for = 'fdr';
+        $transaction->transactable_id = $request->fdr_id;
+        $transaction->flag = 'deposit';
+        $transaction->type = 'income';
+        $transaction->head_id = $head->id;
+        $transaction->user_id = $request->user_id;
+        $transaction->note = $request->note;
+        $transaction->date = $request->date;
+        $transaction->amount = NumberConverter::bn2en($request->amount);
+        $transaction->added_by = Auth::user()->id;
+        $transaction->received_by = Auth::user()->id;
+        $transaction->admin_status ='approved';
+        $transaction->manager_status = 'approved';
+        $transaction->status = 'approved';
+        if (env('PREVIOUS_DATA_ENTRY','no')=='yes'){
+
+            $transaction->canculatable = $request->canculatable;
+        }
+
+        $transaction->save();
+
+        if ($request->invoice)
+        {
+            return redirect('transaction-invoice/'.$transaction->txn_id);
+        }
+        return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
+    }
+
     public function close($id){
 
 
