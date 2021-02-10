@@ -114,7 +114,7 @@
 
                     @php
                         $total = $transaction->amount??'';
-                        $user = $transaction->user??'';
+                        $user = $transaction->user;
                     @endphp
 
                     <div class="container">
