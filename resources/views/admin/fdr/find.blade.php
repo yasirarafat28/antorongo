@@ -271,6 +271,8 @@
                             <a data-toggle="modal" data-target="#addProfiteModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> লাভ যোগ করুন </a>
                             <a data-toggle="modal" data-target="#withDrawModal" class="btn btn-primary"> <i class="fa fa-upload"></i> উত্তোলন করুন </a>
                             <a data-toggle="modal" data-target="#FdrFineIncomeModal" class="btn btn-primary"> <i class="fa fa-upload"></i> জরিমানা করুন </a>
+                            <a data-toggle="modal" data-target="#FdrDepositModal" class="btn btn-primary"><i class="fa fa-download"></i> জমা করুন </a>
+
                                 {!! Form::open([
                                     'method'=>'POST',
                                     'url' => ['/admin/fdr/close', $fdr->id],
@@ -512,6 +514,101 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!--  Modal Start -->
+                        <div class="modal fade" id="FdrDepositModal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h2><strong> জমা </strong>  করুন</h2>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{url('admin/fdr/deposit')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
+                                            {{csrf_field()}}
+                                            <input type="hidden" name="fdr_id" value="{{$saving->id}}">
+                                            <input type="hidden" name="user_id" value="{{$fdr->user_id}}">
+
+                                            @if (env('PREVIOUS_DATA_ENTRY','no')=='yes')
+
+                                            <div class="col-lg-12 col-md-12">
+
+                                                <div class="form-group">
+
+                                                    <label for=""><small> ব্যালেন্স কে অ্যাডজাস্ট করবে? </small></label>
+                                                    <select name="canculatable" id="" class="form-control" required>
+                                                        <option value="yes">হা  </option>
+                                                        <option value="no">না</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+
+                                            @endif
+
+                                            <div class="col-lg-12 col-md-12">
+
+                                                <div class="form-group">
+
+                                                    <label for=""><small> জমার পরিমান</small></label>
+
+                                                    <input type="number" step="any" class="form-control" name="amount" placeholder="জমার পরিমান" id="amount">
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-lg-12 col-md-12">
+
+                                                <div class="form-group">
+
+                                                    <label for=""><small> জমার তারিখ </small></label>
+
+                                                    <input type="text" class="form-control datepicker" name="date" placeholder="জমার তারিখ">
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-lg-12 col-md-12">
+
+                                                <div class="form-group">
+
+                                                    <label for=""><small> মতামত </small></label>
+
+                                                    <textarea name="note" class="form-control" placeholder="মতামত"></textarea>
+
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="col-md-12">
+                                                    <div class="checkbox">
+                                                        <input id="remember_me_2" name="invoice" type="checkbox">
+                                                        <label for="remember_me_2">
+                                                            টাকা জমার রশিদ
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12 text-center">
+
+                                                <button class="btn btn-primary btn-round"> জমা করুন</button>
+
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Add Modal End-->
+
                         <!--  Modal Start -->
                         <div class="modal fade" id="FdrFineIncomeModal" tabindex="-1" role="dialog">
                             <div class="modal-dialog modal-lg" role="document">
