@@ -528,7 +528,7 @@
                                     <div class="modal-body">
                                         <form action="{{url('admin/fdr/deposit')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
                                             {{csrf_field()}}
-                                            <input type="hidden" name="fdr_id" value="{{$saving->id}}">
+                                            <input type="hidden" name="fdr_id" value="{{$fdr->id}}">
                                             <input type="hidden" name="user_id" value="{{$fdr->user_id}}">
 
                                             @if (env('PREVIOUS_DATA_ENTRY','no')=='yes')
