@@ -113,7 +113,7 @@
                     </div>
 
                     @php
-                        $total = $transaction->amount;
+                        $total = $transaction->amount??'';
                         $user = $transaction->user;
                     @endphp
 
