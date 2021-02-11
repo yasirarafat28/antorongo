@@ -68,6 +68,9 @@
                         $total_reveanue_added = $loan->added_reveanues->sum('amount');
 
 
+                        $total_profit_waiver = $loan->loan_waivers->sum('amount');
+
+
                         $total_interest_added = $loan->added_interests->sum('amount');
                         $all_paid = $total_interest+ $total_reveanue_paid;
                     @endphp
@@ -240,7 +243,7 @@
                                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                                     লাভ বকেয়া
                                                 </div>
-                                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn(number_format($total_interest_added - $total_interest,2))}} টাকা </div>
+                                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn(number_format($total_interest_added - $total_interest - $total_profit_waiver,2))}} টাকা </div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -278,7 +281,7 @@
                             <a data-toggle="modal" data-target="#LoanAddRevenueModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> আসল বকেয়া </a>
                             <a data-toggle="modal" data-target="#LoanInterestAddModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> লাভ  বকেয়া </a>
                             <a data-toggle="modal" data-target="#LoanFineIncomeModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> জরিমানা করুন</a>
-                            <a data-toggle="modal" data-target="#LoanWaiverModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> ঋণ মওকুফ করুন</a>
+                            <a data-toggle="modal" data-target="#LoanWaiverModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> লাভ মওকুফ করুন</a>
 
                             {!! Form::open([
                                 'method'=>'POST',
@@ -417,6 +420,8 @@
                                             জরিমানা
                                         @elseif($item->flag=='add_interest')
                                             লাভ বকেয়া যোগ
+                                        @elseif($item->flag=='loan_waiver')
+                                        ঋণ মওকুফ
 
                                         @endif
                                     </td>

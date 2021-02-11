@@ -46,7 +46,9 @@ class Loan extends Model
         $total_interest_added = $this->added_interests->sum('amount');
         $total_paid_interests = $this->interests->sum('amount');
 
-        $total_payable = $total_interest_added  +  $total_reveanue_added  +   $total_give_away - $total_reveanue_paid - $total_paid_interests;
+        $total_waiver = $this->loan_waivers->sum('amount');
+
+        $total_payable = $total_interest_added  +  $total_reveanue_added  +   $total_give_away - $total_reveanue_paid - $total_paid_interests -$total_waiver;
         return $total_payable;
     }
     public function histories(){
@@ -68,8 +70,8 @@ class Loan extends Model
     public function interests(){
         return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','loan')->where('flag','interest');
     }
-    // public function loan_waivers(){
-    //     return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','loan')->where('flag','loan_waiver');
-    // }
+    public function loan_waivers(){
+        return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','loan')->where('flag','loan_waiver');
+    }
 
 }

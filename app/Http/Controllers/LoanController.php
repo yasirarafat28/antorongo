@@ -785,20 +785,12 @@ class LoanController extends Controller
             'user_id'=>'required',
         ]);
 
-
-        // $head = TransactionHead::where('slug','loan_waiver')->first();
-
-        // if(!$head){
-        //     return back()->withError('Related head didn\'t found!');
-        // }
-
         $transaction = new Transaction();
         $transaction->txn_id = uniqid();
         $transaction->transaction_for = 'loan';
         $transaction->transactable_id = $request->loan_id;
-        $transaction->flag = 'waiver';
+        $transaction->flag = 'loan_waiver';
         $transaction->type = 'income';
-        // $transaction->head_id = $head->id;
         $transaction->user_id = $request->user_id;
         $transaction->note = $request->note;
         $transaction->date = $request->date;
