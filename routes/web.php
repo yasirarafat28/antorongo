@@ -90,6 +90,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 
     //wallet
     Route::get('balance', 'WalletController@balance');
+    Route::get('balance/transactions/{wallet}', 'WalletController@transactions');
     Route::get('balance/transfer/{from}', 'WalletController@transfer');
     Route::post('balance/transfer-submit', 'WalletController@transfer_submit')->name('transfer_submit');
 

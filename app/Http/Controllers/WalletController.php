@@ -8,6 +8,7 @@ use App\TransactionHead;
 use App\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class WalletController extends Controller
 {
@@ -23,6 +24,25 @@ class WalletController extends Controller
         $cashier = Wallet::balance('cashier');
         $bank = Wallet::balance('bank');
         return view('admin.wallet.balance',compact('office','cashier','bank'));
+    }
+
+    public function transactions(Request $request, $wallet='cashier'){
+
+        $records  = Transaction::where('type','expense')->where('wallet',$wallet)->where('canculatable','yes')
+        ->where(function($q) use($request,$wallet){
+            if($request->from){
+                $q->where(DB::raw('DATE(date)'),'>=',$request->from);
+            }
+            if($request->to){
+                $q->where(DB::raw('DATE(date)'),'<=',$request->to);
+            }
+
+        })
+
+            ->paginate(50);
+
+        return view('admin.wallet.transactions',compact('records'));
+
     }
 
     public function transfer($from='office'){
