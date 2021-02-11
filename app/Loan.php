@@ -68,5 +68,8 @@ class Loan extends Model
     public function interests(){
         return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','loan')->where('flag','interest');
     }
+    // public function loan_waivers(){
+    //     return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','loan')->where('flag','loan_waiver');
+    // }
 
 }

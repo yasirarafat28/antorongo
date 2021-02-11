@@ -119,6 +119,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::post('loan/collect_reveanue', 'LoanController@collect_reveanue')->name('loan.collect_reveanue');
     Route::post('loan/collect_interest', 'LoanController@collect_interest')->name('loan.collect_interest');
     Route::post('loan/give_away', 'LoanController@give_away')->name('loan.give_away');
+    Route::post('loan/waiver', 'LoanController@loan_waiver')->name('loan.waiver');
 
 
     Route::post('loan/add_depository', 'LoanDepositoryController@add_depository')->name('loan.add_depository');

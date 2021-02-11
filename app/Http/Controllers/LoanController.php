@@ -777,6 +777,54 @@ class LoanController extends Controller
     }
 
 
+    public function loan_waiver(Request $request){
+        $this->validate($request,[
+            'loan_id'=>'required',
+            'amount'=>'required',
+            'date'=>'required',
+            'user_id'=>'required',
+        ]);
+
+
+        // $head = TransactionHead::where('slug','loan_waiver')->first();
+
+        // if(!$head){
+        //     return back()->withError('Related head didn\'t found!');
+        // }
+
+        $transaction = new Transaction();
+        $transaction->txn_id = uniqid();
+        $transaction->transaction_for = 'loan';
+        $transaction->transactable_id = $request->loan_id;
+        $transaction->flag = 'waiver';
+        $transaction->type = 'income';
+        // $transaction->head_id = $head->id;
+        $transaction->user_id = $request->user_id;
+        $transaction->note = $request->note;
+        $transaction->date = $request->date;
+        $transaction->amount = NumberConverter::bn2en($request->amount);
+        $transaction->added_by = Auth::user()->id;
+        $transaction->received_by = Auth::user()->id;
+        $transaction->admin_status ='approved';
+        $transaction->manager_status = 'approved';
+        $transaction->status = 'approved';
+        $transaction->canculatable = 'no';
+        // if (env('PREVIOUS_DATA_ENTRY','no')=='yes'){
+        //     $transaction->canculatable = $request->canculatable;
+        // }
+        $transaction->save();
+
+
+
+        if ($request->invoice)
+        {
+            return redirect('transaction-invoice/'.$transaction->txn_id);
+        }
+
+        return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
+    }
+
+
 
     public function collections(Request $request){
 

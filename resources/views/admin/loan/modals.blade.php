@@ -439,6 +439,87 @@
         </div>
     </div>
 
+    <!--Loan Wavier Modal start-->
+
+    <div class="modal fade" id="LoanWaiverModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2><strong>ঋণ মওকুফ</strong>  করুন</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <form action="{{route('loan.waiver')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
+                        {{csrf_field()}}
+                        <input type="hidden" name="loan_id" value="{{$loan->id}}">
+                        <input type="hidden" name="user_id" value="{{$loan->user_id}}">
+
+                        {{-- @if (env('PREVIOUS_DATA_ENTRY','no')=='yes')
+
+                        <div class="col-lg-12 col-md-12">
+
+                            <div class="form-group">
+
+                                <label for=""><small> ব্যালেন্স কে অ্যাডজাস্ট করবে? </small></label>
+                                <select name="canculatable" id="" class="form-control" required>
+                                    <option value="yes">হা  </option>
+                                    <option value="no">না</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        @endif --}}
+                        <div class="form-group">
+
+                            <label for=""><small>মওকুফের পরিমান</small></label>
+
+                            <input type="number" step="any" class="form-control" name="amount" placeholder="মওকুফের পরিমান" id="amount">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for=""><small>মওকুফের তারিখ </small></label>
+
+                            <input type="text" class="form-control datepicker" name="date" placeholder="মওকুফের তারিখ">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for=""><small> মতামত </small></label>
+
+                            <textarea name="note" class="form-control" placeholder="মতামত"></textarea>
+
+                        </div>
+
+                        {{-- <div class="col-lg-12 col-md-12">
+                            <div class="col-md-12">
+                                <div class="checkbox">
+                                    <input id="remember_me_2" name="invoice" type="checkbox">
+                                    <label for="remember_me_2">
+                                        টাকা জমার রশিদ
+                                    </label>
+                                </div>
+                            </div>
+                        </div> --}}
+
+                        <div class="col-md-12 text-center">
+
+                            <button class="btn btn-primary btn-round"> মওকুফ করুন</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--Loan Wavier Modal end-->
 
 
     <div class="modal fade" id="ActiveModal{{$loan->id}}" tabindex="-1" role="dialog">

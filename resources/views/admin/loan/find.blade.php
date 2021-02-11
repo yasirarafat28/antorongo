@@ -278,6 +278,7 @@
                             <a data-toggle="modal" data-target="#LoanAddRevenueModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> আসল বকেয়া </a>
                             <a data-toggle="modal" data-target="#LoanInterestAddModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> লাভ  বকেয়া </a>
                             <a data-toggle="modal" data-target="#LoanFineIncomeModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> জরিমানা করুন</a>
+                            <a data-toggle="modal" data-target="#LoanWaiverModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> ঋণ মওকুফ করুন</a>
 
                             {!! Form::open([
                                 'method'=>'POST',
