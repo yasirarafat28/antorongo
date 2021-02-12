@@ -68,6 +68,12 @@
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                      সঞ্চয় প্রত্যাহার</div>
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($closed_count)}}</div>
+                                <span style="font-size: 15px;">পলিসির পরিমান </span>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">  ৳ {{App\NumberConverter::en2bn($closed_target_amount)}} টাকা</div>
+                                <span style="font-size: 15px;">মোট লাভ</span>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn($closed_saving_return_amount)}} টাকা</div>
+                                <span style="font-size: 15px;">মোট ফেরত </span>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn($closed_saving_profit)}} টাকা</div>
                                 <a href="/admin/saving/{{$type}}/list?filterBy=closed" class="text-link">তালিকা দেখুন</a>
                             </div>
                             <div class="col-auto">

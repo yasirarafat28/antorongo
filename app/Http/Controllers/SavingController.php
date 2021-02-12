@@ -866,7 +866,13 @@ class SavingController extends Controller
         $pending_count   = Saving::where('type',$type)->where('status','pending')->count();
         $declined_count   = Saving::where('type',$type)->where('status','declined')->count();
         $closed_count   = Saving::where('type',$type)->where('status','closed')->count();
-        return view('admin/saving/list',compact('records','type','active_count','pending_count','declined_count','closed_count'));
+
+        $closed_target_amount   = Saving::where('type',$type)->where('status','closed')->sum('target_amount');
+        $closed_saving_return_amount   = Saving::where('type',$type)->where('status','closed')->sum('return_amount');
+        $closed_saving_profit   = $closed_target_amount + $closed_saving_return_amount ;
+
+        return view('admin/saving/list',compact('records','type','active_count','pending_count','declined_count',
+        'closed_count','closed_target_amount','closed_saving_return_amount','closed_saving_profit'));
     }
 
     public function getSavingsByUser(Request $request)
