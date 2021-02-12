@@ -225,6 +225,9 @@ class LoanController extends Controller
         $declined_count   = Loan::where('status','declined')->count();
         $closed_count   = Loan::where('status','closed')->count();
 
+        // $active_total_give   = Loan::where('status','active')->sum();
+
+
         return view('admin/loan/list',compact('records','active_count','pending_count','declined_count','closed_count','total'));
     }
 

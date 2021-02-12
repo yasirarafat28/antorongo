@@ -100,10 +100,10 @@ class DashboardController extends Controller
         $declined_count   = Loan::where('status','declined')->count();
         $closed_count   = Loan::where('status','closed')->count();
 
-        // $loan_active_list   = Loan::where('status','active')->get('id');
-        // $loan_active_transactions = Transaction::with('user','receiver')->where('transaction_for','loan')->where(function ($q) use ($loan_active_list){
-        //     $q->whereIn('transactable_id',$loan_active_list);
-        // })->where('flag','deposit')->sum('approved_amount');
+        $loan_active_list   = Loan::where('status','active')->get('id');
+        $loan_active_transactions = Transaction::with('user','receiver')->where('transaction_for','loan')->where(function ($q) use ($loan_active_list){
+            $q->whereIn('transactable_id',$loan_active_list);
+        })->where('flag','give_away')->sum('amount');
 
         $fdr_active_count   = Fdr::where('status','approved')->count();
         $fdr_pending_count   = Fdr::where('status','pending')->count();
@@ -137,7 +137,7 @@ class DashboardController extends Controller
         'current_active_count','current_pending_count','current_closed_count','daily_active_count','daily_pending_count',
         'daily_closed_count','long_active_count','long_pending_count','long_closed_count','short_active_count','short_pending_count',
         'short_closed_count','short_active_saving_transactions','long_active_saving_transactions','daily_active_saving_transactions',
-        'current_active_saving_transactions','fdr_active_transactions'));
+        'current_active_saving_transactions','fdr_active_transactions','loan_active_transactions'));
     }
 
 }
