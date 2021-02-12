@@ -50,7 +50,8 @@
                                 </div>
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn($cashier)}}</div>
                                 <a href="/admin/balance/transfer/cashier" class="text-link">ট্রান্সফার করুন</a>
-                                <a href="/admin/balance/transactions/cashier" class="text-link">ট্রান্সফার করুন</a>
+                                <br>
+                                {{-- <a href="/admin/balance/transactions/cashier" class="text-link">লেনদেন রেকর্ড</a> --}}
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

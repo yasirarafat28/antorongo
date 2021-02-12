@@ -14,11 +14,11 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">কালেকশন/আদায়ের রিপোর্ট</h1>
+            <h1 class="h3 mb-0 text-gray-800">লেনদেন রেকর্ড</h1>
 
             <ul class="breadcrumb float-md-right">
                 <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0);">কালেকশন/আদায়ের রিপোর্ট</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">লেনদেন রেকর্ড</a></li>
             </ul>
         </div>
 
@@ -28,7 +28,7 @@
             <div class="col-lg-12">
                 <div class="card shadow">
                     <div class="header">
-                        <h2><strong>কালেকশন/আদায়ের  </strong> রিপোর্ট </h2>
+                        <h2><strong>লেনদেন রেকর্ড</strong></h2>
                     </div>
                     <div class="body table-responsive">
 
@@ -96,8 +96,6 @@
                             <thead>
                             <tr>
                                 <th> #</th>
-                                <th>সদস্য </th>
-                                <th> ঋণ  আইডি </th>
                                 <th>লেনদেন কোড </th>
                                 <th> আদায়কারীর নাম  </th>
                                 <th> লেনদেনের ধরন </th>
@@ -109,10 +107,8 @@
                             <tfoot>
                             <tr>
                                 <th> #</th>
-                                <th>সদস্য </th>
-                                <th>ঋণ আইডি </th>
+
                                 <th>লেনদেন কোড </th>
-                                <th> আদায়কারীর নাম  </th>
                                 <th> লেনদেনের ধরন </th>
                                 <th>পরিমান</th>
                                 <th> অবস্থা</th>
@@ -149,10 +145,8 @@
                                     </div>
                                 </td>
 
-                                <td>{{$item->user->name_bn??''}} ({{$item->user->unique_id??''}})</td>
-                                <td>{{$item->loan->unique_id??''}}</td>
+
                                 <td>{{$item->txn_id??''}}</td>
-                                <td>{{$item->receiver->name??''}}</td>
                                 <td>
                                     @if($item->flag=='give_away')
                                          ঋণ প্রদান
