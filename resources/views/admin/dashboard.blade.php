@@ -43,6 +43,8 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     স্বল্প মেয়াদী বর্তমান সঞ্চয়</div>
+
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($short_active_saving_transactions)}} টাকা</div>
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($short_active_count)}}</div>
 
 
@@ -176,7 +178,7 @@
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     দীর্ঘ মেয়াদী বর্তমান সঞ্চয়</div>
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($long_active_count)}}</div>
-
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($long_active_saving_transactions)}} টাকা</div>
 
                                 <a href="/admin/saving/long/list?filterBy=approved" class="text-link">তালিকা দেখুন</a>
                             </div>
@@ -253,6 +255,7 @@
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     দৈনিক বর্তমান সঞ্চয়</div>
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($daily_active_count)}}</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($daily_active_saving_transactions)}} টাকা</div>
 
 
                                 <a href="/admin/saving/daily/list?filterBy=approved" class="text-link">তালিকা দেখুন</a>
@@ -331,7 +334,7 @@
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     বর্তমান সাধারণ সঞ্চয়</div>
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($current_active_count)}}</div>
-
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($current_active_saving_transactions)}} টাকা</div>
 
                                 <a href="/admin/saving/current/list?filterBy=approved" class="text-link">তালিকা দেখুন</a>
                             </div>
@@ -409,6 +412,7 @@
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     বর্তমান  এফ ডি আর</div>
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($fdr_active_count)}}</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($fdr_active_transactions)}} টাকা</div>
 
 
                                 <a href="/admin/fdr/list?filterBy=approved" class="text-link">তালিকা দেখুন</a>
