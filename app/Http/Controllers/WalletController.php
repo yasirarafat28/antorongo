@@ -28,7 +28,7 @@ class WalletController extends Controller
 
     public function transactions(Request $request, $wallet='cashier'){
 
-        $records  = Transaction::where('type','expense')->where('wallet',$wallet)->where('canculatable','yes')
+        $records  = Transaction::where('wallet',$wallet)
         ->where(function($q) use($request,$wallet){
             if($request->from){
                 $q->where(DB::raw('DATE(date)'),'>=',$request->from);
@@ -37,7 +37,7 @@ class WalletController extends Controller
                 $q->where(DB::raw('DATE(date)'),'<=',$request->to);
             }
 
-        })
+        })->orderBy('date','DESC')
 
             ->paginate(50);
 

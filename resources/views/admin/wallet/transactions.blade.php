@@ -128,10 +128,10 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                     aria-labelledby="dropdownMenuLink">
-                                        <a href="{{url('admin/balance/transactions/cashier/'.$item->id.'/edit')}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট</a>
+                                        <a href="{{url('admin/transactions/'.$item->id.'/edit')}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট</a>
                                             {!! Form::open([
                                                'method'=>'DELETE',
-                                               'url' => ['/admin/balance/transactions/cashier', $item->id],
+                                               'url' => ['/admin/transactions', $item->id],
                                                'style' => 'display:inline'
                                             ]) !!}
                                             {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন ', array(
@@ -147,25 +147,28 @@
 
                                 <td>{{$item->txn_id??''}}</td>
                                 <td>
-                                    @if($item->flag=='give_away')
-                                         ঋণ প্রদান
-                                    @elseif($item->flag=='revenue_add')
-                                        আসল যোগ
-                                    @elseif($item->flag=='revenue_deduct')
-                                         আসল প্রদান
-                                    @elseif($item->flag=='interest')
-                                        সুদ আদায়
-                                    @elseif($item->flag=='add_interest')
-                                        সুদ যোগ
+                                    @if($item->type=='income')
+                                         জমা
+                                    @else
+                                    খরচ
+
 
                                     @endif
                                 </td>
 
-                                <td style="color: green;font-weight: 700;">
+                                @if($item->type=='income')
+                                    <td style="color: green;font-weight: 700;">
 
-                                    {{\App\NumberConverter::en2bn($item->amount)}} টাকা
+                                        + {{\App\NumberConverter::en2bn($item->amount)}} টাকা
 
-                                </td>
+                                    </td>
+                                @else
+                                    <td style="color: red;font-weight: 700;">
+
+                                         - {{\App\NumberConverter::en2bn($item->amount)}} টাকা
+
+                                    </td>
+                                @endif
                                 {{-- <td>{{$item->status}}</td> --}}
 
                                 <td>{{\App\NumberConverter::en2bn(date("d-m-Y",strtotime($item->date)))}}</td>
