@@ -21,7 +21,7 @@ class DashboardController extends Controller
     {
         $members = User::where('role','member')->orderBy('id','DESC')->get();
 
-
+        // saving funtion start
 
         $daily_savings = Saving::where('type','daily')->get('id');
         $daily_saving_transactions = Transaction::with('user','receiver')->where('transaction_for','saving')->where(function ($q) use ($daily_savings){
@@ -45,10 +45,7 @@ class DashboardController extends Controller
             $q->whereIn('transactable_id',$current_savings);
         })->where('flag','deposit')->sum('amount');
 
-        $fdr_list = Fdr::get('id');
-        $fdr_transactions = Transaction::with('user','receiver')->where('transaction_for','fdr')->where(function ($q) use ($fdr_list){
-            $q->whereIn('transactable_id',$fdr_list);
-        })->where('flag','deposit')->sum('amount');
+
 
         $short_active_count   = Saving::where('type','short')->where('status','approved')->count();
         $short_pending_count   = Saving::where('type','short')->where('status','pending')->count();
@@ -89,10 +86,16 @@ class DashboardController extends Controller
         $current_declined_count   = Saving::where('type','current')->where('status','declined')->count();
         $current_closed_count   = Saving::where('type','current')->where('status','closed')->count();
 
+
         $current_active_get_id   = Saving::where('type','current')->where('status','approved')->get('id');
         $current_active_saving_transactions = Transaction::with('user','receiver')->where('transaction_for','current')->where(function ($q) use ($current_active_get_id){
             $q->whereIn('transactable_id',$current_active_get_id);
         })->where('flag','deposit')->sum('amount');
+
+        // saving function end
+
+
+        // loan function start
 
         $loan = Loan::whereIn('status',['active','closed'])->get();
         $active_count   = Loan::where('status','active')->count();
@@ -105,15 +108,48 @@ class DashboardController extends Controller
             $q->whereIn('transactable_id',$loan_active_list);
         })->where('flag','give_away')->sum('amount');
 
+        $loan_active_interest_total = Transaction::with('user','receiver')->where('transaction_for','loan')->where(function ($q) use ($loan_active_list){
+            $q->whereIn('transactable_id',$loan_active_list);
+        })->where('flag','interest')->sum('amount');
+
+        $loan_reveanue_paid_total = Transaction::with('user','receiver')->where('transaction_for','loan')->where(function ($q) use ($loan_active_list){
+            $q->whereIn('transactable_id',$loan_active_list);
+        })->where('flag','revenue_deduct')->sum('amount');
+
+        $loan_reveanue_add_total = Transaction::with('user','receiver')->where('transaction_for','loan')->where(function ($q) use ($loan_active_list){
+            $q->whereIn('transactable_id',$loan_active_list);
+        })->where('flag','revenue_add')->sum('amount');
+
+        $loan_interest_added_total = Transaction::with('user','receiver')->where('transaction_for','loan')->where(function ($q) use ($loan_active_list){
+            $q->whereIn('transactable_id',$loan_active_list);
+        })->where('flag','add_interest')->sum('amount');
+
+        $loan_profit_waiver_total = Transaction::with('user','receiver')->where('transaction_for','loan')->where(function ($q) use ($loan_active_list){
+            $q->whereIn('transactable_id',$loan_active_list);
+        })->where('flag','loan_waiver')->sum('amount');
+
+
+        // loan function end
+
+
+        // Fdr function start
+
         $fdr_active_count   = Fdr::where('status','approved')->count();
         $fdr_pending_count   = Fdr::where('status','pending')->count();
         $fdr_declined_count   = Fdr::where('status','declined')->count();
         $fdr_closed_count   = Fdr::where('status','closed')->count();
 
+        $fdr_list = Fdr::get('id');
+        $fdr_transactions = Transaction::with('user','receiver')->where('transaction_for','fdr')->where(function ($q) use ($fdr_list){
+            $q->whereIn('transactable_id',$fdr_list);
+        })->where('flag','deposit')->sum('amount');
+
         $fdr_active_list = Fdr::where('status','approved')->get('id');
         $fdr_active_transactions = Transaction::with('user','receiver')->where('transaction_for','fdr')->where(function ($q) use ($fdr_active_list){
             $q->whereIn('transactable_id',$fdr_active_list);
         })->where('flag','deposit')->sum('amount');
+
+        // Fdr function start
 
         $monthly_data = DB::table('transaction')
         ->select(DB::raw("sum(case when `type`='income' then amount*1 else amount*0 end) as `income`"),DB::raw("sum(case when `type`='expense' then amount*1 else amount*0 end) as `expense`"), DB::raw('MONTH(date) as month'), DB::raw('YEAR(date) as year'))
@@ -137,7 +173,8 @@ class DashboardController extends Controller
         'current_active_count','current_pending_count','current_closed_count','daily_active_count','daily_pending_count',
         'daily_closed_count','long_active_count','long_pending_count','long_closed_count','short_active_count','short_pending_count',
         'short_closed_count','short_active_saving_transactions','long_active_saving_transactions','daily_active_saving_transactions',
-        'current_active_saving_transactions','fdr_active_transactions','loan_active_transactions'));
+        'current_active_saving_transactions','fdr_active_transactions','loan_active_transactions','loan_active_interest_total','loan_reveanue_paid_total',
+        'loan_reveanue_add_total','loan_interest_added_total','loan_profit_waiver_total'));
     }
 
 }

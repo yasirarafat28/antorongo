@@ -14,11 +14,11 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">লেনদেন রেকর্ড</h1>
+            <h1 class="h3 mb-0 text-gray-800">ব্যালেন্স ট্রান্সফার রেকর্ড</h1>
 
             <ul class="breadcrumb float-md-right">
                 <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0);">লেনদেন রেকর্ড</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">ব্যালেন্স ট্রান্সফার রেকর্ড</a></li>
             </ul>
         </div>
 
@@ -28,7 +28,7 @@
             <div class="col-lg-12">
                 <div class="card shadow">
                     <div class="header">
-                        <h2><strong>লেনদেন রেকর্ড</strong></h2>
+                        <h2><strong>ব্যালেন্স ট্রান্সফার রেকর্ড</strong></h2>
                     </div>
                     <div class="body table-responsive">
 
@@ -97,11 +97,10 @@
                             <tr>
                                 <th> #</th>
                                 <th>লেনদেন কোড </th>
-                                <th> আদায়কারীর নাম  </th>
                                 <th> লেনদেনের ধরন </th>
                                 <th>পরিমান</th>
-                                <th> অবস্থা</th>
-                                <th> পরিশোধের সময়</th>
+                                {{-- <th> অবস্থা</th> --}}
+                                <th>সময়</th>
                             </tr>
                             </thead>
                             <tfoot>
@@ -111,8 +110,8 @@
                                 <th>লেনদেন কোড </th>
                                 <th> লেনদেনের ধরন </th>
                                 <th>পরিমান</th>
-                                <th> অবস্থা</th>
-                                <th> পরিশোধের সময়</th>
+                                {{-- <th> অবস্থা</th> --}}
+                                <th>সময়</th>
                             </tr>
                             </tfoot>
                             <tbody>
@@ -129,10 +128,10 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                     aria-labelledby="dropdownMenuLink">
-                                        <a href="{{url('admin/transactions/'.$item->id.'/edit')}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট</a>
+                                        <a href="{{url('admin/balance/transactions/cashier/'.$item->id.'/edit')}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট</a>
                                             {!! Form::open([
                                                'method'=>'DELETE',
-                                               'url' => ['/admin/transactions', $item->id],
+                                               'url' => ['/admin/balance/transactions/cashier', $item->id],
                                                'style' => 'display:inline'
                                             ]) !!}
                                             {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন ', array(
@@ -164,14 +163,10 @@
 
                                 <td style="color: green;font-weight: 700;">
 
-                                    @if($item->flag=='reveanue_add' || $item->flag=='add_interest' || $item->flag=='give_away')
-                                        + {{\App\NumberConverter::en2bn($item->amount)}} টাকা
-                                    @else
-                                        - {{\App\NumberConverter::en2bn($item->amount)}} টাকা
-                                    @endif
+                                    {{\App\NumberConverter::en2bn($item->amount)}} টাকা
 
                                 </td>
-                                <td>{{$item->status}}</td>
+                                {{-- <td>{{$item->status}}</td> --}}
 
                                 <td>{{\App\NumberConverter::en2bn(date("d-m-Y",strtotime($item->date)))}}</td>
 

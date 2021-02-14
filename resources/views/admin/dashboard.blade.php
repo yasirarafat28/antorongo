@@ -531,40 +531,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-primary shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                 মোট ঋণ আসল</div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($closed_count)}}</div>
-                                <a href="/admin/loan/list?filterBy=closed" class="text-link">তালিকা দেখুন</a>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-primary shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                 বিনিয়োগকৃত মূলধন</div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($closed_count)}}</div>
-                                <a href="/admin/loan/list?filterBy=closed" class="text-link">তালিকা দেখুন</a>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
@@ -572,8 +539,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     লাভ পাইলাম</div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($closed_count)}}</div>
-                                <a href="/admin/loan/list?filterBy=closed" class="text-link">তালিকা দেখুন</a>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800"> ৳ {{App\NumberConverter::en2bn($loan_active_interest_total,2)}} টাকা </div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -589,8 +555,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     লাভ বকেয়া কত</div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($closed_count)}}</div>
-                                <a href="/admin/loan/list?filterBy=closed" class="text-link">তালিকা দেখুন</a>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn($loan_interest_added_total - $loan_active_interest_total - $loan_profit_waiver_total,2)}} টাকা</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -606,8 +571,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     আসল আদায় কত</div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($closed_count)}}</div>
-                                <a href="/admin/loan/list?filterBy=closed" class="text-link">তালিকা দেখুন</a>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn($loan_reveanue_paid_total,2)}} টাকা</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -623,8 +587,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     আসল বকেয়া কত</div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($closed_count)}}</div>
-                                <a href="/admin/loan/list?filterBy=closed" class="text-link">তালিকা দেখুন</a>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800"> ৳ {{App\NumberConverter::en2bn($loan_active_transactions + $loan_reveanue_add_total - $loan_reveanue_paid_total , 2)}} টাকা</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>
