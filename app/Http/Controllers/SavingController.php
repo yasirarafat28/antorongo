@@ -867,12 +867,19 @@ class SavingController extends Controller
         $declined_count   = Saving::where('type',$type)->where('status','declined')->count();
         $closed_count   = Saving::where('type',$type)->where('status','closed')->count();
 
+        $closed_ids = Saving::where('type',$type)->where('status','closed')->get(['id'])->pluck('id');
+
         $closed_target_amount   = Saving::where('type',$type)->where('status','closed')->sum('target_amount');
-        $closed_saving_return_amount   = Saving::where('type',$type)->where('status','closed')->sum('return_amount');
-        $closed_saving_profit   = $closed_target_amount + $closed_saving_return_amount ;
+
+
+        $closed_total_profit_paid = Transaction::where('transaction_for','saving')->whereIn('transactable_id',$closed_ids)->where('flag','profit_withdraw')->sum('amount');
+        $closed_total_revenue_paid = Transaction::where('transaction_for','saving')->whereIn('transactable_id',$closed_ids)->where('flag','deposit_withdraw')->sum('amount');
+
+        // $closed_saving_return_amount   = Saving::where('type',$type)->where('status','closed')->sum('return_amount');
+        // $closed_saving_profit   = $closed_target_amount + $closed_saving_return_amount ;
 
         return view('admin/saving/list',compact('records','type','active_count','pending_count','declined_count',
-        'closed_count','closed_target_amount','closed_saving_return_amount','closed_saving_profit'));
+        'closed_count','closed_target_amount','closed_saving_return_amount','closed_saving_profit','closed_total_profit_paid','closed_total_revenue_paid'));
     }
 
     public function getSavingsByUser(Request $request)
