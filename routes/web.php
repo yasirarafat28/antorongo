@@ -241,6 +241,10 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 
     Route::resource('founder-deposit', 'FounderDepositController');
 
+    // Web site management route
+
+    Route::resource('blogs', 'BlogController');
+
 
 });
 

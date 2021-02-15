@@ -59,7 +59,7 @@
 
                                     </ul>
                                 </li>
-                                <!--<li><a href="#blog-section" class="nav-link">Blog</a></li>-->
+                                <li><a href="#blog-section" class="nav-link">Blog</a></li>
                                 <li><a href="/member-search" class="nav-link">Search Member </a></li>
                                 <li><a href="#contact-section" class="nav-link">Contact</a></li>
                                 <li><a href="/login" class="nav-link btn-primary btn-sm pb-2 pt-2 pl-5 pr-5">Login</a></li>

@@ -324,6 +324,21 @@
                 </div>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#webNav"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>ওয়েব সাইট</span>
+                </a>
+                <div id="webNav" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+
+                        <a class="collapse-item" href="{{url('admin/blogs')}}" > ব্লগ </a>
+
+                    </div>
+                </div>
+            </li>
+
 
 
 

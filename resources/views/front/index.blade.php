@@ -309,6 +309,13 @@
             </div>
         </section>
         <section class="site-section" id="blog-section">
+
+
+            @php
+                $blogs = App\Blog::where('status','active')->get();
+            @endphp
+
+
             <div class="container">
                 <div class="row mb-5">
                     <div class="col-12 text-center" data-aos="fade">
@@ -316,21 +323,21 @@
                     </div>
                 </div>
                 <div class="row">
+                    @foreach($blogs as $blog)
                     <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="">
                         <div class="h-entry">
                             <a href="single.html">
-                                <img src="/front/images/ximg_1.jpg.pagespeed.ic.Zl67ccZIcY.jpg" alt="Image" class="img-fluid">
+                                <img src={{asset($blog->feature_image??'')}} alt="Image" class="img-fluid">
                             </a>
-                            <h2 class="font-size-regular"><a href="#">A Basic Guide to Starting a Franchise in the
-                                    Philippines</a></h2>
-                            <div class="meta mb-4">Ham Brook <span class="mx-2">&bullet;</span> Jan 18, 2019<span
+                            <h2 class="font-size-regular"><a href="#">{{$blog->title??''}}</a></h2>
+                            <div class="meta mb-4">Ham Brook <span class="mx-2">&bullet;</span> {{\App\NumberConverter::en2bn($blog->created_at)}}<span
                                     class="mx-2">&bullet;</span> <a href="#">News</a></div>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus eligendi nobis ea maiores
                                 sapiente veritatis reprehenderit suscipit quaerat rerum voluptatibus a eius.</p>
                             <p><a href="#">Continue Reading...</a></p>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    {{-- <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="100">
                         <div class="h-entry">
                             <a href="single.html">
                                 <img src="/front/images/img_4.jpg.pagespeed.ce.fdIf3piKv8.jpg" alt="Image" class="img-fluid">
@@ -357,7 +364,8 @@
                                 sapiente veritatis reprehenderit suscipit quaerat rerum voluptatibus a eius.</p>
                             <p><a href="#">Continue Reading...</a></p>
                         </div>
-                    </div>
+                    </div> --}}
+                @endforeach
                 </div>
             </div>
         </section>
