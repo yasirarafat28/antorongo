@@ -75,9 +75,9 @@
                                 <span style="font-size: 15px;">পলিসির পরিমান </span>
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">  ৳ {{App\NumberConverter::en2bn($closed_target_amount)}} টাকা</div>
                                 <span style="font-size: 15px;">মোট লাভ</span>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn($closed_total_profit_paid)}} টাকা</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn($closed_total_profit_paid + $closed_total_revenue_paid)}} টাকা</div>
                                 <span style="font-size: 15px;">মোট ফেরত </span>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn($closed_target_amount + $closed_total_profit_paid)}} টাকা</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn($closed_target_amount + $closed_total_profit_paid + $closed_target_amount)}} টাকা</div>
                             @endif
                                 <a href="/admin/saving/{{$type}}/list?filterBy=closed" class="text-link">তালিকা দেখুন</a>
                             </div>
