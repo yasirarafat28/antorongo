@@ -25,11 +25,11 @@
         @endif
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">ব্লগ এর তালিকা</h1>
+            <h1 class="h3 mb-0 text-gray-800">যোগাযোগ এর তালিকা</h1>
 
             <ul class="breadcrumb float-md-right">
                 <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0);">ব্লগ এর তালিকা</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">যোগাযোগ এর তালিকা</a></li>
             </ul>
         </div>
 
@@ -40,10 +40,10 @@
                     <div class="header">
                         <div class="clearfix">
                             <div class="float-left">
-                                <h2>ব্লগ এর তালিকা</h2>
+                                <h2>যোগাযোগ এর তালিকা</h2>
                             </div>
                             <div class="float-right">
-                                <a href="/admin/blogs/create" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> ব্লগ যোগ করুন </a>
+                                <a href="/admin/contacts/create" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> যোগাযোগ যোগ করুন </a>
                             </div>
                         </div>
 
@@ -53,9 +53,9 @@
                             <thead>
                             <tr>
                                 <th>ক্রিয়াকলাপ</th>
-                                <th> ছবি </th>
-                                <th> শিরোনাম </th>
-                                <th>বিস্তারিত </th>
+                                <th> ইমেল </th>
+                                <th> ফোনঃ </th>
+                                <th>ঠিকানা</th>
                                 <th>অবস্থা  </th>
                                 <th>সময়</th>
                             </tr>
@@ -63,9 +63,9 @@
                             <tfoot>
                             <tr>
                                 <th>ক্রিয়াকলাপ</th>
-                                <th> ছবি </th>
-                                <th> শিরোনাম </th>
-                                <th>বিস্তারিত </th>
+                                <th> ইমেল </th>
+                                <th> ফোনঃ </th>
+                                <th>ঠিকানা </th>
                                 <th>অবস্থা  </th>
                                 <th>সময়</th>
                             </tr>
@@ -81,11 +81,11 @@
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                         aria-labelledby="dropdownMenuLink">
 
-                                        <a  data-toggle="modal" data-target="#blogShowModal{{$item->id}}" class="dropdown-item"><i class="fa fa-eye"> </i> বিস্তারিত </i></a>
+                                        <a  data-toggle="modal" data-target="#contactShowModal{{$item->id}}" class="dropdown-item"><i class="fa fa-eye"> </i> বিস্তারিত </i></a>
 
                                             {!! Form::open([
                                                'method'=>'DELETE',
-                                               'url' => ['/admin/blogs', $item->id],
+                                               'url' => ['/admin/contacts', $item->id],
                                                'style' => 'display:inline'
                                             ]) !!}
                                             {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন', array(
@@ -97,11 +97,9 @@
                                             {!! Form::close() !!}
                                     </div>
                                     </td>
-                                    <td>
-                                        <img src="{{asset( $item->feature_image??'')}}" alt="" width="60">
-                                    </td>
-                                    <td>{{$item->title}}</td>
-                                    <td>{!! $item->description !!}</td>
+                                    <td>{{$item->gmail??'N/A'}}</td>
+                                    <td>{{$item->phone_no??'N/A'}}</td>
+                                    <td>{!! $item->address !!}</td>
                                     <td>{{$item->status}}</td>
                                     <td>{{\App\NumberConverter::en2bn($item->created_at)}}</td>
                                 </tr>
@@ -121,13 +119,13 @@
 
     @foreach($records as $row)
     <!-- Show Modal Start -->
-    <div class="modal fade" id="blogShowModal{{$row->id}}" tabindex="-1" role="dialog">
+    <div class="modal fade" id="contactShowModal{{$row->id}}" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
 
 
                         <div class="modal-header">
-                            <h2><strong> ব্লগ</strong> বিস্তারিত</h2>
+                            <h2><strong> যোগাযোগ</strong> বিস্তারিত</h2>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -137,19 +135,22 @@
 
                             <table class="table">
                                 <tbody>
+
                                 <tr>
-                                    <td> ছবি </td>
-                                    <td>
-                                        <img src="{{asset( $row->feature_image??'')}}" alt="" width="60">
-                                    </td>
+                                    <td>ইমেল </td>
+                                    <td>{{$row->gmail??"N/A"}}</td>
                                 </tr>
                                 <tr>
-                                    <td>শিরোনাম </td>
-                                    <td>{{$row->title??""}}</td>
+                                    <td>ফোনঃ </td>
+                                    <td>{{$row->phone_no??"N/A"}}</td>
                                 </tr>
                                 <tr>
-                                    <td>বিস্তারিত</td>
-                                    <td>{!! $row->description !!}</td>
+                                    <td>মোবাইলঃ </td>
+                                    <td>{{$row->moblie_no??"N/A"}}</td>
+                                </tr>
+                                <tr>
+                                    <td>ঠিকানা</td>
+                                    <td>{!! $row->address !!}</td>
                                 </tr>
                                 <tr>
                                     <td>অবস্থা</td>

@@ -334,9 +334,11 @@
                     <div class="bg-white py-2 collapse-inner rounded">
 
                         <a class="collapse-item" href="{{url('admin/blogs')}}" > ব্লগ </a>
+                        <a class="collapse-item" href="{{url('admin/contacts')}}" >যোগাযোগ </a>
 
                     </div>
                 </div>
+
             </li>
 
 

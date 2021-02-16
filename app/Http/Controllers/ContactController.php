@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Blog;
+use App\Contact;
 use Illuminate\Http\Request;
 
-class BlogController extends Controller
+class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,9 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $records = Blog::orderBy('created_at','DESC')->paginate('25');
-        return view('admin.web-site.blog.index',compact('records'));
+        $records = Contact::orderBy('created_at','DESC')->paginate('25');
+
+        return view('admin.web-site.contact.index',compact('records'));
     }
 
     /**
@@ -25,7 +26,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        return view('admin.web-site.blog.create');
+        return view('admin.web-site.contact.create');
     }
 
     /**
@@ -37,29 +38,19 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'title'=>'required',
+
         ]);
 
-        $blogs = new Blog();
-        $blogs->title = $request->title;
-        $blogs->description = $request->description;
-        $blogs->status = $request->status;
+        $contacts = new Contact();
+        $contacts->phone_no = $request->phone_no;
+        $contacts->mobile_no = $request->mobile_no;
+        $contacts->address = $request->address;
+        $contacts->gmail = $request->gmail;
+        $contacts->status = $request->status;
+        $contacts->save();
 
-        if ($request->hasFile('feature_image')) {
-
-            $image      = $request->file('feature_image');
-            $imageName  = 'blogs_'.date('ymdhis').'.'.$image->getClientOriginalExtension();
-            $path       = 'images/file/';
-            $image->move($path, $imageName);
-            $imageUrl   = $path . $imageName;
-            $blogs->feature_image = $imageUrl;
-        }
-
-        $blogs->save();
-
-        return redirect('/admin/blogs')->withSuccess('সফলভাবে সেভ করা হয়েছে');
+        return redirect('admin/contacts')->withSuccess('সফলভাবে সেভ করা হয়েছে');
     }
-
 
     /**
      * Display the specified resource.
@@ -103,7 +94,7 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        Blog::destroy($id);
+        Contact::destroy($id);
         return back()->withSuccess('সফলভাবে মুছে ফেলা হয়েছে');
     }
 }

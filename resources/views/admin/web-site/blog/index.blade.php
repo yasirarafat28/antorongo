@@ -158,7 +158,7 @@
 
                                 <tr>
                                     <td>তারিখ </td>
-                                    <td>{{date("d-m-Y",strtotime($row->date))}}</td>
+                                    <td>{{\App\NumberConverter::en2bn($row->created_at)}}</td>
                                 </tr>
 
                                 </tbody>

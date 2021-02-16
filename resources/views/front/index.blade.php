@@ -39,7 +39,7 @@
                 </span>
             </a>
         </div>
-        <div class="site-section" id="next">
+        {{-- <div class="site-section" id="next">
             <div class="container">
                 <div class="row mb-5">
                     <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="">
@@ -95,8 +95,9 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="site-section cta-big-image" id="about-section">
+        </div> --}}
+
+        {{-- <div class="site-section cta-big-image" id="about-section">
             <div class="container">
                 <div class="row mb-5 justify-content-center">
                     <div class="col-md-8 text-center">
@@ -122,8 +123,9 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <section class="site-section">
+        </div> --}}
+
+        {{-- <section class="site-section">
             <div class="container">
                 <div class="row mb-5 justify-content-center">
                     <div class="col-md-7 text-center">
@@ -172,7 +174,8 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
+
         <section class="site-section border-bottom bg-light" id="services-section">
             <div class="container">
                 <div class="row mb-5">
@@ -308,18 +311,21 @@
                 </div>
             </div>
         </section>
+
+        <!--Blog Section Start -->
+
         <section class="site-section" id="blog-section">
 
 
             @php
-                $blogs = App\Blog::where('status','active')->get();
+                $blogs = App\Blog::where('status','active')->orderBy('created_at','DESC')->skip(0)->take(3)->get();
             @endphp
 
 
             <div class="container">
                 <div class="row mb-5">
                     <div class="col-12 text-center" data-aos="fade">
-                        <h2 class="section-title mb-3">Our Blog</h2>
+                        <h2 class="section-title mb-3">আমাদের ব্লগ</h2>
                     </div>
                 </div>
                 <div class="row">
@@ -330,10 +336,8 @@
                                 <img src={{asset($blog->feature_image??'')}} alt="Image" class="img-fluid">
                             </a>
                             <h2 class="font-size-regular"><a href="#">{{$blog->title??''}}</a></h2>
-                            <div class="meta mb-4">Ham Brook <span class="mx-2">&bullet;</span> {{\App\NumberConverter::en2bn($blog->created_at)}}<span
-                                    class="mx-2">&bullet;</span> <a href="#">News</a></div>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus eligendi nobis ea maiores
-                                sapiente veritatis reprehenderit suscipit quaerat rerum voluptatibus a eius.</p>
+                            <div class="meta mb-4">{{\App\NumberConverter::en2bn($blog->created_at)}}</div>
+                            <p>{!! $blog->description??'' !!}</p>
                             <p><a href="#">Continue Reading...</a></p>
                         </div>
                     </div>
@@ -369,35 +373,48 @@
                 </div>
             </div>
         </section>
+
+        <!--Blog Section End -->
+
+        <!-- Contact Section start -->
+
+        @php
+            $contacts = App\Contact::where('status','active')->orderBy('created_at','DESC')->skip(0)->take(1)->get();
+        @endphp
+
         <section class="site-section bg-light" id="contact-section" data-aos="fade">
             <div class="container">
                 <div class="row mb-5">
                     <div class="col-12 text-center">
-                        <h2 class="section-title mb-3">Contact Us</h2>
+                        <h2 class="section-title mb-3">যোগাযোগ করুন</h2>
                     </div>
                 </div>
                 <div class="row mb-5">
+                @foreach ($contacts as $contact)
+
                     <div class="col-md-4 text-center">
                         <p class="mb-4">
                             <span class="icon-room d-block h2 text-primary"></span>
-                            <span>203 Fake St. Mountain View, San Francisco, California, USA</span>
+                            <span>{!! $contact->address??"N/A" !!}</span>
                         </p>
                     </div>
                     <div class="col-md-4 text-center">
                         <p class="mb-4">
                             <span class="icon-phone d-block h2 text-primary"></span>
-                            <a href="#">+1 232 3235 324</a>
+                            <a href="#">{{$contact->phone_no??'N/A'}}</a> <br>
+                            <a href="#">{{$contact->mobile_no??''}}</a>
                         </p>
                     </div>
                     <div class="col-md-4 text-center">
                         <p class="mb-0">
                             <span class="icon-mail_outline d-block h2 text-primary"></span>
-                            <a href="#">youremail@domain.com</a>
+                            <a href="#">{{$contact->gmail??'N/A'}}</a>
                         </p>
                     </div>
+                @endforeach
                 </div>
                 <div class="row">
-                    <div class="col-md-12 mb-5">
+                    {{-- <div class="col-md-12 mb-5">
                         <form action="#" class="p-5 bg-white">
                             <h2 class="h4 text-black mb-5">Contact Form</h2>
                             <div class="row form-group">
@@ -435,7 +452,7 @@
                                 </div>
                             </div>
                         </form>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </section>

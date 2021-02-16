@@ -244,6 +244,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     // Web site management route
 
     Route::resource('blogs', 'BlogController');
+    Route::resource('contacts', 'ContactController');
 
 
 });
