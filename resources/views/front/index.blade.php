@@ -2,6 +2,10 @@
 
 @section('content')
 
+    {{-- @php
+        $cover_photos = App\Gallery::where('status','active')->orderBy('created_at','DESC')->skip(0)->take(1)->get();
+    @endphp --}}
+
 <div class="site-blocks-cover overlay" style="background-image: url(/front/images/bg.jpg);" data-aos="fade"
             id="home-section">
             <div class="container">
