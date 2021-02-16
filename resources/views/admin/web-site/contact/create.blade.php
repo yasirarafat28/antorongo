@@ -61,7 +61,7 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <label for=""><small>ইমেল</small></label>
-                                        <input type="text" placeholder="ইমেল" name="gmail" class="form-control">
+                                        <input type="email" placeholder="ইমেল" name="gmail" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12">

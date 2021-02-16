@@ -332,8 +332,8 @@
                     @foreach($blogs as $blog)
                     <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="">
                         <div class="h-entry">
-                            <a href="single.html">
-                                <img src={{asset($blog->feature_image??'')}} alt="Image" class="img-fluid">
+                            <a href="#">
+                                <img src={{asset($blog->feature_image??'')}} alt="Image" class="img-fluid" onerror="this.src='/front/images/no_img_avaliable.jpg';">
                             </a>
                             <h2 class="font-size-regular"><a href="#">{{$blog->title??''}}</a></h2>
                             <div class="meta mb-4">{{\App\NumberConverter::en2bn($blog->created_at)}}</div>

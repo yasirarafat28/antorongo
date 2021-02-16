@@ -98,7 +98,7 @@
                                     </div>
                                     </td>
                                     <td>
-                                        <img src="{{asset( $item->feature_image??'')}}" alt="" width="60">
+                                        <img src="{{asset( $item->feature_image??'')}}" onerror="this.src='/front/images/no_img_avaliable.jpg';" alt="s2.jpg" width="60">
                                     </td>
                                     <td>{{$item->title}}</td>
                                     <td>{!! $item->description !!}</td>
@@ -140,7 +140,7 @@
                                 <tr>
                                     <td> ছবি </td>
                                     <td>
-                                        <img src="{{asset( $row->feature_image??'')}}" alt="" width="60">
+                                        <img src="{{asset( $row->feature_image??'')}}" width="100" onerror="this.src='/front/images/no_img_avaliable.jpg';" alt="s2.jpg">
                                     </td>
                                 </tr>
                                 <tr>
