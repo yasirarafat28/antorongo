@@ -33,7 +33,7 @@
                 </ul>
             </div>
 
-            {{-- <div class="row">
+            <div class="row">
 
                 <!-- Earnings (Monthly) Card Example -->
                 <div class="col-xl-3 col-md-6 mb-4">
@@ -77,17 +77,28 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                        মোট উত্তোলন</div>
-                                    <div class="h6 mb-0 font-weight-bold text-gray-800">৳ ৩৪৫৩৪ টাকা</div>
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        মোট এফ ডি আর প্রত্যাহার</div>
+
+                                    <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($fdr_closed_count_id)}}</div>
+
+                                    <span style="font-size: 15px;">পলিসির পরিমান </span>
+                                    <div class="h6 mb-0 font-weight-bold text-gray-800">  ৳ {{App\NumberConverter::en2bn($closed_total_fdr_deposit,2)}} টাকা</div>
+                                    <span style="font-size: 15px;">মোট লাভ</span>
+                                    <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn($closed_total_fdr_profit,2)}} টাকা</div>
+                                    <span style="font-size: 15px;">মোট ফেরত </span>
+                                    <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn($closed_total_fdr_deposit + $closed_total_fdr_profit,2)}} টাকা</div>
+
+                                    {{-- <a href="/admin/saving/{{$type}}/list?filterBy=closed" class="text-link">তালিকা দেখুন</a> --}}
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>                                </div>
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div> --}}
+            </div>
 
 
         <!-- Exportable Table -->

@@ -100,7 +100,7 @@
                                             <td class="text-left">{{$loan->unique_id}}</td>
                                         </tr>
 
-                                        <tr>
+                                        {{-- <tr>
                                             <td class="text-right">
                                                 ঋণের পরিমান  :
                                             </td>
@@ -113,7 +113,7 @@
 
                                                 টাকা
                                             </td>
-                                        </tr>
+                                        </tr> --}}
 
                                         <tr>
                                             <td class="text-right">

@@ -260,9 +260,17 @@ class FdrController extends Controller
         $active_count   = Fdr::where('status','approved')->count();
         $pending_count   = Fdr::where('status','pending')->count();
         $declined_count   = Fdr::where('status','declined')->count();
-        $closed_count   = Fdr::where('status','closed')->count();
+        $fdr_closed_count_id   = Fdr::where('status','closed')->count();
 
-        return view('admin/fdr/list',compact('records','active_count','pending_count','declined_count','closed_count'));
+        $closed_fdr_list_id = Fdr::where('status','closed')->get(['id'])->pluck('id');
+        $closed_total_fdr_deposit = Transaction::where('transaction_for','fdr')->whereIn('transactable_id',$closed_fdr_list_id)->where('flag','deposit')->sum('amount');
+        $closed_total_fdr_profit = Transaction::where('transaction_for','fdr')->whereIn('transactable_id',$closed_fdr_list_id)->where('flag','profit')->sum('amount');
+
+
+
+
+        return view('admin/fdr/list',compact('records','active_count','pending_count','declined_count','fdr_closed_count_id','closed_total_fdr_deposit',
+        'closed_total_fdr_profit'));
     }
 
     public function AdminApprove($id)
