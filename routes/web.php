@@ -247,6 +247,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::resource('blogs', 'BlogController');
     Route::resource('contacts', 'ContactController');
     Route::resource('galleries', 'GalleryController');
+    // Route::post('galleries/logo', 'GalleryController@logo_add')->name('addLogo');
+    // Route::post('/website-logo','GalleryController@websiteLogo')->name('website.LogoAdd');
 
 
 });
