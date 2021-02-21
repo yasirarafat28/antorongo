@@ -108,6 +108,13 @@
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     ঋণ প্রত্যাহার</div>
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($closed_count)}}</div>
+
+                                <span style="font-size: 15px;">ঋণের পরিমান  </span>
+                                    <div class="h6 mb-0 font-weight-bold text-gray-800">  ৳ {{App\NumberConverter::en2bn($total_loan_give_closed,2)}} টাকা</div>
+                                    <span style="font-size: 15px;">মোট লাভ</span>
+                                    <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn($loan_closed_interest_total,2)}} টাকা</div>
+                                    <span style="font-size: 15px;">মোট ফেরত </span>
+                                    <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn($total_loan_give_closed + $loan_closed_interest_total,2)}} টাকা</div>
                                 <a href="/admin/loan/list?filterBy=closed" class="text-link">তালিকা দেখুন</a>
                             </div>
                             <div class="col-auto">

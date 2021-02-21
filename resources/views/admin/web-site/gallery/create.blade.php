@@ -67,8 +67,8 @@
 
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
-                                        <label for=""><small>কভার ছবি</small></label>
-                                        <input type="file" placeholder="কভার ছবি" name="cover_photo" class="form-control">
+                                        <label for=""><small>ওয়েব সাইট কভার ছবি</small></label>
+                                        <input type="file" placeholder="ওয়েব সাইট কভার ছবি" name="cover_photo" class="form-control">
                                     </div>
                                 </div>
 
@@ -76,6 +76,13 @@
                                     <div class="form-group">
                                         <label for=""><small>ছবি</small></label>
                                         <input type="file" placeholder="ছবি" name="photo" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for=""><small>লোগো </small></label>
+                                        <input type="file" placeholder="লোগো" name="logo" class="form-control">
                                     </div>
                                 </div>
 

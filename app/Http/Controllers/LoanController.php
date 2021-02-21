@@ -227,8 +227,17 @@ class LoanController extends Controller
 
         // $active_total_give   = Loan::where('status','active')->sum();
 
+        $total_loan_closed_id = Loan::where('status','closed')->get('id');
 
-        return view('admin/loan/list',compact('records','active_count','pending_count','declined_count','closed_count','total'));
+        $total_loan_give_closed = Transaction::where('transaction_for','loan')->where(function ($q) use ($total_loan_closed_id){
+            $q->whereIn('transactable_id',$total_loan_closed_id);
+        })->where('flag','give_away')->sum('amount');
+
+        $loan_closed_interest_total = Transaction::with('user','receiver')->where('transaction_for','loan')->where(function ($q) use ($total_loan_closed_id){
+            $q->whereIn('transactable_id',$total_loan_closed_id);
+        })->where('flag','interest')->sum('amount');
+
+        return view('admin/loan/list',compact('records','active_count','pending_count','declined_count','closed_count','total','total_loan_give_closed','loan_closed_interest_total'));
     }
 
     public function  LoanApplication(Request $request)

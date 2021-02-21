@@ -42,6 +42,9 @@ class GalleryController extends Controller
 
         $galleries = new Gallery();
         $galleries->title = $request->title;
+        if($request->title){
+            $$galleries->flag = 'web_title';
+        }
         $galleries->status = $request->status;
 
         if ($request->hasFile('cover_photo')) {
@@ -52,6 +55,7 @@ class GalleryController extends Controller
             $image->move($path, $imageName);
             $imageUrl   = $path . $imageName;
             $galleries->cover_photo = $imageUrl;
+            $galleries->flag = 'web_cover_photo';
         }
 
         if ($request->hasFile('photo')) {
@@ -64,7 +68,23 @@ class GalleryController extends Controller
             $galleries->photo = $imageUrl;
         }
 
+        if ($request->hasFile('logo')){
+
+            $image      = $request->file('logo');
+            $imageName  = 'gallery_l'.date('ymdhis').'.'.$image->getClientOriginalExtension();
+            $path       = 'images/file/';
+            $image->move($path, $imageName);
+            $imageUrl   = $path . $imageName;
+            $galleries->logo = $imageUrl;
+            $galleries->flag = 'logo';
+
+
+        }
+
+
+
         $galleries->save();
+
 
         return redirect('admin/galleries')->withSuccess('সফলভাবে সেভ করা হয়েছে');
 
@@ -112,6 +132,8 @@ class GalleryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Gallery::destroy($id);
     }
+
+
 }

@@ -2,11 +2,11 @@
 
 @section('content')
 
-    {{-- @php
-        $cover_photos = App\Gallery::where('status','active')->orderBy('created_at','DESC')->skip(0)->take(1)->get();
-    @endphp --}}
+    @php
+        $coverPhoto = App\Gallery::where('status','active')->where('flag','web_cover_photo')->orderBy('created_at','DESC')->first();
+    @endphp
 
-<div class="site-blocks-cover overlay" style="background-image: url(/front/images/bg.jpg);" data-aos="fade"
+<div class="site-blocks-cover overlay" style="background-image: url({{($coverPhoto->cover_photo??'')}});" data-aos="fade"
             id="home-section">
             <div class="container">
                 <div class="row align-items-center justify-content-center">
@@ -14,14 +14,14 @@
                         <div class="single-text owl-carousel">
                             <div class="slide">
 
-                                <h1 class="text-uppercase" data-aos="fade-up">Banking Solutions</h1>
-                                <p class="mb-5 desc" data-aos="fade-up" data-aos-delay="100">Lorem ipsum dolor sit amet,
+                                <h1 class="text-uppercase" data-aos="fade-up">{{\App\Setting::setting()->app_name}}</h1>
+                                {{-- <p class="mb-5 desc" data-aos="fade-up" data-aos-delay="100">Lorem ipsum dolor sit amet,
                                     consectetur adipisicing elit. Provident cupiditate suscipit, magnam libero velit
-                                    esse sapiente officia inventore!</p>
+                                    esse sapiente officia inventore!</p> --}}
                                 <div data-aos="fade-up" data-aos-delay="100">
                                 </div>
                             </div>
-                            <div class="slide">
+                            {{-- <div class="slide">
                                 <h1 class="text-uppercase" data-aos="fade-up">Financing Solutions</h1>
                                 <p class="mb-5 desc" data-aos="fade-up" data-aos-delay="100">Lorem ipsum dolor sit amet,
                                     consectetur adipisicing elit. Provident cupiditate suscipit, magnam libero velit
@@ -32,7 +32,7 @@
                                 <p class="mb-5 desc" data-aos="fade-up" data-aos-delay="100">Lorem ipsum dolor sit amet,
                                     consectetur adipisicing elit. Provident cupiditate suscipit, magnam libero velit
                                     esse sapiente officia inventore!</p>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -418,45 +418,63 @@
                 @endforeach
                 </div>
                 <div class="row">
-                    {{-- <div class="col-md-12 mb-5">
-                        <form action="#" class="p-5 bg-white">
-                            <h2 class="h4 text-black mb-5">Contact Form</h2>
+                    <div class="col-md-12 mb-5">
+                        <form action="{{url('admin/enquiries')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
+                            {{csrf_field()}}
+                        <h2 class="h4 text-black mb-5">Contact Form</h2>
+                            @if(session()->has('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+
+                            @if($errors->any())
+                                <div class="alert alert-danger">
+                                    {{ $errors->first() }}
+                                </div>
+                            @endif
                             <div class="row form-group">
                                 <div class="col-md-6 mb-3 mb-md-0">
                                     <label class="text-black" for="fname">First Name</label>
-                                    <input type="text" id="fname" class="form-control">
+                                    <input type="text" id="first_name" class="form-control" name="first_name">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="text-black" for="lname">Last Name</label>
-                                    <input type="text" id="lname" class="form-control">
+                                    <input type="text" id="last_name" class="form-control" name="last_name">
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-md-12">
                                     <label class="text-black" for="email">Email</label>
-                                    <input type="email" id="email" class="form-control">
+                                    <input type="email" id="email" class="form-control" name="email">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label class="text-black" for="email">Phone</label>
+                                    <input type="text" id="" class="form-control" name="phone">
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-md-12">
                                     <label class="text-black" for="subject">Subject</label>
-                                    <input type="subject" id="subject" class="form-control">
+                                    <input type="text" id="subject" class="form-control" name="subject">
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-md-12">
                                     <label class="text-black" for="message">Message</label>
-                                    <textarea name="message" id="message" cols="30" rows="7" class="form-control"
+                                    <textarea name="description" id="message" class="form-control"
                                         placeholder="Write your notes or questions here..."></textarea>
                                 </div>
                             </div>
                             <div class="row form-group">
-                                <div class="col-md-12">
-                                    <input type="submit" value="Send Message" class="btn btn-primary btn-md text-white">
+                                <div class="col-md-12 text-center">
+                                    <button class="btn btn-primary btn-md text-white"> Send Message</button>
                                 </div>
                             </div>
                         </form>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </section>

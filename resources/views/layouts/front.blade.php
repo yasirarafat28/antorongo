@@ -39,8 +39,22 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-6 col-xl-5">
+
+                        @php
+                            $logos = App\Gallery::where('flag','logo')->orderBy('created_at','DESC')->first();
+                        @endphp
+
                         <h1 class="mb-0 site-logo">
-                            <img src="{{url('antaranga.png')}}" alt="" style="width:300px;">
+
+                            <img src={{($logos->logo??'')}} alt="" style="width:100px;" onerror="this.src='/front/images/no_img_avaliable.jpg';">
+                            {{-- <button><i class="fas fa-camera" onclick="event.preventDefault();
+                                $('#website-logo-field').click()"></i>
+                            </button> --}}
+
+                            {{-- <form id="website-logo-form" action="{{route('website.LogoAdd')}}" style="display:none" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <input id="website-logo-field" type="file" onchange="this.form.submit();" name="logo">
+                            </form> --}}
 {{--
                             <a href="{{url('/')}}" class="h2 mb-0">{{\App\Setting::setting()->app_name}}<span
                                     class="text-primary">.</span> </a> --}}
@@ -138,8 +152,12 @@
             </div>
         </footer>
     </div> <!-- .site-wrap -->
+      <!-- Bootstrap core JavaScript-->
+
+
     <script src="/front/js/jquery-3.3.1.min.js.pagespeed.jm.r0B4QCxeCQ.js"></script>
     <script src="/front/js/jquery-ui.js%2bpopper.min.js.pagespeed.jc.rjnNY3C1N6.js"></script>
+
     <script>
         eval(mod_pagespeed_CXifWJ99V1);
 
@@ -186,6 +204,7 @@
         eval(mod_pagespeed_t_skve8vY$);
 
     </script>
+
 
 </body>
 

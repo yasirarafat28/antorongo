@@ -44,15 +44,17 @@
                             </div>
                             <div class="float-right">
                                 <a href="/admin/galleries/create" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> গ্যালারী যোগ করুন </a>
+                                {{-- <a data-toggle="modal" data-target="#logoModal" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> ওয়েব সাইট লোগো</a> --}}
                             </div>
                         </div>
 
                     </div>
                     <div class="body">
-                        <table class="table table-bordered table-striped table-hover dataTable js-plaintable">
+                        <table class="table table-bordered table-striped table-hover dataTable js-plaintable col-md-9">
                             <thead>
                             <tr>
                                 <th>ক্রিয়াকলাপ</th>
+                                <th>লোগো </th>
                                 <th>কভার ছবি </th>
                                 <th>ছবি</th>
                                 <th> শিরোনাম </th>
@@ -63,6 +65,7 @@
                             <tfoot>
                             <tr>
                                 <th>ক্রিয়াকলাপ</th>
+                                <th>লোগো </th>
                                 <th>কভার ছবি </th>
                                 <th>ছবি</th>
                                 <th> শিরোনাম </th>
@@ -98,6 +101,9 @@
                                     </div>
                                     </td>
                                     <td>
+                                        <img src="{{asset( $item->logo??'')}}" onerror="this.src='/front/images/no_img_avaliable.jpg';" alt="s2.jpg" width="60">
+                                    </td>
+                                    <td>
                                         <img src="{{asset( $item->cover_photo??'')}}" onerror="this.src='/front/images/no_img_avaliable.jpg';" alt="s2.jpg" width="60">
                                     </td>
                                     <td>
@@ -114,6 +120,7 @@
                             {!! $records->appends(\Illuminate\Support\Facades\Request::except('page'))->links() !!}
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -140,9 +147,15 @@
                             <table class="table">
                                 <tbody>
                                 <tr>
-                                    <td>কভার ছবি </td>
+                                    <td>ওয়েব সাইট কভার ছবি </td>
                                     <td>
                                         <img src="{{asset( $row->cover_photo??'')}}" width="100" onerror="this.src='/front/images/no_img_avaliable.jpg';" alt="s2.jpg">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> ওয়েব সাইট লোগো </td>
+                                    <td>
+                                        <img src="{{asset( $row->logo??'')}}" width="100" onerror="this.src='/front/images/no_img_avaliable.jpg';" alt="s2.jpg">
                                     </td>
                                 </tr>
                                 <tr>
@@ -176,6 +189,47 @@
     </div>
     @endforeach
 
+<!-- Add Modal Start -->
+{{-- <div class="modal fade" id="logoModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h2><strong>লোগো</strong> যোগ করুন</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{url('admin/galleries/logo')}}" method="POST">
+                            {{csrf_field()}}
+                            <div class="row clearfix">
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for=""><small>ওয়েব সাইট লোগো</small></label>
+                                        <input type="file" class="form-control" placeholder="লোগো" name="photo">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for=""><small>অবস্থা</small></label>
+                                        <select name="status" id="status" class="form-control">
+                                            <option value="active">Active</option>
+                                            <option value="inctive">Inctive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn btn-info btn-round">সংরক্ষণ করুন</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+    </div>
+</div> --}}
+<!--Add Modal End-->
 
 
 @endsection

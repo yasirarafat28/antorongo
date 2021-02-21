@@ -862,6 +862,9 @@ class SavingController extends Controller
         }
         }
 
+         $yearly_list = $records->count();
+         $yearly_id = $records->get('id');
+
         $active_count   = Saving::where('type',$type)->where('status','approved')->count();
         $pending_count   = Saving::where('type',$type)->where('status','pending')->count();
         $declined_count   = Saving::where('type',$type)->where('status','declined')->count();
@@ -879,7 +882,7 @@ class SavingController extends Controller
         // $closed_saving_profit   = $closed_target_amount + $closed_saving_return_amount ;
 
         return view('admin/saving/list',compact('records','type','active_count','pending_count','declined_count',
-        'closed_count','closed_target_amount','closed_total_profit_paid','closed_total_revenue_paid'));
+        'closed_count','closed_target_amount','closed_total_profit_paid','closed_total_revenue_paid',));
     }
 
     public function getSavingsByUser(Request $request)

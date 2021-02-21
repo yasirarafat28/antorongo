@@ -89,6 +89,25 @@
                 </div>
             </div>
 
+            <div class="col-md-3">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    বই তালিকা</div>
+                                {{-- <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($yearly_list)}}</div>
+                                <span style="font-size: 15px;">মেয়াদ শেষ</span>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">  ৳ {{App\NumberConverter::en2bn($yearly_id->end_at??'')}} টাকা</div> --}}
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
 
         </div>
@@ -106,7 +125,21 @@
                         <form action="">
 
                             <div class="row clearfix">
-                                <div class="col-lg-4 col-md-4">
+
+                                {{-- <div class="col-lg-3 col-md-3">
+
+                                    <label for=""><small>অবস্থা</small></label>
+
+                                    <div class="input-group">
+                                        <select name="saving" id="" class="form-control">
+                                            <option value="">বাছাই করুন</option>
+                                            <option {{isset($_GET['saving']) && $_GET['saving']=='approved'?'selected':'' }}  value="active">চলতি সঞ্চয়</option>
+                                            <option {{isset($_GET['saving']) && $_GET['saving']=='closed'?'selected':'' }} value="property">প্রত্যাহার সঞ্চয়</option>
+                                        </select>
+                                    </div>
+                                </div> --}}
+
+                                <div class="col-lg-3 col-md-3">
 
                                     <label for=""><small>থেকে</small></label>
 
@@ -118,7 +151,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-4 col-md-4">
+                                <div class="col-lg-3 col-md-3">
 
                                     <label for=""><small> পর্যন্ত</small></label>
 
@@ -130,7 +163,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-2 col-md-2">
+                                <div class="col-lg-1 col-md-1">
 
                                     <br>
 
