@@ -26,8 +26,10 @@ class SalarySetupController extends Controller
     public function index()
     {
         //
+        $members = User::whereHas('roles',function($q){
+            $q->whereNotIn('name',['member','admin','super_admin']);
 
-        $members = User::where('role','admin')->orderBy('name','ASC')->get();
+        })->orderBy('name','ASC')->get();
         $records = SalarySetup::with('user')->orderBy('id','DESC')->get();
 
         return view('admin/hr/salary-setup',compact('records','members'));
