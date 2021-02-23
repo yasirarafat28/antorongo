@@ -170,6 +170,84 @@ class DashboardController extends Controller
         ->where('canculatable','yes')
         ->first();
 
+        //office will give
+
+            $office_saving_active_list = Saving::where('status','approved')->get('id');
+            $office_fdr_active_list = Fdr::where('status','approved')->get('id');
+
+            $office_deposit_totalCreadit = Transaction::with('user','receiver')->where('transaction_for','saving')->where(function ($q) use ($office_saving_active_list){
+                $q->whereIn('transactable_id',$office_saving_active_list);
+            })->whereIn('flag',['deposit'])->where('status','approved')->sum('amount');
+
+            // $office_deposit_totalCreadit  = Transaction::whereIn('flag',['deposit'])->where('transaction_for','saving')
+            //     ->where('status','approved')->sum('amount');
+
+            $office_deposit_withdrawtotalDebit = Transaction::with('user','receiver')->where('transaction_for','saving')->where(function ($q) use ($office_saving_active_list){
+                $q->whereIn('transactable_id',$office_saving_active_list);
+            })->whereIn('flag',['deposit_withdraw'])->where('status','approved')->sum('amount');
+
+
+            // $office_deposit_withdrawtotalDebit  = Transaction::whereIn('flag',['deposit_withdraw'])->where('transaction_for','saving')
+            // ->where('status','approved')->sum('amount');
+
+            $office_deposit_balance = $office_deposit_totalCreadit - $office_deposit_withdrawtotalDebit;
+
+            $office_porfit_totalCreadit = Transaction::with('user','receiver')->where('transaction_for','saving')->where(function ($q) use ($office_saving_active_list){
+                $q->whereIn('transactable_id',$office_saving_active_list);
+            })->whereIn('flag',['profit'])->where('status','approved')->sum('amount');
+
+            // $office_porfit_totalCreadit  = Transaction::whereIn('flag',['profit'])->where('transaction_for','saving')
+            //     ->where('status','approved')->sum('amount');
+
+            $office_profit_withdraw_totalDebit = Transaction::with('user','receiver')->where('transaction_for','saving')->where(function ($q) use ($office_saving_active_list){
+                $q->whereIn('transactable_id',$office_saving_active_list);
+            })->whereIn('flag',['profit_withdraw'])->where('status','approved')->sum('amount');
+
+            // $office_profit_withdraw_totalDebit  = Transaction::whereIn('flag',['profit_withdraw'])->where('transaction_for','saving')
+            // ->where('status','approved')->sum('amount');
+
+            $office_profit_balance = $office_porfit_totalCreadit - $office_profit_withdraw_totalDebit;
+
+            $office_fdr_d_totalCreadit = Transaction::with('user','receiver')->where('transaction_for','fdr')->where(function ($q) use ($office_fdr_active_list){
+                $q->whereIn('transactable_id',$office_fdr_active_list);
+            })->whereIn('flag',['deposit'])->where('status','approved')->sum('amount');
+
+                // $office_fdr_d_totalCreadit  = Transaction::whereIn('flag',['deposit'])->where('transaction_for','fdr')
+                //     ->where('status','approved')->sum('amount');
+
+                $office_fdr_w_totalDebit = Transaction::whereHas('head',function($q){
+                         $q->where('slug','fdr_refund_expense');
+                    })->with('user','receiver')->where('transaction_for','fdr')->where(function ($q) use ($office_fdr_active_list){
+                    $q->whereIn('transactable_id',$office_fdr_active_list);
+                })->whereIn('flag',['withdraw'])->where('status','approved')->sum('amount');
+
+                // $office_fdr_w_totalDebit  = Transaction::whereHas('head',function($q){
+                //     $q->where('slug','fdr_refund_expense');
+                // })->whereIn('flag',['withdraw'])->where('transaction_for','fdr')
+                // ->where('status','approved')->sum('amount');
+
+               $office_fdr_d_balance = $office_fdr_d_totalCreadit - $office_fdr_w_totalDebit;
+
+               $office_fdr_p_totalCreadit = Transaction::with('user','receiver')->where('transaction_for','fdr')->where(function ($q) use ($office_fdr_active_list){
+                $q->whereIn('transactable_id',$office_fdr_active_list);
+            })->whereIn('flag',['profit'])->where('status','approved')->sum('amount');
+
+                // $office_fdr_p_totalCreadit  = Transaction::whereIn('flag',['profit'])->where('transaction_for','fdr')
+                //     ->where('status','approved')->sum('amount');
+
+                $office_fdr_p_w_totalDebit = Transaction::with('user','receiver')->where('transaction_for','fdr')->where(function ($q) use ($office_fdr_active_list){
+                    $q->whereIn('transactable_id',$office_fdr_active_list);
+                })->whereIn('flag',['withdraw'])->where('status','approved')->sum('amount');
+
+                // $office_fdr_p_w_totalDebit  = Transaction::whereIn('flag',['withdraw'])->whereHas('head',function($q){
+                //     $q->where('slug','fdr_profit_expense');
+                // })->where('transaction_for','fdr')
+                // ->where('status','approved')->sum('amount');
+
+                $office_fdr_p_balance = $office_fdr_p_totalCreadit-$office_fdr_p_w_totalDebit;
+
+
+
         return view('admin/dashboard',compact('members','daily_saving_transactions','daily_savings','short_savings',
         'short_saving_transactions','long_savings','long_saving_transactions','fdr_list','fdr_transactions',
         'loan','active_count','pending_count','declined_count','closed_count','fdr_active_count','fdr_pending_count',
@@ -178,7 +256,8 @@ class DashboardController extends Controller
         'daily_closed_count','long_active_count','long_pending_count','long_closed_count','short_active_count','short_pending_count',
         'short_closed_count','short_active_saving_transactions','long_active_saving_transactions','daily_active_saving_transactions',
         'current_active_saving_transactions','fdr_active_transactions','loan_active_transactions','loan_active_interest_total','loan_reveanue_paid_total',
-        'loan_reveanue_add_total','loan_interest_added_total','loan_profit_waiver_total','total_person_depository'));
+        'loan_reveanue_add_total','loan_interest_added_total','loan_profit_waiver_total','total_person_depository',
+        'office_deposit_balance','office_profit_balance','office_fdr_d_balance','office_fdr_p_balance'));
     }
 
 }

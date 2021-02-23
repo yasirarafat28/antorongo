@@ -834,6 +834,7 @@ class SavingController extends Controller
 
         $records = Saving::with('user')->where(function ($q) use ($request,$type){
             $q->where('type', $type);
+
             if ($request->has('from') && $request->from) {
                 $from = date("Y-m-d", strtotime($request->from));
                 $q->where('started_at', '>=',  $from);
@@ -850,7 +851,18 @@ class SavingController extends Controller
 
             }
 
+
         })->orderBy('created_at','DESC');
+
+        if ($request->has('status') && $request->status) {
+
+            if($request->status=='approved'){
+                $records = $records->where('status',$request->status);
+            }elseif($request->status=='closed'){
+                $records = $records->where('status',$request->status);
+            }
+        }
+
         if(isset($request->limit) && $request->limit=='-1'){
             $records = $records->paginate($records->count());
         }else{
@@ -860,10 +872,10 @@ class SavingController extends Controller
         }else{
             $records = $records->paginate(25);
         }
+
         }
 
-         $yearly_list = $records->count();
-         $yearly_id = $records->get('id');
+        //  $yearly_id = $records->get('id');
 
         $active_count   = Saving::where('type',$type)->where('status','approved')->count();
         $pending_count   = Saving::where('type',$type)->where('status','pending')->count();

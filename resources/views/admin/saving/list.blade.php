@@ -89,6 +89,10 @@
                 </div>
             </div>
 
+            {{-- @php
+                $book_list =    $records->paginate($records->count());
+            @endphp --}}
+
             <div class="col-md-3">
                 <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
@@ -96,9 +100,9 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     বই তালিকা</div>
-                                {{-- <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($yearly_list)}}</div>
-                                <span style="font-size: 15px;">মেয়াদ শেষ</span>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">  ৳ {{App\NumberConverter::en2bn($yearly_id->end_at??'')}} টাকা</div> --}}
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn('')}}</div>
+                                <span style="font-size: 15px;">পলিসির পরিমান</span>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn($records->sum('target_amount'),2)}} টাকা</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -126,18 +130,18 @@
 
                             <div class="row clearfix">
 
-                                {{-- <div class="col-lg-3 col-md-3">
+                                <div class="col-lg-3 col-md-3">
 
                                     <label for=""><small>অবস্থা</small></label>
 
                                     <div class="input-group">
-                                        <select name="saving" id="" class="form-control">
+                                        <select name="status" id="" class="form-control">
                                             <option value="">বাছাই করুন</option>
-                                            <option {{isset($_GET['saving']) && $_GET['saving']=='approved'?'selected':'' }}  value="active">চলতি সঞ্চয়</option>
-                                            <option {{isset($_GET['saving']) && $_GET['saving']=='closed'?'selected':'' }} value="property">প্রত্যাহার সঞ্চয়</option>
+                                            <option {{isset($_GET['status']) && $_GET['status']=='approved'?'selected':'' }} value="approved">চলতি সঞ্চয়</option>
+                                            <option {{isset($_GET['status']) && $_GET['status']=='closed'?'selected':'' }} value="closed">প্রত্যাহার সঞ্চয়</option>
                                         </select>
                                     </div>
-                                </div> --}}
+                                </div>
 
                                 <div class="col-lg-3 col-md-3">
 

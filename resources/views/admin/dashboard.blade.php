@@ -16,6 +16,48 @@
 
         <!-- Content Row -->
         <div class="row col-md-12">
+            <h6 class="m-0 mb-3 font-weight-bold text-primary col-md-12">অফিস</h6>
+            <!-- Pending Requests Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    অফিস পাবে ফিল্ড থেকে
+                                </div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($loan_active_transactions + $loan_reveanue_add_total + $loan_interest_added_total - $loan_reveanue_paid_total - $loan_active_interest_total - $loan_profit_waiver_total),2}} টাকা</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pending Requests Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    অফিস দিবে
+                                </div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($office_deposit_balance + $office_profit_balance + $office_fdr_d_balance + $office_fdr_p_balance),2}} টাকা</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row col-md-12">
             <h6 class="m-0 mb-3 font-weight-bold text-primary col-md-12">স্বল্প মেয়াদী সঞ্চয়</h6>
             <!-- Pending Requests Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
@@ -44,7 +86,7 @@
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     স্বল্প মেয়াদী বর্তমান সঞ্চয়</div>
 
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($short_active_saving_transactions)}} টাকা</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($short_active_saving_transactions,2)}} টাকা</div>
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($short_active_count)}}</div>
 
 
@@ -178,7 +220,7 @@
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     দীর্ঘ মেয়াদী বর্তমান সঞ্চয়</div>
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($long_active_count)}}</div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($long_active_saving_transactions)}} টাকা</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($long_active_saving_transactions,2)}} টাকা</div>
 
                                 <a href="/admin/saving/long/list?filterBy=approved" class="text-link">তালিকা দেখুন</a>
                             </div>
@@ -255,7 +297,7 @@
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     দৈনিক বর্তমান সঞ্চয়</div>
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($daily_active_count)}}</div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($daily_active_saving_transactions)}} টাকা</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($daily_active_saving_transactions,2)}} টাকা</div>
 
 
                                 <a href="/admin/saving/daily/list?filterBy=approved" class="text-link">তালিকা দেখুন</a>
@@ -334,7 +376,7 @@
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     বর্তমান সাধারণ সঞ্চয়</div>
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($current_active_count)}}</div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($current_active_saving_transactions)}} টাকা</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($current_active_saving_transactions,2)}} টাকা</div>
 
                                 <a href="/admin/saving/current/list?filterBy=approved" class="text-link">তালিকা দেখুন</a>
                             </div>
@@ -412,7 +454,7 @@
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     বর্তমান  এফ ডি আর</div>
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($fdr_active_count)}}</div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($fdr_active_transactions)}} টাকা</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($fdr_active_transactions,2)}} টাকা</div>
 
 
                                 <a href="/admin/fdr/list?filterBy=approved" class="text-link">তালিকা দেখুন</a>
