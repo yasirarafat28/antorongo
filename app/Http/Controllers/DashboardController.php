@@ -134,7 +134,7 @@ class DashboardController extends Controller
 
         $loan_ornament_list = DepositoryOrnament::where('status','active')->where(function ($q) use ($loan_ornament_active_id){
             $q->whereIn('loan_id',$loan_ornament_active_id);
-        })->count();
+        })->count('loan_id');
 
         // $loan_ornament_list = DepositoryOrnament::where('status','active')->count('loan_id');
 
