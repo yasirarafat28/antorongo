@@ -470,11 +470,12 @@
         p_fund = parseFloat($('#p_fund_deduction').val());
         pro_tax = parseFloat($('#pro_tax_deduction').val());
         other_deduction = parseFloat($('#other_deduction').val());
+        p_fine = parseFloat($('#fine').val());
         //console.log(parseFloat(basic+dear));
 
         $('#due').val(parseFloat($('#payable').val())-parseFloat($('#paid').val()));
 
-        $('#total-salary').html(basic+dear+house+medical+bonus+other_allowance-p_fund-pro_tax-other_deduction);
+        $('#total-salary').html(basic+dear+house+medical+bonus+other_allowance-p_fund-pro_tax-other_deduction-p_fine);
         //$('#total-salary').html(parseFloat(basic+dear+house+medical+bonus+other_allowance));
 
     }
@@ -508,8 +509,9 @@
                 p_fund = parseFloat($('#p_fund_deduction').val(data.p_fund_deduction));
                 pro_tax = parseFloat($('#pro_tax_deduction').val(data.pro_tax_deduction));
                 other_deduction = parseFloat($('#other_deduction').val(data.other_deduction));
+                p_fine = parseFloat($('#fine').val(data.fine));
 
-                $('#payable').val(data.basic_allowance+data.dearness_allowance+data.house_rent_allowance+data.medical_allowance+data.bonus_allowance+data.other_addition_allowance-data.p_fund_deduction-data.pro_tax_deduction-data.other_deduction);
+                $('#payable').val(data.basic_allowance+data.dearness_allowance+data.house_rent_allowance+data.medical_allowance+data.bonus_allowance+data.other_addition_allowance-data.p_fund_deduction-data.pro_tax_deduction-data.other_deduction-p_fine);
 
                 SalaryCalculate();
 

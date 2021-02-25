@@ -131,7 +131,7 @@ class DashboardController extends Controller
 
         //Ornament Depository
 
-        $total_person_depository = DepositoryOrnament::where('loan_id',$loan_active_list)->where('status','active')->sum('total_amount');
+        $loan_ornament_list = DepositoryOrnament::where('status','active')->count();
 
         // loan function end
 
@@ -256,7 +256,7 @@ class DashboardController extends Controller
         'daily_closed_count','long_active_count','long_pending_count','long_closed_count','short_active_count','short_pending_count',
         'short_closed_count','short_active_saving_transactions','long_active_saving_transactions','daily_active_saving_transactions',
         'current_active_saving_transactions','fdr_active_transactions','loan_active_transactions','loan_active_interest_total','loan_reveanue_paid_total',
-        'loan_reveanue_add_total','loan_interest_added_total','loan_profit_waiver_total','total_person_depository',
+        'loan_reveanue_add_total','loan_interest_added_total','loan_profit_waiver_total','loan_ornament_list',
         'office_deposit_balance','office_profit_balance','office_fdr_d_balance','office_fdr_p_balance'));
     }
 

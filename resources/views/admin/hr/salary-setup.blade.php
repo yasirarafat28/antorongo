@@ -247,7 +247,7 @@
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
                                         <label for=""><small> মহার্ঘ ভাতা</small></label>
-                                        <input type="number" class="form-control" placeholder="মহার্ঘ ভাতা" name="dearness_allowance">
+                                        <input type="number" class="form-control" placeholder="মহার্ঘ ভাতা" name="dearness_allowance" value="0">
                                     </div>
                                 </div>
 
@@ -256,14 +256,14 @@
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
                                         <label for=""><small> বাড়িভাড়া ভাতা</small></label>
-                                        <input type="number" class="form-control" placeholder="বাড়িভাড়া ভাতা" name="house_rent_allowance">
+                                        <input type="number" class="form-control" placeholder="বাড়িভাড়া ভাতা" name="house_rent_allowance" value="0">
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
                                         <label for=""><small> মেডিকেল ভাতা</small></label>
-                                        <input type="number" class="form-control" placeholder="মেডিকেল ভাতা" name="medical_allowance">
+                                        <input type="number" class="form-control" placeholder="মেডিকেল ভাতা" name="medical_allowance" value="0">
                                     </div>
                                 </div>
 
@@ -271,7 +271,7 @@
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
                                         <label for=""><small> বোনাস</small></label>
-                                        <input type="number" class="form-control" placeholder="বোনাস" name="bonus_allowance">
+                                        <input type="number" class="form-control" placeholder="বোনাস" name="bonus_allowance" value="0">
                                     </div>
                                 </div>
 
@@ -280,7 +280,7 @@
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
                                         <label for=""><small> অন্যান্য ভাতা </small></label>
-                                        <input type="number" class="form-control" placeholder="অন্যান্য ভাতা" name="other_addition_allowance">
+                                        <input type="number" class="form-control" placeholder="অন্যান্য ভাতা" name="other_addition_allowance" value="0">
                                     </div>
                                 </div>
                                 <hr>
@@ -290,7 +290,7 @@
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
                                         <label for=""><small> ভবিষ্যতনিধি </small></label>
-                                        <input type="number" class="form-control" placeholder="ভবিষ্যতনিধি" name="p_fund_deduction">
+                                        <input type="number" class="form-control" placeholder="ভবিষ্যতনিধি" name="p_fund_deduction" value="0">
                                     </div>
                                 </div>
 
@@ -299,7 +299,7 @@
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
                                         <label for=""><small> পেশাগত কর </small></label>
-                                        <input type="number" class="form-control" placeholder="পেশাগত কর" name="pro_tax_deduction">
+                                        <input type="number" class="form-control" placeholder="পেশাগত কর" name="pro_tax_deduction" value="0">
                                     </div>
                                 </div>
 
@@ -307,7 +307,7 @@
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
                                         <label for=""><small> অন্যান্য </small></label>
-                                        <input type="number" class="form-control" placeholder="অন্যান্য" name="other_deduction">
+                                        <input type="number" class="form-control" placeholder="অন্যান্য" name="other_deduction" value="0">
                                     </div>
                                 </div>
                                 <div class="col-md-12 text-center">
@@ -372,7 +372,7 @@
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
                                         <label for=""><small> বাড়িভাড়া ভাতা</small></label>
-                                        <input type="number" class="form-control" placeholder="বাড়িভাড়া ভাতা" name="house_rent_allowance" value="{{$item->basic_allowance}}">
+                                        <input type="number" class="form-control" placeholder="বাড়িভাড়া ভাতা" name="house_rent_allowance" value="{{$item->house_rent_allowance}}">
                                     </div>
                                 </div>
 

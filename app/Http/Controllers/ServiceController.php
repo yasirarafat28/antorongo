@@ -92,6 +92,7 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $this->validate($request,[
             'title'=>'required',
             'description'=>'required'
@@ -111,6 +112,7 @@ class ServiceController extends Controller
         //     $imageUrl   = $path . $imageName;
         //     $service->feature_image = $imageUrl;
         // }
+
         $service->save();
 
         return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');

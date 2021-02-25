@@ -3,11 +3,11 @@
 @section('content')
 
     @php
-        $coverPhoto = App\Gallery::where('status','active')->where('flag','web_cover_photo')->orderBy('created_at','DESC')->first();
+        $coverPhotos = App\Gallery::where('status','active')->where('flag','web_cover_photo')->orderBy('created_at','DESC')->first();
     @endphp
 
-<div class="site-blocks-cover overlay" style="background-image: url({{($coverPhoto->cover_photo??'')}});" data-aos="fade"
-            id="home-section">
+        <div class="site-blocks-cover overlay slide" style="background-image: url({{($coverPhotos->cover_photo)}});" data-aos="fade-up"
+            id="home-section" data-aos-delay="100">
             <div class="container">
                 <div class="row align-items-center justify-content-center">
                     <div class="col-md-10 mt-lg-5 text-center">
@@ -17,8 +17,8 @@
                                 <h1 class="text-uppercase" data-aos="fade-up">{{\App\Setting::setting()->app_name}}</h1>
                                 {{-- <p class="mb-5 desc" data-aos="fade-up" data-aos-delay="100">Lorem ipsum dolor sit amet,
                                     consectetur adipisicing elit. Provident cupiditate suscipit, magnam libero velit
-                                    esse sapiente officia inventore!</p> --}}
-                                <div data-aos="fade-up" data-aos-delay="100">
+                                    esse sapiente officia inventore!</p>
+                                <div data-aos="fade-up" data-aos-delay="100"> --}}
                                 </div>
                             </div>
                             {{-- <div class="slide">
@@ -43,6 +43,7 @@
                 </span>
             </a>
         </div>
+
         {{-- <div class="site-section" id="next">
             <div class="container">
                 <div class="row mb-5">

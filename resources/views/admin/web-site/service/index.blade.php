@@ -155,8 +155,8 @@
                                         <div class="form-group">
                                             <label for=""><small>অবস্থা</small></label>
                                             <select name="status" id="status" class="form-control">
-                                                <option value="active">Active</option>
-                                                <option value="inctive">Inctive</option>
+                                                <option value="active" {{$row->status=='active' ? 'selected' : ''}}>Active</option>
+                                                <option value="inctive" {{$row->status=='inactive' ? 'selected' : ''}}>Inctive</option>
                                             </select>
                                         </div>
                                     </div>

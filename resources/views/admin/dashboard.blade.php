@@ -645,7 +645,8 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     সম্পদ জামানত (স্বর্ণালংকার)</div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800"> ৳ {{App\NumberConverter::en2bn($total_person_depository, 2)}} টাকা</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800"> {{App\NumberConverter::en2bn($loan_ornament_list)}} </div>
+                                <a href="/admin/loan/list?dipository=ornament" class="text-link">তালিকা দেখুন</a>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>

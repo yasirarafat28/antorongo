@@ -43,7 +43,7 @@ class GalleryController extends Controller
         $galleries = new Gallery();
         $galleries->title = $request->title;
         if($request->title){
-            $$galleries->flag = 'web_title';
+            $galleries->flag = 'web_title';
         }
         $galleries->status = $request->status;
 
