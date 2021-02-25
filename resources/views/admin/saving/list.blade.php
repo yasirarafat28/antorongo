@@ -100,9 +100,9 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     বই তালিকা</div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn('')}}</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($limit_book->count())}}</div>
                                 <span style="font-size: 15px;">পলিসির পরিমান</span>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn($records->sum('target_amount'),2)}} টাকা</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn($limit_book_amount,2)}} টাকা</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>

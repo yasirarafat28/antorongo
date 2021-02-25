@@ -864,18 +864,22 @@ class SavingController extends Controller
         }
 
         if(isset($request->limit) && $request->limit=='-1'){
+            $limit_book = $records->get('id');
+            $limit_book_amount = $records->sum('target_amount');
             $records = $records->paginate($records->count());
         }else{
             $records = $records;
         if(isset($request->limit) && $request->limit=='-1'){
+            $limit_book = $records->get('id');
+            $limit_book_amount = $records->sum('target_amount');
             $records = $records->paginate($records->count());
         }else{
+            $limit_book = $records->get('id');
+            $limit_book_amount = $records->sum('target_amount');
             $records = $records->paginate(25);
         }
 
         }
-
-        //  $yearly_id = $records->get('id');
 
         $active_count   = Saving::where('type',$type)->where('status','approved')->count();
         $pending_count   = Saving::where('type',$type)->where('status','pending')->count();
@@ -894,7 +898,8 @@ class SavingController extends Controller
         // $closed_saving_profit   = $closed_target_amount + $closed_saving_return_amount ;
 
         return view('admin/saving/list',compact('records','type','active_count','pending_count','declined_count',
-        'closed_count','closed_target_amount','closed_total_profit_paid','closed_total_revenue_paid'));
+        'closed_count','closed_target_amount','closed_total_profit_paid','closed_total_revenue_paid','limit_book',
+    'limit_book_amount'));
     }
 
     public function getSavingsByUser(Request $request)

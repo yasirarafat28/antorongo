@@ -181,28 +181,33 @@
         </section> --}}
 
         <section class="site-section border-bottom bg-light" id="services-section">
+            @php
+                $services = App\Service::where('status','active')->orderBy('created_at','DESC')->skip(0)->take(6)->get();
+            @endphp
             <div class="container">
                 <div class="row mb-5">
                     <div class="col-12 text-center" data-aos="fade">
-                        <h2 class="section-title mb-3">Our Services</h2>
+                        <h2 class="section-title mb-3">আমাদের সেবাসমূহ</h2>
                     </div>
                 </div>
                 <div class="row align-items-stretch">
-                    <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up">
-                        <div class="unit-4">
-                            <div class="unit-4-icon">
-                                <img src="/front/images/flaticon-svg/svg/001-wallet.svg"
-                                    alt="Free Website Template by Free-Template.co" class="img-fluid w-25 mb-4">
-                            </div>
-                            <div>
-                                <h3>Business Consulting</h3>
-                                <p>A small river named Duden flows by their place and supplies it with the necessary
-                                    regelialia.</p>
-                                <p><a href="#">Learn More</a></p>
+                    @foreach ($services as $service)
+
+                        <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up">
+                            <div class="unit-4">
+                                <div class="unit-4-icon">
+                                    <img src="/front/images/flaticon-svg/svg/002-rich.svg"
+                                    alt="Image" class="img-fluid w-25 mb-4">
+                                </div>
+                                <div>
+                                    <h3>{{$service->title??'N?A'}}</h3>
+                                    <p>{!! $service->description !!}</p>
+                                    {{-- <p><a href="#">Learn More</a></p> --}}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    @endforeach
+                    {{-- <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="100">
                         <div class="unit-4">
                             <div class="unit-4-icon">
                                 <img src="/front/images/flaticon-svg/svg/006-credit-card.svg"
@@ -215,8 +220,9 @@
                                 <p><a href="#">Learn More</a></p>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    </div> --}}
+
+                    {{-- <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="200">
                         <div class="unit-4">
                             <div class="unit-4-icon">
                                 <img src="/front/images/flaticon-svg/svg/002-rich.svg"
@@ -229,8 +235,9 @@
                                 <p><a href="#">Learn More</a></p>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="">
+                    </div> --}}
+
+                    {{-- <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="">
                         <div class="unit-4">
                             <div class="unit-4-icon">
                                 <img src="/front/images/flaticon-svg/svg/003-notes.svg"
@@ -243,8 +250,9 @@
                                 <p><a href="#">Learn More</a></p>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    </div> --}}
+
+                    {{-- <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="100">
                         <div class="unit-4">
                             <div class="unit-4-icon">
                                 <img src="/front/images/flaticon-svg/svg/004-cart.svg"
@@ -257,8 +265,9 @@
                                 <p><a href="#">Learn More</a></p>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    </div> --}}
+
+                    {{-- <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="200">
                         <div class="unit-4">
                             <div class="unit-4-icon">
                                 <img src="/front/images/flaticon-svg/svg/005-megaphone.svg"
@@ -271,11 +280,12 @@
                                 <p><a href="#">Learn More</a></p>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </section>
-        <section class="site-section" id="about-section">
+
+        {{-- <section class="site-section" id="about-section">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 mb-5" data-aos="fade-up" data-aos-delay="">
@@ -314,7 +324,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
 
         <!--Blog Section Start -->
 
@@ -421,7 +431,7 @@
                     <div class="col-md-12 mb-5">
                         <form action="{{url('admin/enquiries')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
                             {{csrf_field()}}
-                        <h2 class="h4 text-black mb-5">Contact Form</h2>
+                        <h2 class="section-title mb-3 text-center">যোগাযোগের ফর্ম</h2>
                             @if(session()->has('success'))
                                 <div class="alert alert-success">
                                     {{ session('success') }}
@@ -435,42 +445,42 @@
                             @endif
                             <div class="row form-group">
                                 <div class="col-md-6 mb-3 mb-md-0">
-                                    <label class="text-black" for="fname">First Name</label>
-                                    <input type="text" id="first_name" class="form-control" name="first_name">
+                                    <label class="text-black" for="fname">প্রথম নাম</label>
+                                    <input type="text" id="first_name" class="form-control" name="first_name" placeholder="প্রথম নাম">
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="text-black" for="lname">Last Name</label>
-                                    <input type="text" id="last_name" class="form-control" name="last_name">
+                                    <label class="text-black" for="lname">শেষ নাম</label>
+                                    <input type="text" id="last_name" class="form-control" name="last_name" placeholder="শেষ নাম">
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-md-12">
-                                    <label class="text-black" for="email">Email</label>
-                                    <input type="email" id="email" class="form-control" name="email">
+                                    <label class="text-black" for="email">ইমেল</label>
+                                    <input type="email" id="email" class="form-control" name="email" placeholder="ইমেল">
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-md-12">
-                                    <label class="text-black" for="email">Phone</label>
-                                    <input type="text" id="" class="form-control" name="phone">
+                                    <label class="text-black" for="email">ফোন </label>
+                                    <input type="text" id="" class="form-control" name="phone" placeholder="ফোন">
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-md-12">
-                                    <label class="text-black" for="subject">Subject</label>
-                                    <input type="text" id="subject" class="form-control" name="subject">
+                                    <label class="text-black" for="subject">সাবজেক্ট</label>
+                                    <input type="text" id="subject" class="form-control" name="subject" placeholder="সাবজেক্ট">
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-md-12">
                                     <label class="text-black" for="message">Message</label>
                                     <textarea name="description" id="message" class="form-control"
-                                        placeholder="Write your notes or questions here..."></textarea>
+                                        placeholder="আপনার নোট বা প্রশ্ন এখানে লিখুন..."></textarea>
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-md-12 text-center">
-                                    <button class="btn btn-primary btn-md text-white"> Send Message</button>
+                                    <button class="btn btn-primary btn-md text-white"> বার্তা পাঠান</button>
                                 </div>
                             </div>
                         </form>

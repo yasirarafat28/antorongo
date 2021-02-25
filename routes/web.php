@@ -248,6 +248,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::resource('contacts', 'ContactController');
     Route::resource('galleries', 'GalleryController');
     Route::resource('enquiries', 'EnquiryController');
+    Route::resource('services', 'ServiceController');
 
 
 
