@@ -130,13 +130,13 @@ class DashboardController extends Controller
         })->where('flag','loan_waiver')->sum('amount');
 
         //Ornament Depository
-        $loan_ornament_active_id = Loan::where('status','active')->get();
+        // $loan_ornament_active_id = Loan::where('status','active')->get();
 
-        $loan_ornament_list = DepositoryOrnament::where('status','active')->where(function ($q) use ($loan_ornament_active_id){
-            $q->whereIn('loan_id',$loan_ornament_active_id);
-        })->count('loan_id');
+        // $loan_ornament_list = DepositoryOrnament::where('status','active')->where(function ($q) use ($loan_ornament_active_id){
+        //     $q->whereIn('loan_id',$loan_ornament_active_id);
+        // })->count('loan_id');
 
-        // $loan_ornament_list = DepositoryOrnament::where('status','active')->count('loan_id');
+        $loan_ornament_list = DepositoryOrnament::where('status','active')->count('loan_id');
 
         // loan function end
 
