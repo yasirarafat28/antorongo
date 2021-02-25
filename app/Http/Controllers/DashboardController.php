@@ -130,8 +130,8 @@ class DashboardController extends Controller
         })->where('flag','loan_waiver')->sum('amount');
 
         //Ornament Depository
-
-        $loan_ornament_list = DepositoryOrnament::where('status','active')->count();
+        $loan_ornament_active_id = Loan::where('status','active')->get();
+        $loan_ornament_list = DepositoryOrnament::where('loan_id',$loan_ornament_active_id)->where('status','active')->count();
 
         // loan function end
 
