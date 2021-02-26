@@ -81,6 +81,7 @@
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                         aria-labelledby="dropdownMenuLink">
 
+                                        <a  data-toggle="modal" data-target="#contactEditModal{{$item->id}}" class="dropdown-item"><i class="fa fa-eye"> </i> এডিট </i></a>
                                         <a  data-toggle="modal" data-target="#contactShowModal{{$item->id}}" class="dropdown-item"><i class="fa fa-eye"> </i> বিস্তারিত </i></a>
 
                                             {!! Form::open([
@@ -118,6 +119,74 @@
 </section>
 
     @foreach($records as $row)
+
+     <!-- Edit Modal Start -->
+     <div class="modal fade" id="contactEditModal{{$row->id}}" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h2><strong> যোগাযোগ</strong> এডিট</h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <form action="{{url('admin/contacts/'.$row->id)}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
+                                {{csrf_field()}}
+                                {{method_field('PATCH')}}
+
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for=""><small>ইমেল</small></label>
+                                        <input type="email" placeholder="ইমেল" name="gmail" class="form-control" value="{{$row->gmail??''}}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for=""><small>ফোনঃ</small></label>
+                                        <input type="text" placeholder="ফোন" name="phone_no" class="form-control" value="{{$row->phone_no}}">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for=""><small> মোবাইলঃ</small></label>
+                                        <input type="text" placeholder="মোবাইল" name="mobile_no" class="form-control" value="{{$row->mobile_no}}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for=""><small>ঠিকানা</small></label>
+                                        <textarea name="address" id="" placeholder="ঠিকানা" class="form-control">{!! $row->address !!}</textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for=""><small>অবস্থা</small></label>
+                                        <select name="status" id="status" class="form-control">
+                                            <option value="active" {{$row->status=='active' ? 'selected' : ''}}>Active</option>
+                                            <option value="inctive" {{$row->status=='inacive' ? 'selected' : ''}}>Inctive</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 text-center">
+
+                                    <button class="btn btn-primary btn-round"> সেভ করুন</button>
+
+                                </div>
+                            </form>
+                        </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--Edit Modal End-->
+
     <!-- Show Modal Start -->
     <div class="modal fade" id="contactShowModal{{$row->id}}" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
