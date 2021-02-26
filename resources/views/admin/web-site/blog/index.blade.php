@@ -81,6 +81,7 @@
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                         aria-labelledby="dropdownMenuLink">
 
+                                        <a  data-toggle="modal" data-target="#blogEditModal{{$item->id}}" class="dropdown-item"><i class="fa fa-eye"> </i> এডিট  </i></a>
                                         <a  data-toggle="modal" data-target="#blogShowModal{{$item->id}}" class="dropdown-item"><i class="fa fa-eye"> </i> বিস্তারিত </i></a>
 
                                             {!! Form::open([
@@ -118,8 +119,70 @@
         <!-- #END# Exportable Table -->
     </div>
 </section>
+@foreach($records as $row)
 
-    @foreach($records as $row)
+    <!-- Edit Modal Start -->
+    <div class="modal fade" id="blogEditModal{{$row->id}}" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h2><strong> ব্লগ</strong> এডিট</h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{url('admin/blogs/'.$row->id)}}" method="POST">
+                                {{csrf_field()}}
+
+                                {{method_field('PATCH')}}
+                                <div class="row clearfix">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label for=""><small>শিরোনাম</small></label>
+                                            <input type="text" placeholder="শিরোনাম" name="title" class="form-control" value="{{$row->title}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label for=""><small>ছবি</small></label>
+                                            <input type="file" placeholder="ছবি" name="feature_image" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label for=""><small>অবস্থা</small></label>
+                                            <select name="status" id="status" class="form-control">
+                                                <option value="active" {{$row->status=='active' ? 'selected' : ''}}>Active</option>
+                                                <option value="inctive" {{$row->status=='inactive' ? 'selected' : ''}}>Inctive</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="form-group">
+
+                                            <label for=""><small> নোট/বিস্তারিত </small></label>
+
+                                            <textarea name="description" class="form-control" placeholder="নোট/বিস্তারিত">{!! $row->description !!}</textarea>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn btn-info btn-round">সেভ করুন</button>
+                                </div>
+                                </div>
+                            </form>
+                        </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--Edit Modal End-->
+
+
     <!-- Show Modal Start -->
     <div class="modal fade" id="blogShowModal{{$row->id}}" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">

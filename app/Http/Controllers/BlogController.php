@@ -92,7 +92,28 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'title'=>'required',
+        ]);
+
+        $blogs = Blog::find($id);
+        $blogs->title = $request->title;
+        $blogs->description = $request->description;
+        $blogs->status = $request->status;
+
+        if ($request->hasFile('feature_image')) {
+
+            $image      = $request->file('feature_image');
+            $imageName  = 'blogs_'.date('ymdhis').'.'.$image->getClientOriginalExtension();
+            $path       = 'images/file/';
+            $image->move($path, $imageName);
+            $imageUrl   = $path . $imageName;
+            $blogs->feature_image = $imageUrl;
+        }
+
+        $blogs->save();
+
+        return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
     }
 
     /**
