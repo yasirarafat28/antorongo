@@ -10,15 +10,19 @@
         <div class="owl-carousel owl-theme home_slider">
 
             <!-- Home Slider Item -->
+
+            @php
+                $cover_photo = App\Gallery::where('status','active')->where('flag','web_cover_photo')->orderBy('created_at','DESC')->first();
+            @endphp
             <div class="owl-item">
-                <div class="home_slider_background" style="background-image:url(/front/images/home_slider_1.jpg)"></div>
+                <div class="home_slider_background" style="background-image:url({{($cover_photo->cover_photo)}});"></div>
                 <div class="home_slider_content">
                     <div class="container">
                         <div class="row">
                             <div class="col text-center">
-                                <div class="home_slider_title">The Premium System Education</div>
-                                <div class="home_slider_subtitle">Future Of Education Technology</div>
-                                <div class="home_slider_form_container">
+                                <div class="home_slider_title text-uppercase" style="color:#fff">{{\App\Setting::setting()->app_name}}</div>
+                                <div class="home_slider_subtitle"></div>
+                                {{-- <div class="home_slider_form_container">
                                     <form action="#" id="home_search_form_1" class="home_search_form d-flex flex-lg-row flex-column align-items-center justify-content-between">
                                         <div class="d-flex flex-row align-items-center justify-content-start">
                                             <input type="search" class="home_search_input" placeholder="Keyword Search" required="required">
@@ -35,7 +39,7 @@
                                         </div>
                                         <button type="submit" class="home_search_button">search</button>
                                     </form>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -43,15 +47,18 @@
             </div>
 
             <!-- Home Slider Item -->
+            @php
+                $cover_photo_tow = App\Gallery::where('status','active')->where('flag','web_cover_photo_two')->orderBy('created_at','DESC')->first();
+            @endphp
             <div class="owl-item">
-                <div class="home_slider_background" style="background-image:url(/front/images/home_slider_1.jpg)"></div>
+                <div class="home_slider_background" style="background-image:url({{($cover_photo_tow->photo??'')}});"></div>
                 <div class="home_slider_content">
                     <div class="container">
                         <div class="row">
                             <div class="col text-center">
-                                <div class="home_slider_title">The Premium System Education</div>
-                                <div class="home_slider_subtitle">Future Of Education Technology</div>
-                                <div class="home_slider_form_container">
+                                <div class="home_slider_title">{{\App\Setting::setting()->app_name}}</div>
+                                {{-- <div class="home_slider_subtitle">Future Of Education Technology</div>
+                                    <div class="home_slider_form_container">
                                     <form action="#" id="home_search_form_2" class="home_search_form d-flex flex-lg-row flex-column align-items-center justify-content-between">
                                         <div class="d-flex flex-row align-items-center justify-content-start">
                                             <input type="search" class="home_search_input" placeholder="Keyword Search" required="required">
@@ -68,7 +75,7 @@
                                         </div>
                                         <button type="submit" class="home_search_button">search</button>
                                     </form>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -76,7 +83,7 @@
             </div>
 
             <!-- Home Slider Item -->
-            <div class="owl-item">
+            {{-- <div class="owl-item">
                 <div class="home_slider_background" style="background-image:url(/front/images/home_slider_1.jpg)"></div>
                 <div class="home_slider_content">
                     <div class="container">
@@ -106,7 +113,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
         </div>
     </div>
@@ -119,53 +126,59 @@
 
 <!-- Features -->
 
+@php
+$services = App\Service::where('status','active')->orderBy('created_at','DESC')->skip(0)->take(6)->get();
+@endphp
+
 <div class="features">
     <div class="container">
         <div class="row">
             <div class="col">
                 <div class="section_title_container text-center">
-                    <h2 class="section_title">Welcome To Unicat E-Learning</h2>
-                    <div class="section_subtitle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem</p></div>
+                    <h2 class="section_title">আমাদের সেবাসমূহ</h2>
+                    {{-- <div class="section_subtitle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem</p></div> --}}
                 </div>
             </div>
         </div>
         <div class="row features_row">
 
             <!-- Features Item -->
-            <div class="col-lg-3 feature_col">
+            @foreach ($services as $service)
+
+            <div class="col-lg-4 feature_col">
                 <div class="feature text-center trans_400">
-                    <div class="feature_icon"><img src="/front/images/icon_1.png" alt=""></div>
-                    <h3 class="feature_title">The Experts</h3>
-                    <div class="feature_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>
+                    <div class="feature_icon"><img src="/front/images/icon_2.png" alt="icon"></div>
+                    <h3 class="feature_title">{{$service->title??'N/A'}}</h3>
+                    <div class="feature_text"><p>{!!$service->description??'N/A'!!}</p></div>
                 </div>
             </div>
-
+            @endforeach
             <!-- Features Item -->
-            <div class="col-lg-3 feature_col">
+            {{-- <div class="col-lg-3 feature_col">
                 <div class="feature text-center trans_400">
                     <div class="feature_icon"><img src="/front/images/icon_2.png" alt=""></div>
                     <h3 class="feature_title">Book & Library</h3>
                     <div class="feature_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>
                 </div>
-            </div>
+            </div> --}}
 
             <!-- Features Item -->
-            <div class="col-lg-3 feature_col">
+            {{-- <div class="col-lg-3 feature_col">
                 <div class="feature text-center trans_400">
                     <div class="feature_icon"><img src="/front/images/icon_3.png" alt=""></div>
                     <h3 class="feature_title">Best Courses</h3>
                     <div class="feature_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>
                 </div>
-            </div>
+            </div> --}}
 
             <!-- Features Item -->
-            <div class="col-lg-3 feature_col">
+            {{-- <div class="col-lg-3 feature_col">
                 <div class="feature text-center trans_400">
                     <div class="feature_icon"><img src="/front/images/icon_4.png" alt=""></div>
                     <h3 class="feature_title">Award & Reward</h3>
                     <div class="feature_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>
                 </div>
-            </div>
+            </div> --}}
 
         </div>
     </div>
@@ -240,46 +253,53 @@
 </div>
 
 <!-- Events -->
+        @php
+        $blogs = App\Blog::where('status','active')->orderBy('created_at','DESC')->skip(0)->take(3)->get();
+        @endphp
 
 <div class="events">
     <div class="container">
         <div class="row">
             <div class="col">
                 <div class="section_title_container text-center">
-                    <h2 class="section_title">Upcoming events</h2>
-                    <div class="section_subtitle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem</p></div>
+                    <h2 class="section_title">আমাদের ব্লগ</h2>
+                    {{-- <div class="section_subtitle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem</p></div> --}}
                 </div>
             </div>
         </div>
         <div class="row events_row">
 
             <!-- Event -->
+            @foreach ($blogs as $blog)
+
             <div class="col-lg-4 event_col">
                 <div class="event event_left">
-                    <div class="event_image"><img src="/front/images/event_1.jpg" alt=""></div>
+                    <div class="event_image">
+                        <img src={{asset($blog->feature_image??'')}} alt="Image" onerror="this.src='/front/images/no_img_avaliable.jpg';">
+                    </div>
                     <div class="event_body d-flex flex-row align-items-start justify-content-start">
-                        <div class="event_date">
+                        {{-- <div class="event_date">
                             <div class="d-flex flex-column align-items-center justify-content-center trans_200">
                                 <div class="event_day trans_200">21</div>
                                 <div class="event_month trans_200">Aug</div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="event_content">
-                            <div class="event_title"><a href="/front/#">Which Country Handles Student Debt?</a></div>
+                            <div class="event_title"><a href="#">{{$blog->title??'N?A'}}</a></div>
                             <div class="event_info_container">
-                                <div class="event_info"><i class="fa fa-clock-o" aria-hidden="true"></i><span>15.00 - 19.30</span></div>
-                                <div class="event_info"><i class="fa fa-map-marker" aria-hidden="true"></i><span>25 New York City</span></div>
+                                <div class="event_info"><i class="fa fa-clock-o" aria-hidden="true"></i><span>{{\App\NumberConverter::en2bn($blog->created_at)}}</span></div>
+                                {{-- <div class="event_info"><i class="fa fa-map-marker" aria-hidden="true"></i><span>25 New York City</span></div> --}}
                                 <div class="event_text">
-                                    <p>Policy analysts generally agree on a need for reform, but not on which path...</p>
+                                    <p>{!! $blog->description??'N/A' !!}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
+            @endforeach
             <!-- Event -->
-            <div class="col-lg-4 event_col">
+            {{-- <div class="col-lg-4 event_col">
                 <div class="event event_mid">
                     <div class="event_image"><img src="/front/images/event_2.jpg" alt=""></div>
                     <div class="event_body d-flex flex-row align-items-start justify-content-start">
@@ -301,10 +321,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <!-- Event -->
-            <div class="col-lg-4 event_col">
+            {{-- <div class="col-lg-4 event_col">
                 <div class="event event_right">
                     <div class="event_image"><img src="/front/images/event_3.jpg" alt=""></div>
                     <div class="event_body d-flex flex-row align-items-start justify-content-start">
@@ -326,7 +346,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
         </div>
     </div>

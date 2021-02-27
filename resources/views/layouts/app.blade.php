@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Unicat</title>
+<title>{{\App\Setting::setting()->app_name}}</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Unicat project">
@@ -25,6 +25,10 @@
 	<header class="header">
 
 		<!-- Top Bar -->
+        @php
+            $contact = App\Contact::where('status','active')->orderBy('created_at','DESC')->first();
+        @endphp
+
 		<div class="top_bar">
 			<div class="top_bar_container">
 				<div class="container">
@@ -32,18 +36,18 @@
 						<div class="col">
 							<div class="top_bar_content d-flex flex-row align-items-center justify-content-start">
 								<ul class="top_bar_contact_list">
-									<li><div class="question">Have any questions?</div></li>
+									<li><div class="question">কোনো প্রশ্ন আছে কি?</div></li>
 									<li>
 										<i class="fa fa-phone" aria-hidden="true"></i>
-										<div>001-1234-88888</div>
+										<div>{{$contact->phone_no??'N/A'}}</div>
 									</li>
 									<li>
 										<i class="fa fa-envelope-o" aria-hidden="true"></i>
-										<div>info.deercreative@gmail.com</div>
+										<div>{{$contact->gmail??'@gmail.com'}}</div>
 									</li>
 								</ul>
 								<div class="top_bar_login ml-auto">
-									<div class="login_button"><a href="/login">Register or Login</a></div>
+									<div class="login_button"><a href="/login">Login</a></div>
 								</div>
 							</div>
 						</div>
@@ -58,25 +62,30 @@
 				<div class="row">
 					<div class="col">
 						<div class="header_content d-flex flex-row align-items-center justify-content-start">
+                            @php
+                                $logo = App\Gallery::where('flag','logo')->where('status','active')->orderBy('created_at','DESC')->first();
+                            @endphp
 							<div class="logo_container">
-								<a href="/front/#">
-									<div class="logo_text">Unic<span>at</span></div>
-								</a>
+
+									<div class="logo">
+                                        <img src="{{$logo->logo}}" alt="logo" onerror="this.src='/front/images/no_img_avaliable.jpg';">
+                                    </div>
+
 							</div>
 							<nav class="main_nav_contaner ml-auto">
 								<ul class="main_nav">
-									<li class="active"><a href="/front/#">Home</a></li>
-									<li><a href="/front/about.html">About</a></li>
-									<li><a href="/front/courses.html">Courses</a></li>
-									<li><a href="/front/blog.html">Blog</a></li>
-									<li><a href="/front/#">Page</a></li>
-									<li><a href="/front/contact.html">Contact</a></li>
+									<li class="active"><a href="\">Home</a></li>
+									<li><a href="/about">About</a></li>
+									{{-- <li><a href="">Courses</a></li> --}}
+									<li><a href="/blogs">Blog</a></li>
+									<li><a href="/page">Page</a></li>
+									<li><a href="/contact">Contact</a></li>
 								</ul>
 								<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
 
 								<!-- Hamburger -->
 
-								<div class="shopping_cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
+								{{-- <div class="shopping_cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div> --}}
 								<div class="hamburger menu_mm">
 									<i class="fa fa-bars menu_mm" aria-hidden="true"></i>
 								</div>

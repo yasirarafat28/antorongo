@@ -66,6 +66,7 @@ class GalleryController extends Controller
             $image->move($path, $imageName);
             $imageUrl   = $path . $imageName;
             $galleries->photo = $imageUrl;
+            $galleries->flag = 'web_cover_photo_two';
         }
 
         if ($request->hasFile('logo')){
@@ -109,7 +110,7 @@ class GalleryController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -121,7 +122,17 @@ class GalleryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+
+            ]);
+
+            $galleries = Gallery::find($id);
+
+            $galleries->status = $request->status;
+            $galleries->save();
+
+
+            return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
     }
 
     /**
@@ -133,6 +144,7 @@ class GalleryController extends Controller
     public function destroy($id)
     {
         Gallery::destroy($id);
+        return back()->withSuccess('সফলভাবে ডিলিট করা হয়েছে');
     }
 
 
