@@ -758,7 +758,7 @@
 
                     <div class="body table-responsive members_profiles">
 
-                        <table class="table table-hover">
+                        <table class="table table-hover dataTable">
 
                             <thead>
 

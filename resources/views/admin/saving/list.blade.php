@@ -36,9 +36,9 @@
 
                                 <a href="/admin/saving/{{$type}}/list?filterBy=approved" class="text-link">তালিকা দেখুন</a>
                             </div>
-                            <div class="col-auto">
+                            {{-- <div class="col-auto">
                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -53,9 +53,9 @@
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($pending_count)}}</div>
                                 <a href="/admin/saving/{{$type}}/list?filterBy=pending" class="text-link">তালিকা দেখুন</a>
                             </div>
-                            <div class="col-auto">
+                            {{-- <div class="col-auto">
                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -104,9 +104,9 @@
                                 <span style="font-size: 15px;">পলিসির পরিমান</span>
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn($limit_book_amount,2)}} টাকা</div>
                             </div>
-                            <div class="col-auto">
+                            {{-- <div class="col-auto">
                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

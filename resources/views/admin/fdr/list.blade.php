@@ -91,9 +91,27 @@
 
                                     <a href="/admin/fdr/list?filterBy=closed" class="text-link">তালিকা দেখুন</a>
                                 </div>
-                                <div class="col-auto">
+                                {{-- <div class="col-auto">
                                     <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div> --}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        বই তালিকা</div>
+                                    <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($limit_book->count())}}</div>
+                                    <span style="font-size: 15px;">পলিসির পরিমান</span>
+                                    <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn($limit_book_amount,2)}} টাকা</div>
                                 </div>
+                                {{-- <div class="col-auto">
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -113,7 +131,21 @@
                         <form action="">
 
                             <div class="row clearfix">
-                                <div class="col-lg-4 col-md-4">
+
+                                <div class="col-lg-3 col-md-3">
+
+                                    <label for=""><small>অবস্থা</small></label>
+
+                                    <div class="input-group">
+                                        <select name="status" id="" class="form-control">
+                                            <option value="">বাছাই করুন</option>
+                                            <option {{isset($_GET['status']) && $_GET['status']=='approved'?'selected':'' }} value="approved">চলতি সঞ্চয়</option>
+                                            <option {{isset($_GET['status']) && $_GET['status']=='closed'?'selected':'' }} value="closed">প্রত্যাহার সঞ্চয়</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 col-md-4">
 
                                     <label for=""><small>থেকে</small></label>
 
@@ -125,7 +157,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-4 col-md-4">
+                                <div class="col-lg-3 col-md-4">
 
                                     <label for=""><small> পর্যন্ত</small></label>
 
@@ -137,7 +169,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-2 col-md-2">
+                                <div class="col-lg-1 col-md-2">
 
                                     <br>
 

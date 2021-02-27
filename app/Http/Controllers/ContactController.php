@@ -83,7 +83,20 @@ class ContactController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $this->validate($request,[
+
+            ]);
+
+            $contacts = Contact::find($id);
+            $contacts->phone_no = $request->phone_no;
+            $contacts->mobile_no = $request->mobile_no;
+            $contacts->address = $request->address;
+            $contacts->gmail = $request->gmail;
+            $contacts->status = $request->status;
+            $contacts->save();
+
+            return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
     }
 
     /**
