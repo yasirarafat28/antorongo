@@ -1,493 +1,542 @@
-@extends('layouts.front')
+@extends('layouts.app')
 
 @section('content')
 
-    @php
-        $coverPhotos = App\Gallery::where('status','active')->where('flag','web_cover_photo')->orderBy('created_at','DESC')->first();
-    @endphp
 
-        <div class="site-blocks-cover overlay slide" style="background-image: url({{($coverPhotos->cover_photo)}});" data-aos="fade-up"
-            id="home-section" data-aos-delay="100">
-            <div class="container">
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-md-10 mt-lg-5 text-center">
-                        <div class="single-text owl-carousel">
-                            <div class="slide">
+<div class="home">
+    <div class="home_slider_container">
 
-                                <h1 class="text-uppercase" data-aos="fade-up">{{\App\Setting::setting()->app_name}}</h1>
-                                {{-- <p class="mb-5 desc" data-aos="fade-up" data-aos-delay="100">Lorem ipsum dolor sit amet,
-                                    consectetur adipisicing elit. Provident cupiditate suscipit, magnam libero velit
-                                    esse sapiente officia inventore!</p>
-                                <div data-aos="fade-up" data-aos-delay="100"> --}}
+        <!-- Home Slider -->
+        <div class="owl-carousel owl-theme home_slider">
+
+            <!-- Home Slider Item -->
+            <div class="owl-item">
+                <div class="home_slider_background" style="background-image:url(/front/images/home_slider_1.jpg)"></div>
+                <div class="home_slider_content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col text-center">
+                                <div class="home_slider_title">The Premium System Education</div>
+                                <div class="home_slider_subtitle">Future Of Education Technology</div>
+                                <div class="home_slider_form_container">
+                                    <form action="#" id="home_search_form_1" class="home_search_form d-flex flex-lg-row flex-column align-items-center justify-content-between">
+                                        <div class="d-flex flex-row align-items-center justify-content-start">
+                                            <input type="search" class="home_search_input" placeholder="Keyword Search" required="required">
+                                            <select class="dropdown_item_select home_search_input">
+                                                <option>Category Courses</option>
+                                                <option>Category</option>
+                                                <option>Category</option>
+                                            </select>
+                                            <select class="dropdown_item_select home_search_input">
+                                                <option>Select Price Type</option>
+                                                <option>Price Type</option>
+                                                <option>Price Type</option>
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="home_search_button">search</button>
+                                    </form>
                                 </div>
                             </div>
-                            {{-- <div class="slide">
-                                <h1 class="text-uppercase" data-aos="fade-up">Financing Solutions</h1>
-                                <p class="mb-5 desc" data-aos="fade-up" data-aos-delay="100">Lorem ipsum dolor sit amet,
-                                    consectetur adipisicing elit. Provident cupiditate suscipit, magnam libero velit
-                                    esse sapiente officia inventore!</p>
-                            </div>
-                            <div class="slide">
-                                <h1 class="text-uppercase" data-aos="fade-up">Savings Accounts</h1>
-                                <p class="mb-5 desc" data-aos="fade-up" data-aos-delay="100">Lorem ipsum dolor sit amet,
-                                    consectetur adipisicing elit. Provident cupiditate suscipit, magnam libero velit
-                                    esse sapiente officia inventore!</p>
-                            </div> --}}
                         </div>
                     </div>
                 </div>
             </div>
-            <a href="#next" class="mouse smoothscroll">
-                <span class="mouse-icon">
-                    <span class="mouse-wheel"></span>
-                </span>
-            </a>
+
+            <!-- Home Slider Item -->
+            <div class="owl-item">
+                <div class="home_slider_background" style="background-image:url(/front/images/home_slider_1.jpg)"></div>
+                <div class="home_slider_content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col text-center">
+                                <div class="home_slider_title">The Premium System Education</div>
+                                <div class="home_slider_subtitle">Future Of Education Technology</div>
+                                <div class="home_slider_form_container">
+                                    <form action="#" id="home_search_form_2" class="home_search_form d-flex flex-lg-row flex-column align-items-center justify-content-between">
+                                        <div class="d-flex flex-row align-items-center justify-content-start">
+                                            <input type="search" class="home_search_input" placeholder="Keyword Search" required="required">
+                                            <select class="dropdown_item_select home_search_input">
+                                                <option>Category Courses</option>
+                                                <option>Category</option>
+                                                <option>Category</option>
+                                            </select>
+                                            <select class="dropdown_item_select home_search_input">
+                                                <option>Select Price Type</option>
+                                                <option>Price Type</option>
+                                                <option>Price Type</option>
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="home_search_button">search</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Home Slider Item -->
+            <div class="owl-item">
+                <div class="home_slider_background" style="background-image:url(/front/images/home_slider_1.jpg)"></div>
+                <div class="home_slider_content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col text-center">
+                                <div class="home_slider_title">The Premium System Education</div>
+                                <div class="home_slider_subtitle">Future Of Education Technology</div>
+                                <div class="home_slider_form_container">
+                                    <form action="#" id="home_search_form_3" class="home_search_form d-flex flex-lg-row flex-column align-items-center justify-content-between">
+                                        <div class="d-flex flex-row align-items-center justify-content-start">
+                                            <input type="search" class="home_search_input" placeholder="Keyword Search" required="required">
+                                            <select class="dropdown_item_select home_search_input">
+                                                <option>Category Courses</option>
+                                                <option>Category</option>
+                                                <option>Category</option>
+                                            </select>
+                                            <select class="dropdown_item_select home_search_input">
+                                                <option>Select Price Type</option>
+                                                <option>Price Type</option>
+                                                <option>Price Type</option>
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="home_search_button">search</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Home Slider Nav -->
+
+    <div class="home_slider_nav home_slider_prev"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+    <div class="home_slider_nav home_slider_next"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+</div>
+
+<!-- Features -->
+
+<div class="features">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="section_title_container text-center">
+                    <h2 class="section_title">Welcome To Unicat E-Learning</h2>
+                    <div class="section_subtitle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="row features_row">
+
+            <!-- Features Item -->
+            <div class="col-lg-3 feature_col">
+                <div class="feature text-center trans_400">
+                    <div class="feature_icon"><img src="/front/images/icon_1.png" alt=""></div>
+                    <h3 class="feature_title">The Experts</h3>
+                    <div class="feature_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>
+                </div>
+            </div>
+
+            <!-- Features Item -->
+            <div class="col-lg-3 feature_col">
+                <div class="feature text-center trans_400">
+                    <div class="feature_icon"><img src="/front/images/icon_2.png" alt=""></div>
+                    <h3 class="feature_title">Book & Library</h3>
+                    <div class="feature_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>
+                </div>
+            </div>
+
+            <!-- Features Item -->
+            <div class="col-lg-3 feature_col">
+                <div class="feature text-center trans_400">
+                    <div class="feature_icon"><img src="/front/images/icon_3.png" alt=""></div>
+                    <h3 class="feature_title">Best Courses</h3>
+                    <div class="feature_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>
+                </div>
+            </div>
+
+            <!-- Features Item -->
+            <div class="col-lg-3 feature_col">
+                <div class="feature text-center trans_400">
+                    <div class="feature_icon"><img src="/front/images/icon_4.png" alt=""></div>
+                    <h3 class="feature_title">Award & Reward</h3>
+                    <div class="feature_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Counter -->
+
+<div class="counter">
+    <div class="counter_background" style="background-image:url(/front/images/counter_background.jpg)"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="counter_content">
+                    <h2 class="counter_title">Register Now</h2>
+                    <div class="counter_text"><p>Simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dumy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p></div>
+
+                    <!-- Milestones -->
+
+                    <div class="milestones d-flex flex-md-row flex-column align-items-center justify-content-between">
+
+                        <!-- Milestone -->
+                        <div class="milestone">
+                            <div class="milestone_counter" data-end-value="15">0</div>
+                            <div class="milestone_text">years</div>
+                        </div>
+
+                        <!-- Milestone -->
+                        <div class="milestone">
+                            <div class="milestone_counter" data-end-value="120" data-sign-after="k">0</div>
+                            <div class="milestone_text">years</div>
+                        </div>
+
+                        <!-- Milestone -->
+                        <div class="milestone">
+                            <div class="milestone_counter" data-end-value="670" data-sign-after="+">0</div>
+                            <div class="milestone_text">years</div>
+                        </div>
+
+                        <!-- Milestone -->
+                        <div class="milestone">
+                            <div class="milestone_counter" data-end-value="320">0</div>
+                            <div class="milestone_text">years</div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
         </div>
 
-        {{-- <div class="site-section" id="next">
-            <div class="container">
-                <div class="row mb-5">
-                    <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="">
-                        <img src="/front/images/flaticon-svg/svg/001-wallet.svg"
-                            alt="Free Website Template by Free-Template.co" class="img-fluid w-25 mb-4">
-                        <h3 class="card-title">Money Savings</h3>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
-                        </p>
-                    </div>
-                    <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="100">
-                        <img src="/front/images/flaticon-svg/svg/004-cart.svg" alt="Free Website Template by Free-Template.co"
-                            class="img-fluid w-25 mb-4">
-                        <h3 class="card-title">Online Shoppings</h3>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
-                        </p>
-                    </div>
-                    <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="200">
-                        <img src="/front/images/flaticon-svg/svg/006-credit-card.svg"
-                            alt="Free Website Template by Free-Template.co" class="img-fluid w-25 mb-4">
-                        <h3 class="card-title">Credit / Debit Cards</h3>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
-                        </p>
+        <div class="counter_form">
+            <div class="row fill_height">
+                <div class="col fill_height">
+                    <form class="counter_form_content d-flex flex-column align-items-center justify-content-center" action="#">
+                        <div class="counter_form_title">courses now</div>
+                        <input type="text" class="counter_input" placeholder="Your Name:" required="required">
+                        <input type="tel" class="counter_input" placeholder="Phone:" required="required">
+                        <select name="counter_select" id="counter_select" class="counter_input counter_options">
+                            <option>Choose Subject</option>
+                            <option>Subject</option>
+                            <option>Subject</option>
+                            <option>Subject</option>
+                        </select>
+                        <textarea class="counter_input counter_text_input" placeholder="Message:" required="required"></textarea>
+                        <button type="submit" class="counter_form_button">submit now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Events -->
+
+<div class="events">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="section_title_container text-center">
+                    <h2 class="section_title">Upcoming events</h2>
+                    <div class="section_subtitle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="row events_row">
+
+            <!-- Event -->
+            <div class="col-lg-4 event_col">
+                <div class="event event_left">
+                    <div class="event_image"><img src="/front/images/event_1.jpg" alt=""></div>
+                    <div class="event_body d-flex flex-row align-items-start justify-content-start">
+                        <div class="event_date">
+                            <div class="d-flex flex-column align-items-center justify-content-center trans_200">
+                                <div class="event_day trans_200">21</div>
+                                <div class="event_month trans_200">Aug</div>
+                            </div>
+                        </div>
+                        <div class="event_content">
+                            <div class="event_title"><a href="/front/#">Which Country Handles Student Debt?</a></div>
+                            <div class="event_info_container">
+                                <div class="event_info"><i class="fa fa-clock-o" aria-hidden="true"></i><span>15.00 - 19.30</span></div>
+                                <div class="event_info"><i class="fa fa-map-marker" aria-hidden="true"></i><span>25 New York City</span></div>
+                                <div class="event_text">
+                                    <p>Policy analysts generally agree on a need for reform, but not on which path...</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-6 mb-5" data-aos="fade-up" data-aos-delay="">
-                        <figure class="circle-bg">
-                            <img src="/front/images/xabout_2.jpg.pagespeed.ic.Zl67ccZIcY.jpg"
-                                alt="Free Website Template by Free-Template.co" class="img-fluid">
-                        </figure>
-                    </div>
-                    <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="100">
-                        <div class="mb-4">
-                            <h3 class="h3 mb-4 text-black">Amortization Computation</h3>
-                            <p>A small river named Duden flows by their place and supplies it with the necessary
-                                regelialia.</p>
+            </div>
+
+            <!-- Event -->
+            <div class="col-lg-4 event_col">
+                <div class="event event_mid">
+                    <div class="event_image"><img src="/front/images/event_2.jpg" alt=""></div>
+                    <div class="event_body d-flex flex-row align-items-start justify-content-start">
+                        <div class="event_date">
+                            <div class="d-flex flex-column align-items-center justify-content-center trans_200">
+                                <div class="event_day trans_200">27</div>
+                                <div class="event_month trans_200">Aug</div>
+                            </div>
                         </div>
-                        <div class="mb-4">
-                            <ul class="list-unstyled ul-check success">
-                                <li>Officia quaerat eaque neque</li>
-                                <li>Lorem ipsum dolor sit amet</li>
-                                <li>Consectetur adipisicing elit</li>
+                        <div class="event_content">
+                            <div class="event_title"><a href="/front/#">Repaying your student loans (Winter 2017-2018)</a></div>
+                            <div class="event_info_container">
+                                <div class="event_info"><i class="fa fa-clock-o" aria-hidden="true"></i><span>09.00 - 17.30</span></div>
+                                <div class="event_info"><i class="fa fa-map-marker" aria-hidden="true"></i><span>25 Brooklyn City</span></div>
+                                <div class="event_text">
+                                    <p>This Consumer Action News issue covers topics now being debated before...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event -->
+            <div class="col-lg-4 event_col">
+                <div class="event event_right">
+                    <div class="event_image"><img src="/front/images/event_3.jpg" alt=""></div>
+                    <div class="event_body d-flex flex-row align-items-start justify-content-start">
+                        <div class="event_date">
+                            <div class="d-flex flex-column align-items-center justify-content-center trans_200">
+                                <div class="event_day trans_200">01</div>
+                                <div class="event_month trans_200">Sep</div>
+                            </div>
+                        </div>
+                        <div class="event_content">
+                            <div class="event_title"><a href="/front/#">Alternative data and financial inclusion</a></div>
+                            <div class="event_info_container">
+                                <div class="event_info"><i class="fa fa-clock-o" aria-hidden="true"></i><span>13.00 - 18.30</span></div>
+                                <div class="event_info"><i class="fa fa-map-marker" aria-hidden="true"></i><span>25 New York City</span></div>
+                                <div class="event_text">
+                                    <p>Policy analysts generally agree on a need for reform, but not on which path...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Team -->
+
+<div class="team">
+    <div class="team_background parallax-window" data-parallax="scroll" data-image-src="/front/images/team_background.jpg" data-speed="0.8"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="section_title_container text-center">
+                    <h2 class="section_title">The Best Tutors in Town</h2>
+                    <div class="section_subtitle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="row team_row">
+
+            <!-- Team Item -->
+            <div class="col-lg-3 col-md-6 team_col">
+                <div class="team_item">
+                    <div class="team_image"><img src="/front/images/team_1.jpg" alt=""></div>
+                    <div class="team_body">
+                        <div class="team_title"><a href="/front/#">Jacke Masito</a></div>
+                        <div class="team_subtitle">Marketing & Management</div>
+                        <div class="social_list">
+                            <ul>
+                                <li><a href="/front/#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="/front/#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="/front/#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
                             </ul>
                         </div>
-                        <div class="mb-4">
-                            <form action="#">
-                                <div class="form-group d-flex align-items-center">
-                                    <input type="text" class="form-control mr-2" placeholder="Enter your email">
-                                    <input type="submit" class="btn btn-primary" value="Submit Email">
-                                </div>
-                            </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Item -->
+            <div class="col-lg-3 col-md-6 team_col">
+                <div class="team_item">
+                    <div class="team_image"><img src="/front/images/team_2.jpg" alt=""></div>
+                    <div class="team_body">
+                        <div class="team_title"><a href="/front/#">William James</a></div>
+                        <div class="team_subtitle">Designer & Website</div>
+                        <div class="social_list">
+                            <ul>
+                                <li><a href="/front/#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="/front/#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="/front/#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> --}}
 
-        {{-- <div class="site-section cta-big-image" id="about-section">
-            <div class="container">
-                <div class="row mb-5 justify-content-center">
-                    <div class="col-md-8 text-center">
-                        <h2 class="section-title mb-3" data-aos="fade-up" data-aos-delay="">About Us</h2>
-                        <p class="lead" data-aos="fade-up" data-aos-delay="100">Lorem ipsum dolor sit amet consectetur
-                            adipisicing elit. Minus minima neque tempora reiciendis.</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 mb-5" data-aos="fade-up" data-aos-delay="">
-                        <figure class="circle-bg">
-                            <img src="/front/images/xhero_1.jpg.pagespeed.ic.ZeXIvT04Y8.jpg"
-                                alt="Free Website Template by Free-Template.co" class="img-fluid">
-                        </figure>
-                    </div>
-                    <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="100">
-                        <h3 class="text-black mb-4">We Solve Your Financial Problem</h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                            there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the
-                            Semantics, a large language ocean.</p>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
-                            It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-
-        {{-- <section class="site-section">
-            <div class="container">
-                <div class="row mb-5 justify-content-center">
-                    <div class="col-md-7 text-center">
-                        <h2 class="section-title mb-3" data-aos="fade-up" data-aos-delay="">How It Works</h2>
-                        <p class="lead" data-aos="fade-up" data-aos-delay="100">A small river named Duden flows by their
-                            place and supplies it with the necessary regelialia.</p>
-                    </div>
-                </div>
-                <div class="row align-items-lg-center">
-                    <div class="col-lg-6 mb-5" data-aos="fade-up" data-aos-delay="">
-                        <div class="owl-carousel slide-one-item-alt">
-                            <img src="/front/images/xslide_1.jpg.pagespeed.ic.fA5zBG0R3e.jpg" alt="Image" class="img-fluid">
-                            <img src="/front/images/xslide_2.jpg.pagespeed.ic.GtvDQr4YIq.jpg" alt="Image" class="img-fluid">
-                            <img src="/front/images/xslide_3.jpg.pagespeed.ic.gYpyGBp8kN.jpg" alt="Image" class="img-fluid">
-                        </div>
-                        <div class="custom-direction">
-                            <a href="#" class="custom-prev"><span><span
-                                        class="icon-keyboard_backspace"></span></span></a><a href="#"
-                                class="custom-next"><span><span class="icon-keyboard_backspace"></span></span></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="100">
-                        <div class="owl-carousel slide-one-item-alt-text">
-                            <div>
-                                <h2 class="section-title mb-3">01. Online Applications</h2>
-                                <p>A small river named Duden flows by their place and supplies it with the necessary
-                                    regelialia. It is a paradisematic country, in which roasted parts of sentences fly
-                                    into your mouth.</p>
-                                <p><a href="#" class="btn btn-primary mr-2 mb-2">Learn More</a></p>
-                            </div>
-                            <div>
-                                <h2 class="section-title mb-3">02. Get an approval</h2>
-                                <p>A small river named Duden flows by their place and supplies it with the necessary
-                                    regelialia. It is a paradisematic country, in which roasted parts of sentences fly
-                                    into your mouth.</p>
-                                <p><a href="#" class="btn btn-primary mr-2 mb-2">Learn More</a></p>
-                            </div>
-                            <div>
-                                <h2 class="section-title mb-3">03. Card delivery</h2>
-                                <p>A small river named Duden flows by their place and supplies it with the necessary
-                                    regelialia. It is a paradisematic country, in which roasted parts of sentences fly
-                                    into your mouth.</p>
-                                <p><a href="#" class="btn btn-primary mr-2 mb-2">Learn More</a></p>
-                            </div>
+            <!-- Team Item -->
+            <div class="col-lg-3 col-md-6 team_col">
+                <div class="team_item">
+                    <div class="team_image"><img src="/front/images/team_3.jpg" alt=""></div>
+                    <div class="team_body">
+                        <div class="team_title"><a href="/front/#">John Tyler</a></div>
+                        <div class="team_subtitle">Quantum mechanics</div>
+                        <div class="social_list">
+                            <ul>
+                                <li><a href="/front/#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="/front/#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="/front/#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-        </section> --}}
 
-        <section class="site-section border-bottom bg-light" id="services-section">
-            @php
-                $services = App\Service::where('status','active')->orderBy('created_at','DESC')->skip(0)->take(6)->get();
-            @endphp
-            <div class="container">
-                <div class="row mb-5">
-                    <div class="col-12 text-center" data-aos="fade">
-                        <h2 class="section-title mb-3">আমাদের সেবাসমূহ</h2>
-                    </div>
-                </div>
-                <div class="row align-items-stretch">
-                    @foreach ($services as $service)
-
-                        <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up">
-                            <div class="unit-4">
-                                <div class="unit-4-icon">
-                                    <img src="/front/images/flaticon-svg/svg/002-rich.svg"
-                                    alt="Image" class="img-fluid w-25 mb-4">
-                                </div>
-                                <div>
-                                    <h3>{{$service->title??'N?A'}}</h3>
-                                    <p>{!! $service->description !!}</p>
-                                    {{-- <p><a href="#">Learn More</a></p> --}}
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                    {{-- <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="unit-4">
-                            <div class="unit-4-icon">
-                                <img src="/front/images/flaticon-svg/svg/006-credit-card.svg"
-                                    alt="Free Website Template by Free-Template.co" class="img-fluid w-25 mb-4">
-                            </div>
-                            <div>
-                                <h3>Credit Card</h3>
-                                <p>A small river named Duden flows by their place and supplies it with the necessary
-                                    regelialia.</p>
-                                <p><a href="#">Learn More</a></p>
-                            </div>
-                        </div>
-                    </div> --}}
-
-                    {{-- <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="200">
-                        <div class="unit-4">
-                            <div class="unit-4-icon">
-                                <img src="/front/images/flaticon-svg/svg/002-rich.svg"
-                                    alt="Free Website Template by Free-Template.co" class="img-fluid w-25 mb-4">
-                            </div>
-                            <div>
-                                <h3>Income Monitoring</h3>
-                                <p>A small river named Duden flows by their place and supplies it with the necessary
-                                    regelialia.</p>
-                                <p><a href="#">Learn More</a></p>
-                            </div>
-                        </div>
-                    </div> --}}
-
-                    {{-- <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="">
-                        <div class="unit-4">
-                            <div class="unit-4-icon">
-                                <img src="/front/images/flaticon-svg/svg/003-notes.svg"
-                                    alt="Free Website Template by Free-Template.co" class="img-fluid w-25 mb-4">
-                            </div>
-                            <div>
-                                <h3>Insurance Consulting</h3>
-                                <p>A small river named Duden flows by their place and supplies it with the necessary
-                                    regelialia.</p>
-                                <p><a href="#">Learn More</a></p>
-                            </div>
-                        </div>
-                    </div> --}}
-
-                    {{-- <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="unit-4">
-                            <div class="unit-4-icon">
-                                <img src="/front/images/flaticon-svg/svg/004-cart.svg"
-                                    alt="Free Website Template by Free-Template.co" class="img-fluid w-25 mb-4">
-                            </div>
-                            <div>
-                                <h3>Financial Investment</h3>
-                                <p>A small river named Duden flows by their place and supplies it with the necessary
-                                    regelialia.</p>
-                                <p><a href="#">Learn More</a></p>
-                            </div>
-                        </div>
-                    </div> --}}
-
-                    {{-- <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="200">
-                        <div class="unit-4">
-                            <div class="unit-4-icon">
-                                <img src="/front/images/flaticon-svg/svg/005-megaphone.svg"
-                                    alt="Free Website Template by Free-Template.co" class="img-fluid w-25 mb-4">
-                            </div>
-                            <div>
-                                <h3>Financial Management</h3>
-                                <p>A small river named Duden flows by their place and supplies it with the necessary
-                                    regelialia.</p>
-                                <p><a href="#">Learn More</a></p>
-                            </div>
-                        </div>
-                    </div> --}}
-                </div>
-            </div>
-        </section>
-
-        {{-- <section class="site-section" id="about-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 mb-5" data-aos="fade-up" data-aos-delay="">
-                        <figure class="circle-bg">
-                            <img src="/front/images/xhero_1.jpg.pagespeed.ic.ZeXIvT04Y8.jpg"
-                                alt="Free Website Template by Free-Template.co" class="img-fluid">
-                        </figure>
-                    </div>
-                    <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="100">
-                        <div class="row">
-                            <div class="col-12 mb-4" data-aos="fade-up" data-aos-delay="">
-                                <div class="unit-4 d-flex">
-                                    <div class="unit-4-icon mr-4 mb-3"><span class="text-primary flaticon-head"></span>
-                                    </div>
-                                    <div>
-                                        <h3>Bank Loan</h3>
-                                        <p>Far far away, behind the word mountains, far from the countries Vokalia and
-                                            Consonantia, there live the blind texts.</p>
-                                        <p class="mb-0"><a href="#">Learn More</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 mb-4" data-aos="fade-up" data-aos-delay="100">
-                                <div class="unit-4 d-flex">
-                                    <div class="unit-4-icon mr-4 mb-3"><span
-                                            class="text-primary flaticon-smartphone"></span></div>
-                                    <div>
-                                        <h3>Banking Consulation </h3>
-                                        <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a
-                                            large language ocean.</p>
-                                        <p class="mb-0"><a href="#">Learn More</a></p>
-                                    </div>
-                                </div>
-                            </div>
+            <!-- Team Item -->
+            <div class="col-lg-3 col-md-6 team_col">
+                <div class="team_item">
+                    <div class="team_image"><img src="/front/images/team_4.jpg" alt=""></div>
+                    <div class="team_body">
+                        <div class="team_title"><a href="/front/#">Veronica Vahn</a></div>
+                        <div class="team_subtitle">Math & Physics</div>
+                        <div class="social_list">
+                            <ul>
+                                <li><a href="/front/#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="/front/#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="/front/#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-        </section> --}}
 
-        <!--Blog Section Start -->
+        </div>
+    </div>
+</div>
 
-        <section class="site-section" id="blog-section">
+<!-- Latest News -->
 
-
-            @php
-                $blogs = App\Blog::where('status','active')->orderBy('created_at','DESC')->skip(0)->take(3)->get();
-            @endphp
-
-
-            <div class="container">
-                <div class="row mb-5">
-                    <div class="col-12 text-center" data-aos="fade">
-                        <h2 class="section-title mb-3">আমাদের ব্লগ</h2>
-                    </div>
-                </div>
-                <div class="row">
-                    @foreach($blogs as $blog)
-                    <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="">
-                        <div class="h-entry">
-                            <a href="#">
-                                <img src={{asset($blog->feature_image??'')}} alt="Image" class="img-fluid" onerror="this.src='/front/images/no_img_avaliable.jpg';">
-                            </a>
-                            <h2 class="font-size-regular"><a href="#">{{$blog->title??''}}</a></h2>
-                            <div class="meta mb-4">{{\App\NumberConverter::en2bn($blog->created_at)}}</div>
-                            <p>{!! $blog->description??'' !!}</p>
-                            <p><a href="#">Continue Reading...</a></p>
-                        </div>
-                    </div>
-                    {{-- <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="h-entry">
-                            <a href="single.html">
-                                <img src="/front/images/img_4.jpg.pagespeed.ce.fdIf3piKv8.jpg" alt="Image" class="img-fluid">
-                            </a>
-                            <h2 class="font-size-regular"><a href="#">A Basic Guide to Starting a Franchise in the
-                                    Philippines</a></h2>
-                            <div class="meta mb-4">James Phelps <span class="mx-2">&bullet;</span> Jan 18, 2019<span
-                                    class="mx-2">&bullet;</span> <a href="#">News</a></div>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus eligendi nobis ea maiores
-                                sapiente veritatis reprehenderit suscipit quaerat rerum voluptatibus a eius.</p>
-                            <p><a href="#">Continue Reading...</a></p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="200">
-                        <div class="h-entry">
-                            <a href="single.html">
-                                <img src="/front/images/ximg_3.jpg.pagespeed.ic.EW44kTwGRi.jpg" alt="Image" class="img-fluid">
-                            </a>
-                            <h2 class="font-size-regular"><a href="#">A Basic Guide to Starting a Franchise in the
-                                    Philippines</a></h2>
-                            <div class="meta mb-4">James Phelps <span class="mx-2">&bullet;</span> Jan 18, 2019<span
-                                    class="mx-2">&bullet;</span> <a href="#">News</a></div>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus eligendi nobis ea maiores
-                                sapiente veritatis reprehenderit suscipit quaerat rerum voluptatibus a eius.</p>
-                            <p><a href="#">Continue Reading...</a></p>
-                        </div>
-                    </div> --}}
-                @endforeach
+<div class="news">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="section_title_container text-center">
+                    <h2 class="section_title">Latest News</h2>
+                    <div class="section_subtitle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem</p></div>
                 </div>
             </div>
-        </section>
+        </div>
+        <div class="row news_row">
+            <div class="col-lg-7 news_col">
 
-        <!--Blog Section End -->
-
-        <!-- Contact Section start -->
-
-        @php
-            $contacts = App\Contact::where('status','active')->orderBy('created_at','DESC')->skip(0)->take(1)->get();
-        @endphp
-
-        <section class="site-section bg-light" id="contact-section" data-aos="fade">
-            <div class="container">
-                <div class="row mb-5">
-                    <div class="col-12 text-center">
-                        <h2 class="section-title mb-3">যোগাযোগ করুন</h2>
+                <!-- News Post Large -->
+                <div class="news_post_large_container">
+                    <div class="news_post_large">
+                        <div class="news_post_image"><img src="/front/images/news_1.jpg" alt=""></div>
+                        <div class="news_post_large_title"><a href="/front/blog_single.html">Here’s What You Need to Know About Online Testing for the ACT and SAT</a></div>
+                        <div class="news_post_meta">
+                            <ul>
+                                <li><a href="/front/#">admin</a></li>
+                                <li><a href="/front/#">november 11, 2017</a></li>
+                            </ul>
+                        </div>
+                        <div class="news_post_text">
+                            <p>Policy analysts generally agree on a need for reform, but not on which path policymakers should take. Can America learn anything from other nations...</p>
+                        </div>
+                        <div class="news_post_link"><a href="/front/blog_single.html">read more</a></div>
                     </div>
                 </div>
-                <div class="row mb-5">
-                @foreach ($contacts as $contact)
+            </div>
 
-                    <div class="col-md-4 text-center">
-                        <p class="mb-4">
-                            <span class="icon-room d-block h2 text-primary"></span>
-                            <span>{!! $contact->address??"N/A" !!}</span>
-                        </p>
+            <div class="col-lg-5 news_col">
+                <div class="news_posts_small">
+
+                    <!-- News Posts Small -->
+                    <div class="news_post_small">
+                        <div class="news_post_small_title"><a href="/front/blog_single.html">Home-based business insurance issue (Spring 2017 - 2018)</a></div>
+                        <div class="news_post_meta">
+                            <ul>
+                                <li><a href="/front/#">admin</a></li>
+                                <li><a href="/front/#">november 11, 2017</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="col-md-4 text-center">
-                        <p class="mb-4">
-                            <span class="icon-phone d-block h2 text-primary"></span>
-                            <a href="#">{{$contact->phone_no??'N/A'}}</a> <br>
-                            <a href="#">{{$contact->mobile_no??''}}</a>
-                        </p>
+
+                    <!-- News Posts Small -->
+                    <div class="news_post_small">
+                        <div class="news_post_small_title"><a href="/front/blog_single.html">2018 Fall Issue: Credit Card Comparison Site Survey (Summer 2018)</a></div>
+                        <div class="news_post_meta">
+                            <ul>
+                                <li><a href="/front/#">admin</a></li>
+                                <li><a href="/front/#">november 11, 2017</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="col-md-4 text-center">
-                        <p class="mb-0">
-                            <span class="icon-mail_outline d-block h2 text-primary"></span>
-                            <a href="#">{{$contact->gmail??'N/A'}}</a>
-                        </p>
+
+                    <!-- News Posts Small -->
+                    <div class="news_post_small">
+                        <div class="news_post_small_title"><a href="/front/blog_single.html">Cuentas de cheques gratuitas una encuesta de Consumer Action</a></div>
+                        <div class="news_post_meta">
+                            <ul>
+                                <li><a href="/front/#">admin</a></li>
+                                <li><a href="/front/#">november 11, 2017</a></li>
+                            </ul>
+                        </div>
                     </div>
-                @endforeach
+
+                    <!-- News Posts Small -->
+                    <div class="news_post_small">
+                        <div class="news_post_small_title"><a href="/front/blog_single.html">Troubled borrowers have fewer repayment or forgiveness options</a></div>
+                        <div class="news_post_meta">
+                            <ul>
+                                <li><a href="/front/#">admin</a></li>
+                                <li><a href="/front/#">november 11, 2017</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="row">
-                    <div class="col-md-12 mb-5">
-                        <form action="{{url('admin/enquiries')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
-                            {{csrf_field()}}
-                        <h2 class="section-title mb-3 text-center">যোগাযোগের ফর্ম</h2>
-                            @if(session()->has('success'))
-                                <div class="alert alert-success">
-                                    {{ session('success') }}
-                                </div>
-                            @endif
+            </div>
+        </div>
+    </div>
+</div>
 
-                            @if($errors->any())
-                                <div class="alert alert-danger">
-                                    {{ $errors->first() }}
-                                </div>
-                            @endif
-                            <div class="row form-group">
-                                <div class="col-md-6 mb-3 mb-md-0">
-                                    <label class="text-black" for="fname">প্রথম নাম</label>
-                                    <input type="text" id="first_name" class="form-control" name="first_name" placeholder="প্রথম নাম">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="text-black" for="lname">শেষ নাম</label>
-                                    <input type="text" id="last_name" class="form-control" name="last_name" placeholder="শেষ নাম">
-                                </div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col-md-12">
-                                    <label class="text-black" for="email">ইমেল</label>
-                                    <input type="email" id="email" class="form-control" name="email" placeholder="ইমেল">
-                                </div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col-md-12">
-                                    <label class="text-black" for="email">ফোন </label>
-                                    <input type="text" id="" class="form-control" name="phone" placeholder="ফোন">
-                                </div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col-md-12">
-                                    <label class="text-black" for="subject">সাবজেক্ট</label>
-                                    <input type="text" id="subject" class="form-control" name="subject" placeholder="সাবজেক্ট">
-                                </div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col-md-12">
-                                    <label class="text-black" for="message">Message</label>
-                                    <textarea name="description" id="message" class="form-control"
-                                        placeholder="আপনার নোট বা প্রশ্ন এখানে লিখুন..."></textarea>
-                                </div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col-md-12 text-center">
-                                    <button class="btn btn-primary btn-md text-white"> বার্তা পাঠান</button>
-                                </div>
-                            </div>
+<!-- Newsletter -->
+
+<div class="newsletter">
+    <div class="newsletter_background parallax-window" data-parallax="scroll" data-image-src="/front/images/newsletter.jpg" data-speed="0.8"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="newsletter_container d-flex flex-lg-row flex-column align-items-center justify-content-start">
+
+                    <!-- Newsletter Content -->
+                    <div class="newsletter_content text-lg-left text-center">
+                        <div class="newsletter_title">sign up for news and offers</div>
+                        <div class="newsletter_subtitle">Subcribe to lastest smartphones news & great deals we offer</div>
+                    </div>
+
+                    <!-- Newsletter Form -->
+                    <div class="newsletter_form_container ml-lg-auto">
+                        <form action="#" id="newsletter_form" class="newsletter_form d-flex flex-row align-items-center justify-content-center">
+                            <input type="email" class="newsletter_input" placeholder="Your Email" required="required">
+                            <button type="submit" class="newsletter_button">subscribe</button>
                         </form>
                     </div>
+
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</div>
 
 @endsection

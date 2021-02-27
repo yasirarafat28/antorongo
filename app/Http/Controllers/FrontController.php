@@ -87,6 +87,7 @@ class FrontController extends Controller
             $FDR_records ='';
             $query = '';
         }
+
         return view('front.member-find',compact('query','member','loan_records','saving_records','FDR_records'));
     }
 }

@@ -1,7 +1,7 @@
 
 @extends('layouts.front')
 @section('content')
-<div class="site-blocks-cover overlay" data-aos="fade">
+<div class="site-blocks-cover overlay" style="background-image:url(/front/images/bg.jpg)" data-aos="fade">
 
 
     <div class="container">
