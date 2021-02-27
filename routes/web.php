@@ -22,6 +22,14 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
+Route::get('/about', function () {
+    return view('front.about');
+});
+
+Route::get('/blogs', function () {
+    return view('front.blogs');
+});
+
 Route::get('/testing', function () {
 
     return Transaction::total_by_slug_except_project_date('loan_profit_collect_income',['fdr_member','founding_member','daily_saving','short_term','long_term'],Null,NUll);

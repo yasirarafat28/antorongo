@@ -95,7 +95,7 @@
 					<div class="col">
 						<div class="header_search_content d-flex flex-row align-items-center justify-content-end">
 							<form action="/member-search" class="header_search_form">
-								<input type="search" name="q" class="search_input" placeholder="Search" required="required">
+								<input type="search" name="q" value="{{$_GET['q']??''}}" class="search_input" placeholder="Search" required="required">
 								<button class="header_search_button d-flex flex-column align-items-center justify-content-center">
 									<i class="fa fa-search" aria-hidden="true"></i>
 								</button>
@@ -113,7 +113,7 @@
 		<div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
 		<div class="search">
 			<form action="/member-search" class="header_search_form menu_mm">
-				<input type="search" class="search_input menu_mm" placeholder="Search" name="q" required="required">
+				<input type="search" class="search_input menu_mm" value="{{$_GET['q']??''}}" placeholder="Search" name="q" required="required">
 				<button class="header_search_button d-flex flex-column align-items-center justify-content-center menu_mm">
 					<i class="fa fa-search menu_mm" aria-hidden="true"></i>
 				</button>

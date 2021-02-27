@@ -1,66 +1,25 @@
+@extends('layouts.app')
 
-@extends('layouts.front')
+@section('style')
+
+<link rel="stylesheet" type="text/css" href="/front/styles/about.css">
+
+@endsection
 @section('content')
-<div class="site-blocks-cover overlay" data-aos="fade">
 
 
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-md-12">
-
-
-                <div class="p-5 bg-white">
-
-                    <div class="card" style="border: none">
-
-                        <div class="header">
-
-                            <h2><strong>সদস্য খুঁজুন</strong><small></small> </h2>
-
-
-                        </div>
-
-                        <div class="body members_profiles">
-
-
-
-                            <form method="GET">
-
-                                <div class="row clearfix">
-                                    <div class="col-lg-6 col-md-12">
-
-                                        <div class="form-group">
-
-                                            <input type="text" class="form-control" placeholder="ফোন/হ িসাব নাম্বার/ বারকোড " name="q" value="{{$query}}">
-
-                                        </div>
-
-                                    </div>
-
-
-
-
-
-                                    <div class="col-lg-6 col-md-12">
-
-                                        <button class="btn btn-primary btn-round">খুঁজুন</button>
-
-                                    </div>
-
-                                </div>
-
-
-
-                            </form>
-
-
-
-                        </div>
-
+<div class="home">
+    <div class="breadcrumbs_container">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="breadcrumbs">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li>Blog</li>
+                        </ul>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>
@@ -114,7 +73,7 @@
                         <div class="col-md-4">
                             <div class="card shadow">
 
-                                <div class="header">
+                                <div class="card-header">
 
                                     <h2><strong>বাক্তিগত </strong> তথ্য</h2>
 
@@ -214,7 +173,7 @@
 
                             <div class="card shadow">
 
-                                <div class="header">
+                                <div class="card-header">
 
                                     <h2><strong> অন্যান্য  </strong> তথ্য</h2>
 
@@ -295,7 +254,7 @@
 
                             <div class="card shadow">
 
-                                <div class="header">
+                                <div class="card-header">
 
                                     <h2><strong>নমিনেশন বাক্তির</strong> তথ্য</h2>
 
@@ -366,7 +325,7 @@
                     <div class="row clearfix">
                         <div class="col-lg-12">
                             <div class="card shadow">
-                                <div class="header">
+                                <div class="card-header">
                                     <h2><strong>ঋণের   </strong> তালিকা </h2>
                                 </div>
                                 <div class="body">
@@ -418,7 +377,7 @@
                     <div class="row clearfix">
                         <div class="col-lg-12">
                             <div class="card shadow">
-                                <div class="header">
+                                <div class="card-header">
                                     <h2><strong> সঞ্চয় </strong> তালিকা </h2>
                                 </div>
                                 <div class="body">
@@ -473,7 +432,7 @@
                     <div class="row clearfix">
                         <div class="col-lg-12">
                             <div class="card shadow">
-                                <div class="header">
+                                <div class="card-header">
                                     <h2><strong>এফ ডি আর  </strong> তালিকা </h2>
                                 </div>
                                 <div class="body">
@@ -522,7 +481,11 @@
         </div>
     </div>
     </div>
-</section>
 
+@endsection
+
+@section('script')
+
+{{-- <script src="/front/js/about.js"></script> --}}
 
 @endsection
