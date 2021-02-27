@@ -167,6 +167,15 @@ class LoanController extends Controller
 
         });
 
+        if ($request->has('status') && $request->status) {
+
+            if($request->status=='approved'){
+                $records = $records->where('status',$request->status);
+            }elseif($request->status=='closed'){
+                $records = $records->where('status',$request->status);
+            }
+        }
+
         if($request->has('dipository') && $request->dipository){
             if($request->dipository=='person'){
                 //$records = $records->having('person_depositors_count','>',0);
@@ -181,8 +190,12 @@ class LoanController extends Controller
 
         }
         if(isset($request->limit) && $request->limit=='-1'){
+            $limit_book = $records->get('id');
+            $limit_book_amount = $records->sum('approved_amount');
             $records = $records->orderBy('created_at','DESC')->paginate($records->count());
         }else{
+            $limit_book = $records->get('id');
+            $limit_book_amount = $records->sum('approved_amount');
             $records = $records->orderBy('created_at','DESC')->paginate(25);
         }
 
@@ -237,7 +250,8 @@ class LoanController extends Controller
             $q->whereIn('transactable_id',$total_loan_closed_id);
         })->where('flag','interest')->sum('amount');
 
-        return view('admin/loan/list',compact('records','active_count','pending_count','declined_count','closed_count','total','total_loan_give_closed','loan_closed_interest_total'));
+        return view('admin/loan/list',compact('records','active_count','pending_count','declined_count','closed_count','total','total_loan_give_closed','loan_closed_interest_total',
+        'limit_book','limit_book_amount'));
     }
 
     public function  LoanApplication(Request $request)

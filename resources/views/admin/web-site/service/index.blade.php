@@ -156,7 +156,7 @@
                                             <label for=""><small>অবস্থা</small></label>
                                             <select name="status" id="status" class="form-control">
                                                 <option value="active" {{$row->status=='active' ? 'selected' : ''}}>Active</option>
-                                                <option value="inctive" {{$row->status=='inactive' ? 'selected' : ''}}>Inctive</option>
+                                                <option value="inactive" {{$row->status=='inactive' ? 'selected' : ''}}>Inactive</option>
                                             </select>
                                         </div>
                                     </div>

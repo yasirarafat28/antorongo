@@ -249,9 +249,23 @@ class FdrController extends Controller
             }
 
         });
+
+        if ($request->has('status') && $request->status) {
+
+            if($request->status=='approved'){
+                $records = $records->where('status',$request->status);
+            }elseif($request->status=='closed'){
+                $records = $records->where('status',$request->status);
+            }
+        }
+
         if(isset($request->limit) && $request->limit=='-1'){
+            $limit_book = $records->get('id');
+            $limit_book_amount = $records->sum('amount');
             $records = $records->orderBy('created_at','DESC')->paginate($records->count());
         }else{
+            $limit_book = $records->get('id');
+            $limit_book_amount = $records->sum('amount');
             $records = $records->orderBy('created_at','DESC')->paginate(25);
         }
 
@@ -270,7 +284,7 @@ class FdrController extends Controller
 
 
         return view('admin/fdr/list',compact('records','active_count','pending_count','declined_count','fdr_closed_count_id','closed_total_fdr_deposit',
-        'closed_total_fdr_profit'));
+        'closed_total_fdr_profit','limit_book','limit_book_amount'));
     }
 
     public function AdminApprove($id)
