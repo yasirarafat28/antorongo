@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Fdr;
 use App\Loan;
 use App\Saving;
+use App\Team;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -89,6 +90,12 @@ class FrontController extends Controller
         }
 
         return view('front.search',compact('query','member','loan_records','saving_records','FDR_records'));
+    }
+
+    public function details($id){
+
+        $row = Team::find($id);
+        return view('front.details',compact('row'));
     }
 
 }

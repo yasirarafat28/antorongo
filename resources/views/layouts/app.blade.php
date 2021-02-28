@@ -78,7 +78,7 @@
 									<li><a href="/about">About</a></li>
 									{{-- <li><a href="">Courses</a></li> --}}
 									<li><a href="/blogs">Blog</a></li>
-									<li><a href="/page">Page</a></li>
+									{{-- <li><a href="/page">Page</a></li> --}}
 									<li><a href="/contact">Contact</a></li>
 								</ul>
 								<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
@@ -159,12 +159,14 @@
 								<!-- Footer About -->
 								<div class="footer_section footer_about">
 									<div class="footer_logo_container">
-										<a href="/front/#">
-											<div class="footer_logo_text">Unic<span>at</span></div>
+										<a href="#">
+											<div class="logo">
+                                                <img src="{{$logo->logo}}" alt="logo" onerror="this.src='/front/images/no_img_avaliable.jpg';">
+                                            </div>
 										</a>
 									</div>
 									<div class="footer_about_text">
-										<p>Lorem ipsum dolor sit ametium, consectetur adipiscing elit.</p>
+										{{-- <p>Lorem ipsum dolor sit ametium, consectetur adipiscing elit.</p> --}}
 									</div>
 									<div class="footer_social">
 										<ul>
@@ -185,9 +187,9 @@
 									<div class="footer_title">Contact Us</div>
 									<div class="footer_contact_info">
 										<ul>
-											<li>Email: Info.deercreative@gmail.com</li>
-											<li>Phone:  +(88) 111 555 666</li>
-											<li>40 Baria Sreet 133/2 New York City, United States</li>
+											<li>{{$contact->email??'N/A'}}</li>
+											<li>Phone:  {{$contact->phone_no??'N/A'}}</li>
+											<li>{{$contact->address??'N/A'}}</li>
 										</ul>
 									</div>
 								</div>
@@ -198,18 +200,14 @@
 
 								<!-- Footer links -->
 								<div class="footer_section footer_links">
-									<div class="footer_title">Contact Us</div>
+									{{-- <div class="footer_title">Contact Us</div> --}}
 									<div class="footer_links_container">
 										<ul>
-											<li><a href="/front/index.html">Home</a></li>
-											<li><a href="/front/about.html">About</a></li>
-											<li><a href="/front/contact.html">Contact</a></li>
-											<li><a href="/front/#">Features</a></li>
-											<li><a href="/front/courses.html">Courses</a></li>
-											<li><a href="/front/#">Events</a></li>
-											<li><a href="/front/#">Gallery</a></li>
-											<li><a href="/front/#">FAQs</a></li>
-										</ul>
+											<li><a href="/">Home</a></li>
+											<li><a href="/about">About</a></li>
+											<li><a href="/contact">Contact</a></li>
+											<li><a href="/blogs">Blog</a></li>
+
 									</div>
 								</div>
 

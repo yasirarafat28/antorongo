@@ -15,12 +15,12 @@
         <div class="block-header">
             <div class="row">
                 <div class="col-lg-7 col-md-6 col-sm-12">
-                    <h3><small><strong> যোগাযোগ যোগ</strong> করুন</small></h3>
+                    <h3><small><strong>বক্তব্য যোগ</strong> করুন</small></h3>
                 </div>
                 <div class="col-lg-5 col-md-6 col-sm-12">
                     <ul class="breadcrumb float-md-right">
                         <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                        <li class="breadcrumb-item"><a href="javascript:void(0);">যোগাযোগ যোগ করুন</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">বক্তব্য যোগ করুন</a></li>
                     </ul>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                         <div class="header">
                             <div class="clearfix">
                                 <div class="float-left">
-                                    <h2><strong>যোগাযোগ যোগ </strong>করুন</h2>
+                                    <h2><strong>বক্তব্য যোগ </strong>করুন</h2>
                                 </div>
                                 <div class="float-right">
                                 </div>
@@ -55,32 +55,26 @@
                         </div>
                         <div class="col-lg-10 col-md-10 col-sm-12 offset-1">
 
-                            <form action="{{url('admin/contacts')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
+                            <form action="{{url('admin/teams')}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
                                 {{csrf_field()}}
 
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
-                                        <label for=""><small>ইমেল</small></label>
-                                        <input type="email" placeholder="ইমেল" name="gmail" class="form-control">
+                                        <label for=""><small>নাম</small></label>
+                                        <input type="text" placeholder="নাম" name="name" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
-                                        <label for=""><small>ফোনঃ</small></label>
-                                        <input type="text" placeholder="ফোন" name="phone_no" class="form-control">
+                                        <label for=""><small>পদবী</small></label>
+                                        <input type="text" placeholder="পদবী" name="title" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
-                                        <label for=""><small> মোবাইলঃ</small></label>
-                                        <input type="text" placeholder="মোবাইল" name="mobile_no" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <label for=""><small>ঠিকানা</small></label>
-                                        <textarea name="address" id="" placeholder="ঠিকানা" class="form-control"></textarea>
+                                        <label for=""><small>ছবি</small></label>
+                                        <input type="file" placeholder="ছবি" name="photo" class="form-control">
                                     </div>
                                 </div>
 
@@ -92,6 +86,18 @@
                                             <option value="inactive">Inactive</option>
                                         </select>
                                     </div>
+                                </div>
+
+                                <div class="col-lg-12 col-md-12">
+
+                                    <div class="form-group">
+
+                                        <label for=""><small> বক্তব্য/বিস্তারিত </small></label>
+
+                                        <textarea name="description" class="form-control" placeholder="বক্তব্য/বিস্তারিত"></textarea>
+
+                                    </div>
+
                                 </div>
 
                                 <div class="col-md-12 text-center">

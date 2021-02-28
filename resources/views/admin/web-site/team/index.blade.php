@@ -25,11 +25,11 @@
         @endif
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">যোগাযোগ এর তালিকা</h1>
+            <h1 class="h3 mb-0 text-gray-800">কার্যনির্বাহী সদস্যদের বক্তব্য</h1>
 
             <ul class="breadcrumb float-md-right">
                 <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0);">যোগাযোগ এর তালিকা</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">কার্যনির্বাহী সদস্যদের বক্তব্য</a></li>
             </ul>
         </div>
 
@@ -40,10 +40,10 @@
                     <div class="header">
                         <div class="clearfix">
                             <div class="float-left">
-                                <h2>যোগাযোগ এর তালিকা</h2>
+                                <h2>কার্যনির্বাহী সদস্যদের বক্তব্য</h2>
                             </div>
                             <div class="float-right">
-                                <a href="/admin/contacts/create" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> যোগাযোগ যোগ করুন </a>
+                                <a href="/admin/teams/create" class="btn btn-primary"> <i class="fas fa-fw fa-plus"></i> বক্তব্য যোগ করুন </a>
                             </div>
                         </div>
 
@@ -53,9 +53,10 @@
                             <thead>
                             <tr>
                                 <th>ক্রিয়াকলাপ</th>
-                                <th> ইমেল </th>
-                                <th> ফোনঃ </th>
-                                <th>ঠিকানা</th>
+                                <th> ছবি </th>
+                                <th> নাম </th>
+                                <th> পদবী </th>
+                                <th> পদবী </th>
                                 <th>অবস্থা  </th>
                                 <th>সময়</th>
                             </tr>
@@ -63,9 +64,10 @@
                             <tfoot>
                             <tr>
                                 <th>ক্রিয়াকলাপ</th>
-                                <th> ইমেল </th>
-                                <th> ফোনঃ </th>
-                                <th>ঠিকানা </th>
+                                <th> ছবি </th>
+                                <th> নাম </th>
+                                <th> পদবী </th>
+                                <th> পদবী </th>
                                 <th>অবস্থা  </th>
                                 <th>সময়</th>
                             </tr>
@@ -81,12 +83,12 @@
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                         aria-labelledby="dropdownMenuLink">
 
-                                        <a  data-toggle="modal" data-target="#contactEditModal{{$item->id}}" class="dropdown-item"><i class="fa fa-eye"> </i> এডিট </i></a>
-                                        <a  data-toggle="modal" data-target="#contactShowModal{{$item->id}}" class="dropdown-item"><i class="fa fa-eye"> </i> বিস্তারিত </i></a>
+                                        <a  data-toggle="modal" data-target="#teamEditModal{{$item->id}}" class="dropdown-item"><i class="fa fa-eye"> </i> এডিট  </i></a>
+                                        <a  data-toggle="modal" data-target="#teamShowModal{{$item->id}}" class="dropdown-item"><i class="fa fa-eye"> </i> বিস্তারিত </i></a>
 
                                             {!! Form::open([
                                                'method'=>'DELETE',
-                                               'url' => ['/admin/contacts', $item->id],
+                                               'url' => ['/admin/teams', $item->id],
                                                'style' => 'display:inline'
                                             ]) !!}
                                             {!! Form::button('<i class="fa fa-times"></i>  মুছে ফেলুন', array(
@@ -98,9 +100,12 @@
                                             {!! Form::close() !!}
                                     </div>
                                     </td>
-                                    <td>{{$item->gmail??'N/A'}}</td>
-                                    <td>{{$item->phone_no??'N/A'}}</td>
-                                    <td>{!! $item->address !!}</td>
+                                    <td>
+                                        <img src="{{asset( $item->photo??'')}}" onerror="this.src='/front/images/no_img_avaliable.jpg';" alt="s2.jpg" width="60">
+                                    </td>
+                                    <td>{{$item->name}}</td>
+                                    <td>{{$item->title}}</td>
+                                    <td>{!! substr($item->description, 0, 20,) !!}...</td>
                                     <td>{{$item->status}}</td>
                                     <td>{{\App\NumberConverter::en2bn($item->created_at)}}</td>
                                 </tr>
@@ -117,66 +122,65 @@
         <!-- #END# Exportable Table -->
     </div>
 </section>
+@foreach($records as $row)
 
-    @foreach($records as $row)
-
-     <!-- Edit Modal Start -->
-     <div class="modal fade" id="contactEditModal{{$row->id}}" tabindex="-1" role="dialog">
+    <!-- Edit Modal Start -->
+    <div class="modal fade" id="teamEditModal{{$row->id}}" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
 
                         <div class="modal-header">
-                            <h2><strong> যোগাযোগ</strong> এডিট</h2>
+                            <h2><strong> বক্তব্য</strong> এডিট</h2>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-
-                            <form action="{{url('admin/contacts/'.$row->id)}}" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
+                            <form action="{{url('admin/teams/'.$row->id)}}" method="POST">
                                 {{csrf_field()}}
+
                                 {{method_field('PATCH')}}
-
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <label for=""><small>ইমেল</small></label>
-                                        <input type="email" placeholder="ইমেল" name="gmail" class="form-control" value="{{$row->gmail??''}}">
+                                <div class="row clearfix">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label for=""><small>নাম</small></label>
+                                            <input type="text" placeholder="নাম" name="name" class="form-control" value="{{$row->name}}">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <label for=""><small>ফোনঃ</small></label>
-                                        <input type="text" placeholder="ফোন" name="phone_no" class="form-control" value="{{$row->phone_no}}">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label for=""><small>পদবী</small></label>
+                                            <input type="text" placeholder="পদবী" name="title" class="form-control" value="{{$row->title}}">
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <label for=""><small> মোবাইলঃ</small></label>
-                                        <input type="text" placeholder="মোবাইল" name="mobile_no" class="form-control" value="{{$row->mobile_no}}">
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label for=""><small>ছবি</small></label>
+                                            <input type="file" placeholder="ছবি" name="photo" class="form-control">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <label for=""><small>ঠিকানা</small></label>
-                                        <textarea name="address" id="" placeholder="ঠিকানা" class="form-control">{!! $row->address !!}</textarea>
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label for=""><small>অবস্থা</small></label>
+                                            <select name="status" id="status" class="form-control">
+                                                <option value="active" {{$row->status=='active' ? 'selected' : ''}}>Active</option>
+                                                <option value="inactive" {{$row->status=='inactive' ? 'selected' : ''}}>Inactive</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <label for=""><small>অবস্থা</small></label>
-                                        <select name="status" id="status" class="form-control">
-                                            <option value="active" {{$row->status=='active' ? 'selected' : ''}}>Active</option>
-                                            <option value="inactive" {{$row->status=='inacive' ? 'selected' : ''}}>Inactive</option>
-                                        </select>
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="form-group">
+
+                                            <label for=""><small> বক্তব্য/বিস্তারিত </small></label>
+
+                                            <textarea name="description" class="form-control" placeholder="বক্তব্য/বিস্তারিত">{!! $row->description !!}</textarea>
+
+                                        </div>
                                     </div>
+                                    <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn btn-info btn-round">সেভ করুন</button>
                                 </div>
-
-                                <div class="col-md-12 text-center">
-
-                                    <button class="btn btn-primary btn-round"> সেভ করুন</button>
-
                                 </div>
                             </form>
                         </div>
@@ -187,14 +191,15 @@
 
     <!--Edit Modal End-->
 
+
     <!-- Show Modal Start -->
-    <div class="modal fade" id="contactShowModal{{$row->id}}" tabindex="-1" role="dialog">
+    <div class="modal fade" id="teamShowModal{{$row->id}}" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
 
 
                         <div class="modal-header">
-                            <h2><strong> যোগাযোগ</strong> বিস্তারিত</h2>
+                            <h2><strong> বক্তব্য</strong> বিস্তারিত</h2>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -204,22 +209,23 @@
 
                             <table class="table">
                                 <tbody>
-
                                 <tr>
-                                    <td>ইমেল </td>
-                                    <td>{{$row->gmail??"N/A"}}</td>
+                                    <td> ছবি </td>
+                                    <td>
+                                        <img src="{{asset( $row->photo??'')}}" width="100" onerror="this.src='/front/images/no_img_avaliable.jpg';" alt="s2.jpg">
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td>ফোনঃ </td>
-                                    <td>{{$row->phone_no??"N/A"}}</td>
+                                    <td>নাম </td>
+                                    <td>{{$row->name??""}}</td>
                                 </tr>
                                 <tr>
-                                    <td>মোবাইলঃ </td>
-                                    <td>{{$row->moblie_no??"N/A"}}</td>
+                                    <td>পদবী </td>
+                                    <td>{{$row->title??""}}</td>
                                 </tr>
                                 <tr>
-                                    <td>ঠিকানা</td>
-                                    <td>{!! $row->address !!}</td>
+                                    <td>বিস্তারিত</td>
+                                    <td>{!! $row->description !!}</td>
                                 </tr>
                                 <tr>
                                     <td>অবস্থা</td>
@@ -247,6 +253,8 @@
 
 
 @section('script')
+<script src="/admin/plugins/ckeditor/ckeditor.js"></script> <!-- Ckeditor -->
+<script src="/admin/js/forms/editors.js"></script>
 <script>
     $(document).ready(function(){
         $( 'textarea.ckeditor' ).ckeditor();

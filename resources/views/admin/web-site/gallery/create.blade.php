@@ -91,7 +91,7 @@
                                         <label for=""><small>অবস্থা</small></label>
                                         <select name="status" id="status" class="form-control">
                                             <option value="active">Active</option>
-                                            <option value="inctive">Inctive</option>
+                                            <option value="inactive">Inactive</option>
                                         </select>
                                     </div>
                                 </div>

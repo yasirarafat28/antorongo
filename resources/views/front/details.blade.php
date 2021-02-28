@@ -1,132 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Blog Single</title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="Unicat project">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
-<link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="styles/blog_single.css">
-<link rel="stylesheet" type="text/css" href="styles/blog_single_responsive.css">
-</head>
-<body>
+@extends('layouts.app')
+@section('style')
 
-<div class="super_container">
+<link rel="stylesheet" type="text/css" href="/front/styles/blog_single.css">
+<link rel="stylesheet" type="text/css" href="/front/styles/blog_single_responsive.css">
 
-	<!-- Header -->
+@endsection
+@section('content')
 
-	<header class="header">
-			
-		<!-- Top Bar -->
-		<div class="top_bar">
-			<div class="top_bar_container">
-				<div class="container">
-					<div class="row">
-						<div class="col">
-							<div class="top_bar_content d-flex flex-row align-items-center justify-content-start">
-								<ul class="top_bar_contact_list">
-									<li><div class="question">Have any questions?</div></li>
-									<li>
-										<i class="fa fa-phone" aria-hidden="true"></i>
-										<div>001-1234-88888</div>
-									</li>
-									<li>
-										<i class="fa fa-envelope-o" aria-hidden="true"></i>
-										<div>info.deercreative@gmail.com</div>
-									</li>
-								</ul>
-								<div class="top_bar_login ml-auto">
-									<div class="login_button"><a href="#">Register or Login</a></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>				
-		</div>
 
-		<!-- Header Content -->
-		<div class="header_container">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="header_content d-flex flex-row align-items-center justify-content-start">
-							<div class="logo_container">
-								<a href="#">
-									<div class="logo_text">Unic<span>at</span></div>
-								</a>
-							</div>
-							<nav class="main_nav_contaner ml-auto">
-								<ul class="main_nav">
-									<li><a href="index.html">Home</a></li>
-									<li><a href="about.html">About</a></li>
-									<li><a href="courses.html">Courses</a></li>
-									<li><a href="blog.html">Blog</a></li>
-									<li><a href="#">Page</a></li>
-									<li><a href="contact.html">Contact</a></li>
-								</ul>
-								<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
 
-								<!-- Hamburger -->
 
-								<div class="shopping_cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
-								<div class="hamburger menu_mm">
-									<i class="fa fa-bars menu_mm" aria-hidden="true"></i>
-								</div>
-							</nav>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Header Search Panel -->
-		<div class="header_search_container">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="header_search_content d-flex flex-row align-items-center justify-content-end">
-							<form action="#" class="header_search_form">
-								<input type="search" class="search_input" placeholder="Search" required="required">
-								<button class="header_search_button d-flex flex-column align-items-center justify-content-center">
-									<i class="fa fa-search" aria-hidden="true"></i>
-								</button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>			
-		</div>			
-	</header>
-
-	<!-- Menu -->
-
-	<div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
-		<div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
-		<div class="search">
-			<form action="#" class="header_search_form menu_mm">
-				<input type="search" class="search_input menu_mm" placeholder="Search" required="required">
-				<button class="header_search_button d-flex flex-column align-items-center justify-content-center menu_mm">
-					<i class="fa fa-search menu_mm" aria-hidden="true"></i>
-				</button>
-			</form>
-		</div>
-		<nav class="menu_nav">
-			<ul class="menu_mm">
-				<li class="menu_mm"><a href="index.html">Home</a></li>
-				<li class="menu_mm"><a href="#">About</a></li>
-				<li class="menu_mm"><a href="#">Courses</a></li>
-				<li class="menu_mm"><a href="#">Blog</a></li>
-				<li class="menu_mm"><a href="#">Page</a></li>
-				<li class="menu_mm"><a href="contact.html">Contact</a></li>
-			</ul>
-		</nav>
-	</div>
-	
 	<!-- Home -->
 
 	<div class="home">
@@ -136,15 +19,15 @@
 					<div class="col">
 						<div class="breadcrumbs">
 							<ul>
-								<li><a href="index.html">Home</a></li>
-								<li><a href="blog.html">Blog</a></li>
-								<li>Blog Single</li>
+								<li><a href="{{'/'}}">Home</a></li>
+								<li>Team</li>
+								<li>Details</li>
 							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>			
+		</div>
 	</div>
 
 	<!-- Blog -->
@@ -156,32 +39,32 @@
 				<!-- Blog Content -->
 				<div class="col-lg-8">
 					<div class="blog_content">
-						<div class="blog_title">‘I Kept Thinking of Antioch’: Long Before #MeToo, a times Video Journalist Remembered</div>
+						<div class="blog_title">{{$row->name??'N/A'}}</div>
 						<div class="blog_meta">
 							<ul>
-								<li>Post on <a href="#">May 5, 2018</a></li>
-								<li>By <a href="#">admin</a></li>
+								<li>Post on {{\App\NumberConverter::en2bn($row->created_at??'N/A')}}</li>
+								<li>{{$row->title??'N/A'}}</li>
 							</ul>
 						</div>
-						<div class="blog_image"><img src="images/blog_single.jpg" alt=""></div>
-						<p>Times Insider delivers behind-the-scenes insights into how news, features and opinion come together at The New York Times.Before I could spend the night in my younger sister’s dorm room at Antioch College in Yellow Springs, Ohio — before I could read the spines of her textbooks or drink a disgusting but lovingly prepared vodka/sparkling wine/Red Bull — I had to report to security:</p>
-						<div class="blog_quote d-flex flex-row align-items-center justify-content-start">
+						<div class="blog_image"><img src="{{url($row->photo??'')}}" alt="photo" onerror="this.src='/front/images/no_img_avaliable.jpg';"></div>
+						<p>{!! $row->description??'NA' !!}</p>
+						{{-- <div class="blog_quote d-flex flex-row align-items-center justify-content-start">
 							<i class="fa fa-quote-left" aria-hidden="true"></i>
 							<div>“All sexual interactions at Antioch College must be consensual. Consent means verbally asking and verbally giving or denying consent.”</div>
-						</div>
-						<p>It was 2004, a decade before the phrase “affirmative consent” made it onto news shows or big university campuses. I was 21, a junior at another college. I think it was the first time I had heard people talk about consent as something you could ask for verbally. It was definitely the first time I’d ever seen it written out like that.</p>
+						</div> --}}
+						{{-- <p>It was 2004, a decade before the phrase “affirmative consent” made it onto news shows or big university campuses. I was 21, a junior at another college. I think it was the first time I had heard people talk about consent as something you could ask for verbally. It was definitely the first time I’d ever seen it written out like that.</p>
 						<p>The first-of-its-kind affirmative consent policy was written by students in 1990 as a response to campus rape. But the first thing anyone who was at Antioch in the ’90s wanted to talk to me about was the media mayhem. When The Associated Press ran an article on the policy with the headline “No huggy, no kissy without a ‘yes’ at Antioch College,” it ignited a cultural firestorm.</p>
 						<div class="blog_subtitle">All the current students</div>
-						<p>I followed up with for the video told me that being sexual with an Antioch student is different from being sexual with someone else. They spoke of a common language everyone is taught beginning at orientation, so that when one student starts asking questions of another student in the midst of sexual activity, it doesn’t seem so out there.</p>
-						<div class="blog_images">
+						<p>I followed up with for the video told me that being sexual with an Antioch student is different from being sexual with someone else. They spoke of a common language everyone is taught beginning at orientation, so that when one student starts asking questions of another student in the midst of sexual activity, it doesn’t seem so out there.</p> --}}
+						{{-- <div class="blog_images">
 							<div class="row">
 								<div class="col-lg-6 blog_images_col"><div class="blog_image_small"><img src="images/blog_images_1.jpg" alt=""></div></div>
 								<div class="col-lg-6 blog_images_col"><div class="blog_image_small"><img src="images/blog_images_2.jpg" alt=""></div></div>
 							</div>
-						</div>
-						<p>But what is it like to be an 18-year-old and have the expectation set that you will talk during sex? I, for one, have never been part of a community with that expectation. Spending time at Antioch’s orientation, I thought about how that might change your sexual interactions for the rest of your life.</p>
+						</div> --}}
+						{{-- <p>But what is it like to be an 18-year-old and have the expectation set that you will talk during sex? I, for one, have never been part of a community with that expectation. Spending time at Antioch’s orientation, I thought about how that might change your sexual interactions for the rest of your life.</p> --}}
 					</div>
-					<div class="blog_extra d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
+					{{-- <div class="blog_extra d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
 						<div class="blog_tags">
 							<span>Tags: </span>
 							<ul>
@@ -202,9 +85,9 @@
 								<li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
 							</ul>
 						</div>
-					</div>
+					</div> --}}
 					<!-- Comments -->
-					<div class="comments_container">
+					{{-- <div class="comments_container">
 						<div class="comments_title"><span>30</span> Comments</div>
 						<ul class="comments_list">
 							<li>
@@ -295,11 +178,11 @@
 								</div>
 							</form>
 						</div>
-					</div>
+					</div> --}}
 				</div>
 
 				<!-- Blog Sidebar -->
-				<div class="col-lg-4">
+				{{-- <div class="col-lg-4">
 					<div class="sidebar">
 
 						<!-- Categories -->
@@ -424,14 +307,14 @@
 						</div>
 
 					</div>
-				</div>
+				</div> --}}
 			</div>
 		</div>
 	</div>
 
 	<!-- Newsletter -->
 
-	<div class="newsletter">
+	{{-- <div class="newsletter">
 		<div class="newsletter_background" style="background-image:url(images/newsletter_background.jpg)"></div>
 		<div class="container">
 			<div class="row">
@@ -456,123 +339,11 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --}}
 
-	<!-- Footer -->
 
-	<footer class="footer">
-		<div class="footer_background" style="background-image:url(images/footer_background.png)"></div>
-		<div class="container">
-			<div class="row footer_row">
-				<div class="col">
-					<div class="footer_content">
-						<div class="row">
 
-							<div class="col-lg-3 footer_col">
-					
-								<!-- Footer About -->
-								<div class="footer_section footer_about">
-									<div class="footer_logo_container">
-										<a href="#">
-											<div class="footer_logo_text">Unic<span>at</span></div>
-										</a>
-									</div>
-									<div class="footer_about_text">
-										<p>Lorem ipsum dolor sit ametium, consectetur adipiscing elit.</p>
-									</div>
-									<div class="footer_social">
-										<ul>
-											<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-										</ul>
-									</div>
-								</div>
-								
-							</div>
-
-							<div class="col-lg-3 footer_col">
-					
-								<!-- Footer Contact -->
-								<div class="footer_section footer_contact">
-									<div class="footer_title">Contact Us</div>
-									<div class="footer_contact_info">
-										<ul>
-											<li>Email: Info.deercreative@gmail.com</li>
-											<li>Phone:  +(88) 111 555 666</li>
-											<li>40 Baria Sreet 133/2 New York City, United States</li>
-										</ul>
-									</div>
-								</div>
-								
-							</div>
-
-							<div class="col-lg-3 footer_col">
-					
-								<!-- Footer links -->
-								<div class="footer_section footer_links">
-									<div class="footer_title">Contact Us</div>
-									<div class="footer_links_container">
-										<ul>
-											<li><a href="index.html">Home</a></li>
-											<li><a href="about.html">About</a></li>
-											<li><a href="contact.html">Contact</a></li>
-											<li><a href="#">Features</a></li>
-											<li><a href="courses.html">Courses</a></li>
-											<li><a href="#">Events</a></li>
-											<li><a href="#">Gallery</a></li>
-											<li><a href="#">FAQs</a></li>
-										</ul>
-									</div>
-								</div>
-								
-							</div>
-
-							<div class="col-lg-3 footer_col clearfix">
-					
-								<!-- Footer links -->
-								<div class="footer_section footer_mobile">
-									<div class="footer_title">Mobile</div>
-									<div class="footer_mobile_content">
-										<div class="footer_image"><a href="#"><img src="images/mobile_1.png" alt=""></a></div>
-										<div class="footer_image"><a href="#"><img src="images/mobile_2.png" alt=""></a></div>
-									</div>
-								</div>
-								
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row copyright_row">
-				<div class="col">
-					<div class="copyright d-flex flex-lg-row flex-column align-items-center justify-content-start">
-						<div class="cr_text"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
-						<div class="ml-lg-auto cr_links">
-							<ul class="cr_list">
-								<li><a href="#">Copyright notification</a></li>
-								<li><a href="#">Terms of Use</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
-</div>
-
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="styles/bootstrap4/popper.js"></script>
-<script src="styles/bootstrap4/bootstrap.min.js"></script>
-<script src="plugins/easing/easing.js"></script>
-<script src="plugins/parallax-js-master/parallax.min.js"></script>
-<script src="plugins/colorbox/jquery.colorbox-min.js"></script>
+@section('script')
 <script src="js/blog_single.js"></script>
-</body>
-</html>
+@endsection
+

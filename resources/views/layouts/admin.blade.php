@@ -334,6 +334,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
 
                         <a class="collapse-item" href="{{url('admin/blogs')}}" > ব্লগ </a>
+                        <a class="collapse-item" href="{{url('admin/teams')}}" > কার্যনির্বাহী সদস্যদের বক্তব্য </a>
                         <a class="collapse-item" href="{{url('admin/contacts')}}" >যোগাযোগ </a>
                         <a class="collapse-item" href="{{url('admin/galleries')}}" >গ্যালারী </a>
                         <a class="collapse-item" href="{{url('admin/services')}}" >পরিষেবা </a>

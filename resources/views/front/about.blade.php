@@ -24,31 +24,38 @@
             </div>
         </div>
     </div>
+    @php
+        $services = App\Service::where('status','active')->orderBy('created_at','DESC')->get();
+    @endphp
 	<div class="about">
 		<div class="container">
 			<div class="row">
 				<div class="col">
 					<div class="section_title_container text-center">
-						<h2 class="section_title">Welcome To Unicat E-Learning</h2>
-						<div class="section_subtitle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu Vestibulum</p></div>
+						<h2 class="section_title">আপনাকে স্বাগতম</h2>
+						<h2 class="section_title">{{\App\Setting::setting()->app_name}}</h2>
+						<div class="section_subtitle"><p>আমাদের সেবাসমূহ</p></div>
 					</div>
 				</div>
 			</div>
 			<div class="row about_row">
 
 				<!-- About Item -->
+                @foreach ($services as $service)
+
+
 				<div class="col-lg-4 about_col about_col_left">
 					<div class="about_item">
-						<div class="about_item_image"><img src="images/about_1.jpg" alt=""></div>
-						<div class="about_item_title"><a href="#">Our Stories</a></div>
+						<div class="about_item_image"><img src="/front/images/icon_2.png" alt=""></div>
+						<div class="about_item_title"><a href="#">{{$service->title??'N/A'}}</a></div>
 						<div class="about_item_text">
-							<p>Lorem ipsum dolor sit , consectet adipisi elit, sed do eiusmod tempor for enim en consectet adipisi elit, sed do consectet adipisi elit, sed doadesg.</p>
+							<p>{!! $service->description??'N/a' !!}</p>
 						</div>
 					</div>
 				</div>
-
+                @endforeach
 				<!-- About Item -->
-				<div class="col-lg-4 about_col about_col_middle">
+				{{-- <div class="col-lg-4 about_col about_col_middle">
 					<div class="about_item">
 						<div class="about_item_image"><img src="images/about_2.jpg" alt=""></div>
 						<div class="about_item_title"><a href="#">Our Mission</a></div>
@@ -56,10 +63,10 @@
 							<p>Lorem ipsum dolor sit , consectet adipisi elit, sed do eiusmod tempor for enim en consectet adipisi elit, sed do consectet adipisi elit, sed doadesg.</p>
 						</div>
 					</div>
-				</div>
+				</div> --}}
 
 				<!-- About Item -->
-				<div class="col-lg-4 about_col about_col_right">
+				{{-- <div class="col-lg-4 about_col about_col_right">
 					<div class="about_item">
 						<div class="about_item_image"><img src="images/about_3.jpg" alt=""></div>
 						<div class="about_item_title"><a href="#">Our Vision</a></div>
@@ -67,7 +74,7 @@
 							<p>Lorem ipsum dolor sit , consectet adipisi elit, sed do eiusmod tempor for enim en consectet adipisi elit, sed do consectet adipisi elit, sed doadesg.</p>
 						</div>
 					</div>
-				</div>
+				</div> --}}
 
 			</div>
 		</div>
@@ -75,7 +82,7 @@
 
 	<!-- Feature -->
 
-	<div class="feature">
+	{{-- <div class="feature">
 		<div class="feature_background" style="background-image:url(images/courses_background.jpg)"></div>
 		<div class="container">
 			<div class="row">
@@ -142,6 +149,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --}}
 
 @endsection

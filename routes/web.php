@@ -29,6 +29,15 @@ Route::get('/about', function () {
 Route::get('/blogs', function () {
     return view('front.blogs');
 });
+Route::get('/contact', function () {
+    return view('front.contact');
+});
+// Route::get('/details/{id}', function () {
+
+//     return view('front.details');
+// });
+Route::get('/details/{id}', 'FrontController@details');
+
 
 Route::get('/testing', function () {
 
@@ -257,6 +266,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::resource('galleries', 'GalleryController');
     Route::resource('enquiries', 'EnquiryController');
     Route::resource('services', 'ServiceController');
+    Route::resource('teams', 'TeamController');
 
 
 

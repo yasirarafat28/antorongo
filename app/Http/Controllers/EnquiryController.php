@@ -54,7 +54,7 @@ class EnquiryController extends Controller
         $enquriry->description = $request->description;
         $enquriry->save();
 
-        return back()->withSuccess('Your Messege Sent Successfully!');
+        return back()->withSuccess('আপনার বার্তা সফলভাবে পাঠানো হয়েছে!');
     }
 
     /**
