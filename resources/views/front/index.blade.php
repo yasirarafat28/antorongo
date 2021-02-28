@@ -367,10 +367,10 @@ $services = App\Service::where('status','active')->orderBy('created_at','DESC')-
 </div>
 
 <!-- Team -->
-@php
+{{-- @php
     $teams = App\Team::where('status','active')->orderBy('created_at','DESC')->get();
-@endphp
-<div class="team">
+@endphp --}}
+{{-- <div class="team">
     <div class="team_background parallax-window" data-parallax="scroll" data-image-src="/front/images/team_background.jpg" data-speed="0.8"></div>
     <div class="container">
         <div class="row">
@@ -459,7 +459,7 @@ $services = App\Service::where('status','active')->orderBy('created_at','DESC')-
 
         </div>
     </div>
-</div>
+</div> --}}
 
 <!-- Latest News -->
 
