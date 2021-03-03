@@ -320,6 +320,26 @@
                         {{-- <a class="collapse-item" href="{{url('admin/statement/customize')}}" >দৈনিক/মাসিক/ বাৎসরিক </a> --}}
                         <a class="collapse-item" href="{{url('admin/statement/daily-statement')}}" >স্টেটমেন্ট </a>
 
+
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#auditNav"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>অডিট </span>
+                </a>
+                <div id="auditNav" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{url('admin/yearly-audit/short/saving/list')}}" >স্বল্পমেয়াদী অডিট</a>
+                        <a class="collapse-item" href="{{url('admin/yearly-audit/long/saving/list')}}" >দীর্ঘমেয়াদী অডিট</a>
+                        <a class="collapse-item" href="{{url('admin/yearly-audit/daily/saving/list')}}" >দৈনিক অডিট</a>
+                        <a class="collapse-item" href="{{url('admin/yearly-audit/current/saving/list')}}" >সেভিংস অডিট</a>
+                        <a class="collapse-item" href="{{url('admin/yearly-audit/fdr/list')}}" >এফডিআর</a>
+                        <a class="collapse-item" href="{{url('admin/yearly-audit/loan/list')}}" >ঋণ </a>
+
                     </div>
                 </div>
             </li>

@@ -258,6 +258,13 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 
     Route::resource('founder-deposit', 'FounderDepositController');
 
+    //yearly Audit
+
+    Route::get('yearly-audit/{type}/saving/list','AuditController@savingAudit')->name('SavingAudit');
+    Route::get('yearly-audit/fdr/list','AuditController@fdrAudit')->name('FdrAudit');
+    Route::get('yearly-audit/loan/list','AuditController@loanAudit')->name('LoanAudit');
+
+
 
     // Web site management route
 

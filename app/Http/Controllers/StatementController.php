@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Loan;
+use App\Saving;
 use App\Transaction;
 use Illuminate\Http\Request;
 use App\TransactionHead;
@@ -33,4 +34,6 @@ class StatementController extends Controller
 
         return view('admin/statement/daily-statement');
     }
+
+
 }
