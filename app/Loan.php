@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Loan extends Model
 {
@@ -72,6 +73,26 @@ class Loan extends Model
     }
     public function loan_waivers(){
         return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','loan')->where('flag','loan_waiver');
+    }
+
+    public static function get_total_give_away_in_range($loan_id,$from,$to){
+        $from = date("Y-m-d", strtotime($from));
+        $to = date("Y-m-d", strtotime($to));
+        //  $loan_active_list = Loan::where('status','approved')->get();
+
+        $tatal_give_away_amount = Transaction::where('transactable_id',$loan_id)->where('canculatable','yes')
+        ->where(function($q) use($from,$to){
+            if($from){
+                $q->where(DB::raw('DATE(date)'),'>=',$from);
+            }
+            if($to){
+                $q->where(DB::raw('DATE(date)'),'<=',$to);
+            }
+        })
+        ->sum('amount');
+
+        return  $tatal_give_away_amount;
+
     }
 
 }

@@ -12,7 +12,7 @@
             <!-- Home Slider Item -->
 
             @php
-                $cover_photo = App\Gallery::where('status','active')->where('flag','web_cover_photo')->orderBy('created_at','DESC')->first();
+                $cover_photo = App\Gallery::where('status','active')->orderBy('created_at','DESC')->first();
             @endphp
             <div class="owl-item">
                 <div class="home_slider_background" style="background-image:url({{($cover_photo->cover_photo)}});"></div>
@@ -47,16 +47,16 @@
             </div>
 
             <!-- Home Slider Item -->
-            @php
-                $cover_photo_tow = App\Gallery::where('status','active')->where('flag','web_cover_photo_two')->orderBy('created_at','DESC')->first();
-            @endphp
+            {{-- @php
+                $cover_photo_tow = App\Gallery::where('status','active')->orderBy('created_at','DESC')->first();
+            @endphp --}}
             <div class="owl-item">
-                <div class="home_slider_background" style="background-image:url({{($cover_photo_tow->photo??'')}});"></div>
+                <div class="home_slider_background" style="background-image:url({{($cover_photo->photo??'')}});"></div>
                 <div class="home_slider_content">
                     <div class="container">
                         <div class="row">
                             <div class="col text-center">
-                                <div class="home_slider_title">{{\App\Setting::setting()->app_name}}</div>
+                                <div class="home_slider_title" style="color:#fff">{{\App\Setting::setting()->app_name}}</div>
                                 {{-- <div class="home_slider_subtitle">Future Of Education Technology</div>
                                     <div class="home_slider_form_container">
                                     <form action="#" id="home_search_form_2" class="home_search_form d-flex flex-lg-row flex-column align-items-center justify-content-between">

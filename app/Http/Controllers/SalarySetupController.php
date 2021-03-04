@@ -66,15 +66,15 @@ class SalarySetupController extends Controller
         $structure = new SalarySetup();
         $structure->user_id = $request->user_id;
         $structure->basic_allowance = $request->basic_allowance;
-        $structure->dearness_allowance = $request->dearness_allowance;
-        $structure->medical_allowance = $request->medical_allowance;
-        $structure->house_rent_allowance = $request->house_rent_allowance;
+        // $structure->dearness_allowance = $request->dearness_allowance;
+        // $structure->medical_allowance = $request->medical_allowance;
+        // $structure->house_rent_allowance = $request->house_rent_allowance;
         $structure->bonus_allowance = $request->bonus_allowance;
         $structure->other_addition_allowance = $request->other_addition_allowance;
-        $structure->p_fund_deduction = $request->p_fund_deduction;
-        $structure->pro_tax_deduction = $request->pro_tax_deduction;
-        $structure->loan_deduction = $request->loan_deduction??0;
-        $structure->other_deduction = $request->other_deduction;
+        // $structure->p_fund_deduction = $request->p_fund_deduction;
+        // $structure->pro_tax_deduction = $request->pro_tax_deduction;
+        // $structure->loan_deduction = $request->loan_deduction??0;
+        // $structure->other_deduction = $request->other_deduction;
         $structure->status = 'active';
         $structure->save();
 
@@ -123,15 +123,15 @@ class SalarySetupController extends Controller
         $structure = SalarySetup::find($id);
         $structure->user_id = $request->user_id;
         $structure->basic_allowance = $request->basic_allowance;
-        $structure->dearness_allowance = $request->dearness_allowance;
-        $structure->medical_allowance = $request->medical_allowance;
-        $structure->house_rent_allowance = $request->house_rent_allowance;
+        // $structure->dearness_allowance = $request->dearness_allowance;
+        // $structure->medical_allowance = $request->medical_allowance;
+        // $structure->house_rent_allowance = $request->house_rent_allowance;
         $structure->bonus_allowance = $request->bonus_allowance;
         $structure->other_addition_allowance = $request->other_addition_allowance;
-        $structure->p_fund_deduction = $request->p_fund_deduction;
-        $structure->pro_tax_deduction = $request->pro_tax_deduction;
-        $structure->loan_deduction = $request->loan_deduction??0;
-        $structure->other_deduction = $request->other_deduction;
+        // $structure->p_fund_deduction = $request->p_fund_deduction;
+        // $structure->pro_tax_deduction = $request->pro_tax_deduction;
+        // $structure->loan_deduction = $request->loan_deduction??0;
+        // $structure->other_deduction = $request->other_deduction;
         $structure->status = 'active';
         $structure->save();
 

@@ -81,7 +81,7 @@
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                         aria-labelledby="dropdownMenuLink">
 
-                                        <a  data-toggle="modal" data-target="#contactEditModal{{$item->id}}" class="dropdown-item"><i class="fa fa-eye"> </i> এডিট </i></a>
+                                        <a  data-toggle="modal" data-target="#contactEditModal{{$item->id}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট </i></a>
                                         <a  data-toggle="modal" data-target="#contactShowModal{{$item->id}}" class="dropdown-item"><i class="fa fa-eye"> </i> বিস্তারিত </i></a>
 
                                             {!! Form::open([

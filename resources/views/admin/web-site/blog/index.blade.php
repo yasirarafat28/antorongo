@@ -81,7 +81,7 @@
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                         aria-labelledby="dropdownMenuLink">
 
-                                        <a  data-toggle="modal" data-target="#blogEditModal{{$item->id}}" class="dropdown-item"><i class="fa fa-eye"> </i> এডিট  </i></a>
+                                        <a  data-toggle="modal" data-target="#blogEditModal{{$item->id}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট  </i></a>
                                         <a  data-toggle="modal" data-target="#blogShowModal{{$item->id}}" class="dropdown-item"><i class="fa fa-eye"> </i> বিস্তারিত </i></a>
 
                                             {!! Form::open([
@@ -147,7 +147,7 @@
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label for=""><small>ছবি</small></label>
-                                            <input type="file" placeholder="ছবি" name="feature_image" class="form-control">
+                                            <input type="file" placeholder="ছবি" name="feature_image" class="form-control" value="{{$row->feature_image}}">
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12">

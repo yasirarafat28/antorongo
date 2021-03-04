@@ -63,12 +63,12 @@
 					<div class="col">
 						<div class="header_content d-flex flex-row align-items-center justify-content-start">
                             @php
-                                $logo = App\Gallery::where('flag','logo')->where('status','active')->orderBy('created_at','DESC')->first();
+                                $logo = App\Gallery::where('status','active')->orderBy('created_at','DESC')->first();
                             @endphp
 							<div class="logo_container">
 
 									<div class="logo">
-                                        <img src="{{$logo->logo}}" alt="logo" onerror="this.src='/front/images/no_img_avaliable.jpg';">
+                                        <img src="{{$logo->logo??''}}" alt="logo" onerror="this.src='/front/images/no_img_avaliable.jpg';">
                                     </div>
 
 							</div>

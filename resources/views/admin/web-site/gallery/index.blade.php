@@ -56,7 +56,7 @@
                                 <th>ক্রিয়াকলাপ</th>
                                 <th>লোগো </th>
                                 <th>কভার ছবি </th>
-                                <th>ছবি</th>
+                                <th>কভার ছবি ২</th>
                                 <th> শিরোনাম </th>
                                 <th>অবস্থা  </th>
                                 <th>সময়</th>
@@ -67,7 +67,7 @@
                                 <th>ক্রিয়াকলাপ</th>
                                 <th>লোগো </th>
                                 <th>কভার ছবি </th>
-                                <th>ছবি</th>
+                                <th>কভার ছবি ২</th>
                                 <th> শিরোনাম </th>
                                 <th>অবস্থা  </th>
                                 <th>সময়</th>
@@ -84,6 +84,7 @@
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                         aria-labelledby="dropdownMenuLink">
 
+                                        <a  data-toggle="modal" data-target="#galleriesEditModal{{$item->id}}" class="dropdown-item"><i class="fa fa-edit"> </i> এডিট </i></a>
                                         <a  data-toggle="modal" data-target="#galleriesShowModal{{$item->id}}" class="dropdown-item"><i class="fa fa-eye"> </i> বিস্তারিত </i></a>
 
                                             {!! Form::open([
@@ -129,6 +130,84 @@
 </section>
 
     @foreach($records as $row)
+
+    <!-- Edit Modal Start -->
+    <div class="modal fade" id="galleriesEditModal{{$row->id}}" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h2><strong> গ্যালারী</strong> এডিট</h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{url('admin/galleries/'.$row->id)}}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
+                                {{csrf_field()}}
+
+                                {{method_field('PATCH')}}
+                                <div class="row clearfix">
+                                    <div class="col-lg-6 col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label for=""><small>শিরোনাম</small></label>
+                                            <input type="text" placeholder="শিরোনাম" name="title" class="form-control" value="{{$row->title}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label for=""><small>ওয়েব সাইট কভার ছবি</small></label>
+                                            <input type="file" placeholder="ওয়েব সাইট কভার ছবি" name="cover_photo" class="form-control" value="{{$row->cover_photo}}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label for=""><small>ওয়েব সাইট কভার ছবি ২</small></label>
+                                            <input type="file" placeholder="ছবি" name="photo" class="form-control" value="{{$row->photo}}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label for=""><small>লোগো </small></label>
+                                            <input type="file" placeholder="লোগো" name="logo" class="form-control" value="{{$row->logo}}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label for=""><small>অবস্থা</small></label>
+                                            <select name="status" id="status" class="form-control">
+                                                <option value="active" {{$row->status=='active' ? 'selected' : ''}}>Active</option>
+                                                <option value="inactive" {{$row->status=='inactive' ? 'selected' : ''}}>Inactive</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    {{-- <div class="col-lg-12 col-md-12">
+                                        <div class="form-group">
+
+                                            <label for=""><small> নোট/বিস্তারিত </small></label>
+
+                                            <textarea name="description" class="form-control" placeholder="নোট/বিস্তারিত">{!! $row->description !!}</textarea>
+
+                                        </div>
+                                    </div> --}}
+                                    <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn btn-info btn-round">সেভ করুন</button>
+                                </div>
+                                </div>
+                            </form>
+                        </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--Edit Modal End-->
+
+
     <!-- Show Modal Start -->
     <div class="modal fade" id="galleriesShowModal{{$row->id}}" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
@@ -159,7 +238,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>ছবি </td>
+                                    <td>ওয়েব সাইট কভার ছবি ২</td>
                                     <td>
                                         <img src="{{asset( $row->photo??'')}}" width="100" onerror="this.src='/front/images/no_img_avaliable.jpg';" alt="s2.jpg">
                                     </td>

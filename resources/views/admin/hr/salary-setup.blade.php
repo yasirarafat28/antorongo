@@ -124,20 +124,20 @@
 
                     </div>
                     <div class="body">
-                        <table class="table table-bordered table-striped table-hover dataTable js-plaintable table-responsive">
+                        <table class="table table-bordered table-striped table-hover dataTable js-plaintable">
                             <thead>
                             <tr>
                                 <th>ক্রিয়াকলাপ</th>
                                 <th>কর্মচারী </th>
                                 <th>মূল বেতন </th>
-                                <th>মহার্ঘ ভাতা </th>
+                                {{-- <th>মহার্ঘ ভাতা </th>
                                 <th>বাড়িভাড়া ভাতা </th>
-                                <th>মেডিকেল ভাতা </th>
+                                <th>মেডিকেল ভাতা </th> --}}
                                 <th>বোনাস </th>
                                 <th>অন্যান্য ভাতা </th>
-                                <th>ভবিষ্যতনিধি </th>
+                                {{-- <th>ভবিষ্যতনিধি </th>
                                 <th>পেশাগত কর </th>
-                                <th>অন্যান্য নিলাম </th>
+                                <th>অন্যান্য নিলাম </th> --}}
                             </tr>
                             </thead>
                             <tfoot>
@@ -145,14 +145,14 @@
                                 <th>ক্রিয়াকলাপ</th>
                                 <th>কর্মচারী </th>
                                 <th>মূল বেতন </th>
-                                <th>মহার্ঘ ভাতা </th>
+                                {{-- <th>মহার্ঘ ভাতা </th>
                                 <th>বাড়িভাড়া ভাতা </th>
-                                <th>মেডিকেল ভাতা </th>
+                                <th>মেডিকেল ভাতা </th> --}}
                                 <th>বোনাস </th>
                                 <th>অন্যান্য ভাতা </th>
-                                <th>ভবিষ্যতনিধি </th>
+                                {{-- <th>ভবিষ্যতনিধি </th>
                                 <th>পেশাগত কর </th>
-                                <th>অন্যান্য নিলাম </th>
+                                <th>অন্যান্য নিলাম </th> --}}
                             </tr>
                             </tfoot>
                             <tbody>
@@ -186,14 +186,14 @@
 
                                     <td> {{$item->user->name}}</td>
                                     <td>+ {{\App\NumberConverter::en2bn($item->basic_allowance)}} টাকা</td>
-                                    <td>+ {{\App\NumberConverter::en2bn($item->dearness_allowance)}} টাকা</td>
+                                    {{-- <td>+ {{\App\NumberConverter::en2bn($item->dearness_allowance)}} টাকা</td>
                                     <td>+ {{\App\NumberConverter::en2bn($item->house_rent_allowance)}} টাকা</td>
-                                    <td>+ {{\App\NumberConverter::en2bn($item->medical_allowance)}} টাকা</td>
+                                    <td>+ {{\App\NumberConverter::en2bn($item->medical_allowance)}} টাকা</td> --}}
                                     <td>+ {{\App\NumberConverter::en2bn($item->bonus_allowance)}} টাকা</td>
                                     <td>+ {{\App\NumberConverter::en2bn($item->other_addition_allowance)}} টাকা</td>
-                                    <td>- {{\App\NumberConverter::en2bn($item->p_fund_deduction)}} টাকা</td>
+                                    {{-- <td>- {{\App\NumberConverter::en2bn($item->p_fund_deduction)}} টাকা</td>
                                     <td>- {{\App\NumberConverter::en2bn($item->pro_tax_deduction)}} টাকা</td>
-                                    <td>- {{\App\NumberConverter::en2bn($item->other_deduction)}} টাকা</td>
+                                    <td>- {{\App\NumberConverter::en2bn($item->other_deduction)}} টাকা</td> --}}
 
 
 
@@ -244,7 +244,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6 col-md-12">
+                                {{-- <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
                                         <label for=""><small> মহার্ঘ ভাতা</small></label>
                                         <input type="number" class="form-control" placeholder="মহার্ঘ ভাতা" name="dearness_allowance" value="0">
@@ -265,7 +265,7 @@
                                         <label for=""><small> মেডিকেল ভাতা</small></label>
                                         <input type="number" class="form-control" placeholder="মেডিকেল ভাতা" name="medical_allowance" value="0">
                                     </div>
-                                </div>
+                                </div> --}}
 
 
                                 <div class="col-lg-6 col-md-12">
@@ -287,7 +287,7 @@
 
 
 
-                                <div class="col-lg-6 col-md-12">
+                                {{-- <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
                                         <label for=""><small> ভবিষ্যতনিধি </small></label>
                                         <input type="number" class="form-control" placeholder="ভবিষ্যতনিধি" name="p_fund_deduction" value="0">
@@ -309,7 +309,7 @@
                                         <label for=""><small> অন্যান্য </small></label>
                                         <input type="number" class="form-control" placeholder="অন্যান্য" name="other_deduction" value="0">
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-md-12 text-center">
                                     <button type="submit" class="btn btn-info btn-round">সেভ করুন</button>
                                 </div>
@@ -360,7 +360,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6 col-md-12">
+                                {{-- <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
                                         <label for=""><small> মহার্ঘ ভাতা</small></label>
                                         <input type="number" class="form-control" placeholder="মহার্ঘ ভাতা" name="dearness_allowance" value="{{$item->dearness_allowance}}">
@@ -381,7 +381,7 @@
                                         <label for=""><small> মেডিকেল ভাতা</small></label>
                                         <input type="number" class="form-control" placeholder="মেডিকেল ভাতা" name="medical_allowance" value="{{$item->medical_allowance}}">
                                     </div>
-                                </div>
+                                </div> --}}
 
 
                                 <div class="col-lg-6 col-md-12">
@@ -403,7 +403,7 @@
 
 
 
-                                <div class="col-lg-6 col-md-12">
+                                {{-- <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
                                         <label for=""><small> ভবিষ্যতনিধি </small></label>
                                         <input type="number" class="form-control" placeholder="ভবিষ্যতনিধি" name="p_fund_deduction" value="{{$item->p_fund_deduction}}">
@@ -425,7 +425,7 @@
                                         <label for=""><small> অন্যান্য </small></label>
                                         <input type="number" class="form-control" placeholder="অন্যান্য" name="other_deduction" value="{{$item->other_deduction}}">
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-md-12 text-center">
                                      <button type="submit" class="btn btn-info btn-round">সেভ করুন</button>
                                 </div>

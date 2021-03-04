@@ -42,9 +42,7 @@ class GalleryController extends Controller
 
         $galleries = new Gallery();
         $galleries->title = $request->title;
-        if($request->title){
-            $galleries->flag = 'web_title';
-        }
+
         $galleries->status = $request->status;
 
         if ($request->hasFile('cover_photo')) {
@@ -55,7 +53,7 @@ class GalleryController extends Controller
             $image->move($path, $imageName);
             $imageUrl   = $path . $imageName;
             $galleries->cover_photo = $imageUrl;
-            $galleries->flag = 'web_cover_photo';
+
         }
 
         if ($request->hasFile('photo')) {
@@ -66,7 +64,7 @@ class GalleryController extends Controller
             $image->move($path, $imageName);
             $imageUrl   = $path . $imageName;
             $galleries->photo = $imageUrl;
-            $galleries->flag = 'web_cover_photo_two';
+
         }
 
         if ($request->hasFile('logo')){
@@ -77,7 +75,7 @@ class GalleryController extends Controller
             $image->move($path, $imageName);
             $imageUrl   = $path . $imageName;
             $galleries->logo = $imageUrl;
-            $galleries->flag = 'logo';
+
 
 
         }
@@ -122,17 +120,52 @@ class GalleryController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $this->validate($request,[
 
             ]);
 
             $galleries = Gallery::find($id);
+            $galleries->title = $request->title;
 
             $galleries->status = $request->status;
+
+            if ($request->hasFile('cover_photo')) {
+
+                $image      = $request->file('cover_photo');
+                $imageName  = 'gallery_c'.date('ymdhis').'.'.$image->getClientOriginalExtension();
+                $path       = 'images/file/';
+                $image->move($path, $imageName);
+                $imageUrl   = $path . $imageName;
+                $galleries->cover_photo = $imageUrl;
+
+            }
+
+            if ($request->hasFile('photo')) {
+
+                $image      = $request->file('photo');
+                $imageName  = 'gallery_p'.date('ymdhis').'.'.$image->getClientOriginalExtension();
+                $path       = 'images/file/';
+                $image->move($path, $imageName);
+                $imageUrl   = $path . $imageName;
+                $galleries->photo = $imageUrl;
+
+            }
+
+            if ($request->hasFile('logo')){
+
+                $image      = $request->file('logo');
+                $imageName  = 'gallery_l'.date('ymdhis').'.'.$image->getClientOriginalExtension();
+                $path       = 'images/file/';
+                $image->move($path, $imageName);
+                $imageUrl   = $path . $imageName;
+                $galleries->logo = $imageUrl;
+
+            }
+
             $galleries->save();
 
-
-            return back()->withSuccess('সফলভাবে সেভ করা হয়েছে');
+        return redirect('admin/galleries')->withSuccess('সফলভাবে সেভ করা হয়েছে');
     }
 
     /**

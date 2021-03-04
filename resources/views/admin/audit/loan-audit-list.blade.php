@@ -35,11 +35,11 @@
     <div class="container-fluid">
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">লোন পলিসি আমানত</h1>
+            <h1 class="h3 mb-0 text-gray-800">ঋণ প্রদান</h1>
 
             <ul class="breadcrumb float-md-right">
                 <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> {{\App\Setting::setting()->app_name}}</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0);">এফডিআর পলিসি আমানত</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">ঋণ প্রদান</a></li>
             </ul>
         </div>
 
@@ -51,7 +51,7 @@
 
                     <div class="header">
 
-                        <h2><strong>এফডিআর পলিসি আমানত তালিকা</strong></h2>
+                        <h2><strong>ঋণ প্রদান তালিকা</strong></h2>
 
                         <ul class="header-dropdown">
 
@@ -133,7 +133,7 @@
                                         <h1 style="text-align: center">দি অন্তরঙ্গ বহুমুখী সমবায় সমিতি লিঃ</h1>
                                     <h5 style="text-align: center">৭৪১,মনিপুর,মিরপুর-২,ঢাকা-১২১৬ । রেজি নং-১৮৭/০১</h5>
                                     <h3 style="text-align: center">
-                                        এফডিআর পলিসি আমানত তালিকা
+                                        ঋণ প্রদান তালিকা
                                         <span style="padding-left: 15px;">তারিখঃ</span>
 
                                          @if ($from != $to)

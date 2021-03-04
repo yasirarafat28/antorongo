@@ -115,15 +115,15 @@
 
                     </div>
                     <div class="body table-responsive">
-                        <table class="table table-bordered table-striped table-hover dataTable js-plaintable table-responsive">
+                        <table class="table table-bordered table-striped table-hover dataTable js-plaintable">
                             <thead>
                             <tr>
                                 <th>ক্রিয়াকলাপ</th>
                                 <th>কর্মচারী </th>
                                 <th>মূল বেতন </th>
-                                <th>মহার্ঘ ভাতা </th>
-                                <th>ভবিষ্যতনিধি </th>
-                                <th>পেশাগত কর </th>
+                                <th>বোনাস </th>
+                                <th>অন্যান্য ভাতা </th>
+                                <th>জরিমানা </th>
                                 <th>মোট পরিশোধযোগ্য </th>
                                 <th>মোট পরিশোধ </th>
                             </tr>
@@ -133,9 +133,9 @@
                                 <th>ক্রিয়াকলাপ</th>
                                 <th>কর্মচারী </th>
                                 <th>মূল বেতন </th>
-                                <th>মহার্ঘ ভাতা </th>
-                                <th>ভবিষ্যতনিধি </th>
-                                <th>পেশাগত কর </th>
+                                <th>বোনাস </th>
+                                <th>অন্যান্য ভাতা </th>
+                                <th>জরিমানা </th>
                                 <th>মোট পরিশোধযোগ্য </th>
                                 <th>মোট পরিশোধ </th>
                             </tr>
@@ -169,9 +169,9 @@
                                     </td>
                                     <td> {{$item->user->name}}</td>
                                     <td>+ {{\App\NumberConverter::en2bn($item->basic_allowance)}} টাকা</td>
-                                    <td>+ {{\App\NumberConverter::en2bn($item->dearness_allowance)}} টাকা</td>
-                                    <td>- {{\App\NumberConverter::en2bn($item->p_fund_deduction)}} টাকা</td>
-                                    <td>- {{\App\NumberConverter::en2bn($item->pro_tax_deduction)}} টাকা</td>
+                                    <td>+ {{\App\NumberConverter::en2bn($item->bonus_allowance)}} টাকা</td>
+                                    <td>{{\App\NumberConverter::en2bn($item->other_addition_allowance)}} টাকা</td>
+                                     <td>- {{\App\NumberConverter::en2bn($item->fine??0)}} টাকা</td>
                                     <td> +{{\App\NumberConverter::en2bn($item->payable_amount)}} টাকা</td>
                                     <td> +{{\App\NumberConverter::en2bn($item->paid_amount)}} টাকা</td>
 
@@ -228,7 +228,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6 col-md-6">
+                                {{-- <div class="col-lg-6 col-md-6">
                                     <div class="form-group">
                                         <label for=""><small> মহার্ঘ ভাতা</small></label>
                                         <input type="number" class="form-control" placeholder="মহার্ঘ ভাতা" name="dearness_allowance" value="0" id="dearness_allowance" onkeyup="SalaryCalculate()">
@@ -249,7 +249,7 @@
                                         <label for=""><small> মেডিকেল ভাতা</small></label>
                                         <input type="number" class="form-control" placeholder="মেডিকেল ভাতা" name="medical_allowance" value="0" id="medical_allowance" onkeyup="SalaryCalculate()">
                                     </div>
-                                </div>
+                                </div> --}}
 
 
                                 <div class="col-lg-6 col-md-6">
@@ -271,7 +271,7 @@
 
 
 
-                                <div class="col-lg-6 col-md-6">
+                                {{-- <div class="col-lg-6 col-md-6">
                                     <div class="form-group">
                                         <label for=""><small> ভবিষ্যতনিধি </small></label>
                                         <input type="number" class="form-control" placeholder="ভবিষ্যতনিধি" name="p_fund_deduction" value="0" id="p_fund_deduction" onkeyup="SalaryCalculate()">
@@ -285,7 +285,7 @@
                                         <label for=""><small> পেশাগত কর </small></label>
                                         <input type="number" class="form-control" placeholder="পেশাগত কর" name="pro_tax_deduction" value="0" id="pro_tax_deduction" onkeyup="SalaryCalculate()">
                                     </div>
-                                </div>
+                                </div> --}}
 
 
                                 <div class="col-lg-6 col-md-6">
@@ -317,12 +317,12 @@
 
 
 
-                                <div class="col-lg-6 col-md-6">
+                                {{-- <div class="col-lg-6 col-md-6">
                                     <div class="form-group">
                                         <label for=""><small> অন্যান্য </small></label>
                                         <input type="number" class="form-control" placeholder="অন্যান্য" name="other_deduction" value="0" id="other_deduction" onkeyup="SalaryCalculate()">
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-lg-12 col-md-12">
                                     <div class="form-group">
                                         <label for=""><small> মতামত </small></label>
@@ -395,7 +395,7 @@
                                         <td>মূল বেতন</td>
                                         <td>{{$item->basic_allowance}}</td>
                                     </tr>
-                                    <tr>
+                                    {{-- <tr>
                                         <td>মহার্ঘ ভাতা</td>
                                         <td>{{$item->dearness_allowance}}</td>
                                     </tr>
@@ -406,7 +406,7 @@
                                     <tr>
                                         <td>মেডিকেল ভাতা</td>
                                         <td>{{$item->medical_allowance}}</td>
-                                    </tr>
+                                    </tr> --}}
                                     <tr>
                                         <td>বোনাস</td>
                                         <td>{{$item->bonus_allowance}}</td>
@@ -415,7 +415,7 @@
                                         <td>অন্যান্য ভাতা</td>
                                         <td>{{$item->other_addition_allowance}}</td>
                                     </tr>
-                                    <tr>
+                                    {{-- <tr>
                                         <td>ভবিষ্যতনিধি</td>
                                         <td>{{$item->p_fund_deduction}}</td>
                                     </tr>
@@ -426,7 +426,7 @@
                                     <tr>
                                         <td>অন্যান্য বিয়োগ </td>
                                         <td>{{$item->other_deduction}}</td>
-                                    </tr>
+                                    </tr> --}}
                                     <tr>
                                         <td>বেতনের মাস </td>
                                         <td>{{$item->payment_month}}</td>
@@ -459,23 +459,23 @@
     function SalaryCalculate()
     {
         basic = parseFloat($('#basic_allowance').val());
-        dear = parseFloat($('#dearness_allowance').val());
+        // dear = parseFloat($('#dearness_allowance').val());
 
         //alert(basic+dear);
-        house = parseFloat($('#house_rent_allowance').val());
-        medical = parseFloat($('#medical_allowance').val());
+        // house = parseFloat($('#house_rent_allowance').val());
+        // medical = parseFloat($('#medical_allowance').val());
         bonus = parseFloat($('#bonus_allowance').val());
         other_allowance = parseFloat($('#other_addition_allowance').val());
 
-        p_fund = parseFloat($('#p_fund_deduction').val());
-        pro_tax = parseFloat($('#pro_tax_deduction').val());
-        other_deduction = parseFloat($('#other_deduction').val());
+        // p_fund = parseFloat($('#p_fund_deduction').val());
+        // pro_tax = parseFloat($('#pro_tax_deduction').val());
+        // other_deduction = parseFloat($('#other_deduction').val());
         p_fine = parseFloat($('#fine').val());
         //console.log(parseFloat(basic+dear));
 
         $('#due').val(parseFloat($('#payable').val())-parseFloat($('#paid').val()));
 
-        $('#total-salary').html(basic+dear+house+medical+bonus+other_allowance-p_fund-pro_tax-other_deduction-p_fine);
+        $('#total-salary').html(basic+bonus+other_allowance-p_fine);
         //$('#total-salary').html(parseFloat(basic+dear+house+medical+bonus+other_allowance));
 
     }
@@ -498,20 +498,20 @@
             success:function(data) {
 
                 basic = parseFloat($('#basic_allowance').val(data.basic_allowance));
-                dear = parseFloat($('#dearness_allowance').val(data.dearness_allowance));
+                // dear = parseFloat($('#dearness_allowance').val(data.dearness_allowance));
 
                 //alert(basic+dear);
-                house = parseFloat($('#house_rent_allowance').val(data.house_rent_allowance));
-                medical = parseFloat($('#medical_allowance').val(data.medical_allowance));
+                // house = parseFloat($('#house_rent_allowance').val(data.house_rent_allowance));
+                // medical = parseFloat($('#medical_allowance').val(data.medical_allowance));
                 bonus = parseFloat($('#bonus_allowance').val(data.bonus_allowance));
                 other_allowance = parseFloat($('#other_addition_allowance').val(data.other_addition_allowance));
 
-                p_fund = parseFloat($('#p_fund_deduction').val(data.p_fund_deduction));
-                pro_tax = parseFloat($('#pro_tax_deduction').val(data.pro_tax_deduction));
-                other_deduction = parseFloat($('#other_deduction').val(data.other_deduction));
-                p_fine = parseFloat($('#fine').val(data.fine));
+                // p_fund = parseFloat($('#p_fund_deduction').val(data.p_fund_deduction));
+                // pro_tax = parseFloat($('#pro_tax_deduction').val(data.pro_tax_deduction));
+                // other_deduction = parseFloat($('#other_deduction').val(data.other_deduction));
+                // p_fine = parseFloat($('#fine').val(data.fine));
 
-                $('#payable').val(data.basic_allowance+data.dearness_allowance+data.house_rent_allowance+data.medical_allowance+data.bonus_allowance+data.other_addition_allowance-data.p_fund_deduction-data.pro_tax_deduction-data.other_deduction-p_fine);
+                $('#payable').val(data.basic_allowance+data.bonus_allowance+data.other_addition_allowance);
 
                 SalaryCalculate();
 
