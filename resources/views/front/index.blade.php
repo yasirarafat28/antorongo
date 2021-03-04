@@ -147,8 +147,8 @@ $services = App\Service::where('status','active')->orderBy('created_at','DESC')-
 
             <div class="col-lg-4 feature_col">
                 <div class="feature text-center trans_400">
-                    <div class="feature_icon"><img src="/front/images/icon_2.png" alt="icon"></div>
-                    <h3 class="feature_title"><a href="/about">{{$service->title??'N/A'}}</a></h3>
+                    <div class="feature_icon"><img style="width: 80px;" src="{{url($service->photo??'')}}" alt="icon" onerror="this.src='/front/images/finance_service.jpg';"></div>
+                    <h3 class="feature_title"><a href="{{url('/about/details/'.$service->id)}}">{{$service->title??'N/A'}}</a></h3>
                     <div class="feature_text"><p>{!! substr($service->description??'N/A',0,30)!!}...</p></div>
                 </div>
             </div>
@@ -187,7 +187,7 @@ $services = App\Service::where('status','active')->orderBy('created_at','DESC')-
 <!-- Counter -->
 
 <div class="counter">
-    <div class="counter_background" style="background-image:url(/front/images/counter_background.jpg)"></div>
+    <div class="counter_background" style="background-image:url(/front/images/finance_bg_2.jpg)"></div>
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -205,8 +205,8 @@ $services = App\Service::where('status','active')->orderBy('created_at','DESC')-
                         @endphp
 
                         <div class="milestone">
-                            <div class="milestone_counter" data-end-value="{{$saving}}">0</div>
-                            <div class="milestone_text">চলতি সঞ্চয় একাউন্ট</div>
+                            <div class="milestone_counter" data-end-value="{{$saving}}" style="color:#fff">0</div>
+                            <div class="milestone_text">সঞ্চয় একাউন্ট</div>
                         </div>
 
                         <!-- Milestone -->
@@ -215,8 +215,8 @@ $services = App\Service::where('status','active')->orderBy('created_at','DESC')-
                         @endphp
 
                         <div class="milestone">
-                            <div class="milestone_counter" data-end-value="{{$fdr}}">0</div>
-                            <div class="milestone_text">চলতি এফডিআর একাউন্ট</div>
+                            <div class="milestone_counter" data-end-value="{{$fdr}}" style="color:#fff">0</div>
+                            <div class="milestone_text">এফডিআর একাউন্ট</div>
                         </div>
 
                         <!-- Milestone -->
@@ -225,8 +225,8 @@ $services = App\Service::where('status','active')->orderBy('created_at','DESC')-
                         @endphp
 
                         <div class="milestone">
-                            <div class="milestone_counter" data-end-value="{{$loan}}">0</div>
-                            <div class="milestone_text">চলতি ঋণ একাউন্ট</div>
+                            <div class="milestone_counter" data-end-value="{{$loan}}" style="color:#fff">0</div>
+                            <div class="milestone_text">ঋণ একাউন্ট</div>
                         </div>
 
 
@@ -299,7 +299,7 @@ $services = App\Service::where('status','active')->orderBy('created_at','DESC')-
                             </div>
                         </div> --}}
                         <div class="event_content">
-                            <div class="event_title"><a href="/blogs">{{$blog->title??'N?A'}}</a></div>
+                            <div class="event_title"><a href="{{url('/blog/details/'.$blog->id)}}">{{$blog->title??'N?A'}}</a></div>
                             <div class="event_info_container">
                                 <div class="event_info"><i class="fa fa-clock-o" aria-hidden="true"></i><span>{{\App\NumberConverter::en2bn($blog->created_at)}}</span></div>
                                 {{-- <div class="event_info"><i class="fa fa-map-marker" aria-hidden="true"></i><span>25 New York City</span></div> --}}
@@ -367,9 +367,9 @@ $services = App\Service::where('status','active')->orderBy('created_at','DESC')-
 </div>
 
 <!-- Team -->
-{{-- @php
+@php
     $teams = App\Team::where('status','active')->orderBy('created_at','DESC')->get();
-@endphp --}}
+@endphp
 <div class="team">
     <div class="team_background parallax-window" data-parallax="scroll" data-image-src="/front/images/team_background.jpg" data-speed="0.8"></div>
     <div class="container">
@@ -383,7 +383,7 @@ $services = App\Service::where('status','active')->orderBy('created_at','DESC')-
         <div class="row team_row">
 
             <!-- Team Item -->
-            {{-- @foreach ($teams as $team)
+             @foreach ($teams as $team)
 
             <div class="col-lg-3 col-md-6 team_col">
                 <div class="team_item">
@@ -401,7 +401,7 @@ $services = App\Service::where('status','active')->orderBy('created_at','DESC')-
                     </div>
                 </div>
             </div>
-            @endforeach --}}
+            @endforeach
             <!-- Team Item -->
             {{-- <div class="col-lg-3 col-md-6 team_col">
                 <div class="team_item">

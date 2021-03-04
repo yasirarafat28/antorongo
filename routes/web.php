@@ -37,6 +37,8 @@ Route::get('/contact', function () {
 //     return view('front.details');
 // });
 Route::get('/details/{id}', 'FrontController@details');
+Route::get('about/details/{id}', 'FrontController@aboutDetails');
+Route::get('blog/details/{id}', 'FrontController@blogDetails');
 
 
 Route::get('/testing', function () {

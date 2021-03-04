@@ -141,7 +141,7 @@ public function fdrAudit(Request $request){
 
 public function loanAudit(Request $request){
 
-    $records = Loan::with('user')->where('status','active')->where(function ($q) use ($request){
+    $active_loan_list = Loan::where('status','active')->where(function ($q) use ($request){
 
 
 
@@ -164,12 +164,12 @@ public function loanAudit(Request $request){
 
 
 
-    })->orderBy('created_at','DESC');
+    })->get('id');
 
-    $active_loan_list = Loan::where('status','active')->get('id');
+    // $active_loan_list = Loan::where('status','active')->get('id');
 
-    // $records = Transaction::with('user','receiver')->where('transaction_for','loan')->where(function ($q) use ($active_loan_list){
-    //     $q->whereIn('transactable_id',$active_loan_list);
+    $records = Transaction::with('user','receiver')->where('transaction_for','loan')->where(function ($q) use ($active_loan_list){
+        $q->whereIn('transactable_id',$active_loan_list);
 
     //  if ($request->has('from') && $request->from) {
     //         $from = date("Y-m-d", strtotime($request->from));
@@ -182,13 +182,14 @@ public function loanAudit(Request $request){
     //         $q->where('started_at', '<=',  $to);
 
     //     }
-    //     // if ($request->has('filterBy') && $request->filterBy !='all') {
-    //     //     $q->where('status', $request->filterBy);
+        // if ($request->has('filterBy') && $request->filterBy !='all') {
+        //     $q->where('status', $request->filterBy);
 
-    //     // }
+        // }
 
-    // })->where('flag','give_away')->sum('amount');
+    })->where('flag','give_away');
 
+    return $records;
 
     if(isset($request->limit) && $request->limit=='-1'){
 

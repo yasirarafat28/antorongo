@@ -170,5 +170,5 @@
 
 
 @section('script')
-<script src="front/js/contact.js"></script>
+    {{-- <script src="front/js/contact.js"></script> --}}
 @endsection

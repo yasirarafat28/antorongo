@@ -46,8 +46,8 @@
 
 				<div class="col-lg-4 about_col about_col_left">
 					<div class="about_item">
-						<div class="about_item_image"><img src="/front/images/icon_2.png" alt=""></div>
-						<div class="about_item_title"><a href="#">{{$service->title??'N/A'}}</a></div>
+						<div class="about_item_image"><img src="{{url($service->photo??'')}}" alt="photo" onerror="this.src='/front/images/finance_service.jpg';"></div>
+						<div class="about_item_title"><a href="{{url('/about/details/'.$service->id)}}">{{$service->title??'N/A'}}</a></div>
 						<div class="about_item_text">
 							<p>{!! $service->description??'N/a' !!}</p>
 						</div>

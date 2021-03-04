@@ -15,8 +15,8 @@
                 <div class="col">
                     <div class="breadcrumbs">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li>Blog</li>
+                            <li><a href="{{url('/')}}">Home</a></li>
+                            <li>Member</li>
                         </ul>
                     </div>
                 </div>

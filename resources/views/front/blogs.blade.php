@@ -2,7 +2,7 @@
 @section('style')
 
 <link rel="stylesheet" type="text/css" href="/front/styles/blog.css">
-<link rel="stylesheet" type="text/css" href="front/styles/blog_responsive.css">
+{{-- <link rel="stylesheet" type="text/css" href="front/styles/blog_responsive.css"> --}}
 
 @endsection
 @section('content')
@@ -40,7 +40,7 @@
                     <div class="blog_post trans_200">
                         <div class="blog_post_image"><img src="{{url($blog->feature_image??'')}}" alt="blogImage" onerror="this.src='/front/images/no_img_avaliable.jpg';"></div>
                         <div class="blog_post_body">
-                            <div class="blog_post_title"><a href="#">{{$blog->title??'N/A'}}</a></div>
+                            <div class="blog_post_title"><a href="{{url('/blog/details/'.$blog->id)}}">{{$blog->title??'N/A'}}</a></div>
                             <div class="blog_post_meta">
                                 <ul>
                                     {{-- <li><a href="#">admin</a></li> --}}
@@ -181,6 +181,6 @@
 
 @section('script')
 
-<script src="/front/js/blog.js"></script>
+{{-- <script src="/front/js/blog.js"></script> --}}
 
 @endsection

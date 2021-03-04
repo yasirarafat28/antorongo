@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Blog;
 use App\Fdr;
 use App\Loan;
 use App\Saving;
+use App\Service;
 use App\Team;
 use App\User;
 use Illuminate\Http\Request;
@@ -96,6 +98,18 @@ class FrontController extends Controller
 
         $row = Team::find($id);
         return view('front.details',compact('row'));
+    }
+
+    public function aboutDetails($id){
+
+        $row = Service::find($id);
+        return view('front.about-details',compact('row'));
+    }
+
+    public function blogDetails($id){
+
+        $row = Blog::find($id);
+        return view('front.blog-details',compact('row'));
     }
 
 }
