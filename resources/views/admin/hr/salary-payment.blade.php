@@ -115,6 +115,65 @@
 
                     </div>
                     <div class="body table-responsive">
+
+                        <form action="">
+
+                            <div class="row clearfix">
+                                <div class="col-lg-4 col-md-4">
+
+                                    <label for=""><small>মাস</small></label>
+                                    <select name="month" id="" class="form-control ms">
+                                        <option value="">Select a month</option>
+                                        <option {{isset($_GET['month']) && $_GET['month']=='January'?'selected':''}} value="January">January</option>
+                                        <option {{isset($_GET['month']) && $_GET['month']=='February'?'selected':''}} value="February">February</option>
+                                        <option {{isset($_GET['month']) && $_GET['month']=='March'?'selected':''}} value="March">March</option>
+                                        <option {{isset($_GET['month']) && $_GET['month']=='April'?'selected':''}} value="April">April</option>
+                                        <option {{isset($_GET['month']) && $_GET['month']=='May'?'selected':''}} value="May">May</option>
+                                        <option {{isset($_GET['month']) && $_GET['month']=='June'?'selected':''}} value="June">June</option>
+                                        <option {{isset($_GET['month']) && $_GET['month']=='July'?'selected':''}} value="July">July</option>
+                                        <option {{isset($_GET['month']) && $_GET['month']=='August'?'selected':''}} value="August">August</option>
+                                        <option {{isset($_GET['month']) && $_GET['month']=='September'?'selected':''}} value="September">September</option>
+                                        <option {{isset($_GET['month']) && $_GET['month']=='October'?'selected':''}} value="October">October</option>
+                                        <option {{isset($_GET['month']) && $_GET['month']=='November'?'selected':''}} value="November">November</option>
+                                        <option {{isset($_GET['month']) && $_GET['month']=='December'?'selected':''}} value="December">December</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-lg-4 col-md-4">
+
+                                    <label for=""><small> কর্মচারীর</small></label>
+                                    <select class="form-control ms" name="user_id" >
+                                        <option>-- বাছাই করুন --</option>
+                                        @foreach($members as $member)
+                                            <option {{isset($_GET['user_id']) && $_GET['user_id']==$member->id?'selected':''}} value="{{$member->id}}">{{$member->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="col-lg-2 col-md-2">
+
+                                    <br>
+
+                                    <div class="input-group">
+                                        <button class="btn btn-primary btn-round">খুঁজুন</button>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2">
+                                    <br>
+                                    @if (count($_GET))
+
+                                        <a href="?{{$_SERVER['QUERY_STRING']}}&limit=-1" class="btn btn-success">সবগুলো দেখুন </a>
+                                    @else
+
+                                        <a href="?limit=-1" class="btn btn-success">সবগুলো দেখুন </a>
+
+                                    @endif
+                                </div>
+
+                            </div>
+                        </form>
+                        <br>
+                        <br>
                         <table class="table table-bordered table-striped table-hover dataTable js-plaintable">
                             <thead>
                             <tr>

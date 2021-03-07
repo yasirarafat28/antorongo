@@ -35,7 +35,16 @@ class SalaryPaymentController extends Controller
             $q->whereNotIn('name',['member']);
 
         })->orderBy('name','ASC')->get();
-        $records = SalaryPayment::with('user')->orderBy('id','DESC');
+        $records = SalaryPayment::with('user')->where(function($q) use($request){
+            if(isset($request->user_id) && $request->user_id){
+                $q->where('user_id', $request->user_id);
+            }
+
+            if(isset($request->month) && $request->month){
+                $q->where('payment_month',$request->month);
+            }
+
+        })->orderBy('id','DESC');
         if(isset($request->limit) && $request->limit=='-1'){
             $records = $records->paginate($records->count());
         }else{
