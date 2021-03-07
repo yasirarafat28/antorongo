@@ -78,9 +78,7 @@ class Loan extends Model
     public static function get_total_give_away_in_range($loan_id,$from,$to){
         $from = date("Y-m-d", strtotime($from));
         $to = date("Y-m-d", strtotime($to));
-        //  $loan_active_list = Loan::where('status','approved')->get();
-
-        $tatal_give_away_amount = Transaction::where('transactable_id',$loan_id)->where('canculatable','yes')
+        $tatal_give_away_amount = Transaction::where('transactable_id',$loan_id)->where('transaction_for','loan')->where('canculatable','yes')
         ->where(function($q) use($from,$to){
             if($from){
                 $q->where(DB::raw('DATE(date)'),'>=',$from);

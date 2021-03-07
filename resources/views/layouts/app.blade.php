@@ -161,7 +161,7 @@
 									<div class="footer_logo_container">
 										<a href="#">
 											<div class="logo">
-                                                <img src="{{$logo->logo}}" alt="logo" onerror="this.src='/front/images/no_img_avaliable.jpg';">
+                                                <img src="{{$logo->logo??'/'}}" alt="logo" onerror="this.src='/front/images/no_img_avaliable.jpg';">
                                             </div>
 										</a>
 									</div>

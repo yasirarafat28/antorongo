@@ -66,25 +66,25 @@ class SalaryPaymentController extends Controller
             'user_id'=>'required',
         ]);
 
-        $structure = new SalaryPayment();
-        $structure->user_id = $request->user_id;
-        $structure->basic_allowance = $request->basic_allowance;
-        // $structure->dearness_allowance = $request->dearness_allowance;
-        // $structure->medical_allowance = $request->medical_allowance;
-        // $structure->house_rent_allowance = $request->house_rent_allowance;
-        $structure->bonus_allowance = $request->bonus_allowance;
-        $structure->other_addition_allowance = $request->other_addition_allowance;
-        // $structure->p_fund_deduction = $request->p_fund_deduction;
-        // $structure->pro_tax_deduction = $request->pro_tax_deduction;
-        // $structure->loan_deduction = $request->loan_deduction??0;
-        // $structure->other_deduction = $request->other_deduction;
-        $structure->fine = $request->fine;
-        $structure->payment_month = $request->month;
-        $structure->payable_amount = $request->payable;
-        $structure->paid_amount = $request->paid;
-        $structure->note = $request->note;
-        $structure->status = 'active';
-        $structure->save();
+        $payment = new SalaryPayment();
+        $payment->user_id = $request->user_id;
+        $payment->basic_allowance = $request->basic_allowance;
+        // $payment->dearness_allowance = $request->dearness_allowance;
+        // $payment->medical_allowance = $request->medical_allowance;
+        // $payment->house_rent_allowance = $request->house_rent_allowance;
+        $payment->bonus_allowance = $request->bonus_allowance;
+        $payment->other_addition_allowance = $request->other_addition_allowance;
+        // $payment->p_fund_deduction = $request->p_fund_deduction;
+        // $payment->pro_tax_deduction = $request->pro_tax_deduction;
+        // $payment->loan_deduction = $request->loan_deduction??0;
+        // $payment->other_deduction = $request->other_deduction;
+        $payment->fine = $request->fine;
+        $payment->payment_month = $request->month;
+        // $payment->payable_amount = $request->payable;
+        $payment->paid_amount = $request->paid;
+        $payment->note = $request->note;
+        $payment->status = 'active';
+        $payment->save();
 
 
         $head = TransactionHead::where('slug','salary_expense')->first();
@@ -95,12 +95,12 @@ class SalaryPaymentController extends Controller
         $deposit = new Transaction();
         $deposit->txn_id = uniqid();
         $deposit->transaction_for = 'salary';
-        $deposit->transactable_id = $structure->id;
+        $deposit->transactable_id = $payment->id;
         $deposit->flag = 'salary';
         $deposit->type = 'expense';
         $deposit->head_id = $head->id;
-        $deposit->user_id = $structure->user_id;
-        $deposit->note = $structure->note;
+        $deposit->user_id = $payment->user_id;
+        $deposit->note = $payment->note;
         $deposit->date = date("Y-m-d H:i:s");
         $deposit->amount = NumberConverter::bn2en($request->paid);
         $deposit->added_by = Auth::user()->id;
@@ -158,6 +158,7 @@ class SalaryPaymentController extends Controller
         //
 
         SalaryPayment::destroy($id);
+        Transaction::where('transaction_for','salary')->where('transactable_id',$id)->delete();
 
         return back()->withSuccess('সফলভাবে ডিলিট  করা হয়েছে');
     }

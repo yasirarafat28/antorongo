@@ -15,7 +15,7 @@
                 $cover_photo = App\Gallery::where('status','active')->orderBy('created_at','DESC')->first();
             @endphp
             <div class="owl-item">
-                <div class="home_slider_background" style="background-image:url({{($cover_photo->cover_photo)}});"></div>
+                <div class="home_slider_background" style="background-image:url({{($cover_photo->cover_photo??'/')}});"></div>
                 <div class="home_slider_content">
                     <div class="container">
                         <div class="row">

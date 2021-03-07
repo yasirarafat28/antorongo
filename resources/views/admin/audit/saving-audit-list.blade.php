@@ -181,8 +181,8 @@
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$item->user->name_bn??'N/A'}}</td>
-                                        <td>{{$item->user_id??'N/A'}}</td>
-                                        <td>{{$item->target_amount??'N/A'}}</td>
+                                        <td>{{$item->user->unique_id??'N/A'}}</td>
+                                        <td>{{$item->deposit_balance()??'N/A'}}</td>
 
                                     </tr>
                                 @endforeach
