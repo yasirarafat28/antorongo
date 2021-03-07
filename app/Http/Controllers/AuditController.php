@@ -12,7 +12,8 @@ class AuditController extends Controller
 
 {
 
-    public function savingAudit(Request $request, $type){
+    public function savingAudit(Request $request, $type)
+    {
 
 
     $records = Saving::with('user')->where('status','approved')->where(function ($q) use ($request){
@@ -156,14 +157,6 @@ public function loanAudit(Request $request){
             $q->where('started_at', '<=',  $to);
 
         }
-        // if ($request->has('filterBy') && $request->filterBy !='all') {
-        //     $q->where('status', $request->filterBy);
-
-        // }
-
-
-
-
     })->get('id');
 
     // $active_loan_list = Loan::where('status','active')->get('id');
@@ -187,9 +180,10 @@ public function loanAudit(Request $request){
 
         // }
 
-    })->where('flag','give_away');
+    })->where('flag','give_away')
+    ->groupby('user_id');
 
-    return $records;
+    //return $records;
 
     if(isset($request->limit) && $request->limit=='-1'){
 

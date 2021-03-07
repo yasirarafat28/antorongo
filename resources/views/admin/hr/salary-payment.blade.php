@@ -124,7 +124,7 @@
                                 <th>বোনাস </th>
                                 <th>অন্যান্য ভাতা </th>
                                 <th>জরিমানা </th>
-                                <th>মোট পরিশোধযোগ্য </th>
+                                {{-- <th>মোট পরিশোধযোগ্য </th> --}}
                                 <th>মোট পরিশোধ </th>
                             </tr>
                             </thead>
@@ -136,7 +136,7 @@
                                 <th>বোনাস </th>
                                 <th>অন্যান্য ভাতা </th>
                                 <th>জরিমানা </th>
-                                <th>মোট পরিশোধযোগ্য </th>
+                                {{-- <th>মোট পরিশোধযোগ্য </th> --}}
                                 <th>মোট পরিশোধ </th>
                             </tr>
                             </tfoot>
@@ -172,7 +172,7 @@
                                     <td>+ {{\App\NumberConverter::en2bn($item->bonus_allowance)}} টাকা</td>
                                     <td>{{\App\NumberConverter::en2bn($item->other_addition_allowance)}} টাকা</td>
                                      <td>- {{\App\NumberConverter::en2bn($item->fine??0)}} টাকা</td>
-                                    <td> +{{\App\NumberConverter::en2bn($item->payable_amount)}} টাকা</td>
+                                    {{-- <td> +{{\App\NumberConverter::en2bn($item->payable_amount)}} টাকা</td> --}}
                                     <td> +{{\App\NumberConverter::en2bn($item->paid_amount)}} টাকা</td>
 
 
@@ -208,12 +208,14 @@
                     <div class="modal-body">
                         <form action="{{url('admin/hr/salary-payment')}}" method="POST">
                             {{csrf_field()}}
+
+                            <input type="hidden"   name="paid" value="0" id="paid"   >
                             <div class="row clearfix">
 
                                 <div class="col-lg-6 col-md-6">
                                     <div class="form-group">
                                         <label for=""><small> কর্মচারী </small></label>
-                                        <select class="form-control ms" name="user_id" onchange="getSalaryStructure(this.value)">
+                                        <select class="form-control ms" name="user_id" >
                                             <option>-- বাছাই করুন --</option>
                                             @foreach($members as $member)
                                                 <option value="{{$member->id}}">{{$member->name}}</option>
@@ -227,30 +229,6 @@
                                         <input type="number" class="form-control" placeholder="মূল বেতন" name="basic_allowance" value="0" id="basic_allowance" onkeyup="SalaryCalculate()">
                                     </div>
                                 </div>
-
-                                {{-- <div class="col-lg-6 col-md-6">
-                                    <div class="form-group">
-                                        <label for=""><small> মহার্ঘ ভাতা</small></label>
-                                        <input type="number" class="form-control" placeholder="মহার্ঘ ভাতা" name="dearness_allowance" value="0" id="dearness_allowance" onkeyup="SalaryCalculate()">
-                                    </div>
-                                </div>
-
-
-
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="form-group">
-                                        <label for=""><small> বাড়িভাড়া ভাতা</small></label>
-                                        <input type="number" class="form-control" placeholder="বাড়িভাড়া ভাতা" name="house_rent_allowance" value="0" id="house_rent_allowance" onkeyup="SalaryCalculate()">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="form-group">
-                                        <label for=""><small> মেডিকেল ভাতা</small></label>
-                                        <input type="number" class="form-control" placeholder="মেডিকেল ভাতা" name="medical_allowance" value="0" id="medical_allowance" onkeyup="SalaryCalculate()">
-                                    </div>
-                                </div> --}}
-
 
                                 <div class="col-lg-6 col-md-6">
                                     <div class="form-group">
@@ -268,26 +246,6 @@
                                     </div>
                                 </div>
                                 <hr>
-
-
-
-                                {{-- <div class="col-lg-6 col-md-6">
-                                    <div class="form-group">
-                                        <label for=""><small> ভবিষ্যতনিধি </small></label>
-                                        <input type="number" class="form-control" placeholder="ভবিষ্যতনিধি" name="p_fund_deduction" value="0" id="p_fund_deduction" onkeyup="SalaryCalculate()">
-                                    </div>
-                                </div>
-
-
-
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="form-group">
-                                        <label for=""><small> পেশাগত কর </small></label>
-                                        <input type="number" class="form-control" placeholder="পেশাগত কর" name="pro_tax_deduction" value="0" id="pro_tax_deduction" onkeyup="SalaryCalculate()">
-                                    </div>
-                                </div> --}}
-
-
                                 <div class="col-lg-6 col-md-6">
                                     <div class="form-group">
                                         <label for=""><small> জরিমানা  </small></label>
@@ -315,41 +273,10 @@
                                     </div>
                                 </div>
 
-
-
-                                {{-- <div class="col-lg-6 col-md-6">
-                                    <div class="form-group">
-                                        <label for=""><small> অন্যান্য </small></label>
-                                        <input type="number" class="form-control" placeholder="অন্যান্য" name="other_deduction" value="0" id="other_deduction" onkeyup="SalaryCalculate()">
-                                    </div>
-                                </div> --}}
                                 <div class="col-lg-12 col-md-12">
                                     <div class="form-group">
                                         <label for=""><small> মতামত </small></label>
                                         <textarea name="note" class="form-control"></textarea>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="form-group">
-                                        <label for=""><small> মোট পরিশোধযোগ্য </small></label>
-                                        <input type="number" class="form-control" readonly placeholder="মোট পরিশোধযোগ্য" name="payable" value="0" id="payable">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="form-group">
-                                        <label for=""><small> মোট পরিশোধ  </small></label>
-                                        <input type="number" class="form-control" placeholder="মোট পরিশোধ" name="paid" value="0" id="paid"  onkeyup="SalaryCalculate()">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="form-group">
-                                        <label for=""><small> বকেয়া   </small></label>
-                                        <input type="number" class="form-control" readonly placeholder="মোট বকেয়া" name="due" value="0" id="due">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
@@ -431,10 +358,10 @@
                                         <td>বেতনের মাস </td>
                                         <td>{{$item->payment_month}}</td>
                                     </tr>
-                                    <tr>
+                                    {{-- <tr>
                                         <td> মোট পরিশোধযোগ্য </td>
                                         <td>{{$item->payable_amount}}</td>
-                                    </tr>
+                                    </tr> --}}
                                     <tr>
                                         <td> মোট পরিশোধ </td>
                                         <td>{{$item->paid_amount}}</td>
@@ -473,9 +400,11 @@
         p_fine = parseFloat($('#fine').val());
         //console.log(parseFloat(basic+dear));
 
-        $('#due').val(parseFloat($('#payable').val())-parseFloat($('#paid').val()));
+        //$('#due').val(parseFloat($('#payable').val())-parseFloat($('#paid').val()));
 
-        $('#total-salary').html(basic+bonus+other_allowance-p_fine);
+        let grand_total = basic+bonus+other_allowance-p_fine;
+        $('#paid').val(grand_total);
+        $('#total-salary').html(grand_total);
         //$('#total-salary').html(parseFloat(basic+dear+house+medical+bonus+other_allowance));
 
     }
