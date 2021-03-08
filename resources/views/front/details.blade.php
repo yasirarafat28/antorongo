@@ -42,8 +42,9 @@
 						<div class="blog_title">{{$row->name??'N/A'}}</div>
 						<div class="blog_meta">
 							<ul>
+                                <li>{{$row->title??'N/A'}}</li>
+
 								<li>Post on {{\App\NumberConverter::en2bn($row->created_at??'N/A')}}</li>
-								<li>{{$row->title??'N/A'}}</li>
 							</ul>
 						</div>
 						<div class="blog_image"><img src="{{url($row->photo??'')}}" alt="photo" onerror="this.src='/front/images/no_img_avaliable.jpg';"></div>
