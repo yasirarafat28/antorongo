@@ -49,7 +49,7 @@
 						<div class="about_item_image"><img src="{{url($service->photo??'')}}" alt="photo" onerror="this.src='/front/images/finance_service.jpg';"></div>
 						<div class="about_item_title"><a href="{{url('/about/details/'.$service->id)}}">{{$service->title??'N/A'}}</a></div>
 						<div class="about_item_text">
-							<p>{!! $service->description??'N/a' !!}</p>
+							<p>{!! substr( $service->description??'N/a',0,200) !!}...</p>
 						</div>
 					</div>
 				</div>
