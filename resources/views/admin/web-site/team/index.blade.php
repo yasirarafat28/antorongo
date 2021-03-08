@@ -73,7 +73,7 @@
                             </tr>
                             </tfoot>
                             <tbody>
-                            {{-- @foreach($records as $item)
+                            @foreach($records as $item)
                                 <tr>
                                     <td>
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -105,11 +105,11 @@
                                     </td>
                                     <td>{{$item->name}}</td>
                                     <td>{{$item->title}}</td>
-                                    <td>{!! substr($item->description, 0, 20,) !!}...</td>
+                                    <td>{!! substr($item->description??'', 0, 20,) !!}...</td>
                                     <td>{{$item->status}}</td>
                                     <td>{{\App\NumberConverter::en2bn($item->created_at)}}</td>
                                 </tr>
-                            @endforeach --}}
+                            @endforeach
                             </tbody>
                         </table>
                         <div class="pull-right">
