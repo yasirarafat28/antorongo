@@ -48,7 +48,7 @@
                                 </ul>
                             </div>
                             <div class="blog_post_text">
-                                <p>{!! $blog->description??'N/A' !!}</p>
+                                <p>{!! substr($blog->description??'N/A',0,500) !!}...</p>
                             </div>
                         </div>
                     </div>
