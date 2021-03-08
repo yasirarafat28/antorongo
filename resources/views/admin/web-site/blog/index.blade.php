@@ -102,7 +102,7 @@
                                         <img src="{{asset( $item->feature_image??'')}}" onerror="this.src='/front/images/no_img_avaliable.jpg';" alt="s2.jpg" width="60">
                                     </td>
                                     <td>{{$item->title}}</td>
-                                    <td>{!! sub_str($item->description??'N/A',0,30) !!}...</td>
+                                    <td>{!! substr($item->description??'N/A',0,30) !!}...</td>
                                     <td>{{$item->status}}</td>
                                     <td>{{\App\NumberConverter::en2bn($item->created_at)}}</td>
                                 </tr>
