@@ -100,9 +100,9 @@
                                             {!! Form::close() !!}
                                     </div>
                                     </td>
-                                    <td>
+                                    {{-- <td>
                                         <img src="{{asset($item->photo??'')}}" onerror="this.src='/front/images/no_img_avaliable.jpg';" alt="s2.jpg" width="60">
-                                    </td>
+                                    </td> --}}
                                     <td>{{$item->name}}</td>
                                     <td>{{$item->title}}</td>
                                     <td>{!! substr($item->description??'', 0, 20,) !!}...</td>
