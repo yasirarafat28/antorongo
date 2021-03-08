@@ -73,7 +73,7 @@
                             </tr>
                             </tfoot>
                             <tbody>
-                            @foreach($records as $item)
+                            {{-- @foreach($records as $item)
                                 <tr>
                                     <td>
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -101,7 +101,7 @@
                                     </div>
                                     </td>
                                     <td>
-                                        <img src="{{asset( $item->photo??'')}}" onerror="this.src='/front/images/no_img_avaliable.jpg';" alt="s2.jpg" width="60">
+                                        <img src="{{asset($item->photo??'')}}" onerror="this.src='/front/images/no_img_avaliable.jpg';" alt="s2.jpg" width="60">
                                     </td>
                                     <td>{{$item->name}}</td>
                                     <td>{{$item->title}}</td>
@@ -109,7 +109,7 @@
                                     <td>{{$item->status}}</td>
                                     <td>{{\App\NumberConverter::en2bn($item->created_at)}}</td>
                                 </tr>
-                                @endforeach
+                            @endforeach --}}
                             </tbody>
                         </table>
                         <div class="pull-right">
