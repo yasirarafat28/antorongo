@@ -387,7 +387,7 @@ $services = App\Service::where('status','active')->orderBy('created_at','DESC')-
 
             <div class="col-lg-3 col-md-6 team_col">
                 <div class="team_item">
-                    <div class="team_image"><img src="{{url($team->photo??"")}}" alt="image"></div>
+                    <div class="team_image"><img src="{{url($team->photo??"")}}" alt="Image" onerror="this.src='/front/images/no_img_avaliable.jpg';"></div>
                     <div class="team_body">
                         <div class="team_title"><a href="{{url('/details/'.$team->id)}}">{{$team->name??'N/A'}}</a></div>
                         <div class="team_subtitle">{{$team->title}}</div>
