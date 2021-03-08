@@ -74,8 +74,8 @@
 
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
-                                        <label for=""><small>ছবি</small></label>
-                                        <input type="file" placeholder="ছবি" name="photo" class="form-control">
+                                        <label for=""><small>কভার ছবি ২ </small></label>
+                                        <input type="file" placeholder="কভার ছবি ২" name="photo" class="form-control">
                                     </div>
                                 </div>
 
