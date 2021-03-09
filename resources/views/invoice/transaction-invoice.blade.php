@@ -126,7 +126,7 @@
                                 <p style="line-height: 0.6em;font-size:12px">সভ্য নংঃ   {{$user->unique_id??''}}</p>
                             </div>
                             <div class="col-sm-4">
-                                <p  style="line-height: 0.6em;font-size:12px">তারিখঃ  {{App\NumberConverter::en2bn(date("d-m-Y",strtotime($transaction->date??'')))}}</p>
+                                <p  style="line-height: 0.6em;font-size:12px">তারিখঃ  {{App\NumberConverter::en2bn($transaction->date??'')}}</p>
                             </div>
                         </div>
                     </div>
@@ -166,11 +166,11 @@
                         <tr class="noBorder">
                             <td align="center">
                                 <hr>
-                                Company
+                                অফিস
                             </td>
                             <td align="center">
                                 <hr>
-                                Customer
+                                সদস্য
                             </td>
                         </tr>
                     </tbody></table>

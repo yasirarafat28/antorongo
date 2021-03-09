@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Fdr extends Model
 {
@@ -77,6 +78,24 @@ class Fdr extends Model
     }
     public function withdraws(){
         return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','fdr')->where('flag','withdraw');
+    }
+
+    public static function get_total_deposit_in_range($fdr_id,$from,$to){
+        $from = date("Y-m-d", strtotime($from));
+        $to = date("Y-m-d", strtotime($to));
+        $tatal_fdr_amount = Transaction::where('transactable_id',$fdr_id)->where('transaction_for','fdr')->where('canculatable','yes')
+        ->where(function($q) use($from,$to){
+            if($from){
+                $q->where(DB::raw('DATE(date)'),'>=',$from);
+            }
+            if($to){
+                $q->where(DB::raw('DATE(date)'),'<=',$to);
+            }
+        })
+        ->sum('amount');
+
+        return  $tatal_fdr_amount;
+
     }
 
 }

@@ -74,7 +74,8 @@ class ExpenseController extends Controller
         ]);
         $expense = Transaction::find($id);
         $expense->head_id = $request->head_id;
-        $expense->user_id = $request->user_id??0;
+        if($request->user_id)
+            $expense->user_id = $request->user_id??0;
         $expense->note = $request->note;
         $expense->date = $request->date;
         $expense->amount = NumberConverter::bn2en($request->amount);

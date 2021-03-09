@@ -142,7 +142,7 @@ public function fdrAudit(Request $request){
 
 public function loanAudit(Request $request){
 
-    $active_loan_list = Loan::where('status','active')->where(function ($q) use ($request){
+    $records = Loan::where('status','active')->where(function ($q) use ($request){
 
 
 
@@ -157,12 +157,12 @@ public function loanAudit(Request $request){
             $q->where('started_at', '<=',  $to);
 
         }
-    })->get('id');
+    });
 
     // $active_loan_list = Loan::where('status','active')->get('id');
 
-    $records = Transaction::with('user','receiver')->where('transaction_for','loan')->where(function ($q) use ($active_loan_list){
-        $q->whereIn('transactable_id',$active_loan_list);
+    // $records = Transaction::with('user','receiver')->where('transaction_for','loan')->where(function ($q) use ($active_loan_list){
+    //     $q->whereIn('transactable_id',$active_loan_list);
 
     //  if ($request->has('from') && $request->from) {
     //         $from = date("Y-m-d", strtotime($request->from));
@@ -180,8 +180,8 @@ public function loanAudit(Request $request){
 
         // }
 
-    })->where('flag','give_away')
-    ->groupby('user_id');
+    // })->where('flag','give_away')
+    // ->groupby('user_id');
 
     //return $records;
 

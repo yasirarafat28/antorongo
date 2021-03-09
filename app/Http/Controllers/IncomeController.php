@@ -75,7 +75,8 @@ class IncomeController extends Controller
 
         $income = Transaction::find($id);
         $income->head_id = $request->head_id;
-        $income->user_id = $request->user_id??0;
+        if($request->user_id)
+            $income->user_id = $request->user_id??0;
         $income->note = $request->note;
         $income->date = $request->date;
         $income->amount = NumberConverter::bn2en($request->amount);

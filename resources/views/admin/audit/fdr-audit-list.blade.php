@@ -174,7 +174,7 @@
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$item->user->name_bn??'N/A'}}</td>
                                         <td>{{$item->user_id??'N/A'}}</td>
-                                        <td>{{$item->amount??'N/A'}}</td>
+                                        <td>{{$item->get_total_deposit_in_range()??'N/A'}}</td>
 
                                     </tr>
                                 @endforeach
