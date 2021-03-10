@@ -51,7 +51,7 @@ class AuditController extends Controller
     }
 
 
-    return view('admin/Audit/saving-audit-list',compact('records','type'));
+    return view('admin/audit/saving-audit-list',compact('records','type'));
 }
 
 public function fdrAudit(Request $request){
