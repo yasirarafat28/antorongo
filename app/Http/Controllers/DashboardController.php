@@ -265,7 +265,7 @@ class DashboardController extends Controller
 
             $loan_founder_member_total_paid = Transaction::with('user','receiver')->where('transaction_for','loan')
             ->whereIn('user_id',$founderMember_ids)
-            ->where('flag','revenue_paid')->sum('amount');
+            ->where('flag','revenue_deduct')->sum('amount');
 
 
 
