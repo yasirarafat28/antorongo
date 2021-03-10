@@ -263,6 +263,11 @@ class DashboardController extends Controller
             ->where('flag','give_away')->sum('amount');
 
 
+            $loan_founder_member_total_paid = Transaction::with('user','receiver')->where('transaction_for','loan')
+            ->whereIn('user_id',$founderMember_ids)
+            ->where('flag','revenue_paid')->sum('amount');
+
+
 
         return view('admin/dashboard',compact('members','daily_saving_transactions','daily_savings','short_savings',
         'short_saving_transactions','long_savings','long_saving_transactions','fdr_list','fdr_transactions',
@@ -273,7 +278,7 @@ class DashboardController extends Controller
         'short_closed_count','short_active_saving_transactions','long_active_saving_transactions','daily_active_saving_transactions',
         'current_active_saving_transactions','fdr_active_transactions','loan_active_transactions','loan_active_interest_total','loan_reveanue_paid_total',
         'loan_reveanue_add_total','loan_interest_added_total','loan_profit_waiver_total','loan_ornament_list',
-        'office_deposit_balance','office_profit_balance','office_fdr_d_balance','office_fdr_p_balance','loan_founder_member_transaction'));
+        'office_deposit_balance','office_profit_balance','office_fdr_d_balance','office_fdr_p_balance','loan_founder_member_transaction','loan_founder_member_total_paid'));
     }
 
 }
