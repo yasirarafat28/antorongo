@@ -277,7 +277,7 @@ class DashboardController extends Controller
 
             $loan_founder_member_intarest_deduct = $loan_founder_member_total_intarest - $loan_founder_member_total_intarest_paid;
 
-            $loan_funder_memebr_deduct =  $loan_founder_member_total_paid + $loan_founder_member_intarest_deduct - $loan_founder_member_transaction;
+            $loan_funder_memebr_deduct =   $loan_founder_member_intarest_deduct + $loan_founder_member_transaction - $loan_founder_member_total_paid;
 
 
 
