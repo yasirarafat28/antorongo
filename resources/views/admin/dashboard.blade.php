@@ -82,7 +82,7 @@
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     প্রতিষ্ঠাতা সদস্যদের মোট ঋণ বকেয়া
                                 </div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($loan_founder_member_total_paid),2}} টাকা</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{\App\NumberConverter::en2bn($loan_funder_memebr_deduct),2}} টাকা</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

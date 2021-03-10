@@ -267,6 +267,18 @@ class DashboardController extends Controller
             ->whereIn('user_id',$founderMember_ids)
             ->where('flag','revenue_deduct')->sum('amount');
 
+            $loan_founder_member_total_intarest = Transaction::with('user','receiver')->where('transaction_for','loan')
+            ->whereIn('user_id',$founderMember_ids)
+            ->where('flag','add_interest')->sum('amount');
+
+            $loan_founder_member_total_intarest_paid = Transaction::with('user','receiver')->where('transaction_for','loan')
+            ->whereIn('user_id',$founderMember_ids)
+            ->where('flag','interest')->sum('amount');
+
+            $loan_founder_member_intarest_deduct = $loan_founder_member_total_intarest - $loan_founder_member_total_intarest_paid;
+
+            $loan_funder_memebr_deduct =  $loan_founder_member_total_paid + $loan_founder_member_intarest_deduct - $loan_founder_member_transaction;
+
 
 
         return view('admin/dashboard',compact('members','daily_saving_transactions','daily_savings','short_savings',
@@ -278,7 +290,7 @@ class DashboardController extends Controller
         'short_closed_count','short_active_saving_transactions','long_active_saving_transactions','daily_active_saving_transactions',
         'current_active_saving_transactions','fdr_active_transactions','loan_active_transactions','loan_active_interest_total','loan_reveanue_paid_total',
         'loan_reveanue_add_total','loan_interest_added_total','loan_profit_waiver_total','loan_ornament_list',
-        'office_deposit_balance','office_profit_balance','office_fdr_d_balance','office_fdr_p_balance','loan_founder_member_transaction','loan_founder_member_total_paid'));
+        'office_deposit_balance','office_profit_balance','office_fdr_d_balance','office_fdr_p_balance','loan_founder_member_transaction','loan_funder_memebr_deduct'));
     }
 
 }
