@@ -646,7 +646,8 @@
 
                                             <a href="{{url('admin/loan/find?id='.$item->id)}}" class="btn btn-primary"><i class="fa fa-eye"> </i> </a>
 
-                                        </td>                                    <td>{{$item->unique_id}}</td>
+                                        </td>
+                                        <td>{{$item->unique_id}}</td>
                                         <td>{{$item->old_txn}}</td>
                                         <td>{{$item->user->unique_id??''}}</td>
                                         <td>{{$item->user->name_bn??''}}</td>

@@ -102,6 +102,7 @@ class MemberController extends Controller
 
             $releted_user_ids = array();
 
+            $releted_user_ids ;
 
             if($member){
 
