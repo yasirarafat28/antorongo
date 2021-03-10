@@ -145,7 +145,7 @@
                                         <span style="padding-left: 15px;">তারিখঃ</span>
 
                                          @if ($from != $to)
-                                            {{NumberConverter::en2bn(date("d-m-Y",strtotime($from)))}} -  {{NumberConverter::en2bn(date("d-m-Y",strtotime($to)))}}
+                                            {{NumberConverter::en2bn(date("d-m-Y",strtotime($from)))}} - {{NumberConverter::en2bn(date("d-m-Y",strtotime($to)))}}
                                         @else
                                             {{NumberConverter::en2bn(date("d-m-Y",strtotime($to)))}}
                                          @endif
@@ -182,7 +182,7 @@
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$item->user->name_bn??'N/A'}}</td>
                                         <td>{{$item->user->unique_id??'N/A'}}</td>
-                                        <td>{{$item->deposit_balance()??'N/A'}}</td>
+                                        <td>{{\App\Saving::get_total_diposit_in_range($item->id,$from,$to)}}</td>
 
                                     </tr>
                                 @endforeach

@@ -31,12 +31,6 @@ class AuditController extends Controller
             $q->where('started_at', '<=',  $to);
 
         }
-        // if ($request->has('filterBy') && $request->filterBy !='all') {
-        //     $q->where('status', $request->filterBy);
-
-        // }
-
-
 
 
     })->orderBy('created_at','DESC');
@@ -57,49 +51,12 @@ class AuditController extends Controller
     }
 
 
-
-    // $records = Saving::with('user')->where('type','short')->where(function($q) use($request){
-
-    //     if ($request->has('from') && $request->from) {
-    //         $from = date("Y-m-d", strtotime($request->from));
-    //         $q->where('started_at', '>=',  $from);
-
-    //     }
-    //     if ($request->has('to') && $request->to) {
-
-    //         $to = date("Y-m-d", strtotime($request->to));
-    //         $q->where('started_at', '<=',  $to);
-
-    //     }
-    //     if ($request->has('filterBy') && $request->filterBy !='all') {
-    //         $q->where('status', $request->filterBy);
-
-    //     }
-    // })->orderBy('created_at','DESC');
-
-    //     if(isset($request->limit) && $request->limit=='-1'){
-
-    //         $records = $records->paginate($records->count());
-    //     }else{
-    //         $records = $records;
-    //     }
-    //     if(isset($request->limit) && $request->limit=='-1'){
-
-    //         $records = $records->paginate($records->count());
-    //     }else{
-
-    //         $records = $records->paginate(25);
-    //     }
-
-
     return view('admin/Audit/saving-audit-list',compact('records','type'));
 }
 
 public function fdrAudit(Request $request){
 
     $records = Fdr::with('user')->where('status','approved')->where(function ($q) use ($request){
-
-
 
         if ($request->has('from') && $request->from) {
             $from = date("Y-m-d", strtotime($request->from));
@@ -112,13 +69,6 @@ public function fdrAudit(Request $request){
             $q->where('started_at', '<=',  $to);
 
         }
-        // if ($request->has('filterBy') && $request->filterBy !='all') {
-        //     $q->where('status', $request->filterBy);
-
-        // }
-
-
-
 
     })->orderBy('created_at','DESC');
 
@@ -148,42 +98,16 @@ public function loanAudit(Request $request){
 
         if ($request->has('from') && $request->from) {
             $from = date("Y-m-d", strtotime($request->from));
-            $q->where('started_at', '>=',  $from);
+            $q->where('start_at', '>=',  $from);
 
         }
         if ($request->has('to') && $request->to) {
 
             $to = date("Y-m-d", strtotime($request->to));
-            $q->where('started_at', '<=',  $to);
+            $q->where('start_at', '<=',  $to);
 
         }
     });
-
-    // $active_loan_list = Loan::where('status','active')->get('id');
-
-    // $records = Transaction::with('user','receiver')->where('transaction_for','loan')->where(function ($q) use ($active_loan_list){
-    //     $q->whereIn('transactable_id',$active_loan_list);
-
-    //  if ($request->has('from') && $request->from) {
-    //         $from = date("Y-m-d", strtotime($request->from));
-    //         $q->where('started_at', '>=',  $from);
-
-    //     }
-    //     if ($request->has('to') && $request->to) {
-
-    //         $to = date("Y-m-d", strtotime($request->to));
-    //         $q->where('started_at', '<=',  $to);
-
-    //     }
-        // if ($request->has('filterBy') && $request->filterBy !='all') {
-        //     $q->where('status', $request->filterBy);
-
-        // }
-
-    // })->where('flag','give_away')
-    // ->groupby('user_id');
-
-    //return $records;
 
     if(isset($request->limit) && $request->limit=='-1'){
 
