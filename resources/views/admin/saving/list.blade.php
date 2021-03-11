@@ -266,8 +266,8 @@
                                         <td>{{\App\NumberConverter::en2bn($item->return_amount)}}</td>
                                     @endif
                                     <td>{{ucfirst($item->status)}}</td>
-                                    <td>{{$item->started_at}}</td>
-                                    <td>{{$item->end_at}}</td>
+                                    <td>{{\App\NumberConverter::en2bn($item->started_at)}}</td>
+                                    <td>{{\App\NumberConverter::en2bn($item->end_at)}}</td>
 
                                 </tr>
                             @endforeach
