@@ -209,6 +209,7 @@
                                 @endif
                                 <th>  অবস্থা</th>
                                 <th>  তারিখ</th>
+                                <th>মেয়াদ শেষ</th>
                             </tr>
                             </thead>
                             <tfoot>
@@ -227,6 +228,7 @@
                                 @endif
                                 <th>  অবস্থা</th>
                                 <th>  তারিখ</th>
+                                <th>মেয়াদ শেষ</th>
                             </tr>
                             </tfoot>
                             <tbody>
@@ -265,6 +267,7 @@
                                     @endif
                                     <td>{{ucfirst($item->status)}}</td>
                                     <td>{{$item->started_at}}</td>
+                                    <td>{{$item->end_at}}</td>
 
                                 </tr>
                             @endforeach
