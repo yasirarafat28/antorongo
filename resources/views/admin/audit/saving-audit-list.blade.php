@@ -207,7 +207,7 @@
 
 
 
-{{-- <script>
+<script>
 
     function printDiv() {
 
@@ -228,7 +228,7 @@
 
     }
 
-</script> --}}
+</script>
 
 @endsection
 
