@@ -268,8 +268,8 @@
                                     <td>{{\App\NumberConverter::en2bn($item->interest_rate)}} % </td>
                                     <td>{{\App\NumberConverter::en2bn($item->profits->sum('amount'))}} টাকা  </td>
                                     <td>{{ucfirst($item->status)}}</td>
-                                    <td>{{$item->started_at}}</td>
-                                    <td>{{$item->end_at}}</td>
+                                    <td>{{\App\NumberConverter::en2bn($item->started_at)}}</td>
+                                    <td>{{\App\NumberConverter::en2bn($item->end_at)}}</td>
 
                                 </tr>
                             @endforeach
