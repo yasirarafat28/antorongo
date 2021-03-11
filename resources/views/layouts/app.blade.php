@@ -189,7 +189,7 @@
 										<ul>
 											<li>{{$contact->email??'N/A'}}</li>
 											<li>Phone:  {{$contact->phone_no??'N/A'}}</li>
-											<li>{{$contact->address??'N/A'}}</li>
+											<li>{!! $contact->address??'N/A' !!}</li>
 										</ul>
 									</div>
 								</div>
