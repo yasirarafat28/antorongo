@@ -182,7 +182,7 @@
 
                                 @foreach($records ?? array() as $item)
                                     <tr>
-                                        {{$i++}}
+                                        <td>{{$i++}}</td>
                                         <td>{{$item->user->name_bn??'N/A'}}</td>
                                         <td>{{$item->user->unique_id??'N/A'}}</td>
                                         <td>{{\App\Saving::get_total_diposit_in_range($item->id,$from,$to)??'N/A'}}</td>
