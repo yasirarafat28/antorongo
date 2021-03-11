@@ -269,7 +269,7 @@
                                     <td>{{\App\NumberConverter::en2bn($item->profits->sum('amount'))}} টাকা  </td>
                                     <td>{{ucfirst($item->status)}}</td>
                                     <td>{{\App\NumberConverter::en2bn($item->started_at)}}</td>
-                                    <td>{{\App\NumberConverter::en2bn($item->end_at)}}</td>
+                                    <td>{{\App\NumberConverter::en2bn($item->end_at??'')}}</td>
 
                                 </tr>
                             @endforeach
