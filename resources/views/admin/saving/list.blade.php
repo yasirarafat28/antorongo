@@ -139,7 +139,7 @@
                                     <div class="input-group">
                                         <select name="status" id="" class="form-control">
                                             <option value="">বাছাই করুন</option>
-                                            <option {{isset($_GET['status']) && $_GET['status']=='approved'?'selected':'' }} value="approved">চলতি সঞ্চয়</option>
+                                            <option {{isset($_GET['status']) && $_GET['status']=='approved'?'selected':'' }} value="approved">সক্রিয় সঞ্চয়</option>
                                             <option {{isset($_GET['status']) && $_GET['status']=='closed'?'selected':'' }} value="closed">প্রত্যাহার সঞ্চয়</option>
                                         </select>
                                     </div>
