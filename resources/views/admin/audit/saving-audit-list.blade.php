@@ -178,11 +178,9 @@
                                 </tfoot>
                                 <tbody>
 
-                                <?php $i = 1; ?>
-
                                 @foreach($records ?? array() as $item)
                                     <tr>
-                                        <td>{{$i++}}</td>
+                                        <td>{{$records->firstItem()+$loop->index}}</td>
                                         <td>{{$item->user->name_bn??'N/A'}}</td>
                                         <td>{{$item->user->unique_id??'N/A'}}</td>
                                         <td>{{\App\Saving::get_total_diposit_in_range($item->id,$from,$to)??'N/A'}}</td>
