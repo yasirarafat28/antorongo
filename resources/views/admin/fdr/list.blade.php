@@ -215,6 +215,7 @@
                                 <th> প্রাপ্ত লাভ  </th>
                                 <th>  অবস্থা</th>
                                 <th>  তারিখ</th>
+                                <th>  মেয়াদ শেষ</th>
                             </tr>
                             </thead>
                             <tfoot>
@@ -231,6 +232,7 @@
                                 <th> প্রাপ্ত লাভ  </th>
                                 <th>  অবস্থা</th>
                                 <th>  তারিখ</th>
+                                <th>  মেয়াদ শেষ</th>
                             </tr>
                             </tfoot>
                             <tbody>
@@ -267,6 +269,7 @@
                                     <td>{{\App\NumberConverter::en2bn($item->profits->sum('amount'))}} টাকা  </td>
                                     <td>{{ucfirst($item->status)}}</td>
                                     <td>{{$item->started_at}}</td>
+                                    <td>{{$item->end_at}}</td>
 
                                 </tr>
                             @endforeach
