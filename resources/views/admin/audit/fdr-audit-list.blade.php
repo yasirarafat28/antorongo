@@ -171,7 +171,7 @@
                                 <tbody>
                                 @foreach($records ?? array() as $item)
                                     <tr>
-                                        <td>{{$loop->iteration}}</td>
+                                        <td>{{$records->firstItem()+$loop->index}}</td>
                                         <td>{{$item->user->name_bn??'N/A'}}</td>
                                         <td>{{$item->user_id??'N/A'}}</td>
                                         <td>{{\App\Fdr::get_total_fdr_deposit_in_range($item->id,$from,$to)}}</td>
