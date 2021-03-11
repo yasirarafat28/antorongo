@@ -187,7 +187,7 @@
 									<div class="footer_title">Contact Us</div>
 									<div class="footer_contact_info">
 										<ul>
-											<li>{{$contact->email??'N/A'}}</li>
+											<li>{{$contact->gmail??'N/A'}}</li>
 											<li>Phone:  {{$contact->phone_no??'N/A'}}</li>
 											<li>{!! $contact->address??'N/A' !!}</li>
 										</ul>
