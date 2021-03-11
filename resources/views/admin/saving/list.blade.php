@@ -101,8 +101,10 @@
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     বই তালিকা</div>
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">{{App\NumberConverter::en2bn($limit_book->count())}}</div>
+                                @if($type =='short' || $type == 'long')
                                 <span style="font-size: 15px;">পলিসির পরিমান</span>
                                 <div class="h6 mb-0 font-weight-bold text-gray-800">৳ {{App\NumberConverter::en2bn($limit_book_amount,2)}} টাকা</div>
+                                @endif
                             </div>
                             {{-- <div class="col-auto">
                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>
