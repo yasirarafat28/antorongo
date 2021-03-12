@@ -340,7 +340,7 @@
                                                                     <td>{{$item->user->unique_id??'N/A'}}</td>
                                                                     <td>{{$val_l =\App\Loan::get_total_loan_in_range($item->id,$from,$to)}}</td>
                                                                     <td>{{$val_i =\App\Loan::get_total_interest_in_range($item->id,$from,$to)}}</td>
-                                                                    <td>{{$val_all = $total_l + $total_i}}</td>
+                                                                    <td>{{$val_all = \App\NumberConverter::en2bn($total_l + $total_i)}}</td>
 
                                                                 </tr>
 
@@ -355,9 +355,9 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td>সর্বমোট</td>
-                                                                <td>{{$total_l}}</td>
-                                                                <td>{{$total_i}}</td>
-                                                                <td>{{$total_all}}</td>
+                                                                <td>{{\App\NumberConverter::en2bn($total_l)}}</td>
+                                                                <td>{{\App\NumberConverter::en2bn($total_i)}}</td>
+                                                                <td>{{\App\NumberConverter::en2bn($total_all)}}</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>

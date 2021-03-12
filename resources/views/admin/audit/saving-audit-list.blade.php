@@ -343,7 +343,7 @@
                                                                     <td></td>
                                                                     <td></td>
                                                                     <td>সর্বমোট</td>
-                                                                    <td>{{$total}}</td>
+                                                                    <td>{{\App\NumberConverter::en2bn($total)}}</td>
                                                                 </tr>
                                                             </tbody>
                                                     </table>
