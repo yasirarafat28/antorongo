@@ -319,7 +319,10 @@
                                                             </tr>
                                                         </thead>
                                                             <tbody>
-                                                                $total = 0;
+                                                                @php
+                                                                     $total = 0;
+                                                                @endphp
+
 
                                                                 @foreach($records ?? array() as $item)
 
@@ -327,10 +330,14 @@
                                                                         <td>{{$loop->iteration}}</td>
                                                                         <td>{{$item->user->name_bn??'N/A'}}</td>
                                                                         <td>{{$item->user->unique_id??'N/A'}}</td>
-                                                                        <td>{{\App\Saving::get_total_diposit_in_range($item->id,$from,$to)??'N/A'}}</td>
+                                                                        <td>{{$val =\App\Saving::get_total_diposit_in_range($item->id,$from,$to)??'N/A'}}</td>
 
                                                                     </tr>
-                                                                    $total += $item;
+                                                                    @php
+                                                                        $total +=$val;
+                                                                    @endphp
+
+
                                                                 @endforeach
                                                                 <tr>
                                                                     <td></td>

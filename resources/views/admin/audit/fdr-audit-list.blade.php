@@ -303,20 +303,27 @@
                                                         </thead>
                                                             <tbody>
 
+                                                                @php
+                                                                    $total = 0;
+                                                                @endphp
+
                                                                 @foreach($records ?? array() as $item)
                                                                 <tr>
                                                                     <td>{{$loop->iteration}}</td>
                                                                     <td>{{$item->user->name_bn??'N/A'}}</td>
                                                                     <td>{{$item->user->unique_id??'N/A'}}</td>
-                                                                    <td>{{\App\Fdr::get_total_fdr_deposit_in_range($item->id,$from,$to)}}</td>
+                                                                    <td>{{$val = \App\Fdr::get_total_fdr_deposit_in_range($item->id,$from,$to)}}</td>
 
+                                                                    @php
+                                                                        $total +=$val;
+                                                                    @endphp
                                                                 </tr>
                                                                 @endforeach
                                                                 <tr>
                                                                     <td></td>
                                                                     <td></td>
-                                                                    <td>সর্বমোট</td>
-                                                                    <td></td>
+                                                                    <td>সর্বমোট টাকা</td>
+                                                                    <td>{{$total}}</td>
                                                                 </tr>
                                                             </tbody>
                                                     </table>

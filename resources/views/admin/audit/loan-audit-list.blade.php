@@ -326,22 +326,38 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+
+                                                                @php
+                                                                     $total_l = 0;
+                                                                     $total_i = 0;
+                                                                     $total_all = 0;
+                                                                @endphp
+
                                                             @foreach($records ?? array() as $item)
                                                                 <tr>
                                                                     <td>{{$loop->iteration}}</td>
                                                                     <td>{{$item->user->name_bn??'N/A'}}</td>
                                                                     <td>{{$item->user->unique_id??'N/A'}}</td>
-                                                                    <td>{{$total_l =\App\Loan::get_total_loan_in_range($item->id,$from,$to)}}</td>
-                                                                    <td>{{$total_i =\App\Loan::get_total_interest_in_range($item->id,$from,$to)}}</td>
-                                                                    <td>{{$total_l + $total_i}}</td>
+                                                                    <td>{{$val_l =\App\Loan::get_total_loan_in_range($item->id,$from,$to)}}</td>
+                                                                    <td>{{$val_i =\App\Loan::get_total_interest_in_range($item->id,$from,$to)}}</td>
+                                                                    <td>{{$val_all = $total_l + $total_i}}</td>
 
                                                                 </tr>
+
+                                                                    @php
+                                                                        $total_l +=$val_l;
+                                                                        $total_i +=$val_i;
+                                                                        $total_all +=$val_all;
+                                                                    @endphp
+
                                                             @endforeach
                                                             <tr>
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td>সর্বমোট</td>
-                                                                <td></td>
+                                                                <td>{{$total_l}}</td>
+                                                                <td>{{$total_i}}</td>
+                                                                <td>{{$total_all}}</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
