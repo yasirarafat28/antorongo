@@ -107,7 +107,7 @@ public function loanAudit(Request $request){
             $q->where('start_at', '<=',  $to);
 
         }
-    })>get();
+    })->get();
 
     // if(isset($request->limit) && $request->limit=='-1'){
 

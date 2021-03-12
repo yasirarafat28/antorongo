@@ -180,9 +180,9 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            <div class="pull-right">
+                            {{-- <div class="pull-right">
                                 {!! $records->appends(\Illuminate\Support\Facades\Request::except('page'))->links() !!}
-                            </div>
+                            </div> --}}
 
 
                     </div>
