@@ -83,7 +83,7 @@ class Fdr extends Model
     public static function get_total_fdr_deposit_in_range($fdr_id,$from,$to){
         $from = date("Y-m-d", strtotime($from));
         $to = date("Y-m-d", strtotime($to));
-        $tatal_fdr_diposit_amount = Transaction::where('transactable_id',$fdr_id)->where('transaction_for','fdr')->where('canculatable','yes')
+        $tatal_fdr_diposit_amount = Transaction::where('transactable_id',$fdr_id)->where('transaction_for','fdr')->where('flag','deposit')->where('canculatable','yes')
         ->where(function($q) use($from,$to){
             if($from){
                 $q->where(DB::raw('DATE(date)'),'>=',$from);
