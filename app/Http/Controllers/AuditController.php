@@ -107,22 +107,22 @@ public function loanAudit(Request $request){
             $q->where('start_at', '<=',  $to);
 
         }
-    });
+    })>get();
 
-    if(isset($request->limit) && $request->limit=='-1'){
+    // if(isset($request->limit) && $request->limit=='-1'){
 
-        $records = $records->paginate($records->count());
-    }else{
-        $records = $records;
-    if(isset($request->limit) && $request->limit=='-1'){
+    //     $records = $records->paginate($records->count());
+    // }else{
+    //     $records = $records;
+    // if(isset($request->limit) && $request->limit=='-1'){
 
-        $records = $records->paginate($records->count());
-    }else{
+    //     $records = $records->paginate($records->count());
+    // }else{
 
-        $records = $records->paginate(25);
-    }
+    //     $records = $records->paginate(25);
+    // }
 
-    }
+    // }
 
     return view('admin.audit.loan-audit-list',compact('records'));
 }
