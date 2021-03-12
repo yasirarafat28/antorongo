@@ -209,7 +209,9 @@
                                 @endif
                                 <th>  অবস্থা</th>
                                 <th>  তারিখ</th>
+                                @if($type =='short' || $type == 'long')
                                 <th>মেয়াদ শেষ</th>
+                                @endif
                             </tr>
                             </thead>
                             <tfoot>
@@ -228,7 +230,9 @@
                                 @endif
                                 <th>  অবস্থা</th>
                                 <th>  তারিখ</th>
+                                @if($type =='short' || $type == 'long')
                                 <th>মেয়াদ শেষ</th>
+                                @endif
                             </tr>
                             </tfoot>
                             <tbody>
@@ -267,7 +271,9 @@
                                     @endif
                                     <td>{{ucfirst($item->status)}}</td>
                                     <td>{{\App\NumberConverter::en2bn($item->started_at)}}</td>
+                                    @if($type =='short' || $type == 'long')
                                     <td>{{\App\NumberConverter::en2bn($item->end_at)}}</td>
+                                    @endif
 
                                 </tr>
                             @endforeach

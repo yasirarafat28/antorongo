@@ -187,6 +187,7 @@
                                     </tr>
                                 @endforeach
                                 </tbody>
+
                             </table>
                             <div class="pull-right">
                                 {!! $records->appends(\Illuminate\Support\Facades\Request::except('page'))->links() !!}
