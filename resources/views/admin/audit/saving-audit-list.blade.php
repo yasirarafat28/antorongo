@@ -319,8 +319,10 @@
                                                             </tr>
                                                         </thead>
                                                             <tbody>
+                                                                $total = 0;
 
                                                                 @foreach($records ?? array() as $item)
+
                                                                     <tr>
                                                                         <td>{{$loop->iteration}}</td>
                                                                         <td>{{$item->user->name_bn??'N/A'}}</td>
@@ -328,12 +330,13 @@
                                                                         <td>{{\App\Saving::get_total_diposit_in_range($item->id,$from,$to)??'N/A'}}</td>
 
                                                                     </tr>
+                                                                    $total += $item;
                                                                 @endforeach
                                                                 <tr>
                                                                     <td></td>
                                                                     <td></td>
                                                                     <td>সর্বমোট</td>
-                                                                    <td></td>
+                                                                    <td>{{$total}}</td>
                                                                 </tr>
                                                             </tbody>
                                                     </table>
