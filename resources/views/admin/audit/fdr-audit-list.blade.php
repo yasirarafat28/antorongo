@@ -323,7 +323,7 @@
                                                                     <td></td>
                                                                     <td></td>
                                                                     <td>সর্বমোট টাকা</td>
-                                                                    <td>{{\App\NumberConverter::en2bn($total)}}</td>
+                                                                    <td>{{\App\NumberConverter::en2bn(number_format($total))}}</td>
                                                                 </tr>
                                                             </tbody>
                                                     </table>
