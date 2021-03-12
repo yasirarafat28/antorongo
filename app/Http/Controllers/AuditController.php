@@ -70,7 +70,7 @@ public function fdrAudit(Request $request){
 
         }
 
-    })->orderBy('created_at','DESC');
+    })->orderBy('created_at','DESC')->get();
 
     // if(isset($request->limit) && $request->limit=='-1'){
 
