@@ -100,7 +100,7 @@ class Saving extends Model
     public static function get_total_diposit_in_range($saving_id,$from,$to){
         $from = date("Y-m-d", strtotime($from));
         $to = date("Y-m-d", strtotime($to));
-        $tatal_diposit_amount = Transaction::where('transactable_id',$saving_id)->where('transaction_for','saving')->where('canculatable','yes')
+        $tatal_diposit_amount = Transaction::where('transactable_id',$saving_id)->where('transaction_for','saving')->where('flag','deposit')->where('canculatable','yes')
         ->where(function($q) use($from,$to){
             if($from){
                 $q->where(DB::raw('DATE(date)'),'>=',$from);
