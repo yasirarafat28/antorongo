@@ -171,7 +171,7 @@
                                 <tbody>
                                 @foreach($records ?? array() as $item)
                                     <tr>
-                                        <td>{{{$loop->iteration}}</td>
+                                        <td>{{$loop->iteration}}</td>
                                         <td>{{$item->user->name_bn??'N/A'}}</td>
                                         <td>{{$item->user->unique_id??'N/A'}}</td>
                                         <td>{{\App\Loan::get_total_give_away_in_range($item->id,$from,$to)}}</td>
