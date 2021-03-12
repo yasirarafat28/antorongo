@@ -320,7 +320,9 @@
                                                                 <th>ক্রঃ নং</th>
                                                                 <th> সদস্য নাম  </th>
                                                                 <th> সদস্য নং </th>
-                                                                <th> মোট সঞ্চয়</th>
+                                                                <th> আসল</th>
+                                                                <th> লাভ</th>
+                                                                <th> সর্বমোট</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -329,7 +331,9 @@
                                                                     <td>{{$loop->iteration}}</td>
                                                                     <td>{{$item->user->name_bn??'N/A'}}</td>
                                                                     <td>{{$item->user->unique_id??'N/A'}}</td>
-                                                                    <td>{{$total =\App\Loan::get_total_give_away_in_range($item->id,$from,$to)}}</td>
+                                                                    <td>{{$total_l =\App\Loan::get_total_loan_in_range($item->id,$from,$to)}}</td>
+                                                                    <td>{{$total_i =\App\Loan::get_total_interest_in_range($item->id,$from,$to)}}</td>
+                                                                    <td>{{$total_l + $total_i}}</td>
 
                                                                 </tr>
                                                             @endforeach
@@ -337,7 +341,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td>সর্বমোট</td>
-                                                                <td>{{$total}}</td>
+                                                                <td></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>

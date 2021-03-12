@@ -75,10 +75,10 @@ class Loan extends Model
         return $this->hasMany('App\Transaction','transactable_id')->where('transaction_for','loan')->where('flag','loan_waiver');
     }
 
-    public static function get_total_give_away_in_range($loan_id,$from,$to){
+    public static function get_total_loan_in_range($loan_id,$from,$to){
         $from = date("Y-m-d", strtotime($from));
         $to = date("Y-m-d", strtotime($to));
-        $tatal_give_away_amount = Transaction::where('transactable_id',$loan_id)->where('transaction_for','loan')->where('canculatable','yes')
+        $tatal_give_away_amount = Transaction::where('transactable_id',$loan_id)->where('transaction_for','loan')->where('flag','give_away')->where('canculatable','yes')
         ->where(function($q) use($from,$to){
             if($from){
                 $q->where(DB::raw('DATE(date)'),'>=',$from);
@@ -89,7 +89,63 @@ class Loan extends Model
         })
         ->sum('amount');
 
-        return  $tatal_give_away_amount;
+        $tatal_added_reveanues_amount = Transaction::where('transactable_id',$loan_id)->where('transaction_for','loan')->where('flag','revenue_add')->where('canculatable','yes')
+        ->where(function($q) use($from,$to){
+            if($from){
+                $q->where(DB::raw('DATE(date)'),'>=',$from);
+            }
+            if($to){
+                $q->where(DB::raw('DATE(date)'),'<=',$to);
+            }
+        })
+        ->sum('amount');
+
+        $tatal_paid_reveanues_amount = Transaction::where('transactable_id',$loan_id)->where('transaction_for','loan')->where('flag','revenue_deduct')->where('canculatable','yes')
+        ->where(function($q) use($from,$to){
+            if($from){
+                $q->where(DB::raw('DATE(date)'),'>=',$from);
+            }
+            if($to){
+                $q->where(DB::raw('DATE(date)'),'<=',$to);
+            }
+        })
+        ->sum('amount');
+
+         $total_loan = $tatal_give_away_amount + $tatal_added_reveanues_amount - $tatal_paid_reveanues_amount;
+
+         return $total_loan;
+
+
+
+    }
+
+    public static function get_total_interest_in_range($loan_id,$from,$to){
+
+        $tatal_addinterest_amount = Transaction::where('transactable_id',$loan_id)->where('transaction_for','loan')->where('flag','add_interest')->where('canculatable','yes')
+        ->where(function($q) use($from,$to){
+            if($from){
+                $q->where(DB::raw('DATE(date)'),'>=',$from);
+            }
+            if($to){
+                $q->where(DB::raw('DATE(date)'),'<=',$to);
+            }
+        })
+        ->sum('amount');
+
+        $tatal_interest_amount = Transaction::where('transactable_id',$loan_id)->where('transaction_for','loan')->where('flag','interest')->where('canculatable','yes')
+        ->where(function($q) use($from,$to){
+            if($from){
+                $q->where(DB::raw('DATE(date)'),'>=',$from);
+            }
+            if($to){
+                $q->where(DB::raw('DATE(date)'),'<=',$to);
+            }
+        })
+        ->sum('amount');
+
+        $total_interest = $tatal_addinterest_amount - $tatal_interest_amount;
+
+        return $total_interest;
 
     }
 
