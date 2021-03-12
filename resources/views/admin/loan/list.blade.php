@@ -258,7 +258,7 @@
                                     <th> মোট পরিশোধ</th>
                                     <th> মোট বকেয়া</th>
                                     <th> তারিখ </th>
-                                    <th> মেয়াদ শেষ </th>
+                                    {{-- <th> মেয়াদ শেষ </th> --}}
                                     <th>  অবস্থা</th>
                                 </tr>
                                 </thead>
@@ -273,7 +273,7 @@
                                     <th> মোট পরিশোধ</th>
                                     <th> মোট বকেয়া</th>
                                     <th> তারিখ </th>
-                                    <th> মেয়াদ শেষ </th>
+                                    {{-- <th> মেয়াদ শেষ </th> --}}
                                     <th>  অবস্থা</th>
                                 </tr>
                                 </tfoot>
@@ -319,7 +319,7 @@
                                         <td>{{\App\NumberConverter::en2bn($item->interests->sum('amount')   +   $item->paid_reveanues->sum('amount'))}}</td>
                                         <td>{{\App\NumberConverter::en2bn($item->current_payable())}}</td>
                                         <td>{{date('Y/m/d',strtotime($item->start_at))}}</td>
-                                        <td>{{date('Y/m/d',strtotime($item->closed_at))}}</td>
+                                        {{-- <td>{{date('Y/m/d',strtotime($item->closed_at))}}</td> --}}
                                         <td>{{$item->status}}</td>
 
                                     </tr>
