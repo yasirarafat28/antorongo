@@ -239,8 +239,8 @@
                     </div>
 
                     @php
-                        $from = $_GET['from']?? date("Y-m-d");
-                        $to = $_GET['to']?? date("Y-m-d");
+                        $from = $_GET['from']?? null;
+                        $to = $_GET['to']?? null;
                     @endphp
                     <div class="body">
 
@@ -286,131 +286,136 @@
                         </form>
                         <br>
 
-                        <div id="printable">
-                            <div class="row" >
-                                <div class="col-sm-12">
-                                    <div class="body">
-                                        <h1 style="text-align: center">দি অন্তরঙ্গ বহুমুখী সমবায় সমিতি লিঃ</h1>
-                                    <h5 style="text-align: center">৭৪১,মনিপুর,মিরপুর-২,ঢাকা-১২১৬ । রেজি নং-১৮৭/০১</h5>
-                                    <h3 style="text-align: center">
-                                        ঋণ প্রদান তালিকা
-                                        <span style="padding-left: 15px;">তারিখঃ</span>
+                        @if ($from && $to)
 
-                                         @if ($from != $to)
-                                            {{NumberConverter::en2bn(date("d-m-Y",strtotime($from)))}} -  {{NumberConverter::en2bn(date("d-m-Y",strtotime($to)))}}
-                                        @else
-                                            {{NumberConverter::en2bn(date("d-m-Y",strtotime($to)))}}
-                                         @endif
-                                    </h3>
-                                    </div>
-                                </div>
-
-                                <br>
-                                <br>
-
+                            <div id="printable">
+                                <div class="row" >
                                     <div class="col-sm-12">
-
                                         <div class="body">
+                                            <h1 style="text-align: center">দি অন্তরঙ্গ বহুমুখী সমবায় সমিতি লিঃ</h1>
+                                        <h5 style="text-align: center">৭৪১,মনিপুর,মিরপুর-২,ঢাকা-১২১৬ । রেজি নং-১৮৭/০১</h5>
+                                        <h3 style="text-align: center">
+                                            ঋণ প্রদান তালিকা
+                                            <span style="padding-left: 15px;">তারিখঃ</span>
 
-                                                <fieldset>
-                                                    <table class="table table-bordered table-hover">
-                                                        <thead>
-
-                                                            <tr>
-                                                                <th>ক্রঃ নং</th>
-                                                                <th> সদস্য নাম  </th>
-                                                                <th> সদস্য নং </th>
-                                                                <th> আসল</th>
-                                                                <th> লাভ</th>
-                                                                <th> সর্বমোট</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-
-                                                                @php
-                                                                     $total_l = 0;
-                                                                     $total_i = 0;
-                                                                     $total_all = 0;
-                                                                @endphp
-
-                                                            @foreach($records ?? array() as $item)
-                                                                <tr>
-                                                                    <td>{{$loop->iteration}}</td>
-                                                                    <td>{{$item->user->name_bn??'N/A'}}</td>
-                                                                    <td>{{$item->user->unique_id??'N/A'}}</td>
-                                                                    <td>{{$val_l =\App\Loan::get_total_loan_in_range($item->id,$from,$to)}}</td>
-                                                                    <td>{{$val_i =\App\Loan::get_total_interest_in_range($item->id,$from,$to)}}</td>
-                                                                    <td>{{$val_all = $total_l + $total_i}}</td>
-
-                                                                </tr>
-
-                                                                    @php
-                                                                        $total_l +=$val_l;
-                                                                        $total_i +=$val_i;
-                                                                        $total_all +=$val_all;
-                                                                    @endphp
-
-                                                            @endforeach
-                                                            <tr>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td>সর্বমোট</td>
-                                                                <td>{{\App\NumberConverter::en2bn(number_format($total_l))}}</td>
-                                                                <td>{{\App\NumberConverter::en2bn(number_format($total_i))}}</td>
-                                                                <td>{{\App\NumberConverter::en2bn(number_format($total_all))}}</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </fieldset>
+                                            @if ($from != $to)
+                                                {{NumberConverter::en2bn(date("d-m-Y",strtotime($from)))}} -  {{NumberConverter::en2bn(date("d-m-Y",strtotime($to)))}}
+                                            @else
+                                                {{NumberConverter::en2bn(date("d-m-Y",strtotime($to)))}}
+                                            @endif
+                                        </h3>
                                         </div>
                                     </div>
 
-                            </div>
+                                    <br>
+                                    <br>
 
-                            <br>
+                                        <div class="col-sm-12">
 
-                            </div>
-                            <br>
-                            <div style="clear: both"></div>
-                            <div class="row">
-                                <div class="col-sm-4" style="width: 25% !important;float:left !important;">
-                                    <div class="header">
+                                            <div class="body">
 
-                                        <h5>সভাপতি</h5>
+                                                    <fieldset>
+                                                        <table class="table table-bordered table-hover">
+                                                            <thead>
 
-                                    </div>
+                                                                <tr>
+                                                                    <th>ক্রঃ নং</th>
+                                                                    <th> সদস্য নাম  </th>
+                                                                    <th> সদস্য নং </th>
+                                                                    <th> আসল</th>
+                                                                    <th> লাভ</th>
+                                                                    <th> সর্বমোট</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+
+                                                                    @php
+                                                                        $total_l = 0;
+                                                                        $total_i = 0;
+                                                                        $total_all = 0;
+                                                                    @endphp
+
+                                                                @foreach($records ?? array() as $item)
+                                                                    <tr>
+                                                                        <td>{{$loop->iteration}}</td>
+                                                                        <td>{{$item->user->name_bn??'N/A'}}</td>
+                                                                        <td>{{$item->user->unique_id??'N/A'}}</td>
+                                                                        <td>{{$val_l =\App\Loan::get_total_loan_in_range($item->id,$from,$to)}}</td>
+                                                                        <td>{{$val_i =\App\Loan::get_total_interest_in_range($item->id,$from,$to)}}</td>
+                                                                        <td>{{$val_all = $total_l + $total_i}}</td>
+
+                                                                    </tr>
+
+                                                                        @php
+                                                                            $total_l +=$val_l;
+                                                                            $total_i +=$val_i;
+                                                                            $total_all +=$val_all;
+                                                                        @endphp
+
+                                                                @endforeach
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td>সর্বমোট</td>
+                                                                    <td>{{\App\NumberConverter::en2bn(number_format($total_l))}}</td>
+                                                                    <td>{{\App\NumberConverter::en2bn(number_format($total_i))}}</td>
+                                                                    <td>{{\App\NumberConverter::en2bn(number_format($total_all))}}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </fieldset>
+                                            </div>
+                                        </div>
+
                                 </div>
-                                <div class="col-sm-4" style="width: 25% !important;float:left !important;">
-                                    <div class="header">
 
-                                        <h5>সাধারণ সম্পাদক</h5>
+                                <br>
 
-                                    </div>
                                 </div>
-                                <div class="col-sm-4" style="width: 25% !important;float:left !important;">
-                                    <div class="header">
+                                <br>
+                                <div style="clear: both"></div>
+                                <div class="row">
+                                    <div class="col-sm-4" style="width: 25% !important;float:left !important;">
+                                        <div class="header">
 
-                                        <h5>আর্থ-সম্পাদক</h5>
+                                            <h5>সভাপতি</h5>
 
+                                        </div>
                                     </div>
+                                    <div class="col-sm-4" style="width: 25% !important;float:left !important;">
+                                        <div class="header">
+
+                                            <h5>সাধারণ সম্পাদক</h5>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4" style="width: 25% !important;float:left !important;">
+                                        <div class="header">
+
+                                            <h5>আর্থ-সম্পাদক</h5>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="row clearfix">
+
+                                <br>
+
+                                <div class="col-md-2 offset-5">
+
+                                    <button class="btn btn-primary" onclick="printDiv()"><i class="zmdi zmdi-print"></i>প্রিন্ট করুন</button>
+                                    {{-- <button class="btn btn-primary" onclick="window.print()"><i class="zmdi zmdi-print"></i>প্রিন্ট করুন</button> --}}
+
                                 </div>
 
                             </div>
-                        </div>
 
 
-                        <div class="row clearfix">
-
-                            <br>
-
-                            <div class="col-md-2 offset-5">
-
-                                <button class="btn btn-primary" onclick="printDiv()"><i class="zmdi zmdi-print"></i>প্রিন্ট করুন</button>
-                                {{-- <button class="btn btn-primary" onclick="window.print()"><i class="zmdi zmdi-print"></i>প্রিন্ট করুন</button> --}}
-
-                            </div>
-
-                        </div>
+                        @endif
 
                 </div>
 
