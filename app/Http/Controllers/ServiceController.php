@@ -47,15 +47,15 @@ class ServiceController extends Controller
         $service->description = $request->description;
         $service->status = $request->status;
 
-        // if ($request->hasFile('photo')) {
+        if ($request->hasFile('photo')) {
 
-        //     $image      = $request->file('photo');
-        //     $imageName  = 'service_'.date('ymdhis').'.'.$image->getClientOriginalExtension();
-        //     $path       = 'images/file/';
-        //     $image->move($path, $imageName);
-        //     $imageUrl   = $path . $imageName;
-        //     $service->feature_image = $imageUrl;
-        // }
+            $image      = $request->file('photo');
+            $imageName  = 'service_'.date('ymdhis').'.'.$image->getClientOriginalExtension();
+            $path       = 'images/file/';
+            $image->move($path, $imageName);
+            $imageUrl   = $path . $imageName;
+            $service->feature_image = $imageUrl;
+        }
         $service->save();
 
         return redirect('/admin/services')->withSuccess('সফলভাবে সেভ করা হয়েছে');
@@ -103,15 +103,15 @@ class ServiceController extends Controller
         $service->description = $request->description;
         $service->status = $request->status;
 
-        // if ($request->hasFile('photo')) {
+        if ($request->hasFile('photo')) {
 
-        //     $image      = $request->file('photo');
-        //     $imageName  = 'service_'.date('ymdhis').'.'.$image->getClientOriginalExtension();
-        //     $path       = 'images/file/';
-        //     $image->move($path, $imageName);
-        //     $imageUrl   = $path . $imageName;
-        //     $service->feature_image = $imageUrl;
-        // }
+            $image      = $request->file('photo');
+            $imageName  = 'service_'.date('ymdhis').'.'.$image->getClientOriginalExtension();
+            $path       = 'images/file/';
+            $image->move($path, $imageName);
+            $imageUrl   = $path . $imageName;
+            $service->feature_image = $imageUrl;
+        }
 
         $service->save();
 
