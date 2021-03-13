@@ -2,7 +2,7 @@
 @section('style')
 
 <link rel="stylesheet" type="text/css" href="/front/styles/blog.css">
-{{-- <link rel="stylesheet" type="text/css" href="front/styles/blog_responsive.css"> --}}
+<link rel="stylesheet" type="text/css" href="front/styles/blog_responsive.css">
 
 @endsection
 @section('content')
@@ -110,7 +110,7 @@
                     </div> --}}
 
                     <!-- Blog Post -->
-                    {{-- <div class="blog_post trans_200">
+                    <div class="blog_post trans_200">
                         <div class="blog_post_video_container">
                             <video class="blog_post_video video-js" data-setup='{"controls": true, "autoplay": false, "preload": "auto", "poster": "images/blog_4.jpg"}'>
                                 <source src="images/mov_bbb.mp4" type="video/mp4">
@@ -130,10 +130,10 @@
                                 <p>Policy analysts generally agree on a need for reform, but not on which path policymakers should take...</p>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
 
                     <!-- Blog Post -->
-                    {{-- <div class="blog_post trans_200">
+                    <div class="blog_post trans_200">
                         <div class="blog_post_image"><img src="images/blog_5.jpg" alt=""></div>
                         <div class="blog_post_body">
                             <div class="blog_post_title"><a href="blog_single.html">Here’s What You Need to Know About Online Testing</a></div>
@@ -147,10 +147,10 @@
                                 <p>Policy analysts generally agree on a need for reform, but not on which path policymakers should take...</p>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
 
                     <!-- Blog Post -->
-                    {{-- <div class="blog_post trans_200">
+                    <div class="blog_post trans_200">
                         <div class="blog_post_body">
                             <div class="blog_post_title"><a href="blog_single.html">With Changing Students and Times</a></div>
                             <div class="blog_post_meta">
@@ -163,7 +163,7 @@
                                 <p>Policy analysts generally agree on a need for reform, but not on which path policymakers should take...</p>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
 
                 </div>
             </div>
@@ -181,6 +181,7 @@
 
 @section('script')
 
-{{-- <script src="/front/js/blog.js"></script> --}}
+<script src="/front/plugins/masonry/masonry.js"></script>
+<script src="/front/js/blog.js"></script>
 
 @endsection
