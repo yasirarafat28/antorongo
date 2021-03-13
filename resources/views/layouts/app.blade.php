@@ -135,6 +135,7 @@
 				<li class="menu_mm"><a href="/blogs">Blog</a></li>
 				{{-- <li class="menu_mm"><a href="/front/#">Page</a></li> --}}
 				<li class="menu_mm"><a href="/contact">Contact</a></li>
+				<li class="menu_mm"><a href="/login">Loogin</a></li>
 			</ul>
 		</nav>
 	</div>
