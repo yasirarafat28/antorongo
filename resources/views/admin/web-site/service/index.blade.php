@@ -145,12 +145,12 @@
                                             <input type="text" placeholder="শিরোনাম" name="title" class="form-control" value="{{$row->title}}">
                                         </div>
                                     </div>
-                                    {{-- <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label for=""><small>ছবি</small></label>
-                                            <input type="file" placeholder="ছবি" name="photo" class="form-control">
+                                            <input type="file" placeholder="ছবি" name="photo" class="form-control" value="{{$row->photo}}">
                                         </div>
-                                    </div> --}}
+                                    </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label for=""><small>অবস্থা</small></label>
