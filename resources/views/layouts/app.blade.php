@@ -68,7 +68,7 @@
 							<div class="logo_container">
 
 									<div class="logo">
-                                        <img src="{{$logo->logo??''}}" alt="logo" onerror="this.src='/front/images/no_img_avaliable.jpg';">
+                                        <img src="{{url($logo->logo??'')}}" alt="logo" onerror="this.src='/front/images/no_img_avaliable.jpg';">
                                     </div>
 
 							</div>
