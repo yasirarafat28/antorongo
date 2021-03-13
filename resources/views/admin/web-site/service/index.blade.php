@@ -53,7 +53,7 @@
                             <thead>
                             <tr>
                                 <th>ক্রিয়াকলাপ</th>
-                                {{-- <th> ছবি </th> --}}
+                                <th> ছবি </th>
                                 <th> শিরোনাম </th>
                                 <th>বিস্তারিত </th>
                                 <th>অবস্থা  </th>
@@ -63,7 +63,7 @@
                             <tfoot>
                             <tr>
                                 <th>ক্রিয়াকলাপ</th>
-                                {{-- <th> ছবি </th> --}}
+                                <th> ছবি </th>
                                 <th> শিরোনাম </th>
                                 <th>বিস্তারিত </th>
                                 <th>অবস্থা  </th>
@@ -98,9 +98,9 @@
                                             {!! Form::close() !!}
                                     </div>
                                     </td>
-                                    {{-- <td>
+                                    <td>
                                         <img src="{{asset( $item->photo??'')}}" onerror="this.src='/front/images/no_img_avaliable.jpg';" alt="s2.jpg" width="60">
-                                    </td> --}}
+                                    </td>
                                     <td>{{$item->title}}</td>
                                     <td>{!! substr($item->description??'N/A',0,30) !!}...</td>
                                     <td>{{$item->status}}</td>

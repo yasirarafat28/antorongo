@@ -187,7 +187,8 @@ $services = App\Service::where('status','active')->orderBy('created_at','DESC')-
 <!-- Counter -->
 
 <div class="counter">
-    <div class="counter_background" style="background-image:url(/front/images/finance_bg_2.jpg)"></div>
+    {{-- <div class="counter_background" style="background-image:url(/front/images/finance_bg_2.jpg)"></div> --}}
+    <div class="counter_background" style="background-image:url(/front/images/bg_image_01.jpg)"></div>
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
