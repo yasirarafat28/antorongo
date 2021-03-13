@@ -341,7 +341,7 @@
 		</div>
 	</div> --}}
 
-
+@endsection
 
 @section('script')
 <script src="js/blog_single.js"></script>
