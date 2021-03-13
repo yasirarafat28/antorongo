@@ -340,7 +340,12 @@
                                                                         <td>{{$loop->iteration}}</td>
                                                                         <td>{{$item->user->name_bn??'N/A'}}</td>
                                                                         <td>{{$item->user->unique_id??'N/A'}}</td>
-                                                                        <td>{{$val_l =\App\Loan::get_total_loan_in_range($item->id,$from,$to)}}</td>
+                                                                        <td>
+                                                                            @php
+                                                                                $val_l =\App\Loan::get_total_loan_in_range($item->id,$from,$to)
+                                                                            @endphp
+                                                                            {{\App\NumberConverter::en2bn($val_l)}}
+                                                                        </td>
                                                                         <td>{{$val_i =\App\Loan::get_total_interest_in_range($item->id,$from,$to)}}</td>
                                                                         <td>{{$val_all = $total_l + $total_i}}</td>
 
